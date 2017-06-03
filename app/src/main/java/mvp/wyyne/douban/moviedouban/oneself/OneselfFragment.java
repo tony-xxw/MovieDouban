@@ -27,4 +27,9 @@ public class OneselfFragment extends BaseFragment {
     protected int getLayoutId() {
         return R.layout.fragment_oneself;
     }
+
+    @Override
+    protected void initView() {
+
+    }
 }

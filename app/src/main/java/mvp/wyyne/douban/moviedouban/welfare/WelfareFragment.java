@@ -27,4 +27,9 @@ public class WelfareFragment extends BaseFragment {
     protected int getLayoutId() {
         return R.layout.fragment_welfare;
     }
+
+    @Override
+    protected void initView() {
+
+    }
 }

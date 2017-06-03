@@ -1,4 +1,4 @@
-package mvp.wyyne.douban.moviedouban;
+package mvp.wyyne.douban.moviedouban.main;
 
 import android.support.v4.app.FragmentTabHost;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +8,7 @@ import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.hot.HotFragment;
 import mvp.wyyne.douban.moviedouban.movie.MovieFragment;
 import mvp.wyyne.douban.moviedouban.oneself.OneselfFragment;

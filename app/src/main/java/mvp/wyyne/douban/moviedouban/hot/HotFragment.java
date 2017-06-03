@@ -3,6 +3,7 @@ package mvp.wyyne.douban.moviedouban.hot;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,5 +35,10 @@ public class HotFragment extends BaseFragment {
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_hot;
+    }
+
+    @Override
+    protected void initView() {
+
     }
 }

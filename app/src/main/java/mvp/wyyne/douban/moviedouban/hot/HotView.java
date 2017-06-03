@@ -6,4 +6,6 @@ package mvp.wyyne.douban.moviedouban.hot;
  */
 
 public class HotView {
+
+
 }

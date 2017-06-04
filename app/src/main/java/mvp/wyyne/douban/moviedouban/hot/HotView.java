@@ -5,7 +5,8 @@ package mvp.wyyne.douban.moviedouban.hot;
  * Created by XXW on 2017/6/3.
  */
 
-public class HotView {
+public interface HotView {
 
+    public void onBindPage();
 
 }

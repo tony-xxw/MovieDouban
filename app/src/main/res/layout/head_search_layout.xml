@@ -32,7 +32,7 @@
         android:drawablePadding="10dp"
         android:drawableStart="@drawable/icon_search"
         android:gravity="center_vertical"
-        android:hint="@string/hot_hint"
+        android:text="@string/hot_hint"
         android:minHeight="30dp"
         android:textColorHint="@color/colorTextSizeMax"
         android:textSize="14sp"

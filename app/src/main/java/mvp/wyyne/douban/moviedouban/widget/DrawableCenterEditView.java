@@ -15,7 +15,7 @@ import android.widget.TextView;
  * Created by XXW on 2017/6/3.
  */
 
-public class DrawableCenterEditView extends AppCompatEditText {
+public class DrawableCenterEditView extends AppCompatTextView {
 
 
     public DrawableCenterEditView(Context context) {
@@ -33,7 +33,7 @@ public class DrawableCenterEditView extends AppCompatEditText {
         if (drawables != null) {
             Drawable drawableLeft = drawables[0];
             if (drawableLeft != null) {
-                int textWidth = (int) getPaint().measureText(getHint().toString());
+                int textWidth = (int) getPaint().measureText(getText().toString());
                 int drawablePadding = getCompoundDrawablePadding();
                 int drawableWidth = 0;
                 drawableWidth = drawableLeft.getIntrinsicWidth();

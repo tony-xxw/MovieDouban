@@ -9,4 +9,5 @@
     <color name="colorTextSizeMax">#333333</color>
     <color name="colorWhite">#FFFFFF</color>
     <color name="default_bg">#ffffff</color>
+    <color name="colorPink">#f47d7d</color>
 </resources>

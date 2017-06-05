@@ -21,14 +21,14 @@ public class HotBean {
     private int count;
 
     public List<Subjects> getSubjectsList() {
-        return mSubjectsList;
+        return subjects;
     }
 
     public void setSubjectsList(List<Subjects> subjectsList) {
-        mSubjectsList = subjectsList;
+        subjects = subjectsList;
     }
 
-    private List<Subjects> mSubjectsList;
+    private List<Subjects> subjects;
 
     public String getTitle() {
         return title;
@@ -60,5 +60,16 @@ public class HotBean {
 
     public void setCount(int count) {
         this.count = count;
+    }
+
+    @Override
+    public String toString() {
+        return "HotBean{" +
+                "title='" + title + '\'' +
+                ", total=" + total +
+                ", start=" + start +
+                ", count=" + count +
+                ", mSubjectsList=" + subjects +
+                '}';
     }
 }

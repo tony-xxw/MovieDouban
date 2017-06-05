@@ -12,14 +12,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import org.reactivestreams.Subscriber;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import io.reactivex.Observer;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.subjects.Subject;
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.adapter.CurrentAdapter;
+import mvp.wyyne.douban.moviedouban.api.RetrofitService;
+import mvp.wyyne.douban.moviedouban.api.bean.HotBean;
+import mvp.wyyne.douban.moviedouban.api.bean.Subjects;
 import mvp.wyyne.douban.moviedouban.main.BaseFragment;
 
 /**
@@ -27,12 +36,12 @@ import mvp.wyyne.douban.moviedouban.main.BaseFragment;
  */
 
 public class HotCurrentFragment extends BaseFragment {
-    public static final String TAG ="HotCurrentFragment";
+    public static final String TAG = "HotCurrentFragment";
     @BindView(R.id.current_rv)
     RecyclerView mCurrentRv;
     Unbinder unbinder;
     private View mContentView;
-    private List<String> mList;
+    private List<Subjects> mList;
     private CurrentAdapter mAdapter;
 
     @Override
@@ -43,15 +52,41 @@ public class HotCurrentFragment extends BaseFragment {
     @Override
     protected void initView() {
         mList = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            mList.add("" + i);
-        }
         mAdapter = new CurrentAdapter(getActivity(), mList);
         LinearLayoutManager manager = new LinearLayoutManager(getActivity());
         manager.setOrientation(LinearLayoutManager.VERTICAL);
 
         mCurrentRv.setLayoutManager(manager);
         mCurrentRv.setAdapter(mAdapter);
+
+
+        RetrofitService.getHotList()
+                .subscribe(new Observer<HotBean>() {
+                               @Override
+                               public void onSubscribe(@NonNull Disposable d) {
+
+                               }
+
+                               @Override
+                               public void onNext(@NonNull HotBean hotBeen) {
+                                   mAdapter.setList(hotBeen.getSubjectsList());
+                                   mAdapter.notifyDataSetChanged();
+
+                                   Log.d("XXW", hotBeen.getSubjectsList().size() + "");
+                               }
+
+                               @Override
+                               public void onError(@NonNull Throwable e) {
+                                   Log.d("XXW", e.toString());
+                               }
+
+                               @Override
+                               public void onComplete() {
+
+                               }
+                           }
+                );
+
     }
 
     @Override
@@ -59,39 +94,39 @@ public class HotCurrentFragment extends BaseFragment {
         // TODO: inflate a fragment view
         mContentView = super.onCreateView(inflater, container, savedInstanceState);
         unbinder = ButterKnife.bind(this, mContentView);
-        Log.d("XXW","onCreate");
+        Log.d("XXW", "onCreate");
         return mContentView;
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d("XXW","onCreate");
+        Log.d("XXW", "onCreate");
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        Log.d("XXW","onCreate");
+        Log.d("XXW", "onCreate");
     }
 
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.d("XXW","onCreate");
+        Log.d("XXW", "onCreate");
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-        Log.d("XXW","onCreate");
+        Log.d("XXW", "onCreate");
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
-        Log.d("XXW","onCreate");
+        Log.d("XXW", "onCreate");
     }
 }

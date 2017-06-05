@@ -1,9 +1,12 @@
 package mvp.wyyne.douban.moviedouban.hot;
 
 import android.content.Context;
+import android.nfc.Tag;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +27,7 @@ import mvp.wyyne.douban.moviedouban.main.BaseFragment;
  */
 
 public class HotCurrentFragment extends BaseFragment {
+    public static final String TAG ="HotCurrentFragment";
     @BindView(R.id.current_rv)
     RecyclerView mCurrentRv;
     Unbinder unbinder;
@@ -55,12 +59,39 @@ public class HotCurrentFragment extends BaseFragment {
         // TODO: inflate a fragment view
         mContentView = super.onCreateView(inflater, container, savedInstanceState);
         unbinder = ButterKnife.bind(this, mContentView);
+        Log.d("XXW","onCreate");
         return mContentView;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Log.d("XXW","onCreate");
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        Log.d("XXW","onCreate");
+    }
+
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.d("XXW","onCreate");
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        Log.d("XXW","onCreate");
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+        Log.d("XXW","onCreate");
     }
 }

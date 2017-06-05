@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,18 +30,25 @@ public class HotFragment extends BaseFragment implements HotView {
     private View mContentView;
     private HotPresenterImp mPresenterImp;
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Log.d("XXW","onCreate");
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mContentView = super.onCreateView(inflater, container, savedInstanceState);
         unbinder = ButterKnife.bind(this, mContentView);
+        Log.d("XXW","onCreateView");
         return mContentView;
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
+        Log.d("XXW","onActivityCreated");
     }
 
     @Override
@@ -50,7 +58,7 @@ public class HotFragment extends BaseFragment implements HotView {
 
     @Override
     protected void initView() {
-        mPresenterImp = new HotPresenterImp(this, getActivity().getSupportFragmentManager());
+        mPresenterImp = new HotPresenterImp(this, getChildFragmentManager());
         mHotTl.setTabMode(TabLayout.MODE_FIXED);
         mHotTl.addTab(mHotTl.newTab().setText("正在热映"));
         mHotTl.addTab(mHotTl.newTab().setText("即将上映"));
@@ -61,6 +69,20 @@ public class HotFragment extends BaseFragment implements HotView {
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+        Log.d("XXW","onDestroyView");
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.d("XXW","onDestroy");
+    }
+
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        Log.d("XXW","onDetach");
     }
 
     @Override

@@ -3,10 +3,11 @@ package mvp.wyyne.douban.moviedouban.main;
 import android.support.v4.app.FragmentTabHost;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
-import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.hot.HotFragment;
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private String[] tag = {"hot", "movie", "oneself", "welfare"};
     private TextView mTabNameView;
     private ImageView mTabImageVIew;
+    private long mCurrentTime = 0;
 
 
     @Override
@@ -48,5 +50,21 @@ public class MainActivity extends AppCompatActivity {
         mTabImageVIew.setImageResource(mTabDrawable[i]);
         mTabNameView.setText(mTabName[i]);
         return mTabView;
+    }
+
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
+            if (System.currentTimeMillis() - mCurrentTime > 2000) {
+                Toast.makeText(this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
+                mCurrentTime = System.currentTimeMillis();
+            } else {
+                finish();
+                System.exit(0);
+            }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

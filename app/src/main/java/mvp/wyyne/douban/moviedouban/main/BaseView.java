@@ -5,4 +5,10 @@ package mvp.wyyne.douban.moviedouban.main;
  */
 
 public interface BaseView {
+
+    public void showLoding();
+
+    public void hideLoding();
+
+    public void finishRefresh();
 }

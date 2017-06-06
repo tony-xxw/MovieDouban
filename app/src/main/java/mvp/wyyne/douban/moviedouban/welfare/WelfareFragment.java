@@ -14,14 +14,6 @@ import mvp.wyyne.douban.moviedouban.main.BaseFragment;
  */
 
 public class WelfareFragment extends BaseFragment {
-    private View mContentView;
-
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mContentView = super.onCreateView(inflater, container, savedInstanceState);
-        return mContentView;
-    }
 
     @Override
     protected int getLayoutId() {

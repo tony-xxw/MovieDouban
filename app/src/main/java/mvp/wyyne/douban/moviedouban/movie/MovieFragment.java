@@ -22,16 +22,9 @@ public class MovieFragment extends BaseFragment {
 
     @BindView(R.id.tv_city)
     TextView mTvCity;
-    Unbinder unbinder;
+
     private View mContentView;
 
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mContentView = super.onCreateView(inflater, container, savedInstanceState);
-        unbinder = ButterKnife.bind(this, mContentView);
-        return mContentView;
-    }
 
     @Override
     protected int getLayoutId() {
@@ -43,9 +36,5 @@ public class MovieFragment extends BaseFragment {
         mTvCity.setVisibility(View.GONE);
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
-    }
+
 }

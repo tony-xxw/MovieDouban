@@ -37,11 +37,9 @@ import mvp.wyyne.douban.moviedouban.main.BaseFragment;
  */
 
 public class HotCurrentFragment extends BaseFragment {
-    public static final String TAG = "HotCurrentFragment";
+    protected static final String TAG ="HotCurrentFragment";
     @BindView(R.id.current_rv)
     RecyclerView mCurrentRv;
-    Unbinder unbinder;
-    private View mContentView;
     private List<Subjects> mList;
     private CurrentAdapter mAdapter;
 
@@ -91,27 +89,18 @@ public class HotCurrentFragment extends BaseFragment {
 
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // TODO: inflate a fragment view
-        mContentView = super.onCreateView(inflater, container, savedInstanceState);
-        unbinder = ButterKnife.bind(this, mContentView);
-        Log.d("XXW", "onCreate");
-        return mContentView;
-    }
 
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        Log.d("XXW", "onCreate");
+    public void onStart() {
+        super.onStart();
+        Log.d(TAG,"onStart");
     }
-
 
     @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
-        Log.d("XXW", "onCreate");
+    public void onResume() {
+        super.onResume();
+        Log.d(TAG,"onResume");
     }
+
 }

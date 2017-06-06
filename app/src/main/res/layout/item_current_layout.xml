@@ -2,65 +2,80 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="120dp"
+                android:minHeight="160dp"
                 android:orientation="horizontal">
 
 
     <ImageView
         android:id="@+id/iv_avatars"
-        android:layout_width="60dp"
-        android:layout_height="90dp"
+        android:layout_width="80dp"
+        android:layout_height="110dp"
         android:layout_centerVertical="true"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="15dp"
         android:src="@drawable/default_bg"/>
 
     <LinearLayout
+        android:layout_alignTop="@+id/iv_avatars"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_marginStart="10dp"
         android:layout_toEndOf="@+id/iv_avatars"
+        android:gravity="center_vertical"
         android:orientation="vertical">
 
 
         <TextView
             android:id="@+id/tv_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="神奇女侠"
-            android:textStyle="bold"/>
+            style="@style/MovieItemTextTitle"
+            android:text="神奇女侠"/>
 
         <TextView
             android:id="@+id/tv_average"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/MovieItemText"
             android:text="四星"/>
 
-        <TextView
-            android:id="@+id/tv_directors_name"
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="导演"/>
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/tv_casts_list"
+            <TextView
+                style="@style/MovieItemText"
+                android:text="导演 : "/>
+
+            <TextView
+                android:id="@+id/tv_directors_name"
+                style="@style/MovieItemText"/>
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="主演"/>
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/MovieItemText"
+                android:text="导演 : "/>
+
+            <TextView
+                android:id="@+id/tv_casts_list"
+                style="@style/MovieItemText"/>
+
+        </LinearLayout>
 
         <TextView
             android:id="@+id/tv_collect_count"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="看过"/>
+            style="@style/MovieItemText"
+            android:text="看过"
+            android:textColor="@color/colorBlack"/>
     </LinearLayout>
 
     <Button
+        android:textColor="@color/colorPink"
         android:layout_width="60dp"
         android:layout_height="30dp"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
-        android:layout_gravity="center_vertical"
         android:layout_marginEnd="10dp"
         android:background="@drawable/bg_btn_pink"
         android:text="购票"/>

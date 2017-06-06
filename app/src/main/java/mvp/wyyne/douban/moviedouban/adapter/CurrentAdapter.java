@@ -56,7 +56,7 @@ public class CurrentAdapter extends RecyclerView.Adapter<CurrentAdapter.CurrentH
         List<Directors> directors = mList.get(position).getDirectors();
         Avatars avatars = mList.get(position).getImages();
         Rating rating = mList.get(position).getRating();
-        holder.mCollectCount.setText(mList.get(position).getCollect_count() + "");
+        holder.mCollectCount.setText(mList.get(position).getCollect_count() + "人看过");
         holder.mCastsList.setText(casts.get(0).getName() + "/" + casts.get(1).getName() + "/" + casts.get(2).getName());
         holder.mDirectors.setText(directors.get(0).getName());
         holder.mTitle.setText(mList.get(position).getTitle());

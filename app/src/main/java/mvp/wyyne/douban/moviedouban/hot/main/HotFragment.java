@@ -1,20 +1,13 @@
-package mvp.wyyne.douban.moviedouban.hot;
+package mvp.wyyne.douban.moviedouban.hot.main;
 
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 import mvp.wyyne.douban.moviedouban.R;
-import mvp.wyyne.douban.moviedouban.main.BaseFragment;
+import mvp.wyyne.douban.moviedouban.home.BaseFragment;
+
 
 /**
  * Created by XXW on 2017/6/2.

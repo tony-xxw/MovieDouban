@@ -1,4 +1,4 @@
-package mvp.wyyne.douban.moviedouban.hot;
+package mvp.wyyne.douban.moviedouban.hot.main;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -8,6 +8,10 @@ import android.support.v4.view.ViewPager;
 
 import java.util.ArrayList;
 import java.util.List;
+
+
+import mvp.wyyne.douban.moviedouban.hot.current.HotCurrentFragment;
+import mvp.wyyne.douban.moviedouban.hot.future.HotFutureFragment;
 
 /**
  * Created by XXW on 2017/6/4.

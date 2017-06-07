@@ -1,9 +1,8 @@
-package mvp.wyyne.douban.moviedouban.main;
+package mvp.wyyne.douban.moviedouban.home;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,8 +17,8 @@ public abstract class BaseFragment extends Fragment {
 
 
     //缓存Fragment
-    private View mRootView;
-    private boolean mIsMulti = false;
+    protected View mRootView;
+    protected boolean mIsMulti = false;
 
 
     @Nullable
@@ -37,7 +36,7 @@ public abstract class BaseFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         if (getUserVisibleHint() && mRootView != null) {
-            Log.d("XXW","onActivityCreated");
+            mIsMulti = true;
         }
     }
 
@@ -48,8 +47,8 @@ public abstract class BaseFragment extends Fragment {
 
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
-        if (isVisibleToUser && isVisible() && mRootView != null) {
-            Log.d("XXW","setUserVisibleHint");
+        if (isVisibleToUser && isVisible() && mRootView != null && !mIsMulti) {
+            mIsMulti = true;
         } else {
             super.setUserVisibleHint(isVisibleToUser);
         }

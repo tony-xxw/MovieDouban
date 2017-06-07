@@ -1,4 +1,4 @@
-package mvp.wyyne.douban.moviedouban.hot;
+package mvp.wyyne.douban.moviedouban.hot.main;
 
 /**
  * 热门UI

@@ -23,11 +23,12 @@ import mvp.wyyne.douban.moviedouban.home.BaseFragment;
  * Created by XXW on 2017/6/4.
  */
 
-public class HotCurrentFragment extends BaseFragment {
-    protected static final String TAG ="HotCurrentFragment";
+public class HotCurrentFragment extends BaseFragment implements ICurrentMain {
+    protected static final String TAG = "HotCurrentFragment";
     @BindView(R.id.current_rv)
     RecyclerView mCurrentRv;
     private List<Subjects> mList;
+    private CurrentPresent mPresent;
     private CurrentAdapter mAdapter;
 
     @Override
@@ -37,6 +38,7 @@ public class HotCurrentFragment extends BaseFragment {
 
     @Override
     protected void initView() {
+        mPresent = new CurrentPresent(this);
         mList = new ArrayList<>();
         mAdapter = new CurrentAdapter(getActivity(), mList);
         LinearLayoutManager manager = new LinearLayoutManager(getActivity());
@@ -45,38 +47,29 @@ public class HotCurrentFragment extends BaseFragment {
         mCurrentRv.setLayoutManager(manager);
         mCurrentRv.addItemDecoration(new DividerItemDecoration(mCurrentRv.getContext(), manager.getOrientation()));
         mCurrentRv.setAdapter(mAdapter);
-
-
-        RetrofitService.getHotList()
-                .subscribe(new Observer<HotBean>() {
-                               @Override
-                               public void onSubscribe(@NonNull Disposable d) {
-
-                               }
-
-                               @Override
-                               public void onNext(@NonNull HotBean hotBeen) {
-                                   mAdapter.setList(hotBeen.getSubjectsList());
-                                   mAdapter.notifyDataSetChanged();
-
-                                   Log.d("XXW", hotBeen.getSubjectsList().size() + "");
-                               }
-
-                               @Override
-                               public void onError(@NonNull Throwable e) {
-                                   Log.d("XXW", e.toString());
-                               }
-
-                               @Override
-                               public void onComplete() {
-
-                               }
-                           }
-                );
+        mPresent.getData();
 
     }
 
 
+    @Override
+    public void show() {
 
+    }
 
+    @Override
+    public void hide() {
+
+    }
+
+    @Override
+    public void refresh() {
+
+    }
+
+    @Override
+    public void initData(List<Subjects> subjects) {
+        mAdapter.setList(subjects);
+        mAdapter.notifyDataSetChanged();
+    }
 }

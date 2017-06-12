@@ -41,12 +41,12 @@
                 android:id="@+id/average"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
                 android:text="四星"
                 StartView:startCount="5"
                 StartView:startEmpty="@drawable/start_dark"
                 StartView:startFill="@drawable/start_light"
                 StartView:startSize="15dp"
-                android:layout_marginEnd="10dp"
                 StartView:startSpace="5dp"/>
 
             <TextView
@@ -78,9 +78,12 @@
 
             <TextView
                 style="@style/MovieItemText"
-                android:text="导演 : "/>
+                android:text="演员 : "/>
 
             <TextView
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:maxEms="10"
                 android:id="@+id/tv_casts_list"
                 style="@style/MovieItemText"/>
 

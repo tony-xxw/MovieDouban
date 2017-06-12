@@ -10,7 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import mvp.wyyne.douban.moviedouban.R;
-import mvp.wyyne.douban.moviedouban.hot.HotFragment;
+import mvp.wyyne.douban.moviedouban.hot.main.HotFragment;
 import mvp.wyyne.douban.moviedouban.movie.MovieFragment;
 import mvp.wyyne.douban.moviedouban.oneself.OneselfFragment;
 import mvp.wyyne.douban.moviedouban.welfare.WelfareFragment;

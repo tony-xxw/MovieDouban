@@ -39,7 +39,6 @@ public class Rating implements Parcelable{
             return new Rating[size];
         }
     };
-
     public int getMax() {
         return max;
     }

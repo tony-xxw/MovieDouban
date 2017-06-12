@@ -10,6 +10,7 @@ import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -30,6 +31,7 @@ public class StartView extends View {
     private Bitmap startLight;
     private OnStartChangeLister mChangeLister;
     private boolean mInteggerMark = false;
+    private int maxSpace;
 
 
     public StartView(Context context) {
@@ -58,11 +60,12 @@ public class StartView extends View {
     }
 
 
+    //是否需要整数评分
     public void setInteggerMark(boolean integgerMark) {
         mInteggerMark = integgerMark;
     }
 
-    public void setStartMark(double mark) {
+    public void setStartMark(int mark) {
         if (mInteggerMark) {
             startMark = (int) Math.ceil(mark);
         } else {
@@ -98,30 +101,37 @@ public class StartView extends View {
             return;
         }
 
+
         for (int i = 0; i < startCount; i++) {
             startDark.setBounds((startSpace + startSize) * i, 0, (startSpace + startSize) * i + startSize, startSize);
             startDark.draw(canvas);
         }
 
         if (startMark > 1) {
+            maxSpace = ((startSpace + startSize) * startCount);
+            Log.d("XXW", "maxspace---" + maxSpace);
+            Log.d("XXW", "startMark" + startMark);
             canvas.drawRect(0, 0, startSize, startSize, mPaint);
             if (startMark - (int) (startMark) == 0) {
-                for (int i = 1; i < startMark; i++) {
+                Log.d("XXW", "0");
+                for (int i = 1; i < startMark / 2; i++) {
                     canvas.translate(startSpace + startSize, 0);
                     canvas.drawRect(0, 0, startSize, startSize, mPaint);
                 }
+//            } else {
+//                Log.d("XXW", "1");
+//                for (int i = 1; i < startMark - 1; i++) {
+//                    canvas.translate(startSpace + startSize, 0);
+//                    canvas.drawRect(0, 0, startSize, startSize, mPaint);
+//                }
+//                canvas.translate(startSpace + startSize, 0);
+//                canvas.drawRect(0, 0, startSize * (Math.round((startMark - (int) (startMark)) * 10) * 1.0f / 10), startSize, mPaint);
+//            }
             } else {
-                for (int i = 1; i < startMark - 1; i++) {
-                    canvas.translate(startSpace + startSize, 0);
-                    canvas.drawRect(0, 0, startSize, startSize, mPaint);
-                }
-                canvas.translate(startSpace + startSize, 0);
-                canvas.drawRect(0, 0, startSize * (Math.round((startMark - (int) (startMark)) * 10) * 1.0f / 10), startSize, mPaint);
-            }
-        } else {
             canvas.drawRect(0, 0, startSize * startMark, startSize, mPaint);
-        }
+            }
 
+        }
     }
 
 
@@ -132,11 +142,11 @@ public class StartView extends View {
         if (x > getMeasuredWidth()) x = getMeasuredWidth();
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN: {
-                setStartMark(x * 1.0f / (getMeasuredWidth() * 1.0f / startCount));
+                setStartMark(x / (getMeasuredWidth() / startCount));
                 break;
             }
             case MotionEvent.ACTION_MOVE: {
-                setStartMark(x * 1.0f / (getMeasuredWidth() * 1.0f / startCount));
+                setStartMark(x / (getMeasuredWidth() / startCount));
                 break;
             }
             case MotionEvent.ACTION_UP: {

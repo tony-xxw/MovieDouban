@@ -46,13 +46,13 @@
                 StartView:startEmpty="@drawable/start_dark"
                 StartView:startFill="@drawable/start_light"
                 StartView:startSize="15dp"
+                android:layout_marginEnd="10dp"
                 StartView:startSpace="5dp"/>
 
             <TextView
                 android:id="@+id/tv_average_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
                 android:text="aa"
                 android:textColor="@color/colorGray_light"
                 android:textSize="12sp"/>

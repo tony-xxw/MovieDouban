@@ -1,10 +1,13 @@
 package mvp.wyyne.douban.moviedouban.api.bean;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by XXW on 2017/6/5.
  */
 
-public class Casts {
+public class Casts implements Parcelable{
 
     /**
      * alt : https://movie.douban.com/celebrity/1044996/
@@ -17,6 +20,24 @@ public class Casts {
     private Avatars avatars;
     private String name;
     private String id;
+
+    protected Casts(Parcel in) {
+        alt = in.readString();
+        name = in.readString();
+        id = in.readString();
+    }
+
+    public static final Creator<Casts> CREATOR = new Creator<Casts>() {
+        @Override
+        public Casts createFromParcel(Parcel in) {
+            return new Casts(in);
+        }
+
+        @Override
+        public Casts[] newArray(int size) {
+            return new Casts[size];
+        }
+    };
 
     public String getAlt() {
         return alt;
@@ -51,4 +72,15 @@ public class Casts {
     }
 
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(alt);
+        dest.writeString(name);
+        dest.writeString(id);
+    }
 }

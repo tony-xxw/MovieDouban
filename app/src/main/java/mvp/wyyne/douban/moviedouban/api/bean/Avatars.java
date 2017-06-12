@@ -1,10 +1,13 @@
 package mvp.wyyne.douban.moviedouban.api.bean;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by XXW on 2017/6/5.
  */
 
-public class Avatars {
+public class Avatars implements Parcelable{
 
 
     /**
@@ -16,6 +19,24 @@ public class Avatars {
     private String small;
     private String large;
     private String medium;
+
+    protected Avatars(Parcel in) {
+        small = in.readString();
+        large = in.readString();
+        medium = in.readString();
+    }
+
+    public static final Creator<Avatars> CREATOR = new Creator<Avatars>() {
+        @Override
+        public Avatars createFromParcel(Parcel in) {
+            return new Avatars(in);
+        }
+
+        @Override
+        public Avatars[] newArray(int size) {
+            return new Avatars[size];
+        }
+    };
 
     public String getSmall() {
         return small;
@@ -39,5 +60,17 @@ public class Avatars {
 
     public void setMedium(String medium) {
         this.medium = medium;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(small);
+        dest.writeString(large);
+        dest.writeString(medium);
     }
 }

@@ -1,12 +1,15 @@
 package mvp.wyyne.douban.moviedouban.api.bean;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.List;
 
 /**
  * Created by XXW on 2017/6/5.
  */
 
-public class HotBean {
+public class HotBean implements Parcelable{
 
     /**
      * title : 正在上映的电影-北京
@@ -19,6 +22,26 @@ public class HotBean {
     private int total;
     private int start;
     private int count;
+
+    protected HotBean(Parcel in) {
+        title = in.readString();
+        total = in.readInt();
+        start = in.readInt();
+        count = in.readInt();
+        subjects = in.createTypedArrayList(Subjects.CREATOR);
+    }
+
+    public static final Creator<HotBean> CREATOR = new Creator<HotBean>() {
+        @Override
+        public HotBean createFromParcel(Parcel in) {
+            return new HotBean(in);
+        }
+
+        @Override
+        public HotBean[] newArray(int size) {
+            return new HotBean[size];
+        }
+    };
 
     public List<Subjects> getSubjectsList() {
         return subjects;
@@ -71,5 +94,19 @@ public class HotBean {
                 ", count=" + count +
                 ", mSubjectsList=" + subjects +
                 '}';
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(title);
+        dest.writeInt(total);
+        dest.writeInt(start);
+        dest.writeInt(count);
+        dest.writeTypedList(subjects);
     }
 }

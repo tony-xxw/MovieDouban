@@ -1,12 +1,15 @@
 package mvp.wyyne.douban.moviedouban.api.bean;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.List;
 
 /**
  * Created by XXW on 2017/6/5.
  */
 
-public class Subjects {
+public class Subjects implements Parcelable{
 
     /**
      * rating : {"max":10,"average":7.4,"stars":"40","min":0}
@@ -35,6 +38,29 @@ public class Subjects {
     private List<String> genres;
     private List<Casts> casts;
     private List<Directors> directors;
+
+    protected Subjects(Parcel in) {
+        title = in.readString();
+        collect_count = in.readInt();
+        original_title = in.readString();
+        subtype = in.readString();
+        year = in.readString();
+        alt = in.readString();
+        id = in.readString();
+        genres = in.createStringArrayList();
+    }
+
+    public static final Creator<Subjects> CREATOR = new Creator<Subjects>() {
+        @Override
+        public Subjects createFromParcel(Parcel in) {
+            return new Subjects(in);
+        }
+
+        @Override
+        public Subjects[] newArray(int size) {
+            return new Subjects[size];
+        }
+    };
 
     public Rating getRating() {
         return rating;
@@ -133,4 +159,20 @@ public class Subjects {
     }
 
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(title);
+        dest.writeInt(collect_count);
+        dest.writeString(original_title);
+        dest.writeString(subtype);
+        dest.writeString(year);
+        dest.writeString(alt);
+        dest.writeString(id);
+        dest.writeStringList(genres);
+    }
 }

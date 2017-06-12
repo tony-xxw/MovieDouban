@@ -1,10 +1,13 @@
 package mvp.wyyne.douban.moviedouban.api.bean;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by XXW on 2017/6/5.
  */
 
-public class Rating {
+public class Rating implements Parcelable{
 
     /**
      * max : 10
@@ -17,6 +20,25 @@ public class Rating {
     private double average;
     private String stars;
     private int min;
+
+    protected Rating(Parcel in) {
+        max = in.readInt();
+        average = in.readDouble();
+        stars = in.readString();
+        min = in.readInt();
+    }
+
+    public static final Creator<Rating> CREATOR = new Creator<Rating>() {
+        @Override
+        public Rating createFromParcel(Parcel in) {
+            return new Rating(in);
+        }
+
+        @Override
+        public Rating[] newArray(int size) {
+            return new Rating[size];
+        }
+    };
 
     public int getMax() {
         return max;
@@ -48,5 +70,18 @@ public class Rating {
 
     public void setMin(int min) {
         this.min = min;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(max);
+        dest.writeDouble(average);
+        dest.writeString(stars);
+        dest.writeInt(min);
     }
 }

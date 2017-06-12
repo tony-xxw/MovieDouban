@@ -13,7 +13,5 @@ public interface IMain {
     //隐藏下拉刷新
     void hide();
 
-    //下拉刷新
-    void refresh();
 }
 

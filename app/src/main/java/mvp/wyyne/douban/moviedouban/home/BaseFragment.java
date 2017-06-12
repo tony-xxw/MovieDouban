@@ -3,22 +3,31 @@ package mvp.wyyne.douban.moviedouban.home;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
+import mvp.wyyne.douban.moviedouban.R;
+import mvp.wyyne.douban.moviedouban.utils.SwipeRefreshUtils;
 
 /**
  * Created by XXW on 2017/6/2.
  */
 
-public abstract class BaseFragment extends Fragment {
+public abstract class BaseFragment<T extends IPresent> extends Fragment {
 
 
+    @Nullable
+    @BindView(R.id.swipe_refresh)
+    protected SwipeRefreshLayout mSwipeRefresh;
     //缓存Fragment
     protected View mRootView;
     protected boolean mIsMulti = false;
+
+    protected T mPresent;
 
 
     @Nullable
@@ -28,6 +37,7 @@ public abstract class BaseFragment extends Fragment {
             mRootView = inflater.inflate(getLayoutId(), null);
             ButterKnife.bind(this, mRootView);
             initView();
+            initSwipeRefresh();
         }
         return mRootView;
     }
@@ -53,6 +63,24 @@ public abstract class BaseFragment extends Fragment {
             super.setUserVisibleHint(isVisibleToUser);
         }
     }
+
+
+    /**
+     * 初始化下拉刷新
+     */
+    private void initSwipeRefresh() {
+        if (mSwipeRefresh != null) {
+            SwipeRefreshUtils.init(mSwipeRefresh, new SwipeRefreshLayout.OnRefreshListener() {
+                @Override
+                public void onRefresh() {
+                    refresh();
+                }
+            });
+        }
+    }
+
+
+    protected abstract void refresh();
 
     protected abstract int getLayoutId();
 

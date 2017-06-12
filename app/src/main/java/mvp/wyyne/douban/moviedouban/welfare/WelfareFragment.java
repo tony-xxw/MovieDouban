@@ -10,6 +10,11 @@ import mvp.wyyne.douban.moviedouban.home.BaseFragment;
 public class WelfareFragment extends BaseFragment {
 
     @Override
+    protected void refresh() {
+
+    }
+
+    @Override
     protected int getLayoutId() {
         return R.layout.fragment_welfare;
     }

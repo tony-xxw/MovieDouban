@@ -21,6 +21,11 @@ public class MovieFragment extends BaseFragment {
 
 
     @Override
+    protected void refresh() {
+
+    }
+
+    @Override
     protected int getLayoutId() {
         return R.layout.fragment_movie;
     }

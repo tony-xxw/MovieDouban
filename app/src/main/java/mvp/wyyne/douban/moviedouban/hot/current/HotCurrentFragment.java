@@ -25,7 +25,7 @@ import mvp.wyyne.douban.moviedouban.home.BaseFragment;
  * Created by XXW on 2017/6/4.
  */
 
-public class HotCurrentFragment extends BaseFragment implements ICurrentMain {
+public class HotCurrentFragment extends BaseFragment<CurrentPresent> implements ICurrentMain {
     protected static final String TAG = "HotCurrentFragment";
     @BindView(R.id.current_rv)
     RecyclerView mCurrentRv;
@@ -33,7 +33,6 @@ public class HotCurrentFragment extends BaseFragment implements ICurrentMain {
     AVLoadingIndicatorView mAvlLoading;
     Unbinder unbinder;
     private List<Subjects> mList;
-    private CurrentPresent mPresent;
     private CurrentAdapter mAdapter;
 
     @Override
@@ -60,16 +59,18 @@ public class HotCurrentFragment extends BaseFragment implements ICurrentMain {
     @Override
     public void show() {
         mAvlLoading.show();
+
     }
 
     @Override
     public void hide() {
         mAvlLoading.hide();
+        mSwipeRefresh.setRefreshing(false);
     }
 
     @Override
     public void refresh() {
-
+        mPresent.getData();
     }
 
     @Override

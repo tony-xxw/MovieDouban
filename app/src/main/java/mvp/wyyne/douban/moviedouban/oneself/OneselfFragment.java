@@ -10,6 +10,11 @@ import mvp.wyyne.douban.moviedouban.home.BaseFragment;
 public class OneselfFragment extends BaseFragment {
 
     @Override
+    protected void refresh() {
+
+    }
+
+    @Override
     protected int getLayoutId() {
         return R.layout.fragment_oneself;
     }

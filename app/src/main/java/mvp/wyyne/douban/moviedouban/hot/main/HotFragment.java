@@ -23,6 +23,11 @@ public class HotFragment extends BaseFragment implements HotView {
 
 
     @Override
+    protected void refresh() {
+
+    }
+
+    @Override
     protected int getLayoutId() {
         return R.layout.fragment_hot;
     }

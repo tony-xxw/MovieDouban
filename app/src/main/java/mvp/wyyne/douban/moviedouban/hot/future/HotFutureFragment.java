@@ -12,6 +12,11 @@ public class HotFutureFragment extends BaseFragment {
 
 
     @Override
+    protected void refresh() {
+
+    }
+
+    @Override
     protected int getLayoutId() {
         return R.layout.fragment_hot_future;
     }

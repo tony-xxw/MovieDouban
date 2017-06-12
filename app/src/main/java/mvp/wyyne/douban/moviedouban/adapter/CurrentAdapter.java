@@ -21,6 +21,7 @@ import mvp.wyyne.douban.moviedouban.api.bean.Directors;
 import mvp.wyyne.douban.moviedouban.api.bean.HotBean;
 import mvp.wyyne.douban.moviedouban.api.bean.Rating;
 import mvp.wyyne.douban.moviedouban.api.bean.Subjects;
+import mvp.wyyne.douban.moviedouban.widget.StartView;
 
 /**
  * Created by XXW on 2017/6/4.
@@ -61,7 +62,8 @@ public class CurrentAdapter extends RecyclerView.Adapter<CurrentAdapter.CurrentH
         holder.mDirectors.setText(directors.get(0).getName());
         holder.mTitle.setText(mList.get(position).getTitle());
         Glide.with(mContext).load(avatars.getMedium()).into(holder.mAvatars);
-//        holder.mMoviesName.setText(mList.get(position));
+        holder.mAverage.setStartMark(rating.getAverage());
+        holder.mAverage_count.setText(rating.getAverage() + "");
         Log.d("XXW", mList.get(position).getTitle());
     }
 
@@ -73,19 +75,21 @@ public class CurrentAdapter extends RecyclerView.Adapter<CurrentAdapter.CurrentH
     class CurrentHolder extends RecyclerView.ViewHolder {
         private ImageView mAvatars;
         private TextView mTitle;
-        private TextView mAverage;
+        private StartView mAverage;
         private TextView mDirectors;
         private TextView mCastsList;
         private TextView mCollectCount;
+        private TextView mAverage_count;
 
         public CurrentHolder(View itemView) {
             super(itemView);
             mTitle = (TextView) itemView.findViewById(R.id.tv_title);
-            mAverage = (TextView) itemView.findViewById(R.id.tv_average);
+            mAverage = (StartView) itemView.findViewById(R.id.average);
             mDirectors = (TextView) itemView.findViewById(R.id.tv_directors_name);
             mCastsList = (TextView) itemView.findViewById(R.id.tv_casts_list);
             mCollectCount = (TextView) itemView.findViewById(R.id.tv_collect_count);
             mAvatars = (ImageView) itemView.findViewById(R.id.iv_avatars);
+            mAverage_count = (TextView) itemView.findViewById(R.id.tv_average_count);
 
         }
     }

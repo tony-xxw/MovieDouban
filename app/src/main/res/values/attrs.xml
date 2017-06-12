@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="StartView">
+        <attr name="startSpace" format="dimension"/>
+        <attr name="startSize" format="dimension"/>
+        <attr name="startCount" format="integer"/>
+        <attr name="startEmpty" format="reference"/>
+        <attr name="startFill" format="reference"/>
+    </declare-styleable>
+</resources>

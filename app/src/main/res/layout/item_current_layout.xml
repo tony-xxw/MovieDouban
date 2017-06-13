@@ -3,10 +3,9 @@
                 xmlns:StartView="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="160dp"
                 android:background="@color/colorWhite"
+                android:minHeight="160dp"
                 android:orientation="horizontal">
-
 
 
     <ImageView
@@ -36,9 +35,9 @@
 
         <LinearLayout
             android:id="@+id/ll_star"
-            android:layout_marginTop="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:gravity="center_vertical">
 
             <mvp.wyyne.douban.moviedouban.widget.StartView
@@ -63,9 +62,9 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_marginTop="5dp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp">
 
             <TextView
                 style="@style/MovieItemText"
@@ -78,27 +77,27 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_marginTop="5dp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp">
 
             <TextView
                 style="@style/MovieItemText"
                 android:text="演员 : "/>
 
             <TextView
-                android:ellipsize="end"
-                android:singleLine="true"
-                android:maxEms="10"
                 android:id="@+id/tv_casts_list"
-                style="@style/MovieItemText"/>
+                style="@style/MovieItemText"
+                android:ellipsize="end"
+                android:maxEms="10"
+                android:singleLine="true"/>
 
         </LinearLayout>
 
         <TextView
-            android:layout_marginTop="5dp"
             android:id="@+id/tv_collect_count"
             style="@style/MovieItemText"
+            android:layout_marginTop="5dp"
             android:text="看过"
             android:textColor="@color/colorBlack"/>
     </LinearLayout>

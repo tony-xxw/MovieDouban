@@ -49,6 +49,11 @@ public class FutureAdapter extends BaseRvAdapter<Subjects> {
         holder.setVisibleStatu(R.id.ll_star, View.GONE);
         holder.setText(R.id.btn_shop, "想看");
 
+        addHead();
+    }
+
+    private void addHead() {
+
     }
 }
 

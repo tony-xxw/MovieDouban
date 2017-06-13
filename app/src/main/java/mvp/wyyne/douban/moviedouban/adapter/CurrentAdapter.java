@@ -63,7 +63,7 @@ public class CurrentAdapter extends RecyclerView.Adapter<CurrentAdapter.CurrentH
         holder.mTitle.setText(mList.get(position).getTitle());
         Glide.with(mContext).load(avatars.getMedium()).into(holder.mAvatars);
         if ((int) (rating.getAverage()) < 1) {
-            holder.mAverage.setVisibility(View.GONE);
+            holder.mAverage.setVisibility(View.GONE); 
             holder.mAverage_count.setText("暂时没有评分");
         } else {
             holder.mAverage.setVisibility(View.VISIBLE);

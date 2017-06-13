@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -61,8 +62,7 @@ public class FutureAdapter extends RecyclerView.Adapter<FutureAdapter.CurrentHol
         holder.mDirectors.setText(directors.get(0).getName());
         holder.mTitle.setText(mList.get(position).getTitle());
         Glide.with(mContext).load(avatars.getMedium()).into(holder.mAvatars);
-        holder.mAverage.setVisibility(View.GONE);
-        holder.mAverage_count.setVisibility(View.GONE);
+        holder.mStar.setVisibility(View.GONE);
         holder.mShop.setText("想看");
     }
 
@@ -80,6 +80,7 @@ public class FutureAdapter extends RecyclerView.Adapter<FutureAdapter.CurrentHol
         private TextView mCollectCount;
         private TextView mAverage_count;
         private Button mShop;
+        private LinearLayout mStar;
 
         public CurrentHolder(View itemView) {
             super(itemView);
@@ -91,6 +92,7 @@ public class FutureAdapter extends RecyclerView.Adapter<FutureAdapter.CurrentHol
             mAvatars = (ImageView) itemView.findViewById(R.id.iv_avatars);
             mAverage_count = (TextView) itemView.findViewById(R.id.tv_average_count);
             mShop = (Button) itemView.findViewById(R.id.btn_shop);
+            mStar = (LinearLayout) itemView.findViewById(R.id.ll_star);
 
         }
     }

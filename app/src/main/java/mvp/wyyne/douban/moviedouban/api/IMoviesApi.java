@@ -13,5 +13,8 @@ public interface IMoviesApi {
 
     @GET("movie/in_theaters")
     Observable<HotBean> getHotList();
+
+    @GET("movie/coming_soon")
+    Observable<HotBean> getFutureList();
 }
 

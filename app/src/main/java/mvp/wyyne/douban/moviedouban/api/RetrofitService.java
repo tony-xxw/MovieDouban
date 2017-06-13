@@ -119,4 +119,11 @@ public class RetrofitService {
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
+    public static Observable<HotBean> getFutureList() {
+        return mMoviesApi.getFutureList().
+                subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .subscribeOn(AndroidSchedulers.mainThread())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
 }

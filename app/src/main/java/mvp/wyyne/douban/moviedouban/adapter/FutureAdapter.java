@@ -1,9 +1,7 @@
 package mvp.wyyne.douban.moviedouban.adapter;
 
 import android.content.Context;
-import android.media.Image;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,23 +17,21 @@ import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.api.bean.Avatars;
 import mvp.wyyne.douban.moviedouban.api.bean.Casts;
 import mvp.wyyne.douban.moviedouban.api.bean.Directors;
-import mvp.wyyne.douban.moviedouban.api.bean.HotBean;
 import mvp.wyyne.douban.moviedouban.api.bean.Rating;
 import mvp.wyyne.douban.moviedouban.api.bean.Subjects;
 import mvp.wyyne.douban.moviedouban.widget.StartView;
 
 /**
- * Created by XXW on 2017/6/4.
+ * Created by XXW on 2017/6/13.
  */
 
-public class CurrentAdapter extends RecyclerView.Adapter<CurrentAdapter.CurrentHolder> {
-
-    private CurrentHolder mHolder;
+public class FutureAdapter extends RecyclerView.Adapter<FutureAdapter.CurrentHolder> {
+    private FutureAdapter.CurrentHolder mHolder;
     private View mView;
     private Context mContext;
     private List<Subjects> mList;
 
-    public CurrentAdapter(Context context, List<Subjects> list) {
+    public FutureAdapter(Context context, List<Subjects> list) {
         mContext = context;
         mList = list;
     }
@@ -46,14 +42,14 @@ public class CurrentAdapter extends RecyclerView.Adapter<CurrentAdapter.CurrentH
 
 
     @Override
-    public CurrentHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public FutureAdapter.CurrentHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         mView = LayoutInflater.from(mContext).inflate(R.layout.item_current_layout, parent, false);
-        mHolder = new CurrentHolder(mView);
+        mHolder = new FutureAdapter.CurrentHolder(mView);
         return mHolder;
     }
 
     @Override
-    public void onBindViewHolder(CurrentHolder holder, int position) {
+    public void onBindViewHolder(FutureAdapter.CurrentHolder holder, int position) {
         List<Casts> casts = mList.get(position).getCasts();
         List<Directors> directors = mList.get(position).getDirectors();
         Avatars avatars = mList.get(position).getImages();
@@ -65,15 +61,9 @@ public class CurrentAdapter extends RecyclerView.Adapter<CurrentAdapter.CurrentH
         holder.mDirectors.setText(directors.get(0).getName());
         holder.mTitle.setText(mList.get(position).getTitle());
         Glide.with(mContext).load(avatars.getMedium()).into(holder.mAvatars);
-        if ((int) (rating.getAverage()) < 1) {
-            holder.mAverage.setVisibility(View.GONE);
-            holder.mAverage_count.setText("暂时没有评分");
-        } else {
-            holder.mAverage.setVisibility(View.VISIBLE);
-            holder.mAverage.setStartMark((int) rating.getAverage());
-            holder.mAverage_count.setText(rating.getAverage() + "");
-        }
-
+        holder.mAverage.setVisibility(View.GONE);
+        holder.mAverage_count.setVisibility(View.GONE);
+        holder.mShop.setText("想看");
     }
 
     @Override

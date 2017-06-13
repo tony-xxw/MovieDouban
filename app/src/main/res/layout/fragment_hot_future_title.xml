@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:background="@color/colorWhite">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/MovieItemText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="全部"
+            android:textColor="@drawable/hot_text_clolor_selected"
+            android:textSize="12sp"/>
+
+        <TextView
+            style="@style/MovieItemText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="6月"
+            android:textColor="@drawable/hot_text_clolor_selected"
+            android:textSize="12sp"/>
+
+        <TextView
+            style="@style/MovieItemText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="7月"
+            android:textColor="@drawable/hot_text_clolor_selected"
+            android:textSize="12sp"/>
+
+        <TextView
+            style="@style/MovieItemText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="8月"
+            android:textColor="@drawable/hot_text_clolor_selected"
+            android:textSize="12sp"/>
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toStartOf="@+id/ll_right"
+        android:src="@drawable/line_gray_vertiral"/>
+
+
+    <LinearLayout
+        android:id="@+id/ll_right"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentEnd="true"
+        android:gravity="center_vertical">
+
+
+        <TextView
+            style="@style/MovieItemText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="时间"
+            android:textSize="12sp"/>
+
+
+        <TextView
+            style="@style/MovieItemText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
+            android:text="热度"
+            android:textColor="@drawable/hot_text_clolor_selected"
+            android:textSize="12sp"/>
+    </LinearLayout>
+
+</RelativeLayout>

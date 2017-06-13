@@ -48,8 +48,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
-                app:tabIndicatorColor="@color/colorGray"
-                android:minHeight="30dp"/>
+                android:minHeight="30dp"
+                app:tabBackground="@color/colorWhite"
+                app:tabIndicatorColor="@color/colorGray"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/colorGray"/>
 
             <android.support.v4.view.ViewPager
                 android:id="@+id/hot_vp"

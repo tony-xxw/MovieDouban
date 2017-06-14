@@ -28,8 +28,6 @@ public class HotFutureFragment extends BaseFragment<FuturePresent> implements IF
     protected static final String TAG = "HotFutureFragment";
     @BindView(R.id.future_rv)
     RecyclerView mFutureRv;
-    Unbinder unbinder;
-    private RecyclerView mFutureView;
     private FutureAdapter mAdapter;
     private List<Subjects> mList;
 
@@ -55,6 +53,7 @@ public class HotFutureFragment extends BaseFragment<FuturePresent> implements IF
         mFutureRv.addItemDecoration(new DividerItemDecoration(mFutureRv.getContext(), manager.getOrientation()));
         mFutureRv.setAdapter(mAdapter);
         mPresent.getData();
+        
     }
 
 
@@ -74,17 +73,4 @@ public class HotFutureFragment extends BaseFragment<FuturePresent> implements IF
         mAdapter.notifyDataSetChanged();
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // TODO: inflate a fragment view
-        View rootView = super.onCreateView(inflater, container, savedInstanceState);
-        unbinder = ButterKnife.bind(this, rootView);
-        return rootView;
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
-    }
 }

@@ -109,11 +109,11 @@ public class StartView extends View {
 
         if (startMark > 1) {
             maxSpace = ((startSpace + startSize) * startCount);
-            Log.d("XXW", "maxspace---" + maxSpace);
-            Log.d("XXW", "startMark" + startMark);
+//            Log.d("XXW", "maxspace---" + maxSpace);
+//            Log.d("XXW", "startMark" + startMark);
             canvas.drawRect(0, 0, startSize, startSize, mPaint);
             if (startMark - (int) (startMark) == 0) {
-                Log.d("XXW", "0");
+//                Log.d("XXW", "0");
                 for (int i = 1; i < startMark / 2; i++) {
                     canvas.translate(startSpace + startSize, 0);
                     canvas.drawRect(0, 0, startSize, startSize, mPaint);

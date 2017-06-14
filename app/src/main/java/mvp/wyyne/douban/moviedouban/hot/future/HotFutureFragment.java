@@ -20,6 +20,7 @@ import mvp.wyyne.douban.moviedouban.adapter.CurrentAdapter;
 import mvp.wyyne.douban.moviedouban.adapter.FutureAdapter;
 import mvp.wyyne.douban.moviedouban.api.bean.Subjects;
 import mvp.wyyne.douban.moviedouban.home.BaseFragment;
+import mvp.wyyne.douban.moviedouban.utils.MovieType;
 import mvp.wyyne.douban.moviedouban.utils.TitleRecycleItemDecoration;
 
 /**
@@ -33,6 +34,7 @@ public class HotFutureFragment extends BaseFragment<FuturePresent> implements IF
     private FutureAdapter mAdapter;
     private List<Subjects> mList;
     private DividerItemDecoration mItemDecoration;
+    private List<MovieType> mMovieTypes;
 
     @Override
     protected void refresh() {
@@ -47,6 +49,8 @@ public class HotFutureFragment extends BaseFragment<FuturePresent> implements IF
     @Override
     protected void initView() {
         mList = new ArrayList<>();
+        mMovieTypes = new ArrayList<>();
+
         mPresent = new FuturePresent(getActivity(), this);
         mAdapter = new FutureAdapter(getActivity(), mList);
         LinearLayoutManager manager = new LinearLayoutManager(getActivity());
@@ -55,7 +59,7 @@ public class HotFutureFragment extends BaseFragment<FuturePresent> implements IF
         mItemDecoration.setDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.line_gray_horizantal));
         mFutureRv.setLayoutManager(manager);
         mFutureRv.addItemDecoration(mItemDecoration);
-        mFutureRv.addItemDecoration(new TitleRecycleItemDecoration());
+
         mFutureRv.setAdapter(mAdapter);
         mPresent.getData();
 
@@ -74,6 +78,10 @@ public class HotFutureFragment extends BaseFragment<FuturePresent> implements IF
 
     @Override
     public void initData(List<Subjects> subjectses) {
+        for (int i = 0; i < subjectses.size(); i++) {
+            mMovieTypes.add(new MovieType("日期", subjectses.get(i)));
+        }
+        mFutureRv.addItemDecoration(new TitleRecycleItemDecoration(getActivity(), mMovieTypes));
         mAdapter.setList(subjectses);
         mAdapter.notifyDataSetChanged();
     }

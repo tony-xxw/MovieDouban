@@ -52,6 +52,8 @@ public class FutureAdapter extends BaseRvAdapter<Subjects> {
         addHead();
     }
 
+
+
     private void addHead() {
 
     }

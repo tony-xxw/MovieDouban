@@ -103,7 +103,7 @@ public class TitleRecycleItemDecoration extends RecyclerView.ItemDecoration {
         mPaint.setTextSize(28);
         mPaint.getTextBounds(tags, 0, tags.length(), mBound);
         c.drawText(tags, child.getPaddingLeft(), parent.getPaddingTop() + mTitleHeight - (mTitleHeight / 2 - mBound.height() / 2), mPaint);
-        Log.d("XXW", "onDrawOver-------" + mTitleHeight + "----Bound----" + mBound.height());
+//        Log.d("XXW", "onDrawOver-------" + mTitleHeight + "----Bound----" + mBound.height());
     }
 
     @Override
@@ -116,10 +116,10 @@ public class TitleRecycleItemDecoration extends RecyclerView.ItemDecoration {
                 outRect.set(0, mTitleHeight, 0, 0);
             } else {
                 if (null != mData.get(position).getTags() && mData.get(position).getTags().equals(mData.get(position - 1).getTags())) {
-                    outRect.set(0, mTitleHeight, 0, 0);
+                    outRect.set(0, 0, 0, 0);
                 } else {
                     Log.d("XXW", "position>0");
-                    outRect.set(0, 0, 0, 0);
+                    outRect.set(0, mTitleHeight, 0, 0);
                 }
             }
         }

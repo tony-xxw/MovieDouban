@@ -82,7 +82,8 @@ public class HotFutureFragment extends BaseFragment<FuturePresent> implements IF
             mPresent.getMovieDate(subjectses.get(i).getId());
             mMovieTypes.add(new MovieType("日期", subjectses.get(i)));
         }
-
+        mFutureRv.addItemDecoration(new TitleRecycleItemDecoration(getActivity(), mMovieTypes));
+        mAdapter.notifyDataSetChanged();
         mAdapter.setList(subjectses);
 
 
@@ -90,8 +91,7 @@ public class HotFutureFragment extends BaseFragment<FuturePresent> implements IF
 
     @Override
     public void bindData() {
-        mFutureRv.addItemDecoration(new TitleRecycleItemDecoration(getActivity(), mMovieTypes));
-        mAdapter.notifyDataSetChanged();
+
     }
 
 }

@@ -1,6 +1,7 @@
 package mvp.wyyne.douban.moviedouban.hot.current;
 
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -34,6 +35,7 @@ public class HotCurrentFragment extends BaseFragment<CurrentPresent> implements 
     Unbinder unbinder;
     private List<Subjects> mList;
     private CurrentAdapter mAdapter;
+    private DividerItemDecoration mItemDecoration;
 
     @Override
     protected int getLayoutId() {
@@ -47,9 +49,10 @@ public class HotCurrentFragment extends BaseFragment<CurrentPresent> implements 
         mAdapter = new CurrentAdapter(getActivity(), mList);
         LinearLayoutManager manager = new LinearLayoutManager(getActivity());
         manager.setOrientation(LinearLayoutManager.VERTICAL);
-
+        mItemDecoration = new DividerItemDecoration(mCurrentRv.getContext(), manager.getOrientation());
+        mItemDecoration.setDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.line_gray_horizantal));
         mCurrentRv.setLayoutManager(manager);
-        mCurrentRv.addItemDecoration(new DividerItemDecoration(mCurrentRv.getContext(), manager.getOrientation()));
+        mCurrentRv.addItemDecoration(mItemDecoration);
         mCurrentRv.setAdapter(mAdapter);
         mPresent.getData();
 

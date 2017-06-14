@@ -1,6 +1,7 @@
 package mvp.wyyne.douban.moviedouban.hot.future;
 
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -19,6 +20,7 @@ import mvp.wyyne.douban.moviedouban.adapter.CurrentAdapter;
 import mvp.wyyne.douban.moviedouban.adapter.FutureAdapter;
 import mvp.wyyne.douban.moviedouban.api.bean.Subjects;
 import mvp.wyyne.douban.moviedouban.home.BaseFragment;
+import mvp.wyyne.douban.moviedouban.utils.TitleRecycleItemDecoration;
 
 /**
  * Created by XXW on 2017/6/4.
@@ -30,6 +32,7 @@ public class HotFutureFragment extends BaseFragment<FuturePresent> implements IF
     RecyclerView mFutureRv;
     private FutureAdapter mAdapter;
     private List<Subjects> mList;
+    private DividerItemDecoration mItemDecoration;
 
     @Override
     protected void refresh() {
@@ -48,12 +51,14 @@ public class HotFutureFragment extends BaseFragment<FuturePresent> implements IF
         mAdapter = new FutureAdapter(getActivity(), mList);
         LinearLayoutManager manager = new LinearLayoutManager(getActivity());
         manager.setOrientation(LinearLayoutManager.VERTICAL);
-
+        mItemDecoration = new DividerItemDecoration(mFutureRv.getContext(), manager.getOrientation());
+        mItemDecoration.setDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.line_gray_horizantal));
         mFutureRv.setLayoutManager(manager);
-        mFutureRv.addItemDecoration(new DividerItemDecoration(mFutureRv.getContext(), manager.getOrientation()));
+        mFutureRv.addItemDecoration(mItemDecoration);
+        mFutureRv.addItemDecoration(new TitleRecycleItemDecoration());
         mFutureRv.setAdapter(mAdapter);
         mPresent.getData();
-        
+
     }
 
 

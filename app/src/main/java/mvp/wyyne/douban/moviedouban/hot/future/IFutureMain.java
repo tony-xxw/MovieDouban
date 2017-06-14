@@ -11,4 +11,6 @@ import mvp.wyyne.douban.moviedouban.home.IMain;
 
 public interface IFutureMain extends IMain {
     void initData(List<Subjects> subjectses);
+
+    void bindData();
 }

@@ -37,33 +37,33 @@ public class TitleRecycleItemDecoration extends RecyclerView.ItemDecoration {
         mPaint = new Paint();
 
     }
-
-    @Override
-    public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) {
-        super.onDraw(c, parent, state);
-        final int left = parent.getPaddingLeft();
-        final int right = parent.getWidth() - parent.getPaddingRight();
-        final int childCount = parent.getChildCount();
-        for (int i = 0; i < childCount; i++) {
-            final View child = parent.getChildAt(i);
-            final RecyclerView.LayoutParams pams = (RecyclerView.LayoutParams) child.getLayoutParams();
-            int position = pams.getViewLayoutPosition();
-            if (position > -1) {
-                if (position == 0) {//等于0肯定要有title的
-                    drawTitleArea(c, left, right, child, pams, position);
-
-                } else {//其他的通过判断
-                    if (null != mData.get(position).getTags() && !mData.get(position).getTags().equals(mData.get(position - 1).getTags())) {
-                        //不为空 且跟前一个tag不一样了，说明是新的分类，也要title
-                        drawTitleArea(c, left, right, child, pams, position);
-                    } else {
-                        //none
-                    }
-                }
-            }
-        }
-        Log.d("XXW", "onDraw");
-    }
+//
+//    @Override
+//    public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) {
+//        super.onDraw(c, parent, state);
+//        final int left = parent.getPaddingLeft();
+//        final int right = parent.getWidth() - parent.getPaddingRight();
+//        final int childCount = parent.getChildCount();
+//        for (int i = 0; i < childCount; i++) {
+//            final View child = parent.getChildAt(i);
+//            final RecyclerView.LayoutParams pams = (RecyclerView.LayoutParams) child.getLayoutParams();
+//            int position = pams.getViewLayoutPosition();
+//            if (position > -1) {
+//                if (position == 0) {//等于0肯定要有title的
+//                    drawTitleArea(c, left, right, child, pams, position);
+//
+//                } else {//其他的通过判断
+//                    if (null != mData.get(position).getTags() && !mData.get(position).getTags().equals(mData.get(position - 1).getTags())) {
+//                        //不为空 且跟前一个tag不一样了，说明是新的分类，也要title
+//                        drawTitleArea(c, left, right, child, pams, position);
+//                    } else {
+//                        //none
+//                    }
+//                }
+//            }
+//        }
+////        Log.d("XXW", "onDraw");
+//    }
 
 
     /**
@@ -112,17 +112,17 @@ public class TitleRecycleItemDecoration extends RecyclerView.ItemDecoration {
         int position = ((RecyclerView.LayoutParams) view.getLayoutParams()).getViewLayoutPosition();
         if (position > -1) {
             if (position == 0) {
-                Log.d("XXW", "position=0");
+//                Log.d("XXW", "position=0");
                 outRect.set(0, mTitleHeight, 0, 0);
             } else {
-                Log.d("XXW", "position>0");
                 if (null != mData.get(position).getTags() && mData.get(position).getTags().equals(mData.get(position - 1).getTags())) {
                     outRect.set(0, mTitleHeight, 0, 0);
                 } else {
+                    Log.d("XXW", "position>0");
                     outRect.set(0, 0, 0, 0);
                 }
             }
         }
-        Log.d("XXW", "getItemOffsets-----position---" + position + "-----");
+//        Log.d("XXW", "getItemOffsets-----position---" + position + "-----");
     }
 }

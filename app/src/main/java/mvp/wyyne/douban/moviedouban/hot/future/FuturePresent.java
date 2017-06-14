@@ -72,7 +72,7 @@ public class FuturePresent implements IFuturePresent {
                             }
                         }
                         mMain.bindData();
-                    }
+                    } 
 
                     @Override
                     public void onError(@NonNull Throwable e) {

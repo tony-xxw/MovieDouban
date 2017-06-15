@@ -37,6 +37,10 @@ public class TitleRecycleItemDecoration extends RecyclerView.ItemDecoration {
         mPaint = new Paint();
 
     }
+
+    public void setData(List<MovieType> data) {
+        mData = data;
+    }
 //
 //    @Override
 //    public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) {
@@ -87,7 +91,6 @@ public class TitleRecycleItemDecoration extends RecyclerView.ItemDecoration {
         mPaint.getTextBounds(mData.get(position).getTags(), 0, mData.get(position).getTags().length(), mBound);
         c.drawText(mData.get(position).getTags(), child.getPaddingLeft(), child.getTop() - params.topMargin - (mTitleHeight / 2 - mBound.height() / 2), mPaint);
     }
-
 
 
     @Override

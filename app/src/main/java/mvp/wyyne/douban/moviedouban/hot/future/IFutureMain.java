@@ -1,6 +1,7 @@
 package mvp.wyyne.douban.moviedouban.hot.future;
 
 import java.util.List;
+import java.util.Map;
 
 import mvp.wyyne.douban.moviedouban.api.bean.Subjects;
 import mvp.wyyne.douban.moviedouban.home.IMain;
@@ -12,5 +13,5 @@ import mvp.wyyne.douban.moviedouban.home.IMain;
 public interface IFutureMain extends IMain {
     void initData(List<Subjects> subjectses);
 
-    void bindData();
+    void bindData(Map<String,Subjects> s);
 }

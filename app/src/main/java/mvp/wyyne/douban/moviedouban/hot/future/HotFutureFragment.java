@@ -10,7 +10,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -35,6 +39,7 @@ public class HotFutureFragment extends BaseFragment<FuturePresent> implements IF
     private List<Subjects> mList;
     private DividerItemDecoration mItemDecoration;
     private List<MovieType> mMovieTypes;
+    private TitleRecycleItemDecoration mDecoration;
 
     @Override
     protected void refresh() {
@@ -57,11 +62,12 @@ public class HotFutureFragment extends BaseFragment<FuturePresent> implements IF
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         mItemDecoration = new DividerItemDecoration(mFutureRv.getContext(), manager.getOrientation());
         mItemDecoration.setDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.line_gray_horizantal));
+        mDecoration = new TitleRecycleItemDecoration(getActivity(), mMovieTypes);
         mFutureRv.setLayoutManager(manager);
         mFutureRv.addItemDecoration(mItemDecoration);
-        mFutureRv.addItemDecoration(new TitleRecycleItemDecoration(getActivity(), mMovieTypes));
+
         mFutureRv.setAdapter(mAdapter);
-        mPresent.getData();
+        mPresent.getMovieDate();
 
     }
 
@@ -78,19 +84,30 @@ public class HotFutureFragment extends BaseFragment<FuturePresent> implements IF
 
     @Override
     public void initData(List<Subjects> subjectses) {
-        for (int i = 0; i < subjectses.size(); i++) {
-            mPresent.getMovieDate(subjectses.get(i).getId());
-            mMovieTypes.add(new MovieType("日期", subjectses.get(i)));
-        }
-
-        mAdapter.setList(subjectses);
-
-
+//        for (int i = 0; i < subjectses.size(); i++) {
+//            mMovieTypes.add(new MovieType("日期", subjectses.get(i)));
+//        }
+        mList = subjectses;
     }
 
     @Override
-    public void bindData() {
+    public void bindData(Map<String, Subjects> s) {
+        Set<Map.Entry<String, Subjects>> map = s.entrySet();
+//        Iterator<Map.Entry<String, Subjects>> it = map.iterator();
+//
+//        for (it, it.hasNext();) {
+//
+//        }
 
+        for (Iterator<Map.Entry<String, Subjects>> it = map.iterator(); it.hasNext(); ) {
+            Map.Entry<String, Subjects> entry = (Map.Entry<String, Subjects>) it.next();
+            System.out.println(entry.getKey() + "--->" + entry.getValue());
+            mMovieTypes.add(new MovieType(entry.getKey(), entry.getValue()));
+        }
+
+        mDecoration.setData(mMovieTypes);
+        mFutureRv.addItemDecoration(mDecoration);
+        mAdapter.setList(mList);
         mAdapter.notifyDataSetChanged();
     }
 

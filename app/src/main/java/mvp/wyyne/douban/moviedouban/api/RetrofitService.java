@@ -23,6 +23,9 @@ import mvp.wyyne.douban.moviedouban.AndroidApplication;
 import mvp.wyyne.douban.moviedouban.api.bean.Article;
 import mvp.wyyne.douban.moviedouban.api.bean.HotBean;
 import mvp.wyyne.douban.moviedouban.api.bean.Subjects;
+import mvp.wyyne.douban.moviedouban.hot.future.FuturePresent;
+import mvp.wyyne.douban.moviedouban.hot.future.IFutureMain;
+import mvp.wyyne.douban.moviedouban.hot.future.IFuturePresent;
 import okhttp3.Cache;
 import okhttp3.CacheControl;
 import okhttp3.Interceptor;
@@ -122,11 +125,16 @@ public class RetrofitService {
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
-    public static Observable<Article> getArticles() {
+    public static Observable<Article> getArticles(final IFutureMain main, final FuturePresent present) {
         return mMoviesApi.getFutureList().
                 flatMap(new Function<HotBean, ObservableSource<Article>>() {
                     @Override
                     public ObservableSource<Article> apply(@io.reactivex.annotations.NonNull HotBean hotBean) throws Exception {
+                        main.initData(hotBean.getSubjectsList());
+                        present.setData(hotBean.getSubjectsList());
+                        for (int i = 0; i < hotBean.getSubjectsList().size(); i++) {
+                            return getArticle(hotBean.getSubjectsList());
+                        }
                         return getArticle(hotBean.getSubjectsList());
                     }
                 }).

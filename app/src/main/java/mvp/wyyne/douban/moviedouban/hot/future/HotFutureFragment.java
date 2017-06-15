@@ -52,7 +52,7 @@ public class HotFutureFragment extends BaseFragment<FuturePresent> implements IF
 
     @Override
     protected void refresh() {
-
+        mSwipeRefresh.setRefreshing(false);
     }
 
     @Override
@@ -104,9 +104,8 @@ public class HotFutureFragment extends BaseFragment<FuturePresent> implements IF
         }
         mDecoration = new TitleRecycleItemDecoration(getActivity(), mMovieTypes);
         mFutureRv.addItemDecoration(mDecoration);
-        mAdapter.setList(mList);
+        mAdapter.setList(subjectses);
         mAdapter.notifyDataSetChanged();
-        mList = subjectses;
     }
 
 

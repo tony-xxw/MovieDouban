@@ -46,7 +46,6 @@ public class FuturePresent implements IFuturePresent {
 
                     @Override
                     public void onNext(@NonNull HotBean hotBean) {
-                        mSubjectses = hotBean.getSubjectsList();
                         mMain.initData(hotBean.getSubjectsList());
 
                     }
@@ -63,45 +62,5 @@ public class FuturePresent implements IFuturePresent {
                 });
     }
 
-    public void setData(List<Subjects> subjectses) {
-        mSubjectses = subjectses;
-    }
 
-    public void getMovieDate() {
-        RetrofitService.getArticles(mMain,this)
-                .subscribe(new Observer<Article>() {
-                    @Override
-                    public void onSubscribe(@NonNull Disposable d) {
-
-                    }
-
-                    @Override
-                    public void onNext(@NonNull Article article) {
-                        for (int i = 0; i < mSubjectses.size(); i++) {
-                            if (article.getTitle().equals(mSubjectses.get(i).getTitle())) {
-                                List<String> list = article.getAttrs().getPubdate();
-                                for (String s : list) {
-                                    if (s.contains("中国大陆")) {
-                                        Log.d("XXW", "日期------" + s);
-                                        mMap.put(s, mSubjectses.get(i));
-
-                                    }
-                                }
-                            }
-                        }
-
-                        mMain.bindData(mMap);
-                    }
-
-                    @Override
-                    public void onError(@NonNull Throwable e) {
-
-                    }
-
-                    @Override
-                    public void onComplete() {
-
-                    }
-                });
-    }
 }

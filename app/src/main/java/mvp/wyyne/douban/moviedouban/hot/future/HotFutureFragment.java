@@ -5,11 +5,13 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -40,10 +42,17 @@ public class HotFutureFragment extends BaseFragment<FuturePresent> implements IF
     private DividerItemDecoration mItemDecoration;
     private List<MovieType> mMovieTypes;
     private TitleRecycleItemDecoration mDecoration;
+    private String[] mTags = {"6月15日,星期四", "6月15日,星期四", "6月15日,星期四", "6月15日,星期四",
+            "6月17日,星期六", "6月17日,星期六", "6月17日,星期六", "6月17日,星期六",
+            "6月19日,星期一", "6月19日,星期一", "6月19日,星期一", "6月19日,星期一",
+            "6月22日,星期四", "6月22日,星期四", "6月22日,星期四", "6月22日,星期四",
+            "6月24日,星期六", "6月24日,星期六", "6月24日,星期六", "6月24日,星期六"
+    };
+    private List<String> mTag;
 
     @Override
     protected void refresh() {
-        mPresent.getData();
+
     }
 
     @Override
@@ -55,19 +64,23 @@ public class HotFutureFragment extends BaseFragment<FuturePresent> implements IF
     protected void initView() {
         mList = new ArrayList<>();
         mMovieTypes = new ArrayList<>();
-
+        mTag = Arrays.asList(mTags);
         mPresent = new FuturePresent(getActivity(), this);
         mAdapter = new FutureAdapter(getActivity(), mList);
         LinearLayoutManager manager = new LinearLayoutManager(getActivity());
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         mItemDecoration = new DividerItemDecoration(mFutureRv.getContext(), manager.getOrientation());
         mItemDecoration.setDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.line_gray_horizantal));
-        mDecoration = new TitleRecycleItemDecoration(getActivity(), mMovieTypes);
-        mFutureRv.setLayoutManager(manager);
-        mFutureRv.addItemDecoration(mItemDecoration);
 
+        mFutureRv.setLayoutManager(manager);
+        initHeadDecoration();
+        mFutureRv.addItemDecoration(mItemDecoration);
         mFutureRv.setAdapter(mAdapter);
-        mPresent.getMovieDate();
+        mPresent.getData();
+
+    }
+
+    private void initHeadDecoration() {
 
     }
 
@@ -84,31 +97,17 @@ public class HotFutureFragment extends BaseFragment<FuturePresent> implements IF
 
     @Override
     public void initData(List<Subjects> subjectses) {
-//        for (int i = 0; i < subjectses.size(); i++) {
-//            mMovieTypes.add(new MovieType("日期", subjectses.get(i)));
-//        }
-        mList = subjectses;
-    }
+        Log.d("XXW", subjectses.size() + "--------------" + mTags.length);
+        for (int i = 0; i < subjectses.size(); i++) {
+            mMovieTypes.add(new MovieType(mTag.get(i), subjectses.get(i)));
 
-    @Override
-    public void bindData(Map<String, Subjects> s) {
-        Set<Map.Entry<String, Subjects>> map = s.entrySet();
-//        Iterator<Map.Entry<String, Subjects>> it = map.iterator();
-//
-//        for (it, it.hasNext();) {
-//
-//        }
-
-        for (Iterator<Map.Entry<String, Subjects>> it = map.iterator(); it.hasNext(); ) {
-            Map.Entry<String, Subjects> entry = (Map.Entry<String, Subjects>) it.next();
-            System.out.println(entry.getKey() + "--->" + entry.getValue());
-            mMovieTypes.add(new MovieType(entry.getKey(), entry.getValue()));
         }
-
-        mDecoration.setData(mMovieTypes);
+        mDecoration = new TitleRecycleItemDecoration(getActivity(), mMovieTypes);
         mFutureRv.addItemDecoration(mDecoration);
         mAdapter.setList(mList);
         mAdapter.notifyDataSetChanged();
+        mList = subjectses;
     }
+
 
 }

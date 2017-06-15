@@ -125,24 +125,6 @@ public class RetrofitService {
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
-    public static Observable<Article> getArticles(final IFutureMain main, final FuturePresent present) {
-        return mMoviesApi.getFutureList().
-                flatMap(new Function<HotBean, ObservableSource<Article>>() {
-                    @Override
-                    public ObservableSource<Article> apply(@io.reactivex.annotations.NonNull HotBean hotBean) throws Exception {
-                        main.initData(hotBean.getSubjectsList());
-                        present.setData(hotBean.getSubjectsList());
-                        for (int i = 0; i < hotBean.getSubjectsList().size(); i++) {
-                            return getArticle(hotBean.getSubjectsList());
-                        }
-                        return getArticle(hotBean.getSubjectsList());
-                    }
-                }).
-                subscribeOn(Schedulers.io())
-                .unsubscribeOn(Schedulers.io())
-                .subscribeOn(AndroidSchedulers.mainThread())
-                .observeOn(AndroidSchedulers.mainThread());
-    }
 
 
     public static Observable<HotBean> getFutureList() {
@@ -153,16 +135,6 @@ public class RetrofitService {
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
-    public static Observable<Article> getArticle(List<Subjects> id) {
-        for (Subjects subjects : id) {
-            return mMoviesApi.getMovieDate(subjects.getId()).
-                    subscribeOn(Schedulers.io())
-                    .unsubscribeOn(Schedulers.io())
-                    .subscribeOn(AndroidSchedulers.mainThread())
-                    .observeOn(AndroidSchedulers.mainThread());
-        }
-        return null;
-    }
 
 
 }

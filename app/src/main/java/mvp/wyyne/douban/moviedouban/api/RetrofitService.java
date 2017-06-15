@@ -14,8 +14,10 @@ import java.util.concurrent.TimeUnit;
 
 
 import io.reactivex.Observable;
+import io.reactivex.ObservableSource;
 import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 import mvp.wyyne.douban.moviedouban.AndroidApplication;
 import mvp.wyyne.douban.moviedouban.api.bean.Article;
@@ -120,6 +122,21 @@ public class RetrofitService {
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
+    public static Observable<Article> getArticles() {
+        return mMoviesApi.getFutureList().
+                flatMap(new Function<HotBean, ObservableSource<Article>>() {
+                    @Override
+                    public ObservableSource<Article> apply(@io.reactivex.annotations.NonNull HotBean hotBean) throws Exception {
+                        return getArticle(hotBean.getSubjectsList());
+                    }
+                }).
+                subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .subscribeOn(AndroidSchedulers.mainThread())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+
     public static Observable<HotBean> getFutureList() {
         return mMoviesApi.getFutureList().
                 subscribeOn(Schedulers.io())
@@ -128,12 +145,16 @@ public class RetrofitService {
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
-    public static Observable<Article> getArticle(String id) {
-        return mMoviesApi.getMovieDate(id).
-                subscribeOn(Schedulers.io())
-                .unsubscribeOn(Schedulers.io())
-                .subscribeOn(AndroidSchedulers.mainThread())
-                .observeOn(AndroidSchedulers.mainThread());
-
+    public static Observable<Article> getArticle(List<Subjects> id) {
+        for (Subjects subjects : id) {
+            return mMoviesApi.getMovieDate(subjects.getId()).
+                    subscribeOn(Schedulers.io())
+                    .unsubscribeOn(Schedulers.io())
+                    .subscribeOn(AndroidSchedulers.mainThread())
+                    .observeOn(AndroidSchedulers.mainThread());
+        }
+        return null;
     }
+
+
 }

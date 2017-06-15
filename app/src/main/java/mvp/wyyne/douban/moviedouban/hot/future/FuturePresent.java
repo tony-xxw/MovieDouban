@@ -55,8 +55,8 @@ public class FuturePresent implements IFuturePresent {
                 });
     }
 
-    public void getMovieDate(String movieId) {
-        RetrofitService.getArticle(movieId)
+    public void getMovieDate() {
+        RetrofitService.getArticles()
                 .subscribe(new Observer<Article>() {
                     @Override
                     public void onSubscribe(@NonNull Disposable d) {

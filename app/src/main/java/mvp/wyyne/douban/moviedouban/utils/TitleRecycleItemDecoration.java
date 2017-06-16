@@ -41,7 +41,8 @@ public class TitleRecycleItemDecoration extends RecyclerView.ItemDecoration {
     public void setData(List<MovieType> data) {
         mData = data;
     }
-//
+
+    //
     @Override
     public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) {
         super.onDraw(c, parent, state);

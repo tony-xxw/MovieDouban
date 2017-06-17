@@ -87,7 +87,7 @@ public class HotFutureFragment extends BaseFragment<FuturePresent> implements IF
 
     @Override
     public void show() {
-
+  
     }
 
     @Override

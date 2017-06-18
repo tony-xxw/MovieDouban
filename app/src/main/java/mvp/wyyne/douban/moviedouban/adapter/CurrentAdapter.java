@@ -6,6 +6,7 @@ import android.view.View;
 import java.util.List;
 
 import mvp.wyyne.douban.moviedouban.R;
+import mvp.wyyne.douban.moviedouban.api.RvItemOnClick;
 import mvp.wyyne.douban.moviedouban.api.bean.Avatars;
 import mvp.wyyne.douban.moviedouban.api.bean.Casts;
 import mvp.wyyne.douban.moviedouban.api.bean.Directors;
@@ -17,10 +18,15 @@ import mvp.wyyne.douban.moviedouban.api.bean.Subjects;
  */
 
 public class CurrentAdapter extends BaseRvAdapter<Subjects> {
+    private RvItemOnClick mClick;
 
 
     public CurrentAdapter(Context context, List<Subjects> list) {
         super(context, list);
+    }
+
+    public void setOnclick(RvItemOnClick click) {
+        mClick = click;
     }
 
     public void setList(List<Subjects> list) {
@@ -33,7 +39,7 @@ public class CurrentAdapter extends BaseRvAdapter<Subjects> {
     }
 
     @Override
-    void bindView(BaseItemViewHolder holder, int position) {
+    void bindView(BaseItemViewHolder holder, final int position) {
         List<Casts> casts = mList.get(position).getCasts();
         List<Directors> directors = mList.get(position).getDirectors();
         Avatars avatars = mList.get(position).getImages();
@@ -53,5 +59,12 @@ public class CurrentAdapter extends BaseRvAdapter<Subjects> {
             holder.getStartView(R.id.average).setStartMark((int) rating.getAverage());
             holder.setText(R.id.tv_average_count, rating.getAverage() + "");
         }
+        holder.getView(R.id.rl_layout).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mClick.onItem(position);
+            }
+        });
     }
+
 }

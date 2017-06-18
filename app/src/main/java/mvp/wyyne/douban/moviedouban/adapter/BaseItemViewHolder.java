@@ -15,7 +15,7 @@ import mvp.wyyne.douban.moviedouban.widget.StartView;
  * Created by XXW on 2017/6/13.
  */
 
-public class BaseItemViewHolder extends RecyclerView.ViewHolder {
+public class BaseItemViewHolder extends RecyclerView.ViewHolder{
     private View convertView;
     private final SparseArray<View> mViews;
     private Context mContext;
@@ -62,4 +62,7 @@ public class BaseItemViewHolder extends RecyclerView.ViewHolder {
         }
         return (T) view;
     }
+
+
+
 }

@@ -5,6 +5,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,7 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.adapter.CurrentAdapter;
+import mvp.wyyne.douban.moviedouban.api.RvItemOnClick;
 import mvp.wyyne.douban.moviedouban.api.bean.Subjects;
 import mvp.wyyne.douban.moviedouban.home.BaseFragment;
 
@@ -26,7 +28,7 @@ import mvp.wyyne.douban.moviedouban.home.BaseFragment;
  * Created by XXW on 2017/6/4.
  */
 
-public class HotCurrentFragment extends BaseFragment<CurrentPresent> implements ICurrentMain {
+public class HotCurrentFragment extends BaseFragment<CurrentPresent> implements ICurrentMain, RvItemOnClick {
     protected static final String TAG = "HotCurrentFragment";
     @BindView(R.id.current_rv)
     RecyclerView mCurrentRv;
@@ -51,6 +53,7 @@ public class HotCurrentFragment extends BaseFragment<CurrentPresent> implements 
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         mItemDecoration = new DividerItemDecoration(mCurrentRv.getContext(), manager.getOrientation());
         mItemDecoration.setDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.line_gray_horizantal));
+        mAdapter.setOnclick(this);
         mCurrentRv.setLayoutManager(manager);
         mCurrentRv.addItemDecoration(mItemDecoration);
         mCurrentRv.setAdapter(mAdapter);
@@ -94,5 +97,10 @@ public class HotCurrentFragment extends BaseFragment<CurrentPresent> implements 
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+    }
+
+    @Override
+    public void onItem(int position) {
+        Log.d("XXW", "position-------" + position);
     }
 }

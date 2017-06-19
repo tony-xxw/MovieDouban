@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimary">#47b53f</color>
+    <color name="colorPrimaryDark">#379f30</color>
     <color name="colorAccent">#FF4081</color>
     <color name="colorGray">#999999</color>
     <color name="colorGray_dark">#e4e2e2</color>
@@ -14,4 +14,5 @@
     <color name="default_bg">#ffffff</color>
     <color name="colorPink">#f47d7d</color>
     <color name="colorOrange">#f47202</color>
+    <color name="colorTransparency">#55000000</color>
 </resources>

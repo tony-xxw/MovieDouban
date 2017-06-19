@@ -104,7 +104,6 @@ public class HotCurrentFragment extends BaseFragment<CurrentPresent> implements 
 
     @Override
     public void onItem(int position) {
-        Log.d("XXW", "position-------" + position);
         Intent intent = new Intent(getActivity(), DetailMovieActivity.class);
         intent.putExtra(DetailMovieActivity.DETAIL_TAG, mList.get(position));
         getActivity().startActivity(intent);

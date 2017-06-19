@@ -97,7 +97,6 @@ public class HotFutureFragment extends BaseFragment<FuturePresent> implements IF
 
     @Override
     public void initData(List<Subjects> subjectses) {
-        Log.d("XXW", subjectses.size() + "--------------" + mTags.length);
         for (int i = 0; i < subjectses.size(); i++) {
             mMovieTypes.add(new MovieType(mTag.get(i), subjectses.get(i)));
 

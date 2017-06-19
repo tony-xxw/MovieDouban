@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import mvp.wyyne.douban.moviedouban.R;
 
 /**
@@ -33,6 +34,7 @@ public abstract class BaseActivity<T extends IPresent> extends AppCompatActivity
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
+        ButterKnife.bind(this);
     }
 
     protected abstract void refresh();

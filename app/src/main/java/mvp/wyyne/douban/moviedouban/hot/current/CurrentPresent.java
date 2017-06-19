@@ -26,7 +26,6 @@ public class CurrentPresent implements ICurrentPresent {
                 .subscribe(new Observer<HotBean>() {
                                @Override
                                public void onSubscribe(@NonNull Disposable d) {
-                                   Log.d("XXW", "onSubscribe");
                                    mMain.show();
                                }
 
@@ -37,7 +36,6 @@ public class CurrentPresent implements ICurrentPresent {
 
                                @Override
                                public void onError(@NonNull Throwable e) {
-                                   Log.d("XXW", e.toString());
                                }
 
                                @Override

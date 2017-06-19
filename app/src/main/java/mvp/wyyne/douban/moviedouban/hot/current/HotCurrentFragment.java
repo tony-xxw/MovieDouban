@@ -1,5 +1,6 @@
 package mvp.wyyne.douban.moviedouban.hot.current;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.DividerItemDecoration;
@@ -22,6 +23,7 @@ import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.adapter.CurrentAdapter;
 import mvp.wyyne.douban.moviedouban.api.RvItemOnClick;
 import mvp.wyyne.douban.moviedouban.api.bean.Subjects;
+import mvp.wyyne.douban.moviedouban.detail.DetailMovieActivity;
 import mvp.wyyne.douban.moviedouban.home.BaseFragment;
 
 /**
@@ -81,6 +83,7 @@ public class HotCurrentFragment extends BaseFragment<CurrentPresent> implements 
 
     @Override
     public void initData(List<Subjects> subjects) {
+        mList = subjects;
         mAdapter.setList(subjects);
         mAdapter.notifyDataSetChanged();
     }
@@ -102,5 +105,8 @@ public class HotCurrentFragment extends BaseFragment<CurrentPresent> implements 
     @Override
     public void onItem(int position) {
         Log.d("XXW", "position-------" + position);
+        Intent intent = new Intent(getActivity(), DetailMovieActivity.class);
+        intent.putExtra(DetailMovieActivity.DETAIL_TAG, mList.get(position));
+        getActivity().startActivity(intent);
     }
 }

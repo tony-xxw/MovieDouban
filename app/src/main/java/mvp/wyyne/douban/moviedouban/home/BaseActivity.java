@@ -35,6 +35,7 @@ public abstract class BaseActivity<T extends IPresent> extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
         ButterKnife.bind(this);
+        initView();
     }
 
     protected abstract void refresh();

@@ -9,25 +9,16 @@ import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 
 import io.reactivex.Observable;
-import io.reactivex.ObservableSource;
-import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 import mvp.wyyne.douban.moviedouban.AndroidApplication;
 import mvp.wyyne.douban.moviedouban.api.bean.Article;
 import mvp.wyyne.douban.moviedouban.api.bean.HotBean;
-import mvp.wyyne.douban.moviedouban.api.bean.Subjects;
-import mvp.wyyne.douban.moviedouban.hot.future.FuturePresent;
-import mvp.wyyne.douban.moviedouban.hot.future.IFutureMain;
-import mvp.wyyne.douban.moviedouban.hot.future.IFuturePresent;
 import okhttp3.Cache;
-import okhttp3.CacheControl;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -126,7 +117,6 @@ public class RetrofitService {
     }
 
 
-
     public static Observable<HotBean> getFutureList() {
         return mMoviesApi.getFutureList().
                 subscribeOn(Schedulers.io())
@@ -135,6 +125,14 @@ public class RetrofitService {
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
+    public static Observable<Article> getArticle(String id) {
+        Log.d("XXW", "Id---" + id);
+        return mMoviesApi.getArticle(id).
+                subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .subscribeOn(AndroidSchedulers.mainThread())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
 
 
 }

@@ -23,7 +23,8 @@ public interface IMoviesApi {
     @GET("movie/coming_soon")
     Observable<HotBean> getFutureList();
 
-    @GET("movie/{id}")
-    Observable<Article> getMovieDate(@Path("id") String id);
+    //电影条目信息
+    @GET("movie/subject/{id}")
+    Observable<Article> getArticle(@Path("id") String id);
 }
 

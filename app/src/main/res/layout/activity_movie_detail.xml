@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <include layout="@layout/head_title_layout"/>
+    <include layout="@layout/movie_detail_head"/>
 
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"

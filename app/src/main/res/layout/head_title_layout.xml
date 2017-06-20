@@ -3,7 +3,8 @@
                 android:id="@+id/ll_title"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:background="@color/colorGray">
+                android:layout_gravity="top"
+    >
 
     <ImageView
         android:id="@+id/iv_back"

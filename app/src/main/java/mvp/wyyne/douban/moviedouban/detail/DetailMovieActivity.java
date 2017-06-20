@@ -3,15 +3,19 @@ package mvp.wyyne.douban.moviedouban.detail;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import android.support.v7.graphics.Palette;
 import android.util.Log;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.target.SimpleTarget;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.api.bean.Article;
 import mvp.wyyne.douban.moviedouban.home.BaseActivity;
@@ -31,8 +35,14 @@ public class DetailMovieActivity extends BaseActivity<DetailMoviePresent> implem
     ImageView mIvShare;
     @BindView(R.id.ll_title)
     RelativeLayout mLlTitle;
+    @BindView(R.id.iv_avatars)
+    ImageView mIvAvatars;
+    @BindView(R.id.fl_avatars_bg)
+    FrameLayout mFlAvatarsBg;
     private String mSubjectsId;
     private Bitmap mDrawableBitmap;
+    private Palette.Builder mPalette;
+    private Article mArticle;
 
 
     @Override
@@ -68,8 +78,37 @@ public class DetailMovieActivity extends BaseActivity<DetailMoviePresent> implem
 
     @Override
     public void initMovieImg(Article article) {
-        mDrawableBitmap = BitMapUtils.getInstace(this).getNetWorkBitmap(article.getImages().getMedium());
-
-
+        String url = article.getImages().getLarge();
+        mArticle = article;
+        Glide.with(this).load(url).into(mIvAvatars);
+        setBackGroudBg(url);
     }
+
+
+    //设置背景图片和设置电影海报图片
+    public void setBackGroudBg(String url) {
+        Glide.with(this).load(url).asBitmap().into(new SimpleTarget<Bitmap>() {
+            @Override
+            public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+                if (resource != null) {
+                    mDrawableBitmap = resource;
+                    //设置颜色调试器
+                    mPalette = Palette.from(mDrawableBitmap);
+                    //颜色调试器回调监听
+                    mPalette.generate(new Palette.PaletteAsyncListener() {
+                        @Override
+                        public void onGenerated(Palette palette) {
+                            Palette.Swatch swatch = palette.getMutedSwatch();
+                            if (swatch != null) {
+                                Log.d("XXW", "noinit");
+                                mFlAvatarsBg.setBackgroundColor(swatch.getRgb());
+                            }
+                        }
+                    });
+                }
+            }
+        });
+    }
+
+
 }

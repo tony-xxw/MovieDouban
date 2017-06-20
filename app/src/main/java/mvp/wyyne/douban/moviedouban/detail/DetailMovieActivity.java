@@ -20,8 +20,6 @@ public class DetailMovieActivity extends BaseActivity implements IDetailMain {
     public static final String DETAIL_TAG = "detail";
     @BindView(R.id.tv_title)
     TextView mTvTitle;
-    @BindView(R.id.tl_title)
-    Toolbar mToolbar;
     private Subjects mSubjects;
 
     @Override
@@ -45,10 +43,7 @@ public class DetailMovieActivity extends BaseActivity implements IDetailMain {
 
     @Override
     protected void initView() {
-        mToolbar.setTitle("");
-        setSupportActionBar(mToolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        mTvTitle.setText(mSubjects.getTitle());
+     
     }
 
     @Override

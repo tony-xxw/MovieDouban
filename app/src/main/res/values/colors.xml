@@ -14,5 +14,5 @@
     <color name="default_bg">#ffffff</color>
     <color name="colorPink">#f47d7d</color>
     <color name="colorOrange">#f47202</color>
-    <color name="colorTransparency">#55000000</color>
+    <color name="colorTransparency">#00000000</color>
 </resources>

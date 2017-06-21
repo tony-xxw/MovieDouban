@@ -10,4 +10,6 @@ import mvp.wyyne.douban.moviedouban.home.IMain;
 public interface IDetailMain extends IMain {
 
     void initMovieImg(Article article);
+
+    void initMovieGrade();
 }

@@ -2,11 +2,14 @@
 
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <include layout="@layout/movie_detail_head"/>
+    <include
+        layout="@layout/head_title_layout"
+        android:visibility="visible"/>
 
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
@@ -20,12 +23,19 @@
             android:theme="@style/AppTheme.AppBarOverlay"
             >
 
-            <android.support.design.widget.CollapsingToolbarLayout
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_scrollFlags="scroll|snap">
 
 
-            </android.support.design.widget.CollapsingToolbarLayout>
+
+                <include layout="@layout/movie_detail_head"/>
+
+
+            </LinearLayout>
 
 
         </android.support.design.widget.AppBarLayout>

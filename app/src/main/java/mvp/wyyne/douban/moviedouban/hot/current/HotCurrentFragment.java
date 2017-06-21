@@ -106,6 +106,7 @@ public class HotCurrentFragment extends BaseFragment<CurrentPresent> implements 
     public void onItem(int position) {
         Intent intent = new Intent(getActivity(), DetailMovieActivity.class);
         intent.putExtra(DetailMovieActivity.DETAIL_TAG, mList.get(position).getId());
+        Log.d("XXW", "------->" + mList.get(position).getId());
         getActivity().startActivity(intent);
     }
 }

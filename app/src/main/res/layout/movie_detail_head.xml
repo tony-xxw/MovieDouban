@@ -1,31 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
-              android:layout_height="350dp"
+              android:layout_height="wrap_content"
               android:orientation="vertical">
 
+
     <FrameLayout
+        android:id="@+id/fl_avatars_bg"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="300dp">
 
+        <ImageView
+            android:id="@+id/iv_avatars"
+            android:layout_width="200dp"
+            android:layout_height="260dp"
+            android:layout_gravity="center"/>
 
-        <FrameLayout
-            android:id="@+id/fl_avatars_bg"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <ImageView
-                android:id="@+id/iv_avatars"
-                android:layout_width="200dp"
-                android:layout_height="260dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"/>
-
-        </FrameLayout>
-
-
-        <include
-            layout="@layout/head_title_layout"
-            android:visibility="visible"/>
     </FrameLayout>
+
+    <include layout="@layout/movie_detail_introduce"/>
+
 </LinearLayout>

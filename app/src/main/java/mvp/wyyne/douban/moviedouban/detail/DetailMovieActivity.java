@@ -7,6 +7,7 @@ import android.support.v7.graphics.Palette;
 import android.util.Log;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -19,7 +20,6 @@ import butterknife.ButterKnife;
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.api.bean.Article;
 import mvp.wyyne.douban.moviedouban.home.BaseActivity;
-import mvp.wyyne.douban.moviedouban.utils.BitMapUtils;
 
 /**
  * Created by XXW on 2017/6/18.
@@ -39,6 +39,22 @@ public class DetailMovieActivity extends BaseActivity<DetailMoviePresent> implem
     ImageView mIvAvatars;
     @BindView(R.id.fl_avatars_bg)
     FrameLayout mFlAvatarsBg;
+    @BindView(R.id.tv_detail_title)
+    TextView mTvDetailTitle;
+    @BindView(R.id.tv_detail_type)
+    TextView mTvDetailType;
+    @BindView(R.id.tv_detail_formerly)
+    TextView mTvDetailFormerly;
+    @BindView(R.id.tv_detail_show)
+    TextView mTvDetailShow;
+    @BindView(R.id.tv_detail_time)
+    TextView mTvDetailTime;
+    @BindView(R.id.tv_detail_grade)
+    TextView mTvDetailGrade;
+    @BindView(R.id.tb_detail_num)
+    RatingBar mTbDetailNum;
+    @BindView(R.id.tv_detail_num)
+    TextView mTvDetailNum;
     private String mSubjectsId;
     private Bitmap mDrawableBitmap;
     private Palette.Builder mPalette;
@@ -84,6 +100,14 @@ public class DetailMovieActivity extends BaseActivity<DetailMoviePresent> implem
         setBackGroudBg(url);
     }
 
+    @Override
+    public void initMovieGrade() {
+        mTvDetailTitle.setText(mArticle.getTitle());
+//        mTvDetailType.setText(mArticle.getGenres());
+//        mTvDetailType.setText();
+//        mTvDetailTime.
+    }
+
 
     //设置背景图片和设置电影海报图片
     public void setBackGroudBg(String url) {
@@ -102,6 +126,7 @@ public class DetailMovieActivity extends BaseActivity<DetailMoviePresent> implem
                             if (swatch != null) {
                                 Log.d("XXW", "noinit");
                                 mFlAvatarsBg.setBackgroundColor(swatch.getRgb());
+                                mLlTitle.setBackgroundColor(swatch.getRgb());
                             }
                         }
                     });

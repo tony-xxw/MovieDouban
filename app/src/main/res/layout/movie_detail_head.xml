@@ -1,23 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:orientation="vertical">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-
-    <FrameLayout
-        android:id="@+id/fl_avatars_bg"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="300dp">
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
+        android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/iv_avatars"
-            android:layout_width="200dp"
-            android:layout_height="260dp"
-            android:layout_gravity="center"/>
+        <FrameLayout
+            android:id="@+id/fl_avatars_bg"
+            android:layout_width="match_parent"
+            android:layout_height="300dp">
 
-    </FrameLayout>
+            <ImageView
+                android:id="@+id/iv_avatars"
+                android:layout_width="200dp"
+                android:layout_height="260dp"
+                android:layout_gravity="center"/>
 
-    <include layout="@layout/movie_detail_introduce"/>
+        </FrameLayout>
 
-</LinearLayout>
+        <include layout="@layout/movie_detail_introduce"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/colorWhite"
+            android:minHeight="32dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20sp"
+                android:background="@drawable/bg_btn_pink"
+                android:minWidth="128dp"
+                android:text="想看"
+                android:textColor="@color/colorOrange"
+                android:textSize="14sp"/>
+
+            <mvp.wyyne.douban.moviedouban.widget.DrawableCenterEditView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20sp"
+                android:background="@drawable/bg_btn_pink"
+                android:drawablePadding="5dp"
+                android:drawableStart="@drawable/five_star"
+                android:gravity="center_vertical"
+                android:text="想看"
+                android:textColor="@color/colorOrange"
+                android:textSize="14sp"/>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:minHeight="48dp">
+
+            <ImageView
+                android:id="@+id/iv_detail_shop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:src="@drawable/ic_ticket"/>
+
+            <TextView
+                android:id="@+id/tv_detail_shop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/iv_detail_shop"
+                android:text="选座购票"
+                android:textColor="@color/colorGray"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="20dp"
+                android:text="￥18起"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="12sp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/colorGray"/>
+        </RelativeLayout>
+    </LinearLayout>
+</ScrollView>

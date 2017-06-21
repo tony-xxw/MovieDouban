@@ -3,4 +3,5 @@
     <string name="hot_hint">电影 / 电视剧/ 影人</string>
     <string name="movie">电影</string>
     <string name="douban_grade">豆瓣评分</string>
+    <string name="no_data">找不到数据</string>
 </resources>

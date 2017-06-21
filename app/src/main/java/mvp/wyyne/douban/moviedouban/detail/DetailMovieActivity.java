@@ -15,6 +15,8 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import mvp.wyyne.douban.moviedouban.R;
@@ -103,9 +105,27 @@ public class DetailMovieActivity extends BaseActivity<DetailMoviePresent> implem
     @Override
     public void initMovieGrade() {
         mTvDetailTitle.setText(mArticle.getTitle());
-//        mTvDetailType.setText(mArticle.getGenres());
+
+        mTvDetailType.setText(mArticle.getYear() + "/" + getString(mArticle.getGenres()));
 //        mTvDetailType.setText();
-//        mTvDetailTime.
+        mTvDetailFormerly.setText(mArticle.getOriginal_title());
+        mTvDetailGrade.setText(String.valueOf(mArticle.getRating().getAverage()));
+        mTvDetailNum.setText(String.valueOf(mArticle.getRatings_count()));
+//        mTbDetailNum.setNumStars(Integer.valueOf(mArticle.getRating().getStars()));
+        mTbDetailNum.setRating((float) mArticle.getRating().getAverage());
+    }
+
+
+    public String getString(List<String> list) {
+        StringBuffer buffer = new StringBuffer();
+        for (int i = 0; i < list.size(); i++) {
+            if (i != list.size() - 1) {
+                buffer.append(list.get(i) + " /");
+            } else {
+                buffer.append(list.get(i));
+            }
+        }
+        return buffer.toString();
     }
 
 

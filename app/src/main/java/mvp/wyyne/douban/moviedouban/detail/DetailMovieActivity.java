@@ -5,15 +5,18 @@ import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -36,16 +39,21 @@ import mvp.wyyne.douban.moviedouban.widget.ObservableScrollView;
  * Created by XXW on 2017/6/18.
  */
 
-public class DetailMovieActivity extends BaseActivity<DetailMoviePresent> implements IDetailMain, ObservableScrollView.ScrollViewListener, ViewTreeObserver.OnGlobalLayoutListener {
+public class DetailMovieActivity extends BaseActivity<DetailMoviePresent> implements
+        IDetailMain, ObservableScrollView.ScrollViewListener, ViewTreeObserver.OnGlobalLayoutListener, AppBarLayout.OnOffsetChangedListener {
     public static final String DETAIL_TAG = "detail";
     @BindView(R.id.iv_back)
     ImageView mIvBack;
+    @BindView(R.id.tv_img_title)
+    TextView mTvImgTitle;
     @BindView(R.id.tv_title)
     TextView mTvTitle;
     @BindView(R.id.iv_share)
     ImageView mIvShare;
     @BindView(R.id.ll_title)
     RelativeLayout mLlTitle;
+    @BindView(R.id.ll_layout)
+    LinearLayout mLayout;
     @BindView(R.id.iv_avatars)
     ImageView mIvAvatars;
     @BindView(R.id.fl_avatars_bg)
@@ -78,6 +86,8 @@ public class DetailMovieActivity extends BaseActivity<DetailMoviePresent> implem
     TabLayout mTabLayout;
     @BindView(R.id.os_scroll)
     ObservableScrollView mScrollView;
+    @BindView(R.id.abl_layout)
+    AppBarLayout mBarLayout;
     private String mSubjectsId;
     private Bitmap mDrawableBitmap;
     private Palette.Builder mPalette;
@@ -105,6 +115,7 @@ public class DetailMovieActivity extends BaseActivity<DetailMoviePresent> implem
             Log.d("XXW", "mList------->" + mSubjectsId);
         }
         setSupportActionBar(mTlBar);
+        mBarLayout.addOnOffsetChangedListener(this);
         mPresent = new DetailMoviePresent(this, getSupportFragmentManager());
         mPresent.getArticle(mSubjectsId);
 
@@ -134,6 +145,7 @@ public class DetailMovieActivity extends BaseActivity<DetailMoviePresent> implem
         mTvDetailGrade.setText(String.valueOf(mArticle.getRating().getAverage()));
         mTvDetailNum.setText(String.valueOf(mArticle.getRatings_count()));
 //        mTbDetailNum.setNumStars(Integer.valueOf(mArticle.getRating().getStars()));
+        mTvTitle.setText(mArticle.getTitle());
         mTbDetailNum.setRating((float) mArticle.getRating().getAverage());
     }
 
@@ -161,6 +173,7 @@ public class DetailMovieActivity extends BaseActivity<DetailMoviePresent> implem
                                 Log.d("XXW", "noinit");
                                 mFlAvatarsBg.setBackgroundColor(swatch.getRgb());
                                 mLlTitle.setBackgroundColor(Color.TRANSPARENT);
+                                mLayout.setBackgroundColor(Color.TRANSPARENT);
                             }
                         }
                     });
@@ -215,5 +228,42 @@ public class DetailMovieActivity extends BaseActivity<DetailMoviePresent> implem
     @Override
     public void hide() {
 
+    }
+
+    @Override
+    public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+        int y = Math.abs(verticalOffset);
+        Log.d("XXW", "onOffsetChanged" + verticalOffset);
+        if (mIvAvatars != null) {
+            boundHeight = mIvAvatars.getHeight();
+            if (y <= 0) {
+                titleHide();
+//                Log.d("XXW", "onOffsetChanged-----<0" + verticalOffset);
+                mLlTitle.setBackgroundColor(Color.argb((int) 0, 227, 29, 26));//AGB由相关工具获得，或者美工提供
+            } else if (y > 0 && y <= boundHeight) {
+                titleShow();
+//                Log.d("XXW", "onOffsetChanged----->0  <height"+"------"+verticalOffset);
+                float scale = (float) y / boundHeight;
+                float alpha = (255 * scale);
+                // 只是layout背景透明(仿知乎滑动效果)
+                mLlTitle.setBackgroundColor(swatch.getBodyTextColor());
+            } else {
+                titleShow();
+//                Log.d("XXW", "onOffsetChanged----->height---" + verticalOffset);
+                mLlTitle.setBackgroundColor(swatch.getRgb());
+            }
+        }
+
+    }
+
+
+    public void titleHide() {
+        mTvImgTitle.setVisibility(View.VISIBLE);
+        mTvTitle.setVisibility(View.GONE);
+    }
+
+    public void titleShow() {
+        mTvImgTitle.setVisibility(View.GONE);
+        mTvTitle.setVisibility(View.VISIBLE);
     }
 }

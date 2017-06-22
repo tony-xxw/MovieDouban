@@ -1,12 +1,22 @@
 package mvp.wyyne.douban.moviedouban.detail;
 
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import io.reactivex.Observer;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 import mvp.wyyne.douban.moviedouban.api.RetrofitService;
 import mvp.wyyne.douban.moviedouban.api.bean.Article;
+import mvp.wyyne.douban.moviedouban.hot.current.HotCurrentFragment;
+import mvp.wyyne.douban.moviedouban.hot.future.HotFutureFragment;
+import mvp.wyyne.douban.moviedouban.hot.main.HotPresenterImp;
 
 /**
  * Created by XXW on 2017/6/19.
@@ -14,10 +24,15 @@ import mvp.wyyne.douban.moviedouban.api.bean.Article;
 
 public class DetailMoviePresent implements IDetailPresent {
     private IDetailMain mMain;
+    private List<Fragment> mHotList;
+    private FragmentManager mFragmentManager;
+    private DetailPagerAdapter mAdapter;
 
 
-    public DetailMoviePresent(IDetailMain main) {
+    public DetailMoviePresent(IDetailMain main, FragmentManager manager) {
         mMain = main;
+        mFragmentManager = manager;
+        mHotList = new ArrayList<>();
     }
 
 
@@ -53,5 +68,46 @@ public class DetailMoviePresent implements IDetailPresent {
                     }
                 });
 
+    }
+
+    @Override
+    public void initPage(ViewPager viewPager) {
+        mHotList.add(new HotCurrentFragment());
+        mHotList.add(new HotFutureFragment());
+        mAdapter = new DetailPagerAdapter(mFragmentManager);
+        mAdapter.setFragment(mHotList);
+        viewPager.setAdapter(mAdapter);
+        mMain.onBindPage();
+    }
+
+
+    class DetailPagerAdapter extends FragmentPagerAdapter {
+        private List<Fragment> mList;
+        private String[] mTitl = {"评论", "讨论区"};
+
+        public DetailPagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+
+        private void setFragment(List<Fragment> list) {
+            mList = list;
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return mList.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return mList.size();
+        }
+
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return mTitl[position];
+        }
     }
 }

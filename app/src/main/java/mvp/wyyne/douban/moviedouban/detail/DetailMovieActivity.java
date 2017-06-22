@@ -3,6 +3,8 @@ package mvp.wyyne.douban.moviedouban.detail;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -64,6 +66,10 @@ public class DetailMovieActivity extends BaseActivity<DetailMoviePresent> implem
     ImageView mIvDetailShop;
     @BindView(R.id.tv_detail_shop)
     TextView mTvDetailShop;
+    @BindView(R.id.vp_detail)
+    ViewPager mPager;
+    @BindView(R.id.tl_detail)
+    TabLayout mTabLayout;
     private String mSubjectsId;
     private Bitmap mDrawableBitmap;
     private Palette.Builder mPalette;
@@ -83,13 +89,17 @@ public class DetailMovieActivity extends BaseActivity<DetailMoviePresent> implem
 
     @Override
     protected void initView() {
-        setSupportActionBar(mTlBar);
         if (getIntent().getStringExtra(DETAIL_TAG) != null) {
             mSubjectsId = getIntent().getStringExtra(DETAIL_TAG);
             Log.d("XXW", "mList------->" + mSubjectsId);
         }
-        mPresent = new DetailMoviePresent(this);
+        setSupportActionBar(mTlBar);
+        mPresent = new DetailMoviePresent(this, getSupportFragmentManager());
         mPresent.getArticle(mSubjectsId);
+        mTabLayout.setTabMode(TabLayout.MODE_FIXED);
+        mTabLayout.addTab(mTabLayout.newTab().setText("评论"));
+        mTabLayout.addTab(mTabLayout.newTab().setText("讨论区"));
+        mPresent.initPage(mPager);
     }
 
     @Override
@@ -121,6 +131,11 @@ public class DetailMovieActivity extends BaseActivity<DetailMoviePresent> implem
         mTvDetailNum.setText(String.valueOf(mArticle.getRatings_count()));
 //        mTbDetailNum.setNumStars(Integer.valueOf(mArticle.getRating().getStars()));
         mTbDetailNum.setRating((float) mArticle.getRating().getAverage());
+    }
+
+    @Override
+    public void onBindPage() {
+        mTabLayout.setupWithViewPager(mPager);
     }
 
 

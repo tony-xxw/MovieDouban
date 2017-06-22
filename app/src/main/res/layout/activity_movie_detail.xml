@@ -59,12 +59,21 @@
             </android.support.v7.widget.Toolbar>
 
             <android.support.design.widget.TabLayout
+                android:id="@+id/tl_detail"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:layout_gravity="bottom"/>
+                android:layout_gravity="bottom"
+                android:minHeight="30dp"
+                app:tabBackground="@color/colorWhite"
+                app:tabIndicatorColor="@color/colorGray"/>
 
         </android.support.design.widget.CollapsingToolbarLayout>
 
     </android.support.design.widget.AppBarLayout>
 
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_detail"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 </android.support.design.widget.CoordinatorLayout>

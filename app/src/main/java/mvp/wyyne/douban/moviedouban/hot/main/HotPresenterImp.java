@@ -21,8 +21,8 @@ public class HotPresenterImp implements HotPresenter {
     private HotView mHotView;
     private ViewPager mViewPager;
     private List<Fragment> mHotList;
-    private HotPagerAdapter mAdapter;
     private FragmentManager mFragmentManager;
+    private HotPagerAdapter mAdapter;
 
 
     public HotPresenterImp(HotView hotView, FragmentManager manager) {

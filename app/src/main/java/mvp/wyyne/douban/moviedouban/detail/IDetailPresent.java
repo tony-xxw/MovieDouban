@@ -1,5 +1,7 @@
 package mvp.wyyne.douban.moviedouban.detail;
 
+import android.support.v4.view.ViewPager;
+
 import mvp.wyyne.douban.moviedouban.home.IPresent;
 
 /**
@@ -14,4 +16,6 @@ public interface IDetailPresent extends IPresent {
      * @param subjectId 电影Id
      */
     void getArticle(String subjectId);
+
+    void initPage(ViewPager viewPager);
 }

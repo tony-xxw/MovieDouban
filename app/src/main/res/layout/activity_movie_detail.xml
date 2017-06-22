@@ -26,7 +26,8 @@
             app:titleEnabled="true">
 
 
-            <ScrollView
+            <mvp.wyyne.douban.moviedouban.widget.ObservableScrollView
+                android:id="@+id/os_scroll"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -34,7 +35,7 @@
                 <include layout="@layout/movie_detail_head"/>
 
 
-            </ScrollView>
+            </mvp.wyyne.douban.moviedouban.widget.ObservableScrollView>
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/tl_bar"
@@ -58,7 +59,6 @@
                 android:layout_height="?attr/actionBarSize"
                 android:layout_gravity="bottom"
                 android:minHeight="30dp"
-                app:layout_collapseMode="pin"
                 app:tabBackground="@color/colorOrange"
                 app:tabIndicatorColor="@color/colorGray"/>
         </android.support.design.widget.CollapsingToolbarLayout>

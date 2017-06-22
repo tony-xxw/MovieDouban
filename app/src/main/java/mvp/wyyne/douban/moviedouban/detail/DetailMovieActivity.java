@@ -11,6 +11,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RatingBar;
@@ -28,12 +29,14 @@ import butterknife.ButterKnife;
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.api.bean.Article;
 import mvp.wyyne.douban.moviedouban.home.BaseActivity;
+import mvp.wyyne.douban.moviedouban.utils.StringUtils;
+import mvp.wyyne.douban.moviedouban.widget.ObservableScrollView;
 
 /**
  * Created by XXW on 2017/6/18.
  */
 
-public class DetailMovieActivity extends BaseActivity<DetailMoviePresent> implements IDetailMain {
+public class DetailMovieActivity extends BaseActivity<DetailMoviePresent> implements IDetailMain, ObservableScrollView.ScrollViewListener, ViewTreeObserver.OnGlobalLayoutListener {
     public static final String DETAIL_TAG = "detail";
     @BindView(R.id.iv_back)
     ImageView mIvBack;
@@ -73,10 +76,15 @@ public class DetailMovieActivity extends BaseActivity<DetailMoviePresent> implem
     ViewPager mPager;
     @BindView(R.id.tl_detail)
     TabLayout mTabLayout;
+    @BindView(R.id.os_scroll)
+    ObservableScrollView mScrollView;
     private String mSubjectsId;
     private Bitmap mDrawableBitmap;
     private Palette.Builder mPalette;
     private Article mArticle;
+    private ViewTreeObserver mObserver;
+    private int boundHeight;
+    private Palette.Swatch swatch;
 
 
     @Override
@@ -99,6 +107,7 @@ public class DetailMovieActivity extends BaseActivity<DetailMoviePresent> implem
         setSupportActionBar(mTlBar);
         mPresent = new DetailMoviePresent(this, getSupportFragmentManager());
         mPresent.getArticle(mSubjectsId);
+
         mTabLayout.setTabMode(TabLayout.MODE_FIXED);
         mTabLayout.addTab(mTabLayout.newTab().setText("评论"));
         mTabLayout.addTab(mTabLayout.newTab().setText("讨论区"));
@@ -106,15 +115,6 @@ public class DetailMovieActivity extends BaseActivity<DetailMoviePresent> implem
         mPresent.initPage(mPager);
     }
 
-    @Override
-    public void show() {
-
-    }
-
-    @Override
-    public void hide() {
-
-    }
 
     @Override
     public void initMovieImg(Article article) {
@@ -128,7 +128,7 @@ public class DetailMovieActivity extends BaseActivity<DetailMoviePresent> implem
     public void initMovieGrade() {
         mTvDetailTitle.setText(mArticle.getTitle());
 
-        mTvDetailType.setText(mArticle.getYear() + "/" + getString(mArticle.getGenres()));
+        mTvDetailType.setText(mArticle.getYear() + "/" + StringUtils.getString(mArticle.getGenres()));
 //        mTvDetailType.setText();
         mTvDetailFormerly.setText(mArticle.getOriginal_title());
         mTvDetailGrade.setText(String.valueOf(mArticle.getRating().getAverage()));
@@ -140,19 +140,6 @@ public class DetailMovieActivity extends BaseActivity<DetailMoviePresent> implem
     @Override
     public void onBindPage() {
         mTabLayout.setupWithViewPager(mPager);
-    }
-
-
-    public String getString(List<String> list) {
-        StringBuffer buffer = new StringBuffer();
-        for (int i = 0; i < list.size(); i++) {
-            if (i != list.size() - 1) {
-                buffer.append(list.get(i) + " /");
-            } else {
-                buffer.append(list.get(i));
-            }
-        }
-        return buffer.toString();
     }
 
 
@@ -169,7 +156,7 @@ public class DetailMovieActivity extends BaseActivity<DetailMoviePresent> implem
                     mPalette.generate(new Palette.PaletteAsyncListener() {
                         @Override
                         public void onGenerated(Palette palette) {
-                            Palette.Swatch swatch = palette.getMutedSwatch();
+                            swatch = palette.getMutedSwatch();
                             if (swatch != null) {
                                 Log.d("XXW", "noinit");
                                 mFlAvatarsBg.setBackgroundColor(swatch.getRgb());
@@ -183,4 +170,50 @@ public class DetailMovieActivity extends BaseActivity<DetailMoviePresent> implem
     }
 
 
+    @Override
+    public void onScrollChange(ObservableScrollView scrollView, int x, int y, int oldx, int oldy) {
+        Log.d("XXW", "onGlobalLayout");
+        Log.d("XXW", "y--->" + y + "    height-->" + boundHeight);
+        if (y <= 0) {
+            mLlTitle.setBackgroundColor(Color.argb((int) 0, 227, 29, 26));//AGB由相关工具获得，或者美工提供
+        } else if (y > 0 && y <= boundHeight) {
+            float scale = (float) y / boundHeight;
+            float alpha = (255 * scale);
+            // 只是layout背景透明(仿知乎滑动效果)
+            mLlTitle.setBackgroundColor(swatch.getBodyTextColor());
+        } else {
+            mLlTitle.setBackgroundColor(swatch.getRgb());
+        }
+    }
+
+
+    @Override
+    public void getImageHeight() {
+        Log.d("XXW", "getImageHeight");
+        mObserver = mIvAvatars.getViewTreeObserver();
+        mObserver.addOnGlobalLayoutListener(this);
+
+    }
+
+    @Override
+    public void onGlobalLayout() {
+        if (mScrollView != null) {
+            Log.d("XXW", "onGlobalLayout" + "----------");
+        }
+        mIvAvatars.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+        boundHeight = mIvAvatars.getHeight();
+        mScrollView.setListener(this);
+        Log.d("XXW", "onGlobalLayout" + "----------" + boundHeight);
+
+    }
+
+    @Override
+    public void show() {
+
+    }
+
+    @Override
+    public void hide() {
+
+    }
 }

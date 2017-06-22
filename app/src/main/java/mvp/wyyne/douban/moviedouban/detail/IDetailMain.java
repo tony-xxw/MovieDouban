@@ -17,4 +17,7 @@ public interface IDetailMain extends IMain {
 
     //绑定ViewPage
     void onBindPage();
+
+    //获取图片高度
+    void getImageHeight();
 }

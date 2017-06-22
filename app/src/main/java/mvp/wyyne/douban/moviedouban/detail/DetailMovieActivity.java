@@ -4,6 +4,7 @@ package mvp.wyyne.douban.moviedouban.detail;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.graphics.Palette;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -57,6 +58,12 @@ public class DetailMovieActivity extends BaseActivity<DetailMoviePresent> implem
     RatingBar mTbDetailNum;
     @BindView(R.id.tv_detail_num)
     TextView mTvDetailNum;
+    @BindView(R.id.tl_bar)
+    Toolbar mTlBar;
+    @BindView(R.id.iv_detail_shop)
+    ImageView mIvDetailShop;
+    @BindView(R.id.tv_detail_shop)
+    TextView mTvDetailShop;
     private String mSubjectsId;
     private Bitmap mDrawableBitmap;
     private Palette.Builder mPalette;
@@ -76,6 +83,7 @@ public class DetailMovieActivity extends BaseActivity<DetailMoviePresent> implem
 
     @Override
     protected void initView() {
+        setSupportActionBar(mTlBar);
         if (getIntent().getStringExtra(DETAIL_TAG) != null) {
             mSubjectsId = getIntent().getStringExtra(DETAIL_TAG);
             Log.d("XXW", "mList------->" + mSubjectsId);

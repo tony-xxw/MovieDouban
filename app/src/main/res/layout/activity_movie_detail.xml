@@ -1,44 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<LinearLayout
+<android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <include
-        layout="@layout/head_title_layout"
-        android:visibility="visible"/>
 
-    <android.support.design.widget.CoordinatorLayout
+    <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        >
 
 
-        <android.support.design.widget.AppBarLayout
+        <!--
+        layout_collapseMode="parallax"  滑动改变view的位置 造成视觉差异化
+        layout_collapseMode="pin"  固定child不变
+
+        -->
+        <android.support.design.widget.CollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:theme="@style/AppTheme.AppBarOverlay"
-            >
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
 
-            <LinearLayout
+            <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/colorWhite"
                 android:orientation="vertical"
-                app:layout_scrollFlags="scroll|snap">
+                app:layout_collapseMode="parallax">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <include layout="@layout/movie_detail_head"/>
+                </LinearLayout>
 
 
+            </ScrollView>
 
-                <include layout="@layout/movie_detail_head"/>
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/tl_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                app:contentInsetLeft="0dp"
+                app:contentInsetStart="0dp"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                >
 
+                <include
+                    layout="@layout/head_title_layout"/>
+            </android.support.v7.widget.Toolbar>
 
-            </LinearLayout>
+            <android.support.design.widget.TabLayout
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:layout_gravity="bottom"/>
 
+        </android.support.design.widget.CollapsingToolbarLayout>
 
-        </android.support.design.widget.AppBarLayout>
+    </android.support.design.widget.AppBarLayout>
 
-    </android.support.design.widget.CoordinatorLayout>
-</LinearLayout>
+</android.support.design.widget.CoordinatorLayout>

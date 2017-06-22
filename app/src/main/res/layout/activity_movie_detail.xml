@@ -22,23 +22,16 @@
         <android.support.design.widget.CollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:titleEnabled="true">
 
 
             <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/colorWhite"
-                android:orientation="vertical"
-                app:layout_collapseMode="parallax">
+                android:layout_height="wrap_content">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
 
-                    <include layout="@layout/movie_detail_head"/>
-                </LinearLayout>
+                <include layout="@layout/movie_detail_head"/>
 
 
             </ScrollView>
@@ -46,8 +39,8 @@
             <android.support.v7.widget.Toolbar
                 android:id="@+id/tl_bar"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="top"
+                android:layout_height="108dp"
+                android:gravity="top"
                 app:contentInsetLeft="0dp"
                 app:contentInsetStart="0dp"
                 app:layout_collapseMode="pin"
@@ -58,22 +51,32 @@
                     layout="@layout/head_title_layout"/>
             </android.support.v7.widget.Toolbar>
 
+
             <android.support.design.widget.TabLayout
                 android:id="@+id/tl_detail"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:layout_gravity="bottom"
                 android:minHeight="30dp"
-                app:tabBackground="@color/colorWhite"
+                app:layout_collapseMode="pin"
+                app:tabBackground="@color/colorOrange"
                 app:tabIndicatorColor="@color/colorGray"/>
-
         </android.support.design.widget.CollapsingToolbarLayout>
 
     </android.support.design.widget.AppBarLayout>
 
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/vp_detail"
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/vp_detail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+
+    </android.support.v4.widget.NestedScrollView>
 </android.support.design.widget.CoordinatorLayout>

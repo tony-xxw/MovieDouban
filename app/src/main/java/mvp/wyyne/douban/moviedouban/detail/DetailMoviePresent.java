@@ -14,6 +14,7 @@ import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 import mvp.wyyne.douban.moviedouban.api.RetrofitService;
 import mvp.wyyne.douban.moviedouban.api.bean.Article;
+import mvp.wyyne.douban.moviedouban.comment.CommentFragment;
 import mvp.wyyne.douban.moviedouban.hot.current.HotCurrentFragment;
 import mvp.wyyne.douban.moviedouban.hot.future.HotFutureFragment;
 import mvp.wyyne.douban.moviedouban.hot.main.HotPresenterImp;
@@ -72,8 +73,8 @@ public class DetailMoviePresent implements IDetailPresent {
 
     @Override
     public void initPage(ViewPager viewPager) {
-        mHotList.add(new HotCurrentFragment());
-        mHotList.add(new HotFutureFragment());
+        mHotList.add(new CommentFragment());
+        mHotList.add(new CommentFragment());
         mAdapter = new DetailPagerAdapter(mFragmentManager);
         mAdapter.setFragment(mHotList);
         viewPager.setAdapter(mAdapter);

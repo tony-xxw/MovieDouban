@@ -1,9 +1,12 @@
 package mvp.wyyne.douban.moviedouban.detail;
 
 
+import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.Toolbar;
@@ -99,6 +102,7 @@ public class DetailMovieActivity extends BaseActivity<DetailMoviePresent> implem
         mTabLayout.setTabMode(TabLayout.MODE_FIXED);
         mTabLayout.addTab(mTabLayout.newTab().setText("评论"));
         mTabLayout.addTab(mTabLayout.newTab().setText("讨论区"));
+        mTabLayout.setTabTextColors(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.colorBlack)));
         mPresent.initPage(mPager);
     }
 
@@ -169,7 +173,7 @@ public class DetailMovieActivity extends BaseActivity<DetailMoviePresent> implem
                             if (swatch != null) {
                                 Log.d("XXW", "noinit");
                                 mFlAvatarsBg.setBackgroundColor(swatch.getRgb());
-                                mLlTitle.setBackgroundColor(swatch.getRgb());
+                                mLlTitle.setBackgroundColor(Color.TRANSPARENT);
                             }
                         }
                     });

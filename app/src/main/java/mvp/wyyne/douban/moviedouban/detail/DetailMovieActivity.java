@@ -40,7 +40,7 @@ import mvp.wyyne.douban.moviedouban.widget.ObservableScrollView;
  */
 
 public class DetailMovieActivity extends BaseActivity<DetailMoviePresent> implements
-        IDetailMain, ObservableScrollView.ScrollViewListener, ViewTreeObserver.OnGlobalLayoutListener, AppBarLayout.OnOffsetChangedListener {
+        IDetailMain, AppBarLayout.OnOffsetChangedListener {
     public static final String DETAIL_TAG = "detail";
     @BindView(R.id.iv_back)
     ImageView mIvBack;
@@ -183,42 +183,6 @@ public class DetailMovieActivity extends BaseActivity<DetailMoviePresent> implem
     }
 
 
-    @Override
-    public void onScrollChange(ObservableScrollView scrollView, int x, int y, int oldx, int oldy) {
-        Log.d("XXW", "onGlobalLayout");
-        Log.d("XXW", "y--->" + y + "    height-->" + boundHeight);
-        if (y <= 0) {
-            mLlTitle.setBackgroundColor(Color.argb((int) 0, 227, 29, 26));//AGB由相关工具获得，或者美工提供
-        } else if (y > 0 && y <= boundHeight) {
-            float scale = (float) y / boundHeight;
-            float alpha = (255 * scale);
-            // 只是layout背景透明(仿知乎滑动效果)
-            mLlTitle.setBackgroundColor(swatch.getBodyTextColor());
-        } else {
-            mLlTitle.setBackgroundColor(swatch.getRgb());
-        }
-    }
-
-
-    @Override
-    public void getImageHeight() {
-        Log.d("XXW", "getImageHeight");
-        mObserver = mIvAvatars.getViewTreeObserver();
-        mObserver.addOnGlobalLayoutListener(this);
-
-    }
-
-    @Override
-    public void onGlobalLayout() {
-        if (mScrollView != null) {
-            Log.d("XXW", "onGlobalLayout" + "----------");
-        }
-        mIvAvatars.getViewTreeObserver().removeGlobalOnLayoutListener(this);
-        boundHeight = mIvAvatars.getHeight();
-        mScrollView.setListener(this);
-        Log.d("XXW", "onGlobalLayout" + "----------" + boundHeight);
-
-    }
 
     @Override
     public void show() {

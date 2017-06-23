@@ -66,7 +66,6 @@ public class DetailMoviePresent implements IDetailPresent {
                     @Override
                     public void onComplete() {
                         mMain.initMovieGrade();
-                        mMain.getImageHeight();
                     }
                 });
 

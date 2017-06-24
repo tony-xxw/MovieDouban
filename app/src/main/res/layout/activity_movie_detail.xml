@@ -8,16 +8,31 @@
 
 
     <android.support.v4.widget.NestedScrollView
+        android:id="@+id/nv_detail"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-        <android.support.v4.view.ViewPager
-            android:id="@+id/vp_detail"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            />
+            <android.support.design.widget.TabLayout
+                android:id="@+id/tl_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:minHeight="48dp"
+                app:tabBackground="@color/colorTablayoutBg"
+                app:tabIndicatorColor="@color/color_tab_indicator"/>
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/vp_detail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                />
+        </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>
 
@@ -55,7 +70,7 @@
             <android.support.v7.widget.Toolbar
                 android:id="@+id/tl_bar"
                 android:layout_width="match_parent"
-                android:layout_height="96dp"
+                android:layout_height="48dp"
                 app:contentInsetLeft="0dp"
                 app:contentInsetStart="0dp"
                 app:layout_collapseMode="pin"
@@ -65,16 +80,6 @@
                 <include
                     layout="@layout/head_title_layout"/>
             </android.support.v7.widget.Toolbar>
-
-
-            <android.support.design.widget.TabLayout
-                android:id="@+id/tl_detail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:minHeight="48dp"
-                app:tabBackground="@color/colorTablayoutBg"
-                app:tabIndicatorColor="@color/color_tab_indicator"/>
 
 
         </android.support.design.widget.CollapsingToolbarLayout>

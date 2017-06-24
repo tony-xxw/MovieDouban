@@ -9,6 +9,7 @@ import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -25,14 +26,13 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 
-import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.api.bean.Article;
 import mvp.wyyne.douban.moviedouban.home.BaseActivity;
 import mvp.wyyne.douban.moviedouban.utils.StringUtils;
+import mvp.wyyne.douban.moviedouban.widget.ExpandableTextView;
 import mvp.wyyne.douban.moviedouban.widget.ObservableScrollView;
 
 /**
@@ -88,6 +88,10 @@ public class DetailMovieActivity extends BaseActivity<DetailMoviePresent> implem
     ObservableScrollView mScrollView;
     @BindView(R.id.abl_layout)
     AppBarLayout mBarLayout;
+    @BindView(R.id.et_summary)
+    ExpandableTextView mEtSummary;
+    @BindView(R.id.nv_detail)
+    NestedScrollView mNestedScrollView;
     private String mSubjectsId;
     private Bitmap mDrawableBitmap;
     private Palette.Builder mPalette;
@@ -115,6 +119,8 @@ public class DetailMovieActivity extends BaseActivity<DetailMoviePresent> implem
             Log.d("XXW", "mList------->" + mSubjectsId);
         }
         setSupportActionBar(mTlBar);
+        //NestedScrollView中嵌套ViewPager不显示 设置为true
+        mNestedScrollView.setFillViewport(true);
         mBarLayout.addOnOffsetChangedListener(this);
         mPresent = new DetailMoviePresent(this, getSupportFragmentManager());
         mPresent.getArticle(mSubjectsId);
@@ -138,15 +144,22 @@ public class DetailMovieActivity extends BaseActivity<DetailMoviePresent> implem
     @Override
     public void initMovieGrade() {
         mTvDetailTitle.setText(mArticle.getTitle());
-
         mTvDetailType.setText(mArticle.getYear() + "/" + StringUtils.getString(mArticle.getGenres()));
-//        mTvDetailShow.setText("上映时间: "+);
         mTvDetailFormerly.setText(mArticle.getOriginal_title());
         mTvDetailGrade.setText(String.valueOf(mArticle.getRating().getAverage()));
         mTvDetailNum.setText(String.valueOf(mArticle.getRatings_count()));
 //        mTbDetailNum.setNumStars(Integer.valueOf(mArticle.getRating().getStars()));
         mTvTitle.setText(mArticle.getTitle());
         mTbDetailNum.setRating((float) mArticle.getRating().getAverage());
+        for (String s : mArticle.getPubdates()) {
+            if (s.contains("中国大陆")) {
+                mTvDetailShow.setText(getString(R.string.china) + s);
+            }
+        }
+        if (mArticle.getDurations() != null) {
+            mTvDetailTime.setText(getString(R.string.movie_time) + mArticle.getDurations().get(0));
+        }
+        mEtSummary.setText(mArticle.getSummary());
     }
 
     @Override
@@ -170,9 +183,9 @@ public class DetailMovieActivity extends BaseActivity<DetailMoviePresent> implem
                         public void onGenerated(Palette palette) {
                             swatch = palette.getMutedSwatch();
                             if (swatch != null) {
-                                Log.d("XXW", "noinit------"+swatch.getRgb()+"---"
-                                        +swatch.getBodyTextColor()+"---"+swatch.getPopulation()+"---"
-                                        +swatch.getTitleTextColor()+"---"
+                                Log.d("XXW", "noinit------" + swatch.getRgb() + "---"
+                                        + swatch.getBodyTextColor() + "---" + swatch.getPopulation() + "---"
+                                        + swatch.getTitleTextColor() + "---"
                                 );
                                 mFlAvatarsBg.setBackgroundColor(swatch.getRgb());
                                 mLlTitle.setBackgroundColor(Color.TRANSPARENT);
@@ -208,7 +221,7 @@ public class DetailMovieActivity extends BaseActivity<DetailMoviePresent> implem
                 mLlTitle.setBackgroundColor(Color.argb((int) 0, 227, 29, 26));//AGB由相关工具获得，或者美工提供
             } else if (y > 0 && y <= boundHeight) {
 //                Log.d("XXW", "onOffsetChanged----->0  <height"+"------"+verticalOffset);
-                mLlTitle.setBackgroundColor(ContextCompat.getColor(this,R.color.colorTranslucence));
+                mLlTitle.setBackgroundColor(ContextCompat.getColor(this, R.color.colorTranslucence));
             } else {
                 titleShow();
 //                Log.d("XXW", "onOffsetChanged----->height---" + verticalOffset);
@@ -228,4 +241,5 @@ public class DetailMovieActivity extends BaseActivity<DetailMoviePresent> implem
         mTvImgTitle.setVisibility(View.GONE);
         mTvTitle.setVisibility(View.VISIBLE);
     }
+
 }

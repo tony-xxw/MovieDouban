@@ -4,4 +4,9 @@
     <string name="movie">电影</string>
     <string name="douban_grade">豆瓣评分</string>
     <string name="no_data">找不到数据</string>
+    <string name="china">中国大陆 :</string>
+    <string name="movie_time">片长 :</string>
+    <string name="intro">简介</string>
+    <string name="expand_string">more</string>
+    <string name="collapsed_string">less</string>
 </resources>

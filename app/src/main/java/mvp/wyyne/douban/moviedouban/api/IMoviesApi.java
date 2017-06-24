@@ -24,7 +24,7 @@ public interface IMoviesApi {
     Observable<HotBean> getFutureList();
 
     //电影条目信息
-    @GET("movie/subject/{id}")
+    @GET("movie/subject/{id}?apikey=0df993c66c0c636e29ecbb5344252a4a")
     Observable<Article> getArticle(@Path("id") String id);
 }
 

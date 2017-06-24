@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:background="@color/colorWhite"
-       android:orientation="vertical">
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@color/colorWhite"
+              android:orientation="vertical">
 
     <FrameLayout
         android:id="@+id/fl_avatars_bg"
@@ -20,272 +21,40 @@
 
     </FrameLayout>
 
-    <include layout="@layout/movie_detail_introduce"/>
+    <include
+        layout="@layout/movie_detail_introduce"
+        android:visibility="visible"/>
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:layout_marginTop="20dp"
-        android:background="@color/colorWhite"
-        android:minHeight="32dp"
-        android:orientation="horizontal">
+        android:orientation="vertical"
+        android:padding="20dp"
+        >
 
-        <Button
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20sp"
-            android:background="@drawable/bg_btn_pink"
-            android:minWidth="128dp"
-            android:text="想看"
-            android:textColor="@color/colorOrange"
-            android:textSize="14sp"/>
+            android:text="@string/intro"
+            android:textColor="@color/colorGray_light"
+            android:textSize="12sp"/>
 
-        <mvp.wyyne.douban.moviedouban.widget.DrawableCenterEditView
+        <mvp.wyyne.douban.moviedouban.widget.ExpandableTextView
+            android:id="@+id/et_summary"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginEnd="20dp"
-            android:layout_marginStart="20sp"
-            android:background="@drawable/bg_btn_pink"
-            android:drawablePadding="5dp"
-            android:drawableStart="@drawable/five_star"
-            android:gravity="center_vertical"
-            android:text="想看"
-            android:textColor="@color/colorOrange"
-            android:textSize="14sp"/>
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            app:DrawableAndTextGravity="right"
+            app:contentTextColor="@color/colorBlack"
+            app:maxCollapsedLines="5">
+
+        </mvp.wyyne.douban.moviedouban.widget.ExpandableTextView>
+
+
     </LinearLayout>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:minHeight="48dp">
-
-        <ImageView
-            android:id="@+id/iv_detail_shop"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:src="@drawable/ic_ticket"/>
-
-        <TextView
-            android:id="@+id/tv_detail_shop"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toEndOf="@+id/iv_detail_shop"
-            android:text="选座购票"
-            android:textColor="@color/colorGray"
-            android:textSize="14sp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="20dp"
-            android:text="￥18起"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="12sp"/>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:layout_alignParentBottom="true"
-            android:background="@color/colorGray"/>
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:minHeight="48dp">
-
-        <ImageView
-            android:id="@+id/iv_detail_shop"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:src="@drawable/ic_ticket"/>
-
-        <TextView
-            android:id="@+id/tv_detail_shop"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toEndOf="@+id/iv_detail_shop"
-            android:text="选座购票"
-            android:textColor="@color/colorGray"
-            android:textSize="14sp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="20dp"
-            android:text="￥18起"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="12sp"/>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:layout_alignParentBottom="true"
-            android:background="@color/colorGray"/>
-    </RelativeLayout>
-
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:minHeight="48dp">
-
-        <ImageView
-            android:id="@+id/iv_detail_shop"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:src="@drawable/ic_ticket"/>
-
-        <TextView
-            android:id="@+id/tv_detail_shop"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toEndOf="@+id/iv_detail_shop"
-            android:text="选座购票"
-            android:textColor="@color/colorGray"
-            android:textSize="14sp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="20dp"
-            android:text="￥18起"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="12sp"/>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:layout_alignParentBottom="true"
-            android:background="@color/colorGray"/>
-    </RelativeLayout>
 
 
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:minHeight="48dp">
-
-        <ImageView
-            android:id="@+id/iv_detail_shop"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:src="@drawable/ic_ticket"/>
-
-        <TextView
-            android:id="@+id/tv_detail_shop"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toEndOf="@+id/iv_detail_shop"
-            android:text="选座购票"
-            android:textColor="@color/colorGray"
-            android:textSize="14sp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="20dp"
-            android:text="￥18起"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="12sp"/>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:layout_alignParentBottom="true"
-            android:background="@color/colorGray"/>
-    </RelativeLayout>
-
-
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:minHeight="48dp">
-
-        <ImageView
-            android:id="@+id/iv_detail_shop"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:src="@drawable/ic_ticket"/>
-
-        <TextView
-            android:id="@+id/tv_detail_shop"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toEndOf="@+id/iv_detail_shop"
-            android:text="选座购票"
-            android:textColor="@color/colorGray"
-            android:textSize="14sp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="20dp"
-            android:text="￥18起"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="12sp"/>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:layout_alignParentBottom="true"
-            android:background="@color/colorGray"/>
-    </RelativeLayout>
-
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:minHeight="48dp">
-
-        <ImageView
-            android:id="@+id/iv_detail_shop"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:src="@drawable/ic_ticket"/>
-
-        <TextView
-            android:id="@+id/tv_detail_shop"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toEndOf="@+id/iv_detail_shop"
-            android:text="选座购票"
-            android:textColor="@color/colorGray"
-            android:textSize="14sp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="20dp"
-            android:text="￥18起"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="12sp"/>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:layout_alignParentBottom="true"
-            android:background="@color/colorGray"/>
-    </RelativeLayout>
 </LinearLayout>

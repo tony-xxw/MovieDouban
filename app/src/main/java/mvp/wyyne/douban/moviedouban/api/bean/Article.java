@@ -1,12 +1,15 @@
 package mvp.wyyne.douban.moviedouban.api.bean;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.List;
 
 /**
  * Created by XXW on 2017/6/13.
  */
 
-public class Article {
+public class Article implements Parcelable{
 
 
     /**
@@ -87,12 +90,155 @@ public class Article {
     private List<String> clip_urls;
     private List<Trailers> clips;
 
+
+    protected Article(Parcel in) {
+        trailer_urls = in.createStringArrayList();
+        has_video = in.readByte() != 0;
+        rating = in.readParcelable(Rating.class.getClassLoader());
+        popular_comments = in.createTypedArrayList(PopularCm.CREATOR);
+        reviews_count = in.readInt();
+        wish_count = in.readInt();
+        douban_site = in.readString();
+        pubdate = in.readString();
+        year = in.readString();
+        images = in.readParcelable(Avatars.class.getClassLoader());
+        alt = in.readString();
+        photos_count = in.readInt();
+        id = in.readString();
+        mainland_pubdate = in.readString();
+        mobile_url = in.readString();
+        title = in.readString();
+        share_url = in.readString();
+        schedule_url = in.readString();
+        collect_count = in.readInt();
+        original_title = in.readString();
+        summary = in.readString();
+        subtype = in.readString();
+        comments_count = in.readInt();
+        ratings_count = in.readInt();
+        photos = in.createTypedArrayList(Photos.CREATOR);
+        languages = in.createStringArrayList();
+        blooper_urls = in.createStringArrayList();
+        countries = in.createStringArrayList();
+        genres = in.createStringArrayList();
+        pubdates = in.createStringArrayList();
+        casts = in.createTypedArrayList(Casts.CREATOR);
+        directors = in.createTypedArrayList(Directors.CREATOR);
+        aka = in.createStringArrayList();
+        writers = in.createTypedArrayList(Writers.CREATOR);
+        website = in.readString();
+        tags = in.createStringArrayList();
+        has_schedule = in.readByte() != 0;
+        durations = in.createStringArrayList();
+        trailers = in.createTypedArrayList(Trailers.CREATOR);
+        has_ticket = in.readByte() != 0;
+        bloopers = in.createTypedArrayList(Trailers.CREATOR);
+        clip_urls = in.createStringArrayList();
+        clips = in.createTypedArrayList(Trailers.CREATOR);
+    }
+
+    public static final Creator<Article> CREATOR = new Creator<Article>() {
+        @Override
+        public Article createFromParcel(Parcel in) {
+            return new Article(in);
+        }
+
+        @Override
+        public Article[] newArray(int size) {
+            return new Article[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeStringList(trailer_urls);
+        dest.writeByte((byte) (has_video ? 1 : 0));
+        dest.writeParcelable(rating, flags);
+        dest.writeTypedList(popular_comments);
+        dest.writeInt(reviews_count);
+        dest.writeInt(wish_count);
+        dest.writeString(douban_site);
+        dest.writeString(pubdate);
+        dest.writeString(year);
+        dest.writeParcelable(images, flags);
+        dest.writeString(alt);
+        dest.writeInt(photos_count);
+        dest.writeString(id);
+        dest.writeString(mainland_pubdate);
+        dest.writeString(mobile_url);
+        dest.writeString(title);
+        dest.writeString(share_url);
+        dest.writeString(schedule_url);
+        dest.writeInt(collect_count);
+        dest.writeString(original_title);
+        dest.writeString(summary);
+        dest.writeString(subtype);
+        dest.writeInt(comments_count);
+        dest.writeInt(ratings_count);
+        dest.writeTypedList(photos);
+        dest.writeStringList(languages);
+        dest.writeStringList(blooper_urls);
+        dest.writeStringList(countries);
+        dest.writeStringList(genres);
+        dest.writeStringList(pubdates);
+        dest.writeTypedList(casts);
+        dest.writeTypedList(directors);
+        dest.writeStringList(aka);
+        dest.writeTypedList(writers);
+        dest.writeString(website);
+        dest.writeStringList(tags);
+        dest.writeByte((byte) (has_schedule ? 1 : 0));
+        dest.writeStringList(durations);
+        dest.writeTypedList(trailers);
+        dest.writeByte((byte) (has_ticket ? 1 : 0));
+        dest.writeTypedList(bloopers);
+        dest.writeStringList(clip_urls);
+        dest.writeTypedList(clips);
+    }
+
+    public List<String> getTrailer_urls() {
+        return trailer_urls;
+    }
+
+    public void setTrailer_urls(List<String> trailer_urls) {
+        this.trailer_urls = trailer_urls;
+    }
+
+    public boolean isHas_video() {
+        return has_video;
+    }
+
+    public void setHas_video(boolean has_video) {
+        this.has_video = has_video;
+    }
+
     public Rating getRating() {
         return rating;
     }
 
     public void setRating(Rating rating) {
         this.rating = rating;
+    }
+
+    public List<PopularCm> getPopular_comments() {
+        return popular_comments;
+    }
+
+    public void setPopular_comments(List<PopularCm> popular_comments) {
+        this.popular_comments = popular_comments;
+    }
+
+    public List<PopularCmRv> getPopular_reviews() {
+        return popular_reviews;
+    }
+
+    public void setPopular_reviews(List<PopularCmRv> popular_reviews) {
+        this.popular_reviews = popular_reviews;
     }
 
     public int getReviews_count() {
@@ -119,6 +265,14 @@ public class Article {
         this.douban_site = douban_site;
     }
 
+    public String getPubdate() {
+        return pubdate;
+    }
+
+    public void setPubdate(String pubdate) {
+        this.pubdate = pubdate;
+    }
+
     public String getYear() {
         return year;
     }
@@ -143,12 +297,28 @@ public class Article {
         this.alt = alt;
     }
 
+    public int getPhotos_count() {
+        return photos_count;
+    }
+
+    public void setPhotos_count(int photos_count) {
+        this.photos_count = photos_count;
+    }
+
     public String getId() {
         return id;
     }
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getMainland_pubdate() {
+        return mainland_pubdate;
+    }
+
+    public void setMainland_pubdate(String mainland_pubdate) {
+        this.mainland_pubdate = mainland_pubdate;
     }
 
     public String getMobile_url() {
@@ -263,6 +433,30 @@ public class Article {
         this.ratings_count = ratings_count;
     }
 
+    public List<Photos> getPhotos() {
+        return photos;
+    }
+
+    public void setPhotos(List<Photos> photos) {
+        this.photos = photos;
+    }
+
+    public List<String> getLanguages() {
+        return languages;
+    }
+
+    public void setLanguages(List<String> languages) {
+        this.languages = languages;
+    }
+
+    public List<String> getBlooper_urls() {
+        return blooper_urls;
+    }
+
+    public void setBlooper_urls(List<String> blooper_urls) {
+        this.blooper_urls = blooper_urls;
+    }
+
     public List<String> getCountries() {
         return countries;
     }
@@ -277,6 +471,14 @@ public class Article {
 
     public void setGenres(List<String> genres) {
         this.genres = genres;
+    }
+
+    public List<String> getPubdates() {
+        return pubdates;
+    }
+
+    public void setPubdates(List<String> pubdates) {
+        this.pubdates = pubdates;
     }
 
     public List<Casts> getCasts() {
@@ -301,5 +503,85 @@ public class Article {
 
     public void setAka(List<String> aka) {
         this.aka = aka;
+    }
+
+    public List<Writers> getWriters() {
+        return writers;
+    }
+
+    public void setWriters(List<Writers> writers) {
+        this.writers = writers;
+    }
+
+    public String getWebsite() {
+        return website;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
+    }
+
+    public List<String> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<String> tags) {
+        this.tags = tags;
+    }
+
+    public boolean isHas_schedule() {
+        return has_schedule;
+    }
+
+    public void setHas_schedule(boolean has_schedule) {
+        this.has_schedule = has_schedule;
+    }
+
+    public List<String> getDurations() {
+        return durations;
+    }
+
+    public void setDurations(List<String> durations) {
+        this.durations = durations;
+    }
+
+    public List<Trailers> getTrailers() {
+        return trailers;
+    }
+
+    public void setTrailers(List<Trailers> trailers) {
+        this.trailers = trailers;
+    }
+
+    public boolean isHas_ticket() {
+        return has_ticket;
+    }
+
+    public void setHas_ticket(boolean has_ticket) {
+        this.has_ticket = has_ticket;
+    }
+
+    public List<Trailers> getBloopers() {
+        return bloopers;
+    }
+
+    public void setBloopers(List<Trailers> bloopers) {
+        this.bloopers = bloopers;
+    }
+
+    public List<String> getClip_urls() {
+        return clip_urls;
+    }
+
+    public void setClip_urls(List<String> clip_urls) {
+        this.clip_urls = clip_urls;
+    }
+
+    public List<Trailers> getClips() {
+        return clips;
+    }
+
+    public void setClips(List<Trailers> clips) {
+        this.clips = clips;
     }
 }

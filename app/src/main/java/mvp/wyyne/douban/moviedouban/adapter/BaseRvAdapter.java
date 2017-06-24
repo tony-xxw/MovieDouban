@@ -3,6 +3,7 @@ package mvp.wyyne.douban.moviedouban.adapter;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.text.Layout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,9 @@ public abstract class BaseRvAdapter<T> extends RecyclerView.Adapter<BaseItemView
     protected List<T> mList;
     private int mLayoutResId;
     private LayoutInflater mLayoutInflater;
+    private static final int HEAD_TYPE = 0;
+    private static final int FOOTER_TYPE = 1;
+    private static final int CONTENT_TYPE = 2;
 
 
     public BaseRvAdapter(Context context, List<T> data) {
@@ -41,8 +45,25 @@ public abstract class BaseRvAdapter<T> extends RecyclerView.Adapter<BaseItemView
 
     @Override
     public BaseItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        mView = mLayoutInflater.inflate(getLayoutId(), null);
-        mBase = new BaseItemViewHolder(mView,mContext);
+        switch (viewType) {
+            case HEAD_TYPE:
+                Log.d("XXW","-----"+viewType);
+                mView = mLayoutInflater.inflate(getHeadId(), null);
+                mBase = new BaseItemViewHolder(mView, mContext);
+                break;
+            case FOOTER_TYPE:
+                Log.d("XXW","-----"+viewType);
+                mView = mLayoutInflater.inflate(getFooterId(), null);
+                mBase = new BaseItemViewHolder(mView, mContext);
+                break;
+            case CONTENT_TYPE:
+                Log.d("XXW","-----"+viewType);
+                mView = mLayoutInflater.inflate(getLayoutId(), null);
+                mBase = new BaseItemViewHolder(mView, mContext);
+                break;
+            default:
+                break;
+        }
         return mBase;
     }
 
@@ -58,10 +79,22 @@ public abstract class BaseRvAdapter<T> extends RecyclerView.Adapter<BaseItemView
     }
 
 
-
-
+    @Override
+    public int getItemViewType(int position) {
+        if (getHeadId() != 0 && position == 0) {
+            return HEAD_TYPE;
+        } else if (getFooterId() != 0 && position == mList.size() - 1) {
+            return FOOTER_TYPE;
+        } else {
+            return CONTENT_TYPE;
+        }
+    }
 
     abstract int getLayoutId();
 
     abstract void bindView(BaseItemViewHolder holder, int position);
+
+    abstract int getHeadId();
+
+    abstract int getFooterId();
 }

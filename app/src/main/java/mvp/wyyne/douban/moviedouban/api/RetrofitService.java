@@ -40,7 +40,7 @@ public class RetrofitService {
     public static void init() {
         Cache cache = new Cache(new File(AndroidApplication.getApplication().getCacheDir(), "HttpCache"), 1024 * 1024 * 100);
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
-//                .cache(cache)
+                .cache(cache)
 //                .retryOnConnectionFailure(true) //是否断线重连
 //                .addInterceptor(mLoggingInterceptor)
 //                .addInterceptor(sRewriteCacheControlInterceptor)

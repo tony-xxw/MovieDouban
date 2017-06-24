@@ -35,8 +35,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.adapter.CastAdapter;
+import mvp.wyyne.douban.moviedouban.adapter.PhotoAdapter;
 import mvp.wyyne.douban.moviedouban.api.bean.Article;
 import mvp.wyyne.douban.moviedouban.api.bean.Casts;
+import mvp.wyyne.douban.moviedouban.api.bean.Photos;
 import mvp.wyyne.douban.moviedouban.home.BaseActivity;
 import mvp.wyyne.douban.moviedouban.utils.StringUtils;
 import mvp.wyyne.douban.moviedouban.widget.ExpandableTextView;
@@ -101,6 +103,8 @@ public class DetailMovieActivity extends BaseActivity<DetailMoviePresent> implem
     NestedScrollView mNestedScrollView;
     @BindView(R.id.rv_casts)
     RecyclerView mRvCasts;
+    @BindView(R.id.rv_photos)
+    RecyclerView mRvPhoto;
     private String mSubjectsId;
     private Bitmap mDrawableBitmap;
     private Palette.Builder mPalette;
@@ -109,7 +113,10 @@ public class DetailMovieActivity extends BaseActivity<DetailMoviePresent> implem
     private Palette.Swatch swatch;
     private List<Casts> mCastses;
     private CastAdapter mCastAdapter;
-    private LinearLayoutManager mManager;
+    private PhotoAdapter mPhotosAdapter;
+    private LinearLayoutManager mCastManager;
+    private LinearLayoutManager mStillsManager;
+    private List<Photos> mPhoto;
 
 
     @Override
@@ -140,10 +147,19 @@ public class DetailMovieActivity extends BaseActivity<DetailMoviePresent> implem
         //初始化演员列表
         mCastses = new ArrayList<>();
         mCastAdapter = new CastAdapter(this, mCastses);
-        mManager = new LinearLayoutManager(this);
-        mManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-        mRvCasts.setLayoutManager(mManager);
+        mCastManager = new LinearLayoutManager(this);
+        mCastManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        mRvCasts.setLayoutManager(mCastManager);
         mRvCasts.setAdapter(mCastAdapter);
+
+        //初始化剧照
+        mPhoto = new ArrayList<>();
+        mPhotosAdapter = new PhotoAdapter(this, mPhoto);
+        mStillsManager = new LinearLayoutManager(this);
+        mStillsManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        mRvPhoto.setLayoutManager(mStillsManager);
+        mRvPhoto.setAdapter(mPhotosAdapter);
+
 
         //初始化TabLayout
         mTabLayout.setTabMode(TabLayout.MODE_FIXED);
@@ -182,6 +198,8 @@ public class DetailMovieActivity extends BaseActivity<DetailMoviePresent> implem
         }
         mEtSummary.setText(mArticle.getSummary());
         mCastAdapter.setList(mArticle.getCasts());
+        mCastAdapter.setDirectorses(mArticle.getDirectors());
+        mPhotosAdapter.setList(mArticle.getPhotos());
         mCastAdapter.notifyDataSetChanged();
     }
 

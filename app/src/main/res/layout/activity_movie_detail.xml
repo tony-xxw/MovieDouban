@@ -73,7 +73,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
                 android:minHeight="48dp"
-                app:tabBackground="@color/colorWhite"
+                app:tabBackground="@color/colorTablayoutBg"
                 app:tabIndicatorColor="@color/color_tab_indicator"/>
 
 

@@ -38,15 +38,21 @@ public class Article {
      * ratings_count : 14651
      * aka : ["漫漫回家路(港)","A Long Way Home"]
      */
-
+    private List<String> trailer_urls;
+    private boolean has_video;
     private Rating rating;
+    private List<PopularCm> popular_comments;
+    private List<PopularCmRv> popular_reviews;
     private int reviews_count;
     private int wish_count;
     private String douban_site;
+    private String pubdate;
     private String year;
     private Avatars images;
     private String alt;
+    private int photos_count;
     private String id;
+    private String mainland_pubdate;
     private String mobile_url;
     private String title;
     private Object do_count;
@@ -61,11 +67,25 @@ public class Article {
     private String subtype;
     private int comments_count;
     private int ratings_count;
+    private List<Photos> photos;
+    private List<String> languages;
+    private List<String> blooper_urls;
     private List<String> countries;
     private List<String> genres;
+    private List<String> pubdates;
     private List<Casts> casts;
     private List<Directors> directors;
     private List<String> aka;
+    private List<Writers> writers;
+    private String website;
+    private List<String> tags;
+    private boolean has_schedule;
+    private List<String> durations;
+    private List<Trailers> trailers;
+    private boolean has_ticket;
+    private List<Trailers> bloopers;
+    private List<String> clip_urls;
+    private List<Trailers> clips;
 
     public Rating getRating() {
         return rating;

@@ -16,7 +16,7 @@ import static android.R.attr.id;
 public interface IMoviesApi {
 
     //正在热映
-    @GET("movie/in_theaters")
+    @GET("movie/in_theaters?apikey=0df993c66c0c636e29ecbb5344252a4a")
     Observable<HotBean> getHotList();
 
     //即将上映

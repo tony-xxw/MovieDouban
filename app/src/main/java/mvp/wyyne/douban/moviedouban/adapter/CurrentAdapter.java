@@ -40,14 +40,20 @@ public class CurrentAdapter extends BaseRvAdapter<Subjects> {
 
     @Override
     void bindView(BaseItemViewHolder holder, final int position) {
+        StringBuffer mName = new StringBuffer();
         List<Casts> casts = mList.get(position).getCasts();
         List<Directors> directors = mList.get(position).getDirectors();
         Avatars avatars = mList.get(position).getImages();
         Rating rating = mList.get(position).getRating();
         holder.setText(R.id.tv_collect_count, mList.get(position).getCollect_count() + "人看过");
-        for (Casts cast : casts) {
-            holder.setText(R.id.tv_casts_list, cast.getName());
+        for (int i = 0; i < casts.size(); i++) {
+            if (i == casts.size() - 1) {
+                mName.append(casts.get(i).getName());
+            } else {
+                mName.append(casts.get(i).getName() + "/");
+            }
         }
+        holder.setText(R.id.tv_casts_list, mName.toString());
         holder.setText(R.id.tv_directors_name, directors.get(0).getName());
         holder.setText(R.id.tv_title, mList.get(position).getTitle());
         holder.setImgUrl(R.id.iv_avatars, avatars.getMedium());

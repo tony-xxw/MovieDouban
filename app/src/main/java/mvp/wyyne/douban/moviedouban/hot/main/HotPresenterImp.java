@@ -44,6 +44,11 @@ public class HotPresenterImp implements HotPresenter {
 
     }
 
+    @Override
+    public void getData() {
+
+    }
+
 
     class HotPagerAdapter extends FragmentPagerAdapter {
         private List<Fragment> mList;

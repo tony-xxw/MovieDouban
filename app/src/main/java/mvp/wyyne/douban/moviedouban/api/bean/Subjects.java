@@ -35,6 +35,10 @@ public class Subjects implements Parcelable{
     private Avatars images;
     private String alt;
     private String id;
+    private String mainland_pubdate;
+    private boolean has_video;
+    private List<String> pubdates;
+    private List<String> durations;
     private List<String> genres;
     private List<Casts> casts;
     private List<Directors> directors;

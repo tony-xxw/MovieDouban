@@ -7,7 +7,7 @@ import android.os.Parcelable;
  * Created by XXW on 2017/6/5.
  */
 
-public class Rating implements Parcelable{
+public class Rating implements Parcelable {
 
     /**
      * max : 10
@@ -20,6 +20,7 @@ public class Rating implements Parcelable{
     private double average;
     private String stars;
     private int min;
+    private StarDetail details;
 
     protected Rating(Parcel in) {
         max = in.readInt();
@@ -39,6 +40,7 @@ public class Rating implements Parcelable{
             return new Rating[size];
         }
     };
+
     public int getMax() {
         return max;
     }
@@ -69,6 +71,14 @@ public class Rating implements Parcelable{
 
     public void setMin(int min) {
         this.min = min;
+    }
+
+    public StarDetail getDetails() {
+        return details;
+    }
+
+    public void setDetails(StarDetail details) {
+        this.details = details;
     }
 
     @Override

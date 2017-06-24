@@ -20,6 +20,7 @@ public class Casts implements Parcelable{
     private Avatars avatars;
     private String name;
     private String id;
+    private String name_en;
 
     protected Casts(Parcel in) {
         alt = in.readString();
@@ -71,6 +72,13 @@ public class Casts implements Parcelable{
         this.id = id;
     }
 
+    public String getName_en() {
+        return name_en;
+    }
+
+    public void setName_en(String name_en) {
+        this.name_en = name_en;
+    }
 
     @Override
     public int describeContents() {

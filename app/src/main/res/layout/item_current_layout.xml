@@ -19,7 +19,7 @@
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="110dp"
+        android:layout_height="wrap_content"
         android:layout_alignTop="@+id/iv_avatars"
         android:layout_centerVertical="true"
         android:layout_marginStart="10dp"
@@ -84,14 +84,13 @@
 
             <TextView
                 style="@style/MovieItemText"
-                android:text="演员 : "/>
+                android:text="主演 : "/>
 
             <TextView
                 android:id="@+id/tv_casts_list"
                 style="@style/MovieItemText"
-                android:ellipsize="end"
-                android:maxEms="10"
-                android:singleLine="true"/>
+                android:maxWidth="180dp"
+                />
 
         </LinearLayout>
 

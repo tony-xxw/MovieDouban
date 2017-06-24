@@ -83,13 +83,10 @@
             android:layout_marginTop="5dp">
 
             <TextView
-                style="@style/MovieItemText"
-                android:text="主演 : "/>
-
-            <TextView
+                android:lineSpacingExtra="5dp"
                 android:id="@+id/tv_casts_list"
                 style="@style/MovieItemText"
-                android:maxWidth="180dp"
+                android:maxWidth="220dp"
                 />
 
         </LinearLayout>

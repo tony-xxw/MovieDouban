@@ -49,6 +49,8 @@ public class CurrentAdapter extends BaseRvAdapter<Subjects> {
         for (int i = 0; i < casts.size(); i++) {
             if (i == casts.size() - 1) {
                 mName.append(casts.get(i).getName());
+            } else if (i == 0) {
+                mName.append("主演: " + casts.get(i).getName() + "/");
             } else {
                 mName.append(casts.get(i).getName() + "/");
             }

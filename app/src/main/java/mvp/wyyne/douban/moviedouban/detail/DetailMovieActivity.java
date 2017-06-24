@@ -140,7 +140,7 @@ public class DetailMovieActivity extends BaseActivity<DetailMoviePresent> implem
         mTvDetailTitle.setText(mArticle.getTitle());
 
         mTvDetailType.setText(mArticle.getYear() + "/" + StringUtils.getString(mArticle.getGenres()));
-//        mTvDetailType.setText();
+//        mTvDetailShow.setText("上映时间: "+);
         mTvDetailFormerly.setText(mArticle.getOriginal_title());
         mTvDetailGrade.setText(String.valueOf(mArticle.getRating().getAverage()));
         mTvDetailNum.setText(String.valueOf(mArticle.getRatings_count()));
@@ -170,7 +170,10 @@ public class DetailMovieActivity extends BaseActivity<DetailMoviePresent> implem
                         public void onGenerated(Palette palette) {
                             swatch = palette.getMutedSwatch();
                             if (swatch != null) {
-                                Log.d("XXW", "noinit");
+                                Log.d("XXW", "noinit------"+swatch.getRgb()+"---"
+                                        +swatch.getBodyTextColor()+"---"+swatch.getPopulation()+"---"
+                                        +swatch.getTitleTextColor()+"---"
+                                );
                                 mFlAvatarsBg.setBackgroundColor(swatch.getRgb());
                                 mLlTitle.setBackgroundColor(Color.TRANSPARENT);
                                 mLayout.setBackgroundColor(Color.TRANSPARENT);
@@ -181,7 +184,6 @@ public class DetailMovieActivity extends BaseActivity<DetailMoviePresent> implem
             }
         });
     }
-
 
 
     @Override
@@ -205,12 +207,8 @@ public class DetailMovieActivity extends BaseActivity<DetailMoviePresent> implem
 //                Log.d("XXW", "onOffsetChanged-----<0" + verticalOffset);
                 mLlTitle.setBackgroundColor(Color.argb((int) 0, 227, 29, 26));//AGB由相关工具获得，或者美工提供
             } else if (y > 0 && y <= boundHeight) {
-                titleShow();
 //                Log.d("XXW", "onOffsetChanged----->0  <height"+"------"+verticalOffset);
-                float scale = (float) y / boundHeight;
-                float alpha = (255 * scale);
-                // 只是layout背景透明(仿知乎滑动效果)
-                mLlTitle.setBackgroundColor(swatch.getBodyTextColor());
+                mLlTitle.setBackgroundColor(ContextCompat.getColor(this,R.color.colorTranslucence));
             } else {
                 titleShow();
 //                Log.d("XXW", "onOffsetChanged----->height---" + verticalOffset);

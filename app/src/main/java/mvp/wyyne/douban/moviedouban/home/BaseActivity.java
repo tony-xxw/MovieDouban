@@ -6,6 +6,8 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.wang.avi.AVLoadingIndicatorView;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import mvp.wyyne.douban.moviedouban.R;
@@ -15,6 +17,12 @@ import mvp.wyyne.douban.moviedouban.R;
  */
 
 public abstract class BaseActivity<T extends IPresent> extends AppCompatActivity {
+
+
+    @Nullable
+    @BindView(R.id.avl_loading)
+    protected AVLoadingIndicatorView mLodingView;
+
     @Nullable
     @BindView(R.id.swipe_refresh)
     protected SwipeRefreshLayout mSwipeRefresh;

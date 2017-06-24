@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.wang.avi.AVLoadingIndicatorView;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import mvp.wyyne.douban.moviedouban.R;
@@ -19,6 +21,10 @@ import mvp.wyyne.douban.moviedouban.utils.SwipeRefreshUtils;
 
 public abstract class BaseFragment<T extends IPresent> extends Fragment {
 
+
+    @Nullable
+    @BindView(R.id.avl_loading)
+    protected AVLoadingIndicatorView mLodingView;
 
     @Nullable
     @BindView(R.id.swipe_refresh)

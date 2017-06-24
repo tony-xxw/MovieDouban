@@ -85,4 +85,15 @@
         </android.support.design.widget.CollapsingToolbarLayout>
 
     </android.support.design.widget.AppBarLayout>
+
+    <com.wang.avi.AVLoadingIndicatorView
+        android:id="@+id/avl_loading"
+        style="@style/AVLoadingIndicatorView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="40dp"
+        android:visibility="gone"
+        app:indicatorColor="@color/colorOrange"
+        app:indicatorName="PacmanIndicator"/>
 </android.support.design.widget.CoordinatorLayout>

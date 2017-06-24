@@ -49,7 +49,7 @@ public class DetailMoviePresent implements IDetailPresent {
                 .subscribe(new Observer<Article>() {
                     @Override
                     public void onSubscribe(@NonNull Disposable d) {
-
+                        mMain.show();
                     }
 
                     @Override
@@ -66,6 +66,7 @@ public class DetailMoviePresent implements IDetailPresent {
                     @Override
                     public void onComplete() {
                         mMain.initMovieGrade();
+                        mMain.hide();
                     }
                 });
 

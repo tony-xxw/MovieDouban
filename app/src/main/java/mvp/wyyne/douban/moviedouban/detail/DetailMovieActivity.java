@@ -11,6 +11,8 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.graphics.Palette;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
@@ -26,10 +28,15 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import mvp.wyyne.douban.moviedouban.R;
+import mvp.wyyne.douban.moviedouban.adapter.CastAdapter;
 import mvp.wyyne.douban.moviedouban.api.bean.Article;
+import mvp.wyyne.douban.moviedouban.api.bean.Casts;
 import mvp.wyyne.douban.moviedouban.home.BaseActivity;
 import mvp.wyyne.douban.moviedouban.utils.StringUtils;
 import mvp.wyyne.douban.moviedouban.widget.ExpandableTextView;
@@ -92,13 +99,17 @@ public class DetailMovieActivity extends BaseActivity<DetailMoviePresent> implem
     ExpandableTextView mEtSummary;
     @BindView(R.id.nv_detail)
     NestedScrollView mNestedScrollView;
+    @BindView(R.id.rv_casts)
+    RecyclerView mRvCasts;
     private String mSubjectsId;
     private Bitmap mDrawableBitmap;
     private Palette.Builder mPalette;
     private Article mArticle;
-    private ViewTreeObserver mObserver;
     private int boundHeight;
     private Palette.Swatch swatch;
+    private List<Casts> mCastses;
+    private CastAdapter mCastAdapter;
+    private LinearLayoutManager mManager;
 
 
     @Override
@@ -125,6 +136,16 @@ public class DetailMovieActivity extends BaseActivity<DetailMoviePresent> implem
         mPresent = new DetailMoviePresent(this, getSupportFragmentManager());
         mPresent.getArticle(mSubjectsId);
 
+
+        //初始化演员列表
+        mCastses = new ArrayList<>();
+        mCastAdapter = new CastAdapter(this, mCastses);
+        mManager = new LinearLayoutManager(this);
+        mManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        mRvCasts.setLayoutManager(mManager);
+        mRvCasts.setAdapter(mCastAdapter);
+
+        //初始化TabLayout
         mTabLayout.setTabMode(TabLayout.MODE_FIXED);
         mTabLayout.addTab(mTabLayout.newTab().setText("评论"));
         mTabLayout.addTab(mTabLayout.newTab().setText("讨论区"));
@@ -160,6 +181,8 @@ public class DetailMovieActivity extends BaseActivity<DetailMoviePresent> implem
             mTvDetailTime.setText(getString(R.string.movie_time) + mArticle.getDurations().get(0));
         }
         mEtSummary.setText(mArticle.getSummary());
+        mCastAdapter.setList(mArticle.getCasts());
+        mCastAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -201,12 +224,12 @@ public class DetailMovieActivity extends BaseActivity<DetailMoviePresent> implem
 
     @Override
     public void show() {
-
+        mLodingView.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hide() {
-
+        mLodingView.setVisibility(View.GONE);
     }
 
     @Override

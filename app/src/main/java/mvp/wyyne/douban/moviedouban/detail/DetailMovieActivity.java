@@ -166,7 +166,7 @@ public class DetailMovieActivity extends BaseActivity<DetailMoviePresent> implem
         mTabLayout.addTab(mTabLayout.newTab().setText("评论"));
         mTabLayout.addTab(mTabLayout.newTab().setText("讨论区"));
         mTabLayout.setTabTextColors(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.colorBlack)));
-        mPresent.initPage(mPager);
+
     }
 
 
@@ -185,7 +185,6 @@ public class DetailMovieActivity extends BaseActivity<DetailMoviePresent> implem
         mTvDetailFormerly.setText(mArticle.getOriginal_title());
         mTvDetailGrade.setText(String.valueOf(mArticle.getRating().getAverage()));
         mTvDetailNum.setText(String.valueOf(mArticle.getRatings_count()));
-//        mTbDetailNum.setNumStars(Integer.valueOf(mArticle.getRating().getStars()));
         mTvTitle.setText(mArticle.getTitle());
         mTbDetailNum.setRating((float) mArticle.getRating().getAverage());
         for (String s : mArticle.getPubdates()) {
@@ -201,6 +200,7 @@ public class DetailMovieActivity extends BaseActivity<DetailMoviePresent> implem
         mCastAdapter.setDirectorses(mArticle.getDirectors());
         mPhotosAdapter.setList(mArticle.getPhotos());
         mCastAdapter.notifyDataSetChanged();
+        mPresent.initPage(mPager);
     }
 
     @Override

@@ -5,17 +5,19 @@ import android.support.v7.widget.RecyclerView;
 import android.util.SparseArray;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
+import mvp.wyyne.douban.moviedouban.api.bean.Rating;
 import mvp.wyyne.douban.moviedouban.widget.StartView;
 
 /**
  * Created by XXW on 2017/6/13.
  */
 
-public class BaseItemViewHolder extends RecyclerView.ViewHolder{
+public class BaseItemViewHolder extends RecyclerView.ViewHolder {
     private View convertView;
     private final SparseArray<View> mViews;
     private Context mContext;
@@ -52,6 +54,11 @@ public class BaseItemViewHolder extends RecyclerView.ViewHolder{
         return sv;
     }
 
+    public void setValue(int viewId, int value) {
+        RatingBar rating = getView(viewId);
+        rating.setRating((float) value);
+    }
+
 
     @SuppressWarnings("unchecked")
     public <T extends View> T getView(int viewId) {
@@ -62,7 +69,6 @@ public class BaseItemViewHolder extends RecyclerView.ViewHolder{
         }
         return (T) view;
     }
-
 
 
 }

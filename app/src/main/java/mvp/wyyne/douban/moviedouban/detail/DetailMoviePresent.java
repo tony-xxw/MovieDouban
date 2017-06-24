@@ -28,6 +28,7 @@ public class DetailMoviePresent implements IDetailPresent {
     private List<Fragment> mHotList;
     private FragmentManager mFragmentManager;
     private DetailPagerAdapter mAdapter;
+    private Article mArticle;
 
 
     public DetailMoviePresent(IDetailMain main, FragmentManager manager) {
@@ -55,6 +56,7 @@ public class DetailMoviePresent implements IDetailPresent {
                     @Override
                     public void onNext(@NonNull Article article) {
                         Log.d("XXW", article.getTitle());
+                        mArticle = article;
                         mMain.initMovieImg(article);
                     }
 
@@ -74,7 +76,7 @@ public class DetailMoviePresent implements IDetailPresent {
 
     @Override
     public void initPage(ViewPager viewPager) {
-        mHotList.add(new CommentFragment());
+        mHotList.add(CommentFragment.getInstance(mArticle));
         mHotList.add(new CommentFragment());
         mAdapter = new DetailPagerAdapter(mFragmentManager);
         mAdapter.setFragment(mHotList);

@@ -37,13 +37,4 @@ public class CommentAdapter extends BaseRvAdapter<PopularCm> {
         holder.setText(R.id.tv_comment_date, mList.get(position).getCreated_at());
     }
 
-    @Override
-    int getHeadId() {
-        return 0;
-    }
-
-    @Override
-    int getFooterId() {
-        return 0;
-    }
 }

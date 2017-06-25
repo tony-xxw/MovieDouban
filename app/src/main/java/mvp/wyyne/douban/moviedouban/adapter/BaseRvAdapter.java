@@ -27,6 +27,8 @@ public abstract class BaseRvAdapter<T> extends RecyclerView.Adapter<BaseItemView
     private static final int HEAD_TYPE = 0;
     private static final int FOOTER_TYPE = 1;
     private static final int CONTENT_TYPE = 2;
+    protected View mHeadView;
+    protected View mFooterView;
 
 
     public BaseRvAdapter(Context context, List<T> data) {
@@ -43,21 +45,28 @@ public abstract class BaseRvAdapter<T> extends RecyclerView.Adapter<BaseItemView
         this.mLayoutInflater = LayoutInflater.from(mContext);
     }
 
+    public void setHeadView(View view) {
+        mHeadView = view;
+        notifyItemInserted(0);
+    }
+
+    public void setFooterView(View view) {
+        mFooterView = view;
+        notifyItemInserted(getItemCount() - 1);
+    }
+
     @Override
     public BaseItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         switch (viewType) {
             case HEAD_TYPE:
-                Log.d("XXW","-----"+viewType);
-                mView = mLayoutInflater.inflate(getHeadId(), null);
-                mBase = new BaseItemViewHolder(mView, mContext);
+                mBase = new BaseItemViewHolder(mHeadView, mContext);
                 break;
             case FOOTER_TYPE:
-                Log.d("XXW","-----"+viewType);
-                mView = mLayoutInflater.inflate(getFooterId(), null);
-                mBase = new BaseItemViewHolder(mView, mContext);
+                Log.d("XXW", "-----" + viewType);
+                mBase = new BaseItemViewHolder(mFooterView, mContext);
                 break;
             case CONTENT_TYPE:
-                Log.d("XXW","-----"+viewType);
+                Log.d("XXW", "-----" + viewType);
                 mView = mLayoutInflater.inflate(getLayoutId(), null);
                 mBase = new BaseItemViewHolder(mView, mContext);
                 break;
@@ -69,21 +78,34 @@ public abstract class BaseRvAdapter<T> extends RecyclerView.Adapter<BaseItemView
 
     @Override
     public void onBindViewHolder(BaseItemViewHolder holder, int position) {
-        bindView(holder, position);
+        if (getItemViewType(position) == HEAD_TYPE) {
+            bindHeadView(holder, position);
+            return;
+        } else if (getItemViewType(position) == FOOTER_TYPE) {
+            bindFooterView(holder, position);
+            return;
+        }
+        bindView(holder, getLayoutPosition(holder));
+    }
+
+    public int getLayoutPosition(RecyclerView.ViewHolder holder) {
+        int position = holder.getLayoutPosition();
+        return mHeadView != null ? position - 1 : position;
+
     }
 
 
     @Override
     public int getItemCount() {
-        return mList.size();
+        return mHeadView != null ? mList.size() + 1 : mList.size();
     }
 
 
     @Override
     public int getItemViewType(int position) {
-        if (getHeadId() != 0 && position == 0) {
+        if (mHeadView != null && position == 0) {
             return HEAD_TYPE;
-        } else if (getFooterId() != 0 && position == mList.size() - 1) {
+        } else if (mFooterView != null && position == mList.size() - 1) {
             return FOOTER_TYPE;
         } else {
             return CONTENT_TYPE;
@@ -94,7 +116,13 @@ public abstract class BaseRvAdapter<T> extends RecyclerView.Adapter<BaseItemView
 
     abstract void bindView(BaseItemViewHolder holder, int position);
 
-    abstract int getHeadId();
+    public void bindHeadView(BaseItemViewHolder holder, int position) {
 
-    abstract int getFooterId();
+    }
+
+
+    public void bindFooterView(BaseItemViewHolder holder, int position) {
+
+    }
+
 }

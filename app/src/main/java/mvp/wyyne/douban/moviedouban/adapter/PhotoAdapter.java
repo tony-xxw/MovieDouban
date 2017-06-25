@@ -34,13 +34,4 @@ public class PhotoAdapter extends BaseRvAdapter<Photos> {
 
     }
 
-    @Override
-    int getHeadId() {
-        return 0;
-    }
-
-    @Override
-    int getFooterId() {
-        return 0;
-    }
 }

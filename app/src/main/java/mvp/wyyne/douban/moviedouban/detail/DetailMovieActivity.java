@@ -14,7 +14,9 @@ import android.support.v7.graphics.Palette;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.Layout;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
@@ -30,6 +32,7 @@ import com.bumptech.glide.request.target.SimpleTarget;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.zip.Inflater;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -38,6 +41,7 @@ import mvp.wyyne.douban.moviedouban.adapter.CastAdapter;
 import mvp.wyyne.douban.moviedouban.adapter.PhotoAdapter;
 import mvp.wyyne.douban.moviedouban.api.bean.Article;
 import mvp.wyyne.douban.moviedouban.api.bean.Casts;
+import mvp.wyyne.douban.moviedouban.api.bean.Directors;
 import mvp.wyyne.douban.moviedouban.api.bean.Photos;
 import mvp.wyyne.douban.moviedouban.home.BaseActivity;
 import mvp.wyyne.douban.moviedouban.utils.StringUtils;
@@ -117,6 +121,7 @@ public class DetailMovieActivity extends BaseActivity<DetailMoviePresent> implem
     private LinearLayoutManager mCastManager;
     private LinearLayoutManager mStillsManager;
     private List<Photos> mPhoto;
+    private List<Directors> mDirectorses;
 
 
     @Override
@@ -146,11 +151,14 @@ public class DetailMovieActivity extends BaseActivity<DetailMoviePresent> implem
 
         //初始化演员列表
         mCastses = new ArrayList<>();
+        mDirectorses = new ArrayList<>();
         mCastAdapter = new CastAdapter(this, mCastses);
         mCastManager = new LinearLayoutManager(this);
         mCastManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         mRvCasts.setLayoutManager(mCastManager);
         mRvCasts.setAdapter(mCastAdapter);
+        mCastAdapter.setHeadView(addView(mRvCasts));
+        mCastAdapter.setDirectorses(mDirectorses);
 
         //初始化剧照
         mPhoto = new ArrayList<>();
@@ -167,6 +175,10 @@ public class DetailMovieActivity extends BaseActivity<DetailMoviePresent> implem
         mTabLayout.addTab(mTabLayout.newTab().setText("讨论区"));
         mTabLayout.setTabTextColors(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.colorBlack)));
 
+    }
+
+    public View addView(RecyclerView recyclerView) {
+        return LayoutInflater.from(this).inflate(R.layout.item_cast_head, recyclerView, false);
     }
 
 

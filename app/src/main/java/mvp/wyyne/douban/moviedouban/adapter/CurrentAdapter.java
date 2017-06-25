@@ -75,14 +75,6 @@ public class CurrentAdapter extends BaseRvAdapter<Subjects> {
         });
     }
 
-    @Override
-    int getHeadId() {
-        return 0;
-    }
 
-    @Override
-    int getFooterId() {
-        return 0;
-    }
 
 }

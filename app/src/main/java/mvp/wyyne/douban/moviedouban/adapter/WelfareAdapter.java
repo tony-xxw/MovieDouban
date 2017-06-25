@@ -55,14 +55,5 @@ public class WelfareAdapter extends BaseRvAdapter<WelfarePhotoInfo> {
 
     }
 
-    @Override
-    int getHeadId() {
-        return 0;
-    }
-
-    @Override
-    int getFooterId() {
-        return 0;
-    }
 
 }

@@ -9,15 +9,21 @@ import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 
 import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 import mvp.wyyne.douban.moviedouban.AndroidApplication;
 import mvp.wyyne.douban.moviedouban.api.bean.Article;
 import mvp.wyyne.douban.moviedouban.api.bean.HotBean;
+import mvp.wyyne.douban.moviedouban.api.bean.WelfarePhotoInfo;
+import mvp.wyyne.douban.moviedouban.api.bean.WelfarePhotoList;
 import okhttp3.Cache;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -34,8 +40,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitService {
     private static final String MOVIES_HOST = "https://api.douban.com/v2/";
+    private static final String WELFARE_HOST = "http://gank.io";
 
     private static IMoviesApi mMoviesApi;
+    private static IWelfareApi mWelfareApi;
 
     public static void init() {
         Cache cache = new Cache(new File(AndroidApplication.getApplication().getCacheDir(), "HttpCache"), 1024 * 1024 * 100);
@@ -55,7 +63,15 @@ public class RetrofitService {
                 .baseUrl(MOVIES_HOST)
                 .build();
 
+        Retrofit welfare = new Retrofit.Builder()
+                .client(okHttpClient)
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .baseUrl(WELFARE_HOST)
+                .build();
+
         mMoviesApi = retrofit.create(IMoviesApi.class);
+        mWelfareApi = welfare.create(IWelfareApi.class);
     }
 
 
@@ -128,6 +144,14 @@ public class RetrofitService {
     public static Observable<Article> getArticle(String id) {
         Log.d("XXW", "Id---" + id);
         return mMoviesApi.getArticle(id).
+                subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .subscribeOn(AndroidSchedulers.mainThread())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public static Observable<WelfarePhotoList> getPhotoList(int page) {
+        return mWelfareApi.getWelfarePhoto(page).
                 subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .subscribeOn(AndroidSchedulers.mainThread())

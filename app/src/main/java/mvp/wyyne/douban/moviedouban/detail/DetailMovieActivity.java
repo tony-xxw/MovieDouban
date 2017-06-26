@@ -47,6 +47,7 @@ import mvp.wyyne.douban.moviedouban.home.BaseActivity;
 import mvp.wyyne.douban.moviedouban.utils.StringUtils;
 import mvp.wyyne.douban.moviedouban.widget.ExpandableTextView;
 import mvp.wyyne.douban.moviedouban.widget.ObservableScrollView;
+import mvp.wyyne.douban.moviedouban.widget.RecycleViewUtils;
 
 /**
  * Created by XXW on 2017/6/18.
@@ -157,7 +158,7 @@ public class DetailMovieActivity extends BaseActivity<DetailMoviePresent> implem
         mCastManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         mRvCasts.setLayoutManager(mCastManager);
         mRvCasts.setAdapter(mCastAdapter);
-        mCastAdapter.setHeadView(addView(mRvCasts));
+        mCastAdapter.setHeadView(RecycleViewUtils.addHeadView(mRvCasts, R.layout.item_cast_head, this));
         mCastAdapter.setDirectorses(mDirectorses);
 
         //初始化剧照
@@ -176,11 +177,6 @@ public class DetailMovieActivity extends BaseActivity<DetailMoviePresent> implem
         mTabLayout.setTabTextColors(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.colorBlack)));
 
     }
-
-    public View addView(RecyclerView recyclerView) {
-        return LayoutInflater.from(this).inflate(R.layout.item_cast_head, recyclerView, false);
-    }
-
 
     @Override
     public void initMovieImg(Article article) {

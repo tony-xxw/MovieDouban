@@ -90,14 +90,24 @@ public abstract class BaseRvAdapter<T> extends RecyclerView.Adapter<BaseItemView
 
     public int getLayoutPosition(RecyclerView.ViewHolder holder) {
         int position = holder.getLayoutPosition();
-        return mHeadView != null ? position - 1 : position;
+        return position - getHeadViewCount();
 
     }
 
 
     @Override
     public int getItemCount() {
-        return mHeadView != null ? mList.size() + 1 : mList.size();
+        Log.d("XXW", "---getHeadViewCount---" + getHeadViewCount() + "--getHeadViewCount--" + getFooterViewCount()
+        );
+        return mList.size() + getHeadViewCount() + getFooterViewCount();
+    }
+
+    public int getHeadViewCount() {
+        return mHeadView != null ? 1 : 0;
+    }
+
+    public int getFooterViewCount() {
+        return mFooterView != null ? 1 : 0;
     }
 
 
@@ -105,7 +115,7 @@ public abstract class BaseRvAdapter<T> extends RecyclerView.Adapter<BaseItemView
     public int getItemViewType(int position) {
         if (mHeadView != null && position == 0) {
             return HEAD_TYPE;
-        } else if (mFooterView != null && position == mList.size() - 1) {
+        } else if (mFooterView != null && position == getItemCount() - 1) {
             return FOOTER_TYPE;
         } else {
             return CONTENT_TYPE;

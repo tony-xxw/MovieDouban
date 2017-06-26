@@ -10,5 +10,6 @@
     <string name="expand_string">more</string>
     <string name="collapsed_string">less</string>
     <string name="cast">影人</string>
-    <string name="stills_cast">预告片/剧照</string>
+    <string name="stills_cast">预告片 /剧照</string>
+    <string name="comment">短评</string>
 </resources>

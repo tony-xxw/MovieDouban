@@ -19,6 +19,7 @@ import mvp.wyyne.douban.moviedouban.adapter.CommentAdapter;
 import mvp.wyyne.douban.moviedouban.api.bean.Article;
 import mvp.wyyne.douban.moviedouban.api.bean.PopularCm;
 import mvp.wyyne.douban.moviedouban.home.BaseFragment;
+import mvp.wyyne.douban.moviedouban.widget.RecycleViewUtils;
 
 /**
  * Created by XXW on 2017/6/22.
@@ -46,7 +47,6 @@ public class CommentFragment extends BaseFragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mArticle = getArguments().getParcelable(TAG);
-            Log.d("XXW", "mA--" + mArticle.getTitle());
             mPopularCm = mArticle.getPopular_comments();
         }
     }
@@ -63,12 +63,15 @@ public class CommentFragment extends BaseFragment {
 
     @Override
     protected void initView() {
-        Log.d("---XXW", "initView");
         mAdapter = new CommentAdapter(getActivity(), mPopularCm);
+        mAdapter.setArticle(mArticle);
+        Log.d("XXW", "mAritice--->" + mArticle.getComments_count());
         mManager = new LinearLayoutManager(getActivity());
         mManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRvComment.setLayoutManager(mManager);
         mRvComment.setAdapter(mAdapter);
+        mAdapter.setHeadView(RecycleViewUtils.addHeadView(mRvComment, R.layout.item_comment_head, getActivity()));
+        mAdapter.setFooterView(RecycleViewUtils.addFooterView(mRvComment, R.layout.item_comment_footer, getActivity()));
 
     }
 

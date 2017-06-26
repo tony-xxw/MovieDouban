@@ -4,8 +4,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/iv_avatars"
         android:layout_width="32dp"
         android:layout_height="32dp"
@@ -14,11 +13,11 @@
         android:background="@drawable/bg_cicle"/>
 
     <RelativeLayout
-        android:layout_marginStart="5dp"
         android:id="@+id/rl_comment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="20dp"
         android:layout_toEndOf="@+id/iv_avatars">
 
@@ -57,13 +56,13 @@
 
 
     <LinearLayout
-        android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/rl_comment"
         android:layout_below="@+id/rl_comment"
         android:layout_marginEnd="20dp"
         android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
         android:orientation="vertical">
 
 

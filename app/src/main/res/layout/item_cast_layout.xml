@@ -21,6 +21,6 @@
         android:layout_height="wrap_content"
         android:ellipsize="end"
         android:text="演员"
-        android:textColor="@color/colorGray_light"
+        android:textColor="@color/colorBlack"
         android:textSize="12sp"/>
 </LinearLayout>

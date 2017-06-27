@@ -9,20 +9,13 @@ import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
-
-
 import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
-import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 import mvp.wyyne.douban.moviedouban.AndroidApplication;
 import mvp.wyyne.douban.moviedouban.api.bean.Article;
 import mvp.wyyne.douban.moviedouban.api.bean.HotBean;
-import mvp.wyyne.douban.moviedouban.api.bean.WelfarePhotoInfo;
 import mvp.wyyne.douban.moviedouban.api.bean.WelfarePhotoList;
 import okhttp3.Cache;
 import okhttp3.Interceptor;

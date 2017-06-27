@@ -47,6 +47,7 @@ public class CommentFragment extends BaseFragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mArticle = getArguments().getParcelable(TAG);
+            Log.d("XXW","TO ---"+mArticle.toString());
             mPopularCm = mArticle.getPopular_comments();
         }
     }

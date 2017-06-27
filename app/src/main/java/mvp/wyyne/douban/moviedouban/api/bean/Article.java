@@ -584,4 +584,58 @@ public class Article implements Parcelable{
     public void setClips(List<Trailers> clips) {
         this.clips = clips;
     }
+
+    @Override
+    public String toString() {
+        return "Article{" +
+                "trailer_urls=" + trailer_urls +
+                ", has_video=" + has_video +
+                ", rating=" + rating +
+                ", popular_comments=" + popular_comments +
+                ", popular_reviews=" + popular_reviews +
+                ", reviews_count=" + reviews_count +
+                ", wish_count=" + wish_count +
+                ", douban_site='" + douban_site + '\'' +
+                ", pubdate='" + pubdate + '\'' +
+                ", year='" + year + '\'' +
+                ", images=" + images +
+                ", alt='" + alt + '\'' +
+                ", photos_count=" + photos_count +
+                ", id='" + id + '\'' +
+                ", mainland_pubdate='" + mainland_pubdate + '\'' +
+                ", mobile_url='" + mobile_url + '\'' +
+                ", title='" + title + '\'' +
+                ", do_count=" + do_count +
+                ", share_url='" + share_url + '\'' +
+                ", seasons_count=" + seasons_count +
+                ", schedule_url='" + schedule_url + '\'' +
+                ", episodes_count=" + episodes_count +
+                ", collect_count=" + collect_count +
+                ", current_season=" + current_season +
+                ", original_title='" + original_title + '\'' +
+                ", summary='" + summary + '\'' +
+                ", subtype='" + subtype + '\'' +
+                ", comments_count=" + comments_count +
+                ", ratings_count=" + ratings_count +
+                ", photos=" + photos +
+                ", languages=" + languages +
+                ", blooper_urls=" + blooper_urls +
+                ", countries=" + countries +
+                ", genres=" + genres +
+                ", pubdates=" + pubdates +
+                ", casts=" + casts +
+                ", directors=" + directors +
+                ", aka=" + aka +
+                ", writers=" + writers +
+                ", website='" + website + '\'' +
+                ", tags=" + tags +
+                ", has_schedule=" + has_schedule +
+                ", durations=" + durations +
+                ", trailers=" + trailers +
+                ", has_ticket=" + has_ticket +
+                ", bloopers=" + bloopers +
+                ", clip_urls=" + clip_urls +
+                ", clips=" + clips +
+                '}';
+    }
 }

@@ -79,6 +79,7 @@ public class CommentFragment extends BaseFragment {
     }
 
     private void addView() {
+        Log.d("XXW","addView");
         mAdapter.setHeadView(RecycleViewUtils.addHeadView(mRvComment, R.layout.item_comment_head, getActivity()));
         mFooterView = RecycleViewUtils.addFooterView(mRvComment, R.layout.item_comment_footer, getActivity());
         mTvFooter = (TextView) mFooterView.findViewById(R.id.tv_footer);

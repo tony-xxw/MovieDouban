@@ -18,6 +18,7 @@ import mvp.wyyne.douban.moviedouban.comment.CommentFragment;
 import mvp.wyyne.douban.moviedouban.hot.current.HotCurrentFragment;
 import mvp.wyyne.douban.moviedouban.hot.future.HotFutureFragment;
 import mvp.wyyne.douban.moviedouban.hot.main.HotPresenterImp;
+import mvp.wyyne.douban.moviedouban.movie.MovieFragment;
 
 /**
  * Created by XXW on 2017/6/19.
@@ -77,7 +78,7 @@ public class DetailMoviePresent implements IDetailPresent {
     @Override
     public void initPage(ViewPager viewPager) {
         mHotList.add(CommentFragment.getInstance(mArticle));
-        mHotList.add(new CommentFragment());
+        mHotList.add(new MovieFragment());
         mAdapter = new DetailPagerAdapter(mFragmentManager);
         mAdapter.setFragment(mHotList);
         viewPager.setAdapter(mAdapter);

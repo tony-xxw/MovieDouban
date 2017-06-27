@@ -14,11 +14,8 @@ import android.support.v7.graphics.Palette;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.text.Layout;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -32,10 +29,10 @@ import com.bumptech.glide.request.target.SimpleTarget;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.zip.Inflater;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.adapter.CastAdapter;
 import mvp.wyyne.douban.moviedouban.adapter.PhotoAdapter;
@@ -291,4 +288,9 @@ public class DetailMovieActivity extends BaseActivity<DetailMoviePresent> implem
         mTvTitle.setVisibility(View.VISIBLE);
     }
 
+
+    @OnClick(R.id.iv_back)
+    public void onViewClicked() {
+        finish();
+    }
 }

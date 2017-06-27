@@ -75,6 +75,15 @@ public class CurrentAdapter extends BaseRvAdapter<Subjects> {
         });
     }
 
+    @Override
+    void bindHeadView(BaseItemViewHolder holder, int position) {
+
+    }
+
+    @Override
+    void bindFooterView(BaseItemViewHolder holder, int position) {
+
+    }
 
 
 }

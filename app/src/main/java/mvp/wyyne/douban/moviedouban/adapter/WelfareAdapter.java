@@ -55,5 +55,15 @@ public class WelfareAdapter extends BaseRvAdapter<WelfarePhotoInfo> {
 
     }
 
+    @Override
+    void bindHeadView(BaseItemViewHolder holder, int position) {
+
+    }
+
+    @Override
+    void bindFooterView(BaseItemViewHolder holder, int position) {
+
+    }
+
 
 }

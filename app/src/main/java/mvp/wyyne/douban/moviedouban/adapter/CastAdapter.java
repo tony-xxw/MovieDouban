@@ -63,4 +63,9 @@ public class CastAdapter extends BaseRvAdapter<Casts> {
         }
     }
 
+    @Override
+    void bindFooterView(BaseItemViewHolder holder, int position) {
+
+    }
+
 }

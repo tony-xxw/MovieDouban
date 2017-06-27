@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
+import mvp.wyyne.douban.moviedouban.api.bean.Article;
 import mvp.wyyne.douban.moviedouban.api.bean.Subjects;
 
 /**
@@ -29,7 +30,11 @@ public abstract class BaseRvAdapter<T> extends RecyclerView.Adapter<BaseItemView
     private static final int CONTENT_TYPE = 2;
     protected View mHeadView;
     protected View mFooterView;
+    protected Article mArticle;
 
+    public void setArticle(Article article) {
+        mArticle = article;
+    }
 
     public BaseRvAdapter(Context context, List<T> data) {
         mLayoutResId = getLayoutId();
@@ -37,8 +42,10 @@ public abstract class BaseRvAdapter<T> extends RecyclerView.Adapter<BaseItemView
             throw new IllegalAccessError("Layout resource ID must be valid!");
         }
         if (data == null) {
+            Log.d("XXW", "null---");
             mList = new ArrayList<>();
         } else {
+            Log.d("XXW", "null===");
             this.mList = data;
         }
         this.mContext = context;
@@ -97,8 +104,6 @@ public abstract class BaseRvAdapter<T> extends RecyclerView.Adapter<BaseItemView
 
     @Override
     public int getItemCount() {
-        Log.d("XXW", "---getHeadViewCount---" + getHeadViewCount() + "--getHeadViewCount--" + getFooterViewCount()
-        );
         return mList.size() + getHeadViewCount() + getFooterViewCount();
     }
 
@@ -126,13 +131,9 @@ public abstract class BaseRvAdapter<T> extends RecyclerView.Adapter<BaseItemView
 
     abstract void bindView(BaseItemViewHolder holder, int position);
 
-    public void bindHeadView(BaseItemViewHolder holder, int position) {
+    abstract void bindHeadView(BaseItemViewHolder holder, int position);
 
-    }
+    abstract void bindFooterView(BaseItemViewHolder holder, int position);
 
-
-    public void bindFooterView(BaseItemViewHolder holder, int position) {
-
-    }
 
 }

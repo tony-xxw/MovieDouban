@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -29,10 +30,12 @@ public class CommentFragment extends BaseFragment {
     public static String TAG = "CommentFragment";
     @BindView(R.id.rv_comment)
     RecyclerView mRvComment;
+    TextView mTvFooter;
     private CommentAdapter mAdapter;
     private List<PopularCm> mPopularCm;
     private Article mArticle;
     private LinearLayoutManager mManager;
+    private View mFooterView;
 
     public static CommentFragment getInstance(Article article) {
         Bundle bundle = new Bundle();
@@ -47,9 +50,10 @@ public class CommentFragment extends BaseFragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mArticle = getArguments().getParcelable(TAG);
-            Log.d("XXW","TO ---"+mArticle.toString());
+            Log.d("XXW", "onCreate--->" + mArticle.getComments_count());
             mPopularCm = mArticle.getPopular_comments();
         }
+
     }
 
     @Override
@@ -66,13 +70,20 @@ public class CommentFragment extends BaseFragment {
     protected void initView() {
         mAdapter = new CommentAdapter(getActivity(), mPopularCm);
         mAdapter.setArticle(mArticle);
-        Log.d("XXW", "mAritice--->" + mArticle.getComments_count());
         mManager = new LinearLayoutManager(getActivity());
         mManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRvComment.setLayoutManager(mManager);
+        addView();
         mRvComment.setAdapter(mAdapter);
+
+    }
+
+    private void addView() {
         mAdapter.setHeadView(RecycleViewUtils.addHeadView(mRvComment, R.layout.item_comment_head, getActivity()));
-        mAdapter.setFooterView(RecycleViewUtils.addFooterView(mRvComment, R.layout.item_comment_footer, getActivity()));
+        mFooterView = RecycleViewUtils.addFooterView(mRvComment, R.layout.item_comment_footer, getActivity());
+        mTvFooter = (TextView) mFooterView.findViewById(R.id.tv_footer);
+        mTvFooter.setText("全部短评" + mArticle.getComments_count() + "个");
+        mAdapter.setFooterView(mFooterView);
 
     }
 

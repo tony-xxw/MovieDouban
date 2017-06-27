@@ -34,4 +34,14 @@ public class PhotoAdapter extends BaseRvAdapter<Photos> {
 
     }
 
+    @Override
+    void bindHeadView(BaseItemViewHolder holder, int position) {
+
+    }
+
+    @Override
+    void bindFooterView(BaseItemViewHolder holder, int position) {
+
+    }
+
 }

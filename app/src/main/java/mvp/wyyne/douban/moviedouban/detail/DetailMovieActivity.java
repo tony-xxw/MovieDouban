@@ -145,6 +145,7 @@ public class DetailMovieActivity extends BaseActivity<DetailMoviePresent> implem
         mBarLayout.addOnOffsetChangedListener(this);
         mPresent = new DetailMoviePresent(this, getSupportFragmentManager());
         mPresent.getArticle(mSubjectsId);
+        mPresent.getRevies(mSubjectsId);
 
 
         //初始化演员列表

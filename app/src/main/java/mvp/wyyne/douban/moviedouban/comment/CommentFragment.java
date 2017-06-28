@@ -10,15 +10,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import mvp.wyyne.douban.moviedouban.R;
+import mvp.wyyne.douban.moviedouban.adapter.BaseRvAdapter;
 import mvp.wyyne.douban.moviedouban.adapter.CommentAdapter;
+import mvp.wyyne.douban.moviedouban.adapter.ReviewAdapter;
 import mvp.wyyne.douban.moviedouban.api.bean.Article;
+import mvp.wyyne.douban.moviedouban.api.bean.MoviesReviews;
 import mvp.wyyne.douban.moviedouban.api.bean.PopularCm;
+import mvp.wyyne.douban.moviedouban.api.bean.Reviews;
 import mvp.wyyne.douban.moviedouban.home.BaseFragment;
 import mvp.wyyne.douban.moviedouban.widget.RecycleViewUtils;
 
@@ -26,20 +31,28 @@ import mvp.wyyne.douban.moviedouban.widget.RecycleViewUtils;
  * Created by XXW on 2017/6/22.
  */
 
-public class CommentFragment extends BaseFragment {
+public class CommentFragment extends BaseFragment{
     public static String TAG = "CommentFragment";
+    public static String REVIEWS = "reviews";
     @BindView(R.id.rv_comment)
     RecyclerView mRvComment;
     TextView mTvFooter;
+    @BindView(R.id.rv_review)
+    RecyclerView mRvReview;
     private CommentAdapter mAdapter;
     private List<PopularCm> mPopularCm;
+    private List<Reviews> mReviewsList;
+    private MoviesReviews mReviews;
+    private ReviewAdapter mReviewAdapter;
     private Article mArticle;
     private LinearLayoutManager mManager;
+    private LinearLayoutManager mReviewsManager;
     private View mFooterView;
 
-    public static CommentFragment getInstance(Article article) {
+    public static CommentFragment getInstance(Article article, MoviesReviews reviews) {
         Bundle bundle = new Bundle();
         bundle.putParcelable(TAG, article);
+        bundle.putParcelable(REVIEWS, reviews);
         CommentFragment fragment = new CommentFragment();
         fragment.setArguments(bundle);
         return fragment;
@@ -50,6 +63,7 @@ public class CommentFragment extends BaseFragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mArticle = getArguments().getParcelable(TAG);
+            mReviews = getArguments().getParcelable(REVIEWS);
             Log.d("XXW", "onCreate--->" + mArticle.getComments_count());
             mPopularCm = mArticle.getPopular_comments();
         }
@@ -68,26 +82,32 @@ public class CommentFragment extends BaseFragment {
 
     @Override
     protected void initView() {
+        mReviewsList = mReviews.getReviews();
+        mReviewAdapter = new ReviewAdapter(getActivity(), mReviewsList);
+        mReviewsManager = new LinearLayoutManager(getActivity());
+        mReviewsManager.setOrientation(LinearLayoutManager.VERTICAL);
+        mRvReview.setLayoutManager(mReviewsManager);
+        addView(mReviews.getTotal(), mRvReview, mReviewAdapter);
+        mRvReview.setAdapter(mReviewAdapter);
         mAdapter = new CommentAdapter(getActivity(), mPopularCm);
         mAdapter.setArticle(mArticle);
         mManager = new LinearLayoutManager(getActivity());
         mManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRvComment.setLayoutManager(mManager);
-        addView();
+        addView(mArticle.getComments_count(), mRvComment, mAdapter);
         mRvComment.setAdapter(mAdapter);
 
     }
 
-    private void addView() {
-        Log.d("XXW","addView");
-        mAdapter.setHeadView(RecycleViewUtils.addHeadView(mRvComment, R.layout.item_comment_head, getActivity()));
-        mFooterView = RecycleViewUtils.addFooterView(mRvComment, R.layout.item_comment_footer, getActivity());
+    private void addView(int count, RecyclerView recyclerView, BaseRvAdapter adapter) {
+        Log.d("XXW", "addView");
+        adapter.setHeadView(RecycleViewUtils.addHeadView(recyclerView, R.layout.item_comment_head, getActivity()));
+        mFooterView = RecycleViewUtils.addFooterView(recyclerView, R.layout.item_comment_footer, getActivity());
         mTvFooter = (TextView) mFooterView.findViewById(R.id.tv_footer);
-        mTvFooter.setText("全部短评" + mArticle.getComments_count() + "个");
-        mAdapter.setFooterView(mFooterView);
+        mTvFooter.setText("全部短评" + count + "个");
+        adapter.setFooterView(mFooterView);
 
     }
-
 
 }
 

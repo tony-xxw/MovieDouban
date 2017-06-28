@@ -10,12 +10,15 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.concurrent.TimeUnit;
+
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import mvp.wyyne.douban.moviedouban.AndroidApplication;
 import mvp.wyyne.douban.moviedouban.api.bean.Article;
 import mvp.wyyne.douban.moviedouban.api.bean.HotBean;
+import mvp.wyyne.douban.moviedouban.api.bean.MoviesReviews;
+import mvp.wyyne.douban.moviedouban.api.bean.Reviews;
 import mvp.wyyne.douban.moviedouban.api.bean.WelfarePhotoList;
 import okhttp3.Cache;
 import okhttp3.Interceptor;
@@ -145,6 +148,14 @@ public class RetrofitService {
 
     public static Observable<WelfarePhotoList> getPhotoList(int page) {
         return mWelfareApi.getWelfarePhoto(page).
+                subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .subscribeOn(AndroidSchedulers.mainThread())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public static Observable<MoviesReviews> getReviews(String subjectId) {
+        return mMoviesApi.getReviews(subjectId).
                 subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .subscribeOn(AndroidSchedulers.mainThread())

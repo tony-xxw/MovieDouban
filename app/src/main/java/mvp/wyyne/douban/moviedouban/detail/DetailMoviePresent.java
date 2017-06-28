@@ -14,6 +14,8 @@ import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 import mvp.wyyne.douban.moviedouban.api.RetrofitService;
 import mvp.wyyne.douban.moviedouban.api.bean.Article;
+import mvp.wyyne.douban.moviedouban.api.bean.MoviesReviews;
+import mvp.wyyne.douban.moviedouban.api.bean.Reviews;
 import mvp.wyyne.douban.moviedouban.comment.CommentFragment;
 import mvp.wyyne.douban.moviedouban.hot.current.HotCurrentFragment;
 import mvp.wyyne.douban.moviedouban.hot.future.HotFutureFragment;
@@ -30,6 +32,7 @@ public class DetailMoviePresent implements IDetailPresent {
     private FragmentManager mFragmentManager;
     private DetailPagerAdapter mAdapter;
     private Article mArticle;
+    private MoviesReviews mReviews;
 
 
     public DetailMoviePresent(IDetailMain main, FragmentManager manager) {
@@ -77,12 +80,39 @@ public class DetailMoviePresent implements IDetailPresent {
 
     @Override
     public void initPage(ViewPager viewPager) {
-        mHotList.add(CommentFragment.getInstance(mArticle));
+        mHotList.add(CommentFragment.getInstance(mArticle,mReviews));
         mHotList.add(new MovieFragment());
         mAdapter = new DetailPagerAdapter(mFragmentManager);
         mAdapter.setFragment(mHotList);
         viewPager.setAdapter(mAdapter);
         mMain.onBindPage();
+    }
+
+    @Override
+    public void getRevies(String subjectId) {
+        RetrofitService.getReviews(subjectId)
+                .subscribe(new Observer<MoviesReviews>() {
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(@NonNull MoviesReviews moviesReviews) {
+                        mReviews = moviesReviews;
+                        Log.d("XXW", moviesReviews.getReviews().size() + "");
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
     }
 
 

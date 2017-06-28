@@ -31,28 +31,22 @@ import mvp.wyyne.douban.moviedouban.widget.RecycleViewUtils;
  * Created by XXW on 2017/6/22.
  */
 
-public class CommentFragment extends BaseFragment{
+public class CommentFragment extends BaseFragment {
     public static String TAG = "CommentFragment";
-    public static String REVIEWS = "reviews";
     @BindView(R.id.rv_comment)
     RecyclerView mRvComment;
-    TextView mTvFooter;
     @BindView(R.id.rv_review)
     RecyclerView mRvReview;
     private CommentAdapter mAdapter;
     private List<PopularCm> mPopularCm;
-    private List<Reviews> mReviewsList;
-    private MoviesReviews mReviews;
     private ReviewAdapter mReviewAdapter;
     private Article mArticle;
     private LinearLayoutManager mManager;
     private LinearLayoutManager mReviewsManager;
-    private View mFooterView;
 
-    public static CommentFragment getInstance(Article article, MoviesReviews reviews) {
+    public static CommentFragment getInstance(Article article) {
         Bundle bundle = new Bundle();
         bundle.putParcelable(TAG, article);
-        bundle.putParcelable(REVIEWS, reviews);
         CommentFragment fragment = new CommentFragment();
         fragment.setArguments(bundle);
         return fragment;
@@ -61,11 +55,8 @@ public class CommentFragment extends BaseFragment{
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
+        if (getArguments().getParcelable(TAG) != null) {
             mArticle = getArguments().getParcelable(TAG);
-            mReviews = getArguments().getParcelable(REVIEWS);
-            Log.d("XXW", "onCreate--->" + mArticle.getComments_count());
-            mPopularCm = mArticle.getPopular_comments();
         }
 
     }
@@ -82,32 +73,26 @@ public class CommentFragment extends BaseFragment{
 
     @Override
     protected void initView() {
-        mReviewsList = mReviews.getReviews();
-        mReviewAdapter = new ReviewAdapter(getActivity(), mReviewsList);
+
+        mReviewAdapter = new ReviewAdapter(getActivity(), mArticle.getPopular_reviews());
         mReviewsManager = new LinearLayoutManager(getActivity());
         mReviewsManager.setOrientation(LinearLayoutManager.VERTICAL);
+        mReviewAdapter.setArticle(mArticle);
         mRvReview.setLayoutManager(mReviewsManager);
-        addView(mReviews.getTotal(), mRvReview, mReviewAdapter);
+        mReviewAdapter.setHeadView(RecycleViewUtils.addHeadView(mRvReview, R.layout.item_comment_head, getActivity()));
+        mReviewAdapter.setFooterView(RecycleViewUtils.addFooterView(mRvReview, R.layout.item_comment_footer, getActivity()));
         mRvReview.setAdapter(mReviewAdapter);
-        mAdapter = new CommentAdapter(getActivity(), mPopularCm);
+        mAdapter = new CommentAdapter(getActivity(), mArticle.getPopular_comments());
         mAdapter.setArticle(mArticle);
         mManager = new LinearLayoutManager(getActivity());
         mManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRvComment.setLayoutManager(mManager);
-        addView(mArticle.getComments_count(), mRvComment, mAdapter);
+        mAdapter.setHeadView(RecycleViewUtils.addHeadView(mRvComment, R.layout.item_comment_head, getActivity()));
+        mAdapter.setFooterView(RecycleViewUtils.addFooterView(mRvReview, R.layout.item_comment_footer, getActivity()));
         mRvComment.setAdapter(mAdapter);
 
     }
 
-    private void addView(int count, RecyclerView recyclerView, BaseRvAdapter adapter) {
-        Log.d("XXW", "addView");
-        adapter.setHeadView(RecycleViewUtils.addHeadView(recyclerView, R.layout.item_comment_head, getActivity()));
-        mFooterView = RecycleViewUtils.addFooterView(recyclerView, R.layout.item_comment_footer, getActivity());
-        mTvFooter = (TextView) mFooterView.findViewById(R.id.tv_footer);
-        mTvFooter.setText("全部短评" + count + "个");
-        adapter.setFooterView(mFooterView);
-
-    }
 
 }
 

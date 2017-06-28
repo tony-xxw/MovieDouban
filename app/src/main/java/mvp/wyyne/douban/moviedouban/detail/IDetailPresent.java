@@ -19,5 +19,4 @@ public interface IDetailPresent extends IPresent {
 
     void initPage(ViewPager viewPager);
 
-    void getRevies(String subjectId);
 }

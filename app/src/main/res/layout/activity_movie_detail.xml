@@ -86,6 +86,14 @@
 
     </android.support.design.widget.AppBarLayout>
 
+
+    <FrameLayout
+        android:id="@+id/fl_content"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorWhite"/>
+
     <com.wang.avi.AVLoadingIndicatorView
         android:id="@+id/avl_loading"
         style="@style/AVLoadingIndicatorView"

@@ -17,6 +17,11 @@ import mvp.wyyne.douban.moviedouban.api.bean.User;
 public class CommentAdapter extends BaseRvAdapter<PopularCm> {
     private User mUser;
     private PopularCm mPopularCm;
+    protected Article mArticle;
+
+    public void setArticle(Article article) {
+        mArticle = article;
+    }
 
 
     public CommentAdapter(Context context, List<PopularCm> data) {
@@ -44,14 +49,16 @@ public class CommentAdapter extends BaseRvAdapter<PopularCm> {
 
     @Override
     void bindHeadView(BaseItemViewHolder holder, int position) {
-
+        if (position == 0) {
+            holder.setText(R.id.tv_head_comment,"短评");
+        }
     }
 
     @Override
     public void bindFooterView(BaseItemViewHolder holder, int position) {
-        Log.d("XXW","bindFooterView ---"+position);
+        Log.d("XXW", "bindFooterView ---" + position);
         if (position == getItemCount() - 1) {
-
+            holder.setText(R.id.tv_footer, "全部短评" + mArticle.getComments_count() + "个");
         }
     }
 

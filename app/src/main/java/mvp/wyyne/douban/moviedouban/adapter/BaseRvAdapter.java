@@ -30,11 +30,6 @@ public abstract class BaseRvAdapter<T> extends RecyclerView.Adapter<BaseItemView
     private static final int CONTENT_TYPE = 2;
     protected View mHeadView;
     protected View mFooterView;
-    protected Article mArticle;
-
-    public void setArticle(Article article) {
-        mArticle = article;
-    }
 
     public BaseRvAdapter(Context context, List<T> data) {
         mLayoutResId = getLayoutId();

@@ -107,6 +107,8 @@ public class DetailMovieActivity extends BaseActivity<DetailMoviePresent> implem
     RecyclerView mRvCasts;
     @BindView(R.id.rv_photos)
     RecyclerView mRvPhoto;
+    @BindView(R.id.fl_content)
+    FrameLayout mFlContent;
     private String mSubjectsId;
     private Bitmap mDrawableBitmap;
     private Palette.Builder mPalette;
@@ -145,7 +147,6 @@ public class DetailMovieActivity extends BaseActivity<DetailMoviePresent> implem
         mBarLayout.addOnOffsetChangedListener(this);
         mPresent = new DetailMoviePresent(this, getSupportFragmentManager());
         mPresent.getArticle(mSubjectsId);
-        mPresent.getRevies(mSubjectsId);
 
 
         //初始化演员列表
@@ -249,17 +250,18 @@ public class DetailMovieActivity extends BaseActivity<DetailMoviePresent> implem
     @Override
     public void show() {
         mLodingView.setVisibility(View.VISIBLE);
+        mFlContent.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hide() {
+        mFlContent.setVisibility(View.GONE);
         mLodingView.setVisibility(View.GONE);
     }
 
     @Override
     public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
         int y = Math.abs(verticalOffset);
-        Log.d("XXW", "onOffsetChanged" + verticalOffset);
         if (mIvAvatars != null) {
             boundHeight = mIvAvatars.getHeight();
             if (y <= 0) {

@@ -32,7 +32,7 @@ public class DetailMoviePresent implements IDetailPresent {
     private FragmentManager mFragmentManager;
     private DetailPagerAdapter mAdapter;
     private Article mArticle;
-    private MoviesReviews mReviews;
+
 
 
     public DetailMoviePresent(IDetailMain main, FragmentManager manager) {
@@ -59,7 +59,6 @@ public class DetailMoviePresent implements IDetailPresent {
 
                     @Override
                     public void onNext(@NonNull Article article) {
-                        Log.d("XXW", article.getTitle());
                         mArticle = article;
                         mMain.initMovieImg(article);
                     }
@@ -73,6 +72,7 @@ public class DetailMoviePresent implements IDetailPresent {
                     public void onComplete() {
                         mMain.initMovieGrade();
                         mMain.hide();
+
                     }
                 });
 
@@ -80,7 +80,7 @@ public class DetailMoviePresent implements IDetailPresent {
 
     @Override
     public void initPage(ViewPager viewPager) {
-        mHotList.add(CommentFragment.getInstance(mArticle,mReviews));
+        mHotList.add(CommentFragment.getInstance(mArticle));
         mHotList.add(new MovieFragment());
         mAdapter = new DetailPagerAdapter(mFragmentManager);
         mAdapter.setFragment(mHotList);
@@ -88,32 +88,6 @@ public class DetailMoviePresent implements IDetailPresent {
         mMain.onBindPage();
     }
 
-    @Override
-    public void getRevies(String subjectId) {
-        RetrofitService.getReviews(subjectId)
-                .subscribe(new Observer<MoviesReviews>() {
-                    @Override
-                    public void onSubscribe(@NonNull Disposable d) {
-
-                    }
-
-                    @Override
-                    public void onNext(@NonNull MoviesReviews moviesReviews) {
-                        mReviews = moviesReviews;
-                        Log.d("XXW", moviesReviews.getReviews().size() + "");
-                    }
-
-                    @Override
-                    public void onError(@NonNull Throwable e) {
-
-                    }
-
-                    @Override
-                    public void onComplete() {
-
-                    }
-                });
-    }
 
 
     class DetailPagerAdapter extends FragmentPagerAdapter {

@@ -20,7 +20,7 @@ public class MoviesReviews implements Parcelable {
      * next_start : 20
      */
 
-    private ArrayList<Reviews> reviews;
+    private List<Reviews> reviews;
     private Subjects subject;
     private int count;
     private int start;
@@ -97,11 +97,11 @@ public class MoviesReviews implements Parcelable {
     }
 
 
-    public ArrayList<Reviews> getReviews() {
+    public List<Reviews> getReviews() {
         return reviews;
     }
 
-    public void setReviews(ArrayList<Reviews> reviews) {
+    public void setReviews(List<Reviews> reviews) {
         this.reviews = reviews;
     }
 

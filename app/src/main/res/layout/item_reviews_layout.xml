@@ -1,13 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
-<TextView
-    android:id="@+id/tv_reviews_title"
-    android:textStyle="bold"
-    android:textSize="16sp"
-    android:layout_marginStart="20dp"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"/>
+              android:layout_height="wrap_content"
+
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_reviews_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="还好"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp">
+
+            <TextView
+                android:id="@+id/tv_reviews_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="xxw"
+                android:textColor="@color/colorGray"
+                android:textSize="12sp"/>
+
+            <RatingBar
+                android:id="@+id/rb_reviews_comment"
+                style="?android:attr/ratingBarStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
+                android:numStars="5"
+                android:stepSize="2.4"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_reviews_summary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/colorGray"
+            android:textSize="12sp"/>
+    </LinearLayout>
 </LinearLayout>

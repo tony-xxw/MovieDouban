@@ -1,5 +1,6 @@
 package mvp.wyyne.douban.moviedouban.detail.head;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -30,7 +31,9 @@ import mvp.wyyne.douban.moviedouban.api.bean.Casts;
 import mvp.wyyne.douban.moviedouban.api.bean.Directors;
 import mvp.wyyne.douban.moviedouban.api.bean.Photos;
 import mvp.wyyne.douban.moviedouban.api.bean.Trailers;
+import mvp.wyyne.douban.moviedouban.detail.cast.CastDetailActivity;
 import mvp.wyyne.douban.moviedouban.home.BaseFragment;
+import mvp.wyyne.douban.moviedouban.utils.StringUtils;
 import mvp.wyyne.douban.moviedouban.widget.ExpandableTextView;
 import mvp.wyyne.douban.moviedouban.widget.RecycleViewUtils;
 
@@ -39,11 +42,6 @@ import mvp.wyyne.douban.moviedouban.widget.RecycleViewUtils;
  */
 
 public class DetailMovieHeadFragment extends BaseFragment<DHeadImp> implements IDHeadMain, RvItemOnClick {
-
-    @BindView(R.id.iv_avatars)
-    ImageView mIvAvatars;
-    @BindView(R.id.fl_avatars_bg)
-    FrameLayout mFlAvatarsBg;
     @BindView(R.id.tv_detail_title)
     TextView mTvDetailTitle;
     @BindView(R.id.tv_detail_type)
@@ -116,11 +114,29 @@ public class DetailMovieHeadFragment extends BaseFragment<DHeadImp> implements I
 
     @Override
     protected void initView() {
+
+
+        mTvDetailTitle.setText(mArticle.getTitle());
+        mTvDetailType.setText(mArticle.getYear() + "/" + StringUtils.getString(mArticle.getGenres()));
+        mTvDetailFormerly.setText(mArticle.getOriginal_title());
+        mTvDetailGrade.setText(String.valueOf(mArticle.getRating().getAverage()));
+        mTvDetailNum.setText(String.valueOf(mArticle.getRatings_count()));
+        mTbDetailNum.setRating((float) mArticle.getRating().getAverage());
+        for (String s : mArticle.getPubdates()) {
+            if (s.contains("中国大陆")) {
+                mTvDetailShow.setText(getString(R.string.china) + s);
+            }
+        }
+        if (mArticle.getDurations() != null) {
+            mTvDetailTime.setText(getString(R.string.movie_time) + mArticle.getDurations().get(0));
+        }
+        mEtSummary.setText(mArticle.getSummary());
+
         //初始化演员列表
-        mCastses = new ArrayList<>();
-        mDirectorses = new ArrayList<>();
-        mCastAdapter = new CastAdapter(this, mCastses);
-        mCastManager = new LinearLayoutManager(this);
+        mCastses = mArticle.getCasts();
+        mDirectorses = mArticle.getDirectors();
+        mCastAdapter = new CastAdapter(getActivity(), mCastses);
+        mCastManager = new LinearLayoutManager(getActivity());
         mCastManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         mRvCasts.setLayoutManager(mCastManager);
         mRvCasts.setAdapter(mCastAdapter);
@@ -128,11 +144,11 @@ public class DetailMovieHeadFragment extends BaseFragment<DHeadImp> implements I
         mCastAdapter.setDirectorses(mDirectorses);
 
         //初始化剧照
-        mPhoto = new ArrayList<>();
-        mTrailerses = new ArrayList<>();
+        mPhoto = mArticle.getPhotos();
+        mTrailerses = mArticle.getTrailers();
         mPhotosAdapter = new PhotoAdapter(getActivity(), mPhoto);
         mPhotosAdapter.setHeadData(mTrailerses);
-        mPhotosAdapter.setFooterData(0);
+        mPhotosAdapter.setFooterData(mArticle.getPhotos_count());
         mStillsManager = new LinearLayoutManager(getActivity());
         mStillsManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         mRvPhoto.setLayoutManager(mStillsManager);
@@ -140,12 +156,7 @@ public class DetailMovieHeadFragment extends BaseFragment<DHeadImp> implements I
         mPhotosAdapter.setFooterView(RecycleViewUtils.addHeadView(mRvPhoto, R.layout.moview_detail_stills_footer, getActivity()));
         mPhotosAdapter.setRvOnClick(this);
         mRvPhoto.setAdapter(mPhotosAdapter);
-
-        String url = mArticle.getImages().getLarge();
-        Glide.with(this).load(url).into(mIvAvatars);
-        setBackGroudBg(url);
     }
-
 
 
     @Override
@@ -161,6 +172,9 @@ public class DetailMovieHeadFragment extends BaseFragment<DHeadImp> implements I
 
     @Override
     public void onItemClick(int position, String tag) {
-
+        if (tag.equals(PhotoAdapter.TAG)) {
+            Intent mCast = new Intent(getActivity(), CastDetailActivity.class);
+            getActivity().startActivity(mCast);
+        }
     }
 }

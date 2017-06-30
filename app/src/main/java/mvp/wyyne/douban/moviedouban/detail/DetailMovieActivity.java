@@ -58,7 +58,7 @@ import mvp.wyyne.douban.moviedouban.widget.RecycleViewUtils;
  */
 
 public class DetailMovieActivity extends BaseActivity<DetailMoviePresent> implements
-        IDetailMain, AppBarLayout.OnOffsetChangedListener, RvItemOnClick {
+        IDetailMain, AppBarLayout.OnOffsetChangedListener {
     public static final String DETAIL_TAG = "detail";
     @BindView(R.id.iv_back)
     ImageView mIvBack;
@@ -72,48 +72,20 @@ public class DetailMovieActivity extends BaseActivity<DetailMoviePresent> implem
     RelativeLayout mLlTitle;
     @BindView(R.id.ll_layout)
     LinearLayout mLayout;
-    @BindView(R.id.iv_avatars)
-    ImageView mIvAvatars;
-    @BindView(R.id.fl_avatars_bg)
-    FrameLayout mFlAvatarsBg;
-    @BindView(R.id.tv_detail_title)
-    TextView mTvDetailTitle;
-    @BindView(R.id.tv_detail_type)
-    TextView mTvDetailType;
-    @BindView(R.id.tv_detail_formerly)
-    TextView mTvDetailFormerly;
-    @BindView(R.id.tv_detail_show)
-    TextView mTvDetailShow;
-    @BindView(R.id.tv_detail_time)
-    TextView mTvDetailTime;
-    @BindView(R.id.tv_detail_grade)
-    TextView mTvDetailGrade;
-    @BindView(R.id.tb_detail_num)
-    RatingBar mTbDetailNum;
-    @BindView(R.id.tv_detail_num)
-    TextView mTvDetailNum;
     @BindView(R.id.tl_bar)
     Toolbar mTlBar;
-    @BindView(R.id.iv_detail_shop)
-    ImageView mIvDetailShop;
-    @BindView(R.id.tv_detail_shop)
-    TextView mTvDetailShop;
     @BindView(R.id.vp_detail)
     ViewPager mPager;
     @BindView(R.id.tl_detail)
     TabLayout mTabLayout;
-    @BindView(R.id.os_scroll)
-    ObservableScrollView mScrollView;
     @BindView(R.id.abl_layout)
     AppBarLayout mBarLayout;
-    @BindView(R.id.et_summary)
-    ExpandableTextView mEtSummary;
     @BindView(R.id.nv_detail)
     NestedScrollView mNestedScrollView;
-    @BindView(R.id.rv_casts)
-    RecyclerView mRvCasts;
-    @BindView(R.id.rv_photos)
-    RecyclerView mRvPhoto;
+    @BindView(R.id.iv_avatars)
+    ImageView mIvAvatars;
+    @BindView(R.id.fl_avatars_bg)
+    FrameLayout mFlAvatarsBg;
     @BindView(R.id.fl_content)
     FrameLayout mFlContent;
     private String mSubjectsId;
@@ -122,14 +94,6 @@ public class DetailMovieActivity extends BaseActivity<DetailMoviePresent> implem
     private Article mArticle;
     private int boundHeight;
     private Palette.Swatch swatch;
-    private List<Casts> mCastses;
-    private CastAdapter mCastAdapter;
-    private PhotoAdapter mPhotosAdapter;
-    private LinearLayoutManager mCastManager;
-    private LinearLayoutManager mStillsManager;
-    private List<Photos> mPhoto;
-    private List<Directors> mDirectorses;
-    private List<Trailers> mTrailerses;
     private FragmentManager mManager;
     private FragmentTransaction mTransaction;
 
@@ -174,37 +138,21 @@ public class DetailMovieActivity extends BaseActivity<DetailMoviePresent> implem
         mTransaction.add(R.id.fl_head, DetailMovieHeadFragment.getInstance(article));
         mTransaction.commit();
 
+        mArticle = article;
+        setBackGroudBg(article.getImages().getLarge());
+
     }
 
     @Override
     public void initMovieGrade() {
-        mTvDetailTitle.setText(mArticle.getTitle());
-        mTvDetailType.setText(mArticle.getYear() + "/" + StringUtils.getString(mArticle.getGenres()));
-        mTvDetailFormerly.setText(mArticle.getOriginal_title());
-        mTvDetailGrade.setText(String.valueOf(mArticle.getRating().getAverage()));
-        mTvDetailNum.setText(String.valueOf(mArticle.getRatings_count()));
-        mTvTitle.setText(mArticle.getTitle());
-        mTbDetailNum.setRating((float) mArticle.getRating().getAverage());
-        for (String s : mArticle.getPubdates()) {
-            if (s.contains("中国大陆")) {
-                mTvDetailShow.setText(getString(R.string.china) + s);
-            }
-        }
-        if (mArticle.getDurations() != null) {
-            mTvDetailTime.setText(getString(R.string.movie_time) + mArticle.getDurations().get(0));
-        }
-        mEtSummary.setText(mArticle.getSummary());
-        mCastAdapter.setList(mArticle.getCasts());
-        mCastAdapter.setDirectorses(mArticle.getDirectors());
-        mPhotosAdapter.setList(mArticle.getPhotos());
-        mPhotosAdapter.setHeadData(mArticle.getTrailers());
-        mPhotosAdapter.setFooterData(mArticle.getPhotos_count());
-        mCastAdapter.notifyDataSetChanged();
+        String url = mArticle.getImages().getLarge();
+        Glide.with(this).load(url).into(mIvAvatars);
         mPresent.initPage(mPager);
     }
 
     @Override
     public void onBindPage() {
+        mTvTitle.setText(mArticle.getTitle());
         mTabLayout.setupWithViewPager(mPager);
     }
 
@@ -289,12 +237,4 @@ public class DetailMovieActivity extends BaseActivity<DetailMoviePresent> implem
         finish();
     }
 
-
-    @Override
-    public void onItemClick(int position, String tag) {
-        if (tag.equals(PhotoAdapter.TAG)) {
-            Intent mCast = new Intent();
-
-        }
-    }
 }

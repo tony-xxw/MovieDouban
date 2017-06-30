@@ -57,16 +57,11 @@
 
 
             <mvp.wyyne.douban.moviedouban.widget.ObservableScrollView
-                android:id="@+id/os_scroll"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
 
-                <FrameLayout
-                    android:id="@+id/fl_head"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                <!--<include layout="@layout/fragment_detail_head"/>-->
+                <include layout="@layout/activity_movie_detail_head"/>
 
 
             </mvp.wyyne.douban.moviedouban.widget.ObservableScrollView>
@@ -93,10 +88,10 @@
 
     <FrameLayout
         android:id="@+id/fl_content"
-        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorWhite"/>
+        android:background="@color/colorWhite"
+        android:visibility="gone"/>
 
     <com.wang.avi.AVLoadingIndicatorView
         android:id="@+id/avl_loading"

@@ -17,7 +17,7 @@ public class CastDetailActivity extends BaseActivity {
 
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_detail_head;
+        return R.layout.activity_cast_detail;
     }
 
     @Override

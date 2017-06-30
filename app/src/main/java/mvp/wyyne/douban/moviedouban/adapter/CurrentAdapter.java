@@ -70,7 +70,7 @@ public class CurrentAdapter extends BaseRvAdapter<Subjects> {
         holder.getView(R.id.rl_layout).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mClick.onItem(position);
+                mClick.onItemClick(position, "");
             }
         });
     }

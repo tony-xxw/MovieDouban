@@ -24,6 +24,7 @@
         </activity>
         <activity android:name=".detail.DetailMovieActivity"/>
         <activity android:name=".home.BaseActivity"/>
+        <activity android:name=".detail.cast.CastDetailActivity"/>
     </application>
 
 </manifest>

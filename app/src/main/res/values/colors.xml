@@ -17,4 +17,5 @@
     <color name="colorTablayoutBg">#FFD7D7D7</color>
     <color name="colorTransparency">#00000000</color>
     <color name="colorTranslucence">#7cdededf</color>
+    <color name="colorBlackTransparency">#00292421</color>
 </resources>

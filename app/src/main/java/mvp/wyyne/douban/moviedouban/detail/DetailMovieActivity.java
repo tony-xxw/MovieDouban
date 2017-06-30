@@ -15,6 +15,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -40,6 +41,7 @@ import mvp.wyyne.douban.moviedouban.api.bean.Article;
 import mvp.wyyne.douban.moviedouban.api.bean.Casts;
 import mvp.wyyne.douban.moviedouban.api.bean.Directors;
 import mvp.wyyne.douban.moviedouban.api.bean.Photos;
+import mvp.wyyne.douban.moviedouban.api.bean.Trailers;
 import mvp.wyyne.douban.moviedouban.home.BaseActivity;
 import mvp.wyyne.douban.moviedouban.utils.StringUtils;
 import mvp.wyyne.douban.moviedouban.widget.ExpandableTextView;
@@ -122,6 +124,7 @@ public class DetailMovieActivity extends BaseActivity<DetailMoviePresent> implem
     private LinearLayoutManager mStillsManager;
     private List<Photos> mPhoto;
     private List<Directors> mDirectorses;
+    private List<Trailers> mTrailerses;
 
 
     @Override
@@ -162,10 +165,15 @@ public class DetailMovieActivity extends BaseActivity<DetailMoviePresent> implem
 
         //初始化剧照
         mPhoto = new ArrayList<>();
+        mTrailerses = new ArrayList<>();
         mPhotosAdapter = new PhotoAdapter(this, mPhoto);
+        mPhotosAdapter.setHeadData(mTrailerses);
+        mPhotosAdapter.setFooterData(0);
         mStillsManager = new LinearLayoutManager(this);
         mStillsManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         mRvPhoto.setLayoutManager(mStillsManager);
+        mPhotosAdapter.setHeadView(RecycleViewUtils.addHeadView(mRvPhoto, R.layout.moview_detail_stills_head, this));
+        mPhotosAdapter.setFooterView(RecycleViewUtils.addHeadView(mRvPhoto, R.layout.moview_detail_stills_footer, this));
         mRvPhoto.setAdapter(mPhotosAdapter);
 
 
@@ -176,6 +184,7 @@ public class DetailMovieActivity extends BaseActivity<DetailMoviePresent> implem
         mTabLayout.setTabTextColors(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.colorBlack)));
 
     }
+
 
     @Override
     public void initMovieImg(Article article) {
@@ -206,6 +215,8 @@ public class DetailMovieActivity extends BaseActivity<DetailMoviePresent> implem
         mCastAdapter.setList(mArticle.getCasts());
         mCastAdapter.setDirectorses(mArticle.getDirectors());
         mPhotosAdapter.setList(mArticle.getPhotos());
+        mPhotosAdapter.setHeadData(mArticle.getTrailers());
+        mPhotosAdapter.setFooterData(mArticle.getPhotos_count());
         mCastAdapter.notifyDataSetChanged();
         mPresent.initPage(mPager);
     }

@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import mvp.wyyne.douban.moviedouban.api.bean.Article;
+import mvp.wyyne.douban.moviedouban.api.bean.Photos;
 import mvp.wyyne.douban.moviedouban.api.bean.Subjects;
 
 /**

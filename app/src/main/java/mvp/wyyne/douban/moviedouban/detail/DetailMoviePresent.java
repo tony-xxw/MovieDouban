@@ -14,12 +14,7 @@ import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 import mvp.wyyne.douban.moviedouban.api.RetrofitService;
 import mvp.wyyne.douban.moviedouban.api.bean.Article;
-import mvp.wyyne.douban.moviedouban.api.bean.MoviesReviews;
-import mvp.wyyne.douban.moviedouban.api.bean.Reviews;
 import mvp.wyyne.douban.moviedouban.comment.CommentFragment;
-import mvp.wyyne.douban.moviedouban.hot.current.HotCurrentFragment;
-import mvp.wyyne.douban.moviedouban.hot.future.HotFutureFragment;
-import mvp.wyyne.douban.moviedouban.hot.main.HotPresenterImp;
 import mvp.wyyne.douban.moviedouban.movie.MovieFragment;
 
 /**

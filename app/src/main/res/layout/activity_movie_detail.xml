@@ -62,7 +62,11 @@
                 android:layout_height="wrap_content">
 
 
-                <include layout="@layout/movie_detail_head"/>
+                <FrameLayout
+                    android:id="@+id/fl_head"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <!--<include layout="@layout/fragment_detail_head"/>-->
 
 
             </mvp.wyyne.douban.moviedouban.widget.ObservableScrollView>

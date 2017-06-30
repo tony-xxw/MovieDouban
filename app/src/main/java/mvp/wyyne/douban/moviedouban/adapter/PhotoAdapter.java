@@ -14,7 +14,7 @@ import mvp.wyyne.douban.moviedouban.api.bean.Trailers;
  */
 
 public class PhotoAdapter extends BaseRvAdapter<Photos> {
-
+    public static String TAG = "PHOTO";
     private int stills_count;
 
     public PhotoAdapter(Context context, List<Photos> data) {
@@ -44,7 +44,7 @@ public class PhotoAdapter extends BaseRvAdapter<Photos> {
     @Override
     void bindView(BaseItemViewHolder holder, int position) {
         holder.setImgUrl(R.id.iv_stills, mList.get(position).getImage());
-
+        mClick.onItemClick(position, TAG);
     }
 
     @Override

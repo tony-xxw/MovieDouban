@@ -1,12 +1,15 @@
 package mvp.wyyne.douban.moviedouban.detail;
 
 
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.NestedScrollView;
@@ -37,11 +40,13 @@ import butterknife.OnClick;
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.adapter.CastAdapter;
 import mvp.wyyne.douban.moviedouban.adapter.PhotoAdapter;
+import mvp.wyyne.douban.moviedouban.api.RvItemOnClick;
 import mvp.wyyne.douban.moviedouban.api.bean.Article;
 import mvp.wyyne.douban.moviedouban.api.bean.Casts;
 import mvp.wyyne.douban.moviedouban.api.bean.Directors;
 import mvp.wyyne.douban.moviedouban.api.bean.Photos;
 import mvp.wyyne.douban.moviedouban.api.bean.Trailers;
+import mvp.wyyne.douban.moviedouban.detail.head.DetailMovieHeadFragment;
 import mvp.wyyne.douban.moviedouban.home.BaseActivity;
 import mvp.wyyne.douban.moviedouban.utils.StringUtils;
 import mvp.wyyne.douban.moviedouban.widget.ExpandableTextView;
@@ -53,7 +58,7 @@ import mvp.wyyne.douban.moviedouban.widget.RecycleViewUtils;
  */
 
 public class DetailMovieActivity extends BaseActivity<DetailMoviePresent> implements
-        IDetailMain, AppBarLayout.OnOffsetChangedListener {
+        IDetailMain, AppBarLayout.OnOffsetChangedListener, RvItemOnClick {
     public static final String DETAIL_TAG = "detail";
     @BindView(R.id.iv_back)
     ImageView mIvBack;
@@ -125,7 +130,8 @@ public class DetailMovieActivity extends BaseActivity<DetailMoviePresent> implem
     private List<Photos> mPhoto;
     private List<Directors> mDirectorses;
     private List<Trailers> mTrailerses;
-
+    private FragmentManager mManager;
+    private FragmentTransaction mTransaction;
 
     @Override
     protected void refresh() {
@@ -152,31 +158,6 @@ public class DetailMovieActivity extends BaseActivity<DetailMoviePresent> implem
         mPresent.getArticle(mSubjectsId);
 
 
-        //初始化演员列表
-        mCastses = new ArrayList<>();
-        mDirectorses = new ArrayList<>();
-        mCastAdapter = new CastAdapter(this, mCastses);
-        mCastManager = new LinearLayoutManager(this);
-        mCastManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-        mRvCasts.setLayoutManager(mCastManager);
-        mRvCasts.setAdapter(mCastAdapter);
-        mCastAdapter.setHeadView(RecycleViewUtils.addHeadView(mRvCasts, R.layout.item_cast_head, this));
-        mCastAdapter.setDirectorses(mDirectorses);
-
-        //初始化剧照
-        mPhoto = new ArrayList<>();
-        mTrailerses = new ArrayList<>();
-        mPhotosAdapter = new PhotoAdapter(this, mPhoto);
-        mPhotosAdapter.setHeadData(mTrailerses);
-        mPhotosAdapter.setFooterData(0);
-        mStillsManager = new LinearLayoutManager(this);
-        mStillsManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-        mRvPhoto.setLayoutManager(mStillsManager);
-        mPhotosAdapter.setHeadView(RecycleViewUtils.addHeadView(mRvPhoto, R.layout.moview_detail_stills_head, this));
-        mPhotosAdapter.setFooterView(RecycleViewUtils.addHeadView(mRvPhoto, R.layout.moview_detail_stills_footer, this));
-        mRvPhoto.setAdapter(mPhotosAdapter);
-
-
         //初始化TabLayout
         mTabLayout.setTabMode(TabLayout.MODE_FIXED);
         mTabLayout.addTab(mTabLayout.newTab().setText("评论"));
@@ -188,10 +169,11 @@ public class DetailMovieActivity extends BaseActivity<DetailMoviePresent> implem
 
     @Override
     public void initMovieImg(Article article) {
-        String url = article.getImages().getLarge();
-        mArticle = article;
-        Glide.with(this).load(url).into(mIvAvatars);
-        setBackGroudBg(url);
+        mManager = getSupportFragmentManager();
+        mTransaction = mManager.beginTransaction();
+        mTransaction.add(R.id.fl_head, DetailMovieHeadFragment.getInstance(article));
+        mTransaction.commit();
+
     }
 
     @Override
@@ -257,7 +239,6 @@ public class DetailMovieActivity extends BaseActivity<DetailMoviePresent> implem
         });
     }
 
-
     @Override
     public void show() {
         mLodingView.setVisibility(View.VISIBLE);
@@ -306,5 +287,14 @@ public class DetailMovieActivity extends BaseActivity<DetailMoviePresent> implem
     @OnClick(R.id.iv_back)
     public void onViewClicked() {
         finish();
+    }
+
+
+    @Override
+    public void onItemClick(int position, String tag) {
+        if (tag.equals(PhotoAdapter.TAG)) {
+            Intent mCast = new Intent();
+
+        }
     }
 }

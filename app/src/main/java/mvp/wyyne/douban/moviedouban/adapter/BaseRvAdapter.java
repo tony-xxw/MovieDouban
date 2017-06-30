@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
+import mvp.wyyne.douban.moviedouban.api.RvItemOnClick;
 import mvp.wyyne.douban.moviedouban.api.bean.Article;
 import mvp.wyyne.douban.moviedouban.api.bean.Photos;
 import mvp.wyyne.douban.moviedouban.api.bean.Subjects;
@@ -31,6 +32,12 @@ public abstract class BaseRvAdapter<T> extends RecyclerView.Adapter<BaseItemView
     private static final int CONTENT_TYPE = 2;
     protected View mHeadView;
     protected View mFooterView;
+    protected RvItemOnClick mClick;
+
+
+    public void setRvOnClick(RvItemOnClick onClick) {
+        mClick = onClick;
+    }
 
     public BaseRvAdapter(Context context, List<T> data) {
         mLayoutResId = getLayoutId();

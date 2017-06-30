@@ -5,5 +5,5 @@ package mvp.wyyne.douban.moviedouban.api;
  */
 
 public interface RvItemOnClick {
-    void onItem(int position);
+    void onItemClick(int position, String tag);
 }

@@ -23,9 +23,9 @@ import mvp.wyyne.douban.moviedouban.movie.MovieFragment;
 
 public class DetailMoviePresent implements IDetailPresent {
     private IDetailMain mMain;
-    private List<Fragment> mHotList;
     private FragmentManager mFragmentManager;
     private DetailPagerAdapter mAdapter;
+    private List<Fragment> mHotList;
     private Article mArticle;
 
 

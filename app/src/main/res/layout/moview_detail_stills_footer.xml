@@ -2,13 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:background="@color/colorTranslucence"
               android:orientation="vertical">
 
     <LinearLayout
-        android:layout_margin="5dp"
         android:layout_width="150dp"
         android:layout_height="120dp"
+        android:layout_margin="5dp"
+        android:background="@color/colorTranslucence"
         android:gravity="center"
         android:orientation="vertical">
 

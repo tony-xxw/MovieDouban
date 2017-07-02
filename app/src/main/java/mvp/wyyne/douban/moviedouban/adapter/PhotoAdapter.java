@@ -1,6 +1,8 @@
 package mvp.wyyne.douban.moviedouban.adapter;
 
 import android.content.Context;
+import android.view.View;
+import android.widget.LinearLayout;
 
 import java.security.PublicKey;
 import java.util.List;
@@ -13,9 +15,10 @@ import mvp.wyyne.douban.moviedouban.api.bean.Trailers;
  * Created by XXW on 2017/6/24.
  */
 
-public class PhotoAdapter extends BaseRvAdapter<Photos> {
+public class PhotoAdapter extends BaseRvAdapter<Photos> implements View.OnClickListener {
     public static String TAG = "PHOTO";
     private int stills_count;
+    private LinearLayout mLayout;
 
     public PhotoAdapter(Context context, List<Photos> data) {
         super(context, data);
@@ -44,7 +47,9 @@ public class PhotoAdapter extends BaseRvAdapter<Photos> {
     @Override
     void bindView(BaseItemViewHolder holder, int position) {
         holder.setImgUrl(R.id.iv_stills, mList.get(position).getImage());
-        mClick.onItemClick(position, TAG);
+        mLayout = holder.getView(R.id.ll_stills);
+        mLayout.setOnClickListener(this);
+        mLayout.setTag(position);
     }
 
     @Override
@@ -62,4 +67,9 @@ public class PhotoAdapter extends BaseRvAdapter<Photos> {
         }
     }
 
+    @Override
+    public void onClick(View v) {
+        int position = (int) v.getTag();
+        mClick.onItemClick(position, TAG);
+    }
 }

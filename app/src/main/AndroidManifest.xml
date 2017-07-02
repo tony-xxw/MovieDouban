@@ -25,6 +25,8 @@
         <activity android:name=".detail.DetailMovieActivity"/>
         <activity android:name=".home.BaseActivity"/>
         <activity android:name=".detail.cast.CastDetailActivity"/>
+        <activity android:name=".detail.stills.StillsActivity"/>
+        <activity android:name=".detail.stills.AllStillsActivity"/>
     </application>
 
 </manifest>

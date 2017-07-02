@@ -16,9 +16,13 @@ import mvp.wyyne.douban.moviedouban.api.bean.Trailers;
  */
 
 public class PhotoAdapter extends BaseRvAdapter<Photos> implements View.OnClickListener {
-    public static String TAG = "PHOTO";
+    public static final String TAG = "Content";
+    public static final String HEAD = "head";
+    public static final String FOOTER = "footer";
     private int stills_count;
-    private LinearLayout mLayout;
+    private LinearLayout mContent;
+    private LinearLayout mHeadView;
+    private LinearLayout mFooterView;
 
     public PhotoAdapter(Context context, List<Photos> data) {
         super(context, data);
@@ -47,9 +51,9 @@ public class PhotoAdapter extends BaseRvAdapter<Photos> implements View.OnClickL
     @Override
     void bindView(BaseItemViewHolder holder, int position) {
         holder.setImgUrl(R.id.iv_stills, mList.get(position).getImage());
-        mLayout = holder.getView(R.id.ll_stills);
-        mLayout.setOnClickListener(this);
-        mLayout.setTag(position);
+        mContent = holder.getView(R.id.ll_stills);
+        mContent.setOnClickListener(this);
+        mContent.setTag(position);
     }
 
     @Override
@@ -58,6 +62,8 @@ public class PhotoAdapter extends BaseRvAdapter<Photos> implements View.OnClickL
             holder.setImgUrl(R.id.iv_stills, mData.get(0).getMedium());
             holder.setText(R.id.tv_stills_date, "00:29");
         }
+        mHeadView = holder.getView(R.id.ll_stills_head);
+        mHeadView.setOnClickListener(this);
     }
 
     @Override
@@ -65,11 +71,25 @@ public class PhotoAdapter extends BaseRvAdapter<Photos> implements View.OnClickL
         if (position == getItemCount() - 1) {
             holder.setText(R.id.tv_stills_count, stills_count + "张");
         }
+        mFooterView = holder.getView(R.id.ll_stills_footer);
+        mFooterView.setOnClickListener(this);
+
     }
 
     @Override
     public void onClick(View v) {
-        int position = (int) v.getTag();
-        mClick.onItemClick(position, TAG);
+        switch (v.getId()) {
+            case R.id.ll_stills:
+                int position = (int) v.getTag();
+                mClick.onItemClick(position, TAG);
+                break;
+            case R.id.ll_stills_head:
+                mClick.onItemClick(0, HEAD);
+                break;
+            case R.id.ll_stills_footer:
+                mClick.onItemClick(getItemCount() - 1, FOOTER);
+                break;
+        }
+
     }
 }

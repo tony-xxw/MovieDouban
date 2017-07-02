@@ -31,27 +31,13 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import mvp.wyyne.douban.moviedouban.R;
-import mvp.wyyne.douban.moviedouban.adapter.CastAdapter;
-import mvp.wyyne.douban.moviedouban.adapter.PhotoAdapter;
-import mvp.wyyne.douban.moviedouban.api.RvItemOnClick;
 import mvp.wyyne.douban.moviedouban.api.bean.Article;
-import mvp.wyyne.douban.moviedouban.api.bean.Casts;
-import mvp.wyyne.douban.moviedouban.api.bean.Directors;
-import mvp.wyyne.douban.moviedouban.api.bean.Photos;
-import mvp.wyyne.douban.moviedouban.api.bean.Trailers;
 import mvp.wyyne.douban.moviedouban.detail.head.DetailMovieHeadFragment;
 import mvp.wyyne.douban.moviedouban.home.BaseActivity;
-import mvp.wyyne.douban.moviedouban.utils.StringUtils;
-import mvp.wyyne.douban.moviedouban.widget.ExpandableTextView;
-import mvp.wyyne.douban.moviedouban.widget.ObservableScrollView;
-import mvp.wyyne.douban.moviedouban.widget.RecycleViewUtils;
 
 /**
  * Created by XXW on 2017/6/18.
@@ -112,7 +98,6 @@ public class DetailMovieActivity extends BaseActivity<DetailMoviePresent> implem
     protected void initView() {
         if (getIntent().getStringExtra(DETAIL_TAG) != null) {
             mSubjectsId = getIntent().getStringExtra(DETAIL_TAG);
-            Log.d("XXW", "mList------->" + mSubjectsId);
         }
         setSupportActionBar(mTlBar);
         //NestedScrollView中嵌套ViewPager不显示 设置为true
@@ -172,10 +157,6 @@ public class DetailMovieActivity extends BaseActivity<DetailMoviePresent> implem
                         public void onGenerated(Palette palette) {
                             swatch = palette.getMutedSwatch();
                             if (swatch != null) {
-                                Log.d("XXW", "noinit------" + swatch.getRgb() + "---"
-                                        + swatch.getBodyTextColor() + "---" + swatch.getPopulation() + "---"
-                                        + swatch.getTitleTextColor() + "---"
-                                );
                                 mFlAvatarsBg.setBackgroundColor(swatch.getRgb());
                                 mLlTitle.setBackgroundColor(Color.TRANSPARENT);
                                 mLayout.setBackgroundColor(Color.TRANSPARENT);

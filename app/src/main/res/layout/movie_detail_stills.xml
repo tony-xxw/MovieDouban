@@ -11,5 +11,6 @@
         android:layout_width="150dp"
         android:layout_height="120dp"
         android:layout_margin="5dp"
-        android:scaleType="centerCrop"/>
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_expand_less_black_12dp"/>
 </LinearLayout>

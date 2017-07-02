@@ -23,6 +23,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import mvp.wyyne.douban.moviedouban.R;
+import mvp.wyyne.douban.moviedouban.adapter.BaseRvAdapter;
 import mvp.wyyne.douban.moviedouban.adapter.CastAdapter;
 import mvp.wyyne.douban.moviedouban.adapter.PhotoAdapter;
 import mvp.wyyne.douban.moviedouban.api.RvItemOnClick;
@@ -32,6 +33,8 @@ import mvp.wyyne.douban.moviedouban.api.bean.Directors;
 import mvp.wyyne.douban.moviedouban.api.bean.Photos;
 import mvp.wyyne.douban.moviedouban.api.bean.Trailers;
 import mvp.wyyne.douban.moviedouban.detail.cast.CastDetailActivity;
+import mvp.wyyne.douban.moviedouban.detail.stills.AllStillsActivity;
+import mvp.wyyne.douban.moviedouban.detail.stills.StillsActivity;
 import mvp.wyyne.douban.moviedouban.home.BaseFragment;
 import mvp.wyyne.douban.moviedouban.utils.StringUtils;
 import mvp.wyyne.douban.moviedouban.widget.ExpandableTextView;
@@ -175,6 +178,13 @@ public class DetailMovieHeadFragment extends BaseFragment<DHeadImp> implements I
         if (tag.equals(PhotoAdapter.TAG)) {
             Intent mCast = new Intent(getActivity(), CastDetailActivity.class);
             getActivity().startActivity(mCast);
+        } else if (tag.equals(PhotoAdapter.HEAD)) {
+            Intent mCastHead = new Intent(getActivity(), StillsActivity.class);
+            getActivity().startActivity(mCastHead);
+        } else if (tag.equals(PhotoAdapter.FOOTER)) {
+            Intent mCastFooter = new Intent(getActivity(), AllStillsActivity.class);
+            mCastFooter.putExtra("id", mArticle.getId());
+            getActivity().startActivity(mCastFooter);
         }
     }
 }

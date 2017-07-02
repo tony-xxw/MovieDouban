@@ -56,7 +56,6 @@ public class CommentAdapter extends BaseRvAdapter<PopularCm> {
 
     @Override
     public void bindFooterView(BaseItemViewHolder holder, int position) {
-        Log.d("XXW", "bindFooterView ---" + position);
         if (position == getItemCount() - 1) {
             holder.setText(R.id.tv_footer, "全部短评" + mArticle.getComments_count() + "个");
         }

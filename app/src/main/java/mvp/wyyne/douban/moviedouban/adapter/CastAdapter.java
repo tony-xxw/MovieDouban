@@ -28,9 +28,6 @@ public class CastAdapter extends BaseRvAdapter<Casts> {
         mContext = context;
     }
 
-    public void setList(List<Casts> list) {
-        mList = list;
-    }
 
     public void setDirectorses(List<Directors> list) {
         mDirectorses = list;

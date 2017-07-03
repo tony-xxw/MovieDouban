@@ -28,9 +28,6 @@ public class PhotoAdapter extends BaseRvAdapter<Photos> implements View.OnClickL
         super(context, data);
     }
 
-    public void setList(List<Photos> photoses) {
-        mList = photoses;
-    }
 
     private List<Trailers> mData;
 

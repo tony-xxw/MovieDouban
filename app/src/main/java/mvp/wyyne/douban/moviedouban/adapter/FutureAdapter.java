@@ -23,10 +23,6 @@ public class FutureAdapter extends BaseRvAdapter<Subjects> {
         super(context, list);
     }
 
-    public void setList(List<Subjects> list) {
-        mList = list;
-    }
-
 
     @Override
     int getLayoutId() {

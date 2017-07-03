@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -22,7 +23,7 @@ import mvp.wyyne.douban.moviedouban.home.BaseActivity;
  * Created by XXW on 2017/7/2.
  */
 
-public class AllStillsActivity extends BaseActivity<AllStillsPresent> implements AllStillMain {
+public class AllStillsActivity extends BaseActivity<AllStillsPresent> implements AllStillMain, View.OnClickListener {
     @BindView(R.id.iv_back)
     ImageView mIvBack;
     @BindView(R.id.tv_stills_title)
@@ -51,6 +52,7 @@ public class AllStillsActivity extends BaseActivity<AllStillsPresent> implements
             mId = getIntent().getStringExtra("id");
             Log.d("XXW", "Id---" + mId);
         }
+        mIvBack.setOnClickListener(this);
         mPresent = new AllStillsImp(this);
         mList = new ArrayList<>();
         mAdapter = new StillsAdapter(this, mList);
@@ -58,7 +60,6 @@ public class AllStillsActivity extends BaseActivity<AllStillsPresent> implements
         mRvAllStills.setLayoutManager(mManager);
         mRvAllStills.setAdapter(mAdapter);
         mPresent.getList(mId);
-        Log.d("XXW", "initView-----------" + mRvAllStills.toString());
     }
 
 
@@ -89,4 +90,10 @@ public class AllStillsActivity extends BaseActivity<AllStillsPresent> implements
     }
 
 
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.iv_back) {
+            finish();
+        }
+    }
 }

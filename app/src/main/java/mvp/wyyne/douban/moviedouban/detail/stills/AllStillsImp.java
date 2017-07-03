@@ -32,6 +32,7 @@ public class AllStillsImp implements AllStillsPresent {
 
                     @Override
                     public void onNext(@NonNull Stills stills) {
+                        Log.d("XXW", "stills--" + stills.getCount());
                         mMain.update(stills);
                     }
 

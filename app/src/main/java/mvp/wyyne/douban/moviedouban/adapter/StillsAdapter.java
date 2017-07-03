@@ -13,12 +13,10 @@ import mvp.wyyne.douban.moviedouban.api.bean.StillsPhotos;
  */
 
 public class StillsAdapter extends BaseRvAdapter<StillsPhotos> {
-    private List<StillsPhotos> mList;
 
 
     public StillsAdapter(Context context, List<StillsPhotos> data) {
         super(context, data);
-        Log.d("XXW", "StillsAdapter");
     }
 
     @Override
@@ -26,16 +24,13 @@ public class StillsAdapter extends BaseRvAdapter<StillsPhotos> {
         return R.layout.item_stills_layout;
     }
 
-    public void setList(List<StillsPhotos> list) {
-        Log.d("XXW", "setList-----"+list.size());
-        mList = list;
-    }
 
     @Override
     void bindView(BaseItemViewHolder holder, int position) {
         Log.d("XXW", "bindView");
-        holder.setImgUrl(R.id.iv_all_stills, mList.get(position).getThumb());
-        Log.d("XXW", mList.get(position).getIcon());
+        if (mList != null) {
+            holder.setImgUrl(R.id.iv_all_stills, mList.get(position).getImage());
+        }
     }
 
     @Override

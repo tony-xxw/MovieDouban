@@ -34,6 +34,10 @@ public abstract class BaseRvAdapter<T> extends RecyclerView.Adapter<BaseItemView
     protected View mFooterView;
     protected RvItemOnClick mClick;
 
+    public void setList(List<T> list) {
+        mList = list;
+    }
+
 
     public void setRvOnClick(RvItemOnClick onClick) {
         mClick = onClick;
@@ -69,15 +73,12 @@ public abstract class BaseRvAdapter<T> extends RecyclerView.Adapter<BaseItemView
     public BaseItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         switch (viewType) {
             case HEAD_TYPE:
-                Log.d("XXW","");
                 mBase = new BaseItemViewHolder(mHeadView, mContext);
                 break;
             case FOOTER_TYPE:
-                Log.d("XXW", "-----" + viewType);
                 mBase = new BaseItemViewHolder(mFooterView, mContext);
                 break;
             case CONTENT_TYPE:
-                Log.d("XXW", "-----" + viewType);
                 mView = mLayoutInflater.inflate(getLayoutId(), null);
                 mBase = new BaseItemViewHolder(mView, mContext);
                 break;
@@ -96,7 +97,6 @@ public abstract class BaseRvAdapter<T> extends RecyclerView.Adapter<BaseItemView
             bindFooterView(holder, position);
             return;
         }
-        Log.d("XXW", "onBindViewHolder");
         bindView(holder, getLayoutPosition(holder));
     }
 
@@ -128,7 +128,6 @@ public abstract class BaseRvAdapter<T> extends RecyclerView.Adapter<BaseItemView
         } else if (mFooterView != null && position == getItemCount() - 1) {
             return FOOTER_TYPE;
         } else {
-            Log.d("XXW","getItemViewType");
             return CONTENT_TYPE;
         }
     }

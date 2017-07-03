@@ -29,9 +29,6 @@ public class CurrentAdapter extends BaseRvAdapter<Subjects> {
         mClick = click;
     }
 
-    public void setList(List<Subjects> list) {
-        mList = list;
-    }
 
     @Override
     int getLayoutId() {

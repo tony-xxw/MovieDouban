@@ -31,11 +31,6 @@ public class WelfareAdapter extends BaseRvAdapter<WelfarePhotoInfo> {
         mPhotoWidth = widthPixels / 3 - marginPixels;
     }
 
-    public void setList(List<WelfarePhotoInfo> list) {
-        mList = list;
-
-    }
-
     @Override
     int getLayoutId() {
         return R.layout.item_welfare_layout;

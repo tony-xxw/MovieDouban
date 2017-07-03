@@ -22,11 +22,27 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".detail.DetailMovieActivity"/>
+        <activity
+            android:name=".detail.DetailMovieActivity"
+            android:launchMode="singleTop"
+            />
         <activity android:name=".home.BaseActivity"/>
-        <activity android:name=".detail.cast.CastDetailActivity"/>
-        <activity android:name=".detail.stills.StillsActivity"/>
-        <activity android:name=".detail.stills.AllStillsActivity"/>
+        <activity
+            android:name=".detail.cast.CastDetailActivity"
+            android:launchMode="singleTop"
+            />
+        <activity
+            android:name=".detail.stills.StillsActivity"
+            android:launchMode="singleTop"
+            />
+        <activity
+            android:name=".detail.stills.AllStillsActivity"
+            android:launchMode="singleTop"
+            />
+        <activity
+            android:name=".detail.photo.PhotoActivity"
+            android:launchMode="singleTop"
+            />
     </application>
 
 </manifest>

@@ -7,7 +7,6 @@ import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 import mvp.wyyne.douban.moviedouban.api.RetrofitService;
 import mvp.wyyne.douban.moviedouban.api.bean.Stills;
-import mvp.wyyne.douban.moviedouban.home.IPresent;
 
 /**
  * Created by XXW on 2017/7/2.

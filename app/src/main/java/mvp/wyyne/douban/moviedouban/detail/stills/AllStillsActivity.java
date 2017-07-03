@@ -1,5 +1,6 @@
 package mvp.wyyne.douban.moviedouban.detail.stills;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -15,15 +16,17 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.adapter.StillsAdapter;
+import mvp.wyyne.douban.moviedouban.api.RvItemOnClick;
 import mvp.wyyne.douban.moviedouban.api.bean.Stills;
 import mvp.wyyne.douban.moviedouban.api.bean.StillsPhotos;
+import mvp.wyyne.douban.moviedouban.detail.photo.PhotoActivity;
 import mvp.wyyne.douban.moviedouban.home.BaseActivity;
 
 /**
  * Created by XXW on 2017/7/2.
  */
 
-public class AllStillsActivity extends BaseActivity<AllStillsPresent> implements AllStillMain, View.OnClickListener {
+public class AllStillsActivity extends BaseActivity<AllStillsPresent> implements AllStillMain, View.OnClickListener, RvItemOnClick {
     @BindView(R.id.iv_back)
     ImageView mIvBack;
     @BindView(R.id.tv_stills_title)
@@ -57,6 +60,7 @@ public class AllStillsActivity extends BaseActivity<AllStillsPresent> implements
         mList = new ArrayList<>();
         mAdapter = new StillsAdapter(this, mList);
         mManager = new GridLayoutManager(this, 3);
+        mAdapter.setOnItemClick(this);
         mRvAllStills.setLayoutManager(mManager);
         mRvAllStills.setAdapter(mAdapter);
         mPresent.getList(mId);
@@ -95,5 +99,12 @@ public class AllStillsActivity extends BaseActivity<AllStillsPresent> implements
         if (v.getId() == R.id.iv_back) {
             finish();
         }
+    }
+
+    @Override
+    public void onItemClick(int position, String tag) {
+        Intent intent = new Intent(this, PhotoActivity.class);
+        intent.putExtra(PhotoActivity.ID, mId);
+        startActivity(intent);
     }
 }

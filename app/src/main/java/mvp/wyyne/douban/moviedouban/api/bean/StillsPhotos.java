@@ -1,10 +1,13 @@
 package mvp.wyyne.douban.moviedouban.api.bean;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by XXW on 2017/7/2.
  */
 
-public class StillsPhotos {
+public class StillsPhotos implements Parcelable {
 
     /**
      * photos_count : 303
@@ -47,6 +50,40 @@ public class StillsPhotos {
     private String next_photo;
     private String subject_id;
     private String desc;
+
+    protected StillsPhotos(Parcel in) {
+        photos_count = in.readInt();
+        thumb = in.readString();
+        icon = in.readString();
+        author = in.readParcelable(User.class.getClassLoader());
+        created_at = in.readString();
+        album_id = in.readString();
+        cover = in.readString();
+        id = in.readString();
+        prev_photo = in.readString();
+        album_url = in.readString();
+        comments_count = in.readInt();
+        image = in.readString();
+        recs_count = in.readInt();
+        position = in.readInt();
+        alt = in.readString();
+        album_title = in.readString();
+        next_photo = in.readString();
+        subject_id = in.readString();
+        desc = in.readString();
+    }
+
+    public static final Creator<StillsPhotos> CREATOR = new Creator<StillsPhotos>() {
+        @Override
+        public StillsPhotos createFromParcel(Parcel in) {
+            return new StillsPhotos(in);
+        }
+
+        @Override
+        public StillsPhotos[] newArray(int size) {
+            return new StillsPhotos[size];
+        }
+    };
 
     public int getPhotos_count() {
         return photos_count;
@@ -198,6 +235,34 @@ public class StillsPhotos {
 
     public void setDesc(String desc) {
         this.desc = desc;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(photos_count);
+        dest.writeString(thumb);
+        dest.writeString(icon);
+        dest.writeParcelable(author, flags);
+        dest.writeString(created_at);
+        dest.writeString(album_id);
+        dest.writeString(cover);
+        dest.writeString(id);
+        dest.writeString(prev_photo);
+        dest.writeString(album_url);
+        dest.writeInt(comments_count);
+        dest.writeString(image);
+        dest.writeInt(recs_count);
+        dest.writeInt(position);
+        dest.writeString(alt);
+        dest.writeString(album_title);
+        dest.writeString(next_photo);
+        dest.writeString(subject_id);
+        dest.writeString(desc);
     }
 
     public static class AuthorBean {

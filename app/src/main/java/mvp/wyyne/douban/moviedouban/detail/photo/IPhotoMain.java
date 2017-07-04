@@ -1,5 +1,8 @@
 package mvp.wyyne.douban.moviedouban.detail.photo;
 
+import java.util.List;
+
+import mvp.wyyne.douban.moviedouban.api.bean.StillsPhotos;
 import mvp.wyyne.douban.moviedouban.home.IMain;
 
 /**
@@ -7,4 +10,5 @@ import mvp.wyyne.douban.moviedouban.home.IMain;
  */
 
 public interface IPhotoMain extends IMain {
+    void showPage(List<StillsPhotos> list);
 }

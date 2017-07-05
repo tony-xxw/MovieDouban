@@ -43,7 +43,7 @@ public class AllStillsActivity extends BaseActivity<AllStillsPresent> implements
     @Override
     protected void refresh() {
 
-    }
+    } 
 
     @Override
     protected int getLayoutId() {

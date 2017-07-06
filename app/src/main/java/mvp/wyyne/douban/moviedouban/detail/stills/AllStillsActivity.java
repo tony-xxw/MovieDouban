@@ -43,7 +43,7 @@ public class AllStillsActivity extends BaseActivity<AllStillsPresent> implements
     @Override
     protected void refresh() {
 
-    } 
+    }
 
     @Override
     protected int getLayoutId() {
@@ -106,6 +106,7 @@ public class AllStillsActivity extends BaseActivity<AllStillsPresent> implements
     public void onItemClick(int position, String tag) {
         Intent intent = new Intent(this, PhotoActivity.class);
         intent.putExtra(PhotoActivity.ID, mId);
+        intent.putExtra(PhotoActivity.POSITION, position);
         startActivity(intent);
     }
 }

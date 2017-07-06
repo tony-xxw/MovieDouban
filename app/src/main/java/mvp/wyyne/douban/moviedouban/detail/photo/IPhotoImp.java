@@ -46,7 +46,7 @@ public class IPhotoImp implements IPhotoPresent {
                         if (stills.getPhotos() != null) {
                             Log.d("XXW", "onNext--" + stills.getPhotos().size());
                             mList = stills.getPhotos();
-                            mMain.showPage(mList);
+                            mMain.showPage(stills);
                         }
                     }
 

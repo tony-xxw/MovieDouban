@@ -21,6 +21,7 @@
 
 
         <TextView
+            android:id="@+id/tv_photo_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="2017-6-15"
@@ -32,7 +33,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:text="3号杨幂冷厉勇敢"
             android:textColor="@color/colorWhite"
             android:textSize="14sp"/>
 
@@ -64,6 +64,7 @@
                 android:src="@drawable/ic_comment"/>
 
             <TextView
+                android:id="@+id/tv_comment_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignTop="@+id/iv_comment"
@@ -74,6 +75,7 @@
                 android:textSize="14sp"/>
 
             <Button
+                android:id="@+id/btn_article"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
@@ -102,6 +104,7 @@
             android:src="@drawable/ic_back"/>
 
         <TextView
+            android:id="@+id/tv_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -135,7 +138,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginBottom="40dp"
-        android:visibility="gone"
+        android:visibility="visible"
         app:indicatorColor="@color/colorOrange"
         app:indicatorName="PacmanIndicator"/>
 </FrameLayout>

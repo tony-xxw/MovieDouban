@@ -1,24 +1,14 @@
 package mvp.wyyne.douban.moviedouban.detail.head;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.graphics.Palette;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.animation.GlideAnimation;
-import com.bumptech.glide.request.target.SimpleTarget;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -31,7 +21,7 @@ import mvp.wyyne.douban.moviedouban.api.bean.Casts;
 import mvp.wyyne.douban.moviedouban.api.bean.Directors;
 import mvp.wyyne.douban.moviedouban.api.bean.Photos;
 import mvp.wyyne.douban.moviedouban.api.bean.Trailers;
-import mvp.wyyne.douban.moviedouban.detail.cast.CastDetailActivity;
+import mvp.wyyne.douban.moviedouban.detail.cast.CastArticleActivity;
 import mvp.wyyne.douban.moviedouban.detail.photo.PhotoActivity;
 import mvp.wyyne.douban.moviedouban.detail.stills.AllStillsActivity;
 import mvp.wyyne.douban.moviedouban.detail.stills.StillsActivity;
@@ -185,8 +175,8 @@ public class DetailMovieHeadFragment extends BaseFragment<DHeadImp> implements I
             getActivity().startActivity(mCastFooter);
         } else if (tag.equals(CastAdapter.CAST)) {
             //跳转影人条目
-            Intent intent = new Intent(getActivity(), CastDetailActivity.class);
-            intent.putExtra(CastDetailActivity.CAST_ID, mCastses.get(position).getId());
+            Intent intent = new Intent(getActivity(), CastArticleActivity.class);
+            intent.putExtra(CastArticleActivity.CAST_ID, mCastses.get(position).getId());
             getActivity().startActivity(intent);
 
         }

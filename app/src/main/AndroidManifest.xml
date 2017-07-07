@@ -28,7 +28,7 @@
             />
         <activity android:name=".home.BaseActivity"/>
         <activity
-            android:name=".detail.cast.CastDetailActivity"
+            android:name=".detail.cast.CastArticleActivity"
             android:launchMode="singleTop"
             />
         <activity

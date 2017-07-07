@@ -1,18 +1,14 @@
 package mvp.wyyne.douban.moviedouban.api;
 
 
-import com.google.gson.JsonObject;
-
 import io.reactivex.Observable;
 import mvp.wyyne.douban.moviedouban.api.bean.Article;
+import mvp.wyyne.douban.moviedouban.api.bean.CastArticle;
 import mvp.wyyne.douban.moviedouban.api.bean.HotBean;
 import mvp.wyyne.douban.moviedouban.api.bean.MoviesReviews;
-import mvp.wyyne.douban.moviedouban.api.bean.Reviews;
 import mvp.wyyne.douban.moviedouban.api.bean.Stills;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
-
-import static android.R.attr.id;
 
 /**
  * Created by XXW on 2017/6/5.
@@ -40,5 +36,8 @@ public interface IMoviesApi {
     @GET("movie/subject/{id}/photos?apikey=0df993c66c0c636e29ecbb5344252a4a")
     Observable<Stills> getStillsPhotos(@Path("id") String id);
 
+    //影人条目
+    @GET("movie/celebrity/{id}?apikey=0df993c66c0c636e29ecbb5344252a4a")
+    Observable<CastArticle> getCastArticle(@Path("id") String id);
 }
 

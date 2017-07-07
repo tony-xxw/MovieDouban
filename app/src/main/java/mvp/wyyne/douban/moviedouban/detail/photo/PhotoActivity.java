@@ -114,7 +114,7 @@ public class PhotoActivity extends BaseActivity<IPhotoPresent> implements IPhoto
     public void onPageSelected(int position) {
         mVpPage.setCurrentItem(position);
         subjectId = mList.get(position).getSubject_id();
-        mTvCount.setText(getString(R.string.view_image) + "(" + position + "/" + mStills.getCount() + ")");
+        mTvCount.setText(getString(R.string.view_image) + "(" + position++ + "/" + mStills.getCount() + ")");
         mTvCommentCount.setText(mList.get(position).getComments_count() + "");
         mTvPhotoTime.setText(mList.get(position).getCreated_at());
 

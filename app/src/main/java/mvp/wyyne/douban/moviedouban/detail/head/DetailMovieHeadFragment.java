@@ -33,6 +33,7 @@ import mvp.wyyne.douban.moviedouban.api.bean.Directors;
 import mvp.wyyne.douban.moviedouban.api.bean.Photos;
 import mvp.wyyne.douban.moviedouban.api.bean.Trailers;
 import mvp.wyyne.douban.moviedouban.detail.cast.CastDetailActivity;
+import mvp.wyyne.douban.moviedouban.detail.photo.PhotoActivity;
 import mvp.wyyne.douban.moviedouban.detail.stills.AllStillsActivity;
 import mvp.wyyne.douban.moviedouban.detail.stills.StillsActivity;
 import mvp.wyyne.douban.moviedouban.home.BaseFragment;
@@ -71,12 +72,7 @@ public class DetailMovieHeadFragment extends BaseFragment<DHeadImp> implements I
     RecyclerView mRvCasts;
     @BindView(R.id.rv_photos)
     RecyclerView mRvPhoto;
-    private String mSubjectsId;
-    private Bitmap mDrawableBitmap;
-    private Palette.Builder mPalette;
     private Article mArticle;
-    private int boundHeight;
-    private Palette.Swatch swatch;
     private List<Casts> mCastses;
     private CastAdapter mCastAdapter;
     private PhotoAdapter mPhotosAdapter;
@@ -176,8 +172,10 @@ public class DetailMovieHeadFragment extends BaseFragment<DHeadImp> implements I
     @Override
     public void onItemClick(int position, String tag) {
         if (tag.equals(PhotoAdapter.TAG)) {
-            Intent mCast = new Intent(getActivity(), CastDetailActivity.class);
-            getActivity().startActivity(mCast);
+            Intent singlePt = new Intent(getActivity(), PhotoActivity.class);
+            singlePt.putExtra(PhotoActivity.ID, mArticle.getId());
+            singlePt.putExtra(PhotoActivity.POSITION, position);
+            getActivity().startActivity(singlePt);
         } else if (tag.equals(PhotoAdapter.HEAD)) {
             Intent mCastHead = new Intent(getActivity(), StillsActivity.class);
             getActivity().startActivity(mCastHead);

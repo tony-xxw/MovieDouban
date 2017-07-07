@@ -1,7 +1,9 @@
 package mvp.wyyne.douban.moviedouban.adapter;
 
 import android.content.Context;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -18,10 +20,12 @@ import mvp.wyyne.douban.moviedouban.api.bean.Directors;
  * Created by XXW on 2017/6/24.
  */
 
-public class CastAdapter extends BaseRvAdapter<Casts> {
+public class CastAdapter extends BaseRvAdapter<Casts> implements View.OnClickListener {
+    public static final String CAST = "cast";
     private Casts mCasts;
     private List<Directors> mDirectorses;
     private Context mContext;
+    private View mContent;
 
     public CastAdapter(Context context, List<Casts> data) {
         super(context, data);
@@ -32,6 +36,7 @@ public class CastAdapter extends BaseRvAdapter<Casts> {
     public void setDirectorses(List<Directors> list) {
         mDirectorses = list;
     }
+
 
     @Override
     int getLayoutId() {
@@ -47,6 +52,11 @@ public class CastAdapter extends BaseRvAdapter<Casts> {
                 holder.setImgUrl(R.id.iv_casts, mCasts.getAvatars().getMedium());
             }
         }
+
+        mContent = holder.getView(R.id.ll_cast);
+        mContent.setOnClickListener(this);
+        mContent.setTag(position);
+
     }
 
     public void bindHeadView(BaseItemViewHolder holder, int position) {
@@ -65,4 +75,15 @@ public class CastAdapter extends BaseRvAdapter<Casts> {
 
     }
 
+    @Override
+    public void onClick(View v) {
+        int position = (int) v.getTag();
+        switch (v.getId()) {
+            case R.id.ll_cast:
+                mClick.onItemClick(position, CAST);
+                break;
+            default:
+                break;
+        }
+    }
 }

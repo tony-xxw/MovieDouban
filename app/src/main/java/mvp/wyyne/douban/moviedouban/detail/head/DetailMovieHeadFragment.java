@@ -23,7 +23,6 @@ import java.util.List;
 
 import butterknife.BindView;
 import mvp.wyyne.douban.moviedouban.R;
-import mvp.wyyne.douban.moviedouban.adapter.BaseRvAdapter;
 import mvp.wyyne.douban.moviedouban.adapter.CastAdapter;
 import mvp.wyyne.douban.moviedouban.adapter.PhotoAdapter;
 import mvp.wyyne.douban.moviedouban.api.RvItemOnClick;
@@ -141,6 +140,7 @@ public class DetailMovieHeadFragment extends BaseFragment<DHeadImp> implements I
         mRvCasts.setAdapter(mCastAdapter);
         mCastAdapter.setHeadView(RecycleViewUtils.addHeadView(mRvCasts, R.layout.item_cast_head, getActivity()));
         mCastAdapter.setDirectorses(mDirectorses);
+        mCastAdapter.setRvOnClick(this);
 
         //初始化剧照
         mPhoto = mArticle.getPhotos();
@@ -183,6 +183,12 @@ public class DetailMovieHeadFragment extends BaseFragment<DHeadImp> implements I
             Intent mCastFooter = new Intent(getActivity(), AllStillsActivity.class);
             mCastFooter.putExtra("id", mArticle.getId());
             getActivity().startActivity(mCastFooter);
+        } else if (tag.equals(CastAdapter.CAST)) {
+            //跳转影人条目
+            Intent intent = new Intent(getActivity(), CastDetailActivity.class);
+            intent.putExtra(CastDetailActivity.CAST_ID, mCastses.get(position).getId());
+            getActivity().startActivity(intent);
+
         }
     }
 }

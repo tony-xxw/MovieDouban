@@ -10,7 +10,7 @@
         android:layout_height="wrap_content">
 
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="230dp"
             android:layout_marginBottom="68dp"
@@ -18,20 +18,28 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="68dp">
 
-
-            <ImageView
-                android:id="@+id/iv_avatar"
-                android:layout_width="150dp"
-                android:layout_height="match_parent"
-                android:visibility="gone"/>
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/rv_photo"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
-        </LinearLayout>
+                android:layout_height="wrap_content"
+                >
+
+
+                <ImageView
+                    android:id="@+id/iv_avatar"
+                    android:layout_width="150dp"
+                    android:layout_height="match_parent"
+                    android:visibility="visible"/>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_photo"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+            </LinearLayout>
+        </ScrollView>
 
     </FrameLayout>
+
 
     <FrameLayout
         android:id="@+id/fl_content"

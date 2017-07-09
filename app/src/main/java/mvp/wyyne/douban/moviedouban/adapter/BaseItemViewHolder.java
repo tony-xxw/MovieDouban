@@ -35,7 +35,7 @@ public class BaseItemViewHolder extends RecyclerView.ViewHolder {
         return this;
     }
 
-
+  
     public BaseItemViewHolder setImgUrl(int viewId, String url) {
         ImageView iv = getView(viewId);
         Glide.with(mContext).load(url).into(iv);

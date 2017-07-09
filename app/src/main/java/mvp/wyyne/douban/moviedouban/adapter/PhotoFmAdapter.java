@@ -24,9 +24,9 @@ public class PhotoFmAdapter extends BaseRvAdapter<Photos> {
 
     @Override
     void bindView(BaseItemViewHolder holder, int position) {
-        if (mList != null) {
+        if (mList != null && mList.size() < 8) {
             Log.d("XXW", "photo--" + mList.get(position).getImage());
-            holder.setImgUrl(R.id.iv_cast, mList.get(position).getImage());
+            holder.setImgUrl(R.id.iv_cast, mList.get(position).getIcon());
         }
 
     }

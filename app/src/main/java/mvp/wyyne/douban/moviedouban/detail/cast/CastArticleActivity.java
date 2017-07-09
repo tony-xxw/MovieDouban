@@ -88,7 +88,7 @@ public class CastArticleActivity extends BaseActivity<ICastPresent> implements I
         setSupportActionBar(mTlTitle);
 
         //设置影人相册Rv
-        mRvPhoto.setLayoutManager(new GridLayoutManager(this, 2));
+        mRvPhoto.setLayoutManager(new GridLayoutManager(this, 4));
         mFmAdapter = new PhotoFmAdapter(this, mPhotosList);
         mRvPhoto.setAdapter(mFmAdapter);
 

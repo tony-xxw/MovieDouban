@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_gravity="center_vertical"
-        android:layout_marginStart="30dp"
+        android:layout_marginStart="20dp"
         android:layout_toEndOf="@+id/iv_back"
         android:textColor="@color/colorBlack"
         android:textSize="14sp"/>

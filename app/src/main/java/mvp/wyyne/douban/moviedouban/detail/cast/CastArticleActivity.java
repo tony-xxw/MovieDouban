@@ -57,6 +57,8 @@ public class CastArticleActivity extends BaseActivity<ICastPresent> implements I
     FrameLayout mFlContent;
     @BindView(R.id.ll_title)
     RelativeLayout mLlTitle;
+    @BindView(R.id.abl_ca)
+    AppBarLayout mBarLayout;
     private String id;
     private List<Photos> mPhotosList;
     private PhotoFmAdapter mFmAdapter;
@@ -86,6 +88,7 @@ public class CastArticleActivity extends BaseActivity<ICastPresent> implements I
         mPhotosList = new ArrayList<>();
         mPresent = new CastArticleImp(this);
         setSupportActionBar(mTlTitle);
+        mBarLayout.addOnOffsetChangedListener(this);
 
         //设置影人相册Rv
         mRvPhoto.setLayoutManager(new GridLayoutManager(this, 4));

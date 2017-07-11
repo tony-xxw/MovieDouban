@@ -53,12 +53,14 @@ public class CastArticleActivity extends BaseActivity<ICastPresent> implements I
     RecyclerView mRvPhoto;
     @BindView(R.id.fl_avatars_bg)
     FrameLayout mFlAvatarsBg;
-    @BindView(R.id.fl_content)
-    FrameLayout mFlContent;
     @BindView(R.id.ll_title)
     RelativeLayout mLlTitle;
     @BindView(R.id.abl_ca)
     AppBarLayout mBarLayout;
+    @BindView(R.id.tv_title)
+    TextView mTvTitle;
+    @BindView(R.id.tv_title_en)
+    TextView mTvTitleEn;
     private String id;
     private List<Photos> mPhotosList;
     private PhotoFmAdapter mFmAdapter;
@@ -122,6 +124,8 @@ public class CastArticleActivity extends BaseActivity<ICastPresent> implements I
         mFmAdapter.notifyDataSetChanged();
 
         setBackGroudBg(article.getAvatars().getLarge());
+        mTvTitle.setText(mCastArticle.getName());
+        mTvTitleEn.setText(mCastArticle.getName_en());
     }
 
     public void setBackGroudBg(String url) {

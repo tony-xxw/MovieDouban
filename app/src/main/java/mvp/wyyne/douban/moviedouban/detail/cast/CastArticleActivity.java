@@ -1,6 +1,7 @@
 package mvp.wyyne.douban.moviedouban.detail.cast;
 
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -26,6 +27,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.adapter.PhotoFmAdapter;
 import mvp.wyyne.douban.moviedouban.api.bean.CastArticle;
@@ -61,6 +63,8 @@ public class CastArticleActivity extends BaseActivity<ICastPresent> implements I
     TextView mTvTitle;
     @BindView(R.id.tv_title_en)
     TextView mTvTitleEn;
+    @BindView(R.id.tv_summary)
+    TextView mTvSummary;
     private String id;
     private List<Photos> mPhotosList;
     private PhotoFmAdapter mFmAdapter;
@@ -126,6 +130,7 @@ public class CastArticleActivity extends BaseActivity<ICastPresent> implements I
         setBackGroudBg(article.getAvatars().getLarge());
         mTvTitle.setText(mCastArticle.getName());
         mTvTitleEn.setText(mCastArticle.getName_en());
+        mTvSummary.setText(mCastArticle.getSummary().trim());
     }
 
     public void setBackGroudBg(String url) {
@@ -186,4 +191,11 @@ public class CastArticleActivity extends BaseActivity<ICastPresent> implements I
         mTvStillsTitle.setText(mCastArticle.getName());
     }
 
+
+    @OnClick(R.id.tv_summary)
+    public void onViewClicked() {
+        Intent intent = new Intent(this, CastDetailActivity.class);
+        intent.putExtra("article", mCastArticle);
+        startActivity(intent);
+    }
 }

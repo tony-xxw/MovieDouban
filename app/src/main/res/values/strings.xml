@@ -15,4 +15,9 @@
     <string name="all_stills">全部剧照</string>
     <string name="view_image">查看图片</string>
     <string name="collect">收藏</string>
+    <string name="one_intro">个人简介</string>
+    <string name="birthday">出生日期:</string>
+    <string name="born">出生地:</string>
+    <string name="constellation">星座:</string>
+    <string name="gender">性别:</string>
 </resources>

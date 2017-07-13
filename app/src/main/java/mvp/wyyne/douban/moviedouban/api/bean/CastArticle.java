@@ -1,12 +1,15 @@
 package mvp.wyyne.douban.moviedouban.api.bean;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.List;
 
 /**
  * Created by XXW on 2017/7/8.
  */
 
-public class CastArticle {
+public class CastArticle implements Parcelable{
 
     /**
      * website :
@@ -43,6 +46,37 @@ public class CastArticle {
     private List<String> aka;
     private List<Works> works;
     private Avatars avatars;
+
+    protected CastArticle(Parcel in) {
+        website = in.readString();
+        mobile_url = in.readString();
+        name = in.readString();
+        name_en = in.readString();
+        gender = in.readString();
+        summary = in.readString();
+        birthday = in.readString();
+        alt = in.readString();
+        born_place = in.readString();
+        constellation = in.readString();
+        id = in.readString();
+        aka_en = in.createStringArrayList();
+        professions = in.createStringArrayList();
+        aka = in.createStringArrayList();
+        avatars = in.readParcelable(Avatars.class.getClassLoader());
+        photos = in.createTypedArrayList(Photos.CREATOR);
+    }
+
+    public static final Creator<CastArticle> CREATOR = new Creator<CastArticle>() {
+        @Override
+        public CastArticle createFromParcel(Parcel in) {
+            return new CastArticle(in);
+        }
+
+        @Override
+        public CastArticle[] newArray(int size) {
+            return new CastArticle[size];
+        }
+    };
 
     public List<Works> getWorks() {
         return works;
@@ -180,5 +214,30 @@ public class CastArticle {
 
     public void setAka(List<String> aka) {
         this.aka = aka;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(website);
+        dest.writeString(mobile_url);
+        dest.writeString(name);
+        dest.writeString(name_en);
+        dest.writeString(gender);
+        dest.writeString(summary);
+        dest.writeString(birthday);
+        dest.writeString(alt);
+        dest.writeString(born_place);
+        dest.writeString(constellation);
+        dest.writeString(id);
+        dest.writeStringList(aka_en);
+        dest.writeStringList(professions);
+        dest.writeStringList(aka);
+        dest.writeParcelable(avatars, flags);
+        dest.writeTypedList(photos);
     }
 }

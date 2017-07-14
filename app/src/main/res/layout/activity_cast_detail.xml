@@ -22,7 +22,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <include layout="@layout/fragment_cast_content"/>
+
+                <include layout="@layout/activity_cast_content"/>
 
             </ScrollView>
 

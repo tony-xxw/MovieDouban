@@ -1,10 +1,8 @@
 package mvp.wyyne.douban.moviedouban.detail.cast;
 
-import android.os.Bundle;
 import android.widget.TextView;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.api.bean.CastArticle;
@@ -38,7 +36,7 @@ public class CastDetailActivity extends BaseActivity {
 
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_cast_content;
+        return R.layout.activity_cast_summry;
     }
 
     @Override

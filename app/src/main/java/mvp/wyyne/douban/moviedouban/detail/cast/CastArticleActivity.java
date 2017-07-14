@@ -1,11 +1,12 @@
 package mvp.wyyne.douban.moviedouban.detail.cast;
 
 
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.GridLayoutManager;
@@ -27,7 +28,6 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.adapter.PhotoFmAdapter;
 import mvp.wyyne.douban.moviedouban.api.bean.CastArticle;
@@ -49,30 +49,27 @@ public class CastArticleActivity extends BaseActivity<ICastPresent> implements I
     ImageView mIvShare;
     @BindView(R.id.tl_title)
     Toolbar mTlTitle;
-    @BindView(R.id.iv_avatar)
-    ImageView mIvAvatar;
-    @BindView(R.id.rv_photo)
-    RecyclerView mRvPhoto;
-    @BindView(R.id.fl_avatars_bg)
-    FrameLayout mFlAvatarsBg;
-    @BindView(R.id.ll_title)
-    RelativeLayout mLlTitle;
     @BindView(R.id.abl_ca)
     AppBarLayout mBarLayout;
-    @BindView(R.id.tv_title)
-    TextView mTvTitle;
-    @BindView(R.id.tv_title_en)
-    TextView mTvTitleEn;
-    @BindView(R.id.tv_summary)
-    TextView mTvSummary;
+    @BindView(R.id.ll_title)
+    RelativeLayout mLlTitle;
+    @BindView(R.id.iv_avatar)
+    ImageView mIvAvatar;
+    @BindView(R.id.fl_avatars_bg)
+    FrameLayout mFlAvatarsBg;
+    @BindView(R.id.rv_photo)
+    RecyclerView mRvPhoto;
     private String id;
-    private List<Photos> mPhotosList;
-    private PhotoFmAdapter mFmAdapter;
     private Palette.Swatch swatch;
     private Palette.Builder mPalette;
     private Bitmap mDrawableBitmap;
     private int boundHeight;
     private CastArticle mCastArticle;
+    private CastArticleFragment mFragment;
+    private FragmentManager mManager;
+    private FragmentTransaction mTransaction;
+    private List<Photos> mPhotosList;
+    private PhotoFmAdapter mFmAdapter;
 
 
     @Override
@@ -100,8 +97,6 @@ public class CastArticleActivity extends BaseActivity<ICastPresent> implements I
         mRvPhoto.setLayoutManager(new GridLayoutManager(this, 4));
         mFmAdapter = new PhotoFmAdapter(this, mPhotosList);
         mRvPhoto.setAdapter(mFmAdapter);
-
-
         mIvShare.setVisibility(View.VISIBLE);
         mPresent.getCastArticle(id);
 
@@ -122,15 +117,15 @@ public class CastArticleActivity extends BaseActivity<ICastPresent> implements I
     @Override
     public void showPage(CastArticle article) {
         mCastArticle = article;
-        mPhotosList = article.getPhotos();
-        Log.d("XXW", "--" + mPhotosList.size());
-        mFmAdapter.setList(mPhotosList);
+        mFmAdapter.setList(mCastArticle.getPhotos());
         mFmAdapter.notifyDataSetChanged();
-
+        mFragment = CastArticleFragment.getInstance(article);
+        mManager = getSupportFragmentManager();
+        mTransaction = mManager.beginTransaction();
+        mTransaction.add(R.id.fl_content, mFragment);
+        mTransaction.commit();
         setBackGroudBg(article.getAvatars().getLarge());
-        mTvTitle.setText(mCastArticle.getName());
-        mTvTitleEn.setText(mCastArticle.getName_en());
-        mTvSummary.setText(mCastArticle.getSummary().trim());
+
     }
 
     public void setBackGroudBg(String url) {
@@ -192,10 +187,4 @@ public class CastArticleActivity extends BaseActivity<ICastPresent> implements I
     }
 
 
-    @OnClick(R.id.tv_summary)
-    public void onViewClicked() {
-        Intent intent = new Intent(this, CastDetailActivity.class);
-        intent.putExtra("article", mCastArticle);
-        startActivity(intent);
-    }
 }

@@ -34,13 +34,22 @@ public class ReviewAdapter extends BaseRvAdapter<PopularCmRv> {
 
     @Override
     void bindView(BaseItemViewHolder holder, int position) {
-        mPopularCm = mList.get(position);
-        Log.d("XXW", mPopularCm.toString());
-        holder.setText(R.id.tv_reviews_title, mList.get(position).getTitle());
-        holder.setText(R.id.tv_reviews_name, mList.get(position).getAuthor().getName());
-        holder.setValue(R.id.rb_reviews_comment, mPopularCm.getRating().getValue());
-        holder.setText(R.id.tv_reviews_summary, mList.get(position).getSummary());
-        Log.d("XXW", "Title---------" + mList.get(position).getTitle());
+        Log.d("XXW", "size--" + mList.size());
+        if (position < 5) {
+            mPopularCm = mList.get(position);
+            Log.d("XXW", mPopularCm.toString());
+            holder.setText(R.id.tv_reviews_title, mList.get(position).getTitle());
+            holder.setText(R.id.tv_reviews_name, mList.get(position).getAuthor().getName());
+            holder.setValue(R.id.rb_reviews_comment, mPopularCm.getRating().getValue());
+            holder.setText(R.id.tv_reviews_summary, mList.get(position).getSummary());
+            Log.d("XXW", "Title---------" + mList.get(position).getTitle());
+
+        }
+    }
+
+    @Override
+    public int getItemCount() {
+        return 7;
     }
 
     @Override

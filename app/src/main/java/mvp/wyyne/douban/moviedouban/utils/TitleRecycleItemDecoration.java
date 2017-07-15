@@ -1,6 +1,5 @@
 package mvp.wyyne.douban.moviedouban.utils;
 
-import android.animation.TimeInterpolator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -13,8 +12,6 @@ import android.util.TypedValue;
 import android.view.View;
 
 import java.util.List;
-
-import mvp.wyyne.douban.moviedouban.api.bean.Subjects;
 
 /**
  * Created by XXW on 2017/6/14.

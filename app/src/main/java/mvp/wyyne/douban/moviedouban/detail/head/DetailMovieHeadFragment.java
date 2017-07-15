@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -87,6 +88,7 @@ public class DetailMovieHeadFragment extends BaseFragment<DHeadImp> implements I
         super.onCreate(savedInstanceState);
         if (getArguments().getParcelable(TAG) != null) {
             mArticle = getArguments().getParcelable(TAG);
+            Log.d("XXW", "Arrticle--" + mArticle.toString());
         }
     }
 
@@ -102,8 +104,6 @@ public class DetailMovieHeadFragment extends BaseFragment<DHeadImp> implements I
 
     @Override
     protected void initView() {
-
-
         mTvDetailTitle.setText(mArticle.getTitle());
         mTvDetailType.setText(mArticle.getYear() + "/" + StringUtils.getString(mArticle.getGenres()));
         mTvDetailFormerly.setText(mArticle.getOriginal_title());
@@ -116,7 +116,9 @@ public class DetailMovieHeadFragment extends BaseFragment<DHeadImp> implements I
             }
         }
         if (mArticle.getDurations() != null) {
-            mTvDetailTime.setText(getString(R.string.movie_time) + mArticle.getDurations().get(0));
+            if (mArticle.getDurations().size() != 0) {
+                mTvDetailTime.setText(getString(R.string.movie_time) + mArticle.getDurations().get(0));
+            }
         }
         mEtSummary.setText(mArticle.getSummary());
 

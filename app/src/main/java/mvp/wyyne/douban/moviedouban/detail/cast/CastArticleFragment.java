@@ -2,30 +2,27 @@ package mvp.wyyne.douban.moviedouban.detail.cast;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
+import android.util.Log;
 import android.widget.TextView;
 
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 import mvp.wyyne.douban.moviedouban.R;
-import mvp.wyyne.douban.moviedouban.adapter.PhotoFmAdapter;
+import mvp.wyyne.douban.moviedouban.adapter.ProducationAdapter;
+import mvp.wyyne.douban.moviedouban.api.RvItemOnClick;
 import mvp.wyyne.douban.moviedouban.api.bean.CastArticle;
-import mvp.wyyne.douban.moviedouban.api.bean.Photos;
+import mvp.wyyne.douban.moviedouban.api.bean.Subjects;
+import mvp.wyyne.douban.moviedouban.detail.DetailMovieActivity;
 import mvp.wyyne.douban.moviedouban.home.BaseFragment;
 
 /**
  * Created by XXW on 2017/7/14.
  */
 
-public class CastArticleFragment extends BaseFragment {
+public class CastArticleFragment extends BaseFragment implements RvItemOnClick {
     public static final String TAG = "castArticleFragment.class";
     @BindView(R.id.tv_title)
     TextView mTvTitle;
@@ -36,7 +33,8 @@ public class CastArticleFragment extends BaseFragment {
     @BindView(R.id.rv_production)
     RecyclerView mRvProduction;
     private CastArticle mArticle;
-
+    private ProducationAdapter mAdapter;
+    private LinearLayoutManager mManager;
 
 
     public static CastArticleFragment getInstance(CastArticle castArticle) {
@@ -65,7 +63,12 @@ public class CastArticleFragment extends BaseFragment {
             mArticle = getArguments().getParcelable(TAG);
         }
 
-
+        mAdapter = new ProducationAdapter(getActivity(), mArticle.getWorks());
+        mAdapter.setRvOnClick(this);
+        mManager = new LinearLayoutManager(getActivity());
+        mManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        mRvProduction.setLayoutManager(mManager);
+        mRvProduction.setAdapter(mAdapter);
 
         mTvTitle.setText(mArticle.getName());
         mTvTitleEn.setText(mArticle.getName_en());
@@ -79,4 +82,12 @@ public class CastArticleFragment extends BaseFragment {
         startActivity(intent);
     }
 
+    @Override
+    public void onItemClick(int position, String tag) {
+        Subjects subjects = mArticle.getWorks().get(position).getSubject();
+        Log.d("XXW", "ID===" + subjects.getId());
+        Intent intent = new Intent(getActivity(), DetailMovieActivity.class);
+        intent.putExtra(DetailMovieActivity.DETAIL_TAG, subjects.getId());
+        getActivity().startActivity(intent);
+    }
 }

@@ -638,4 +638,5 @@ public class Article implements Parcelable{
                 ", clips=" + clips +
                 '}';
     }
+
 }

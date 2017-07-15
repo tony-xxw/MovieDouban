@@ -36,7 +36,6 @@ public class HotCurrentFragment extends BaseFragment<CurrentPresent> implements 
     RecyclerView mCurrentRv;
     @BindView(R.id.avl_loading)
     AVLoadingIndicatorView mAvlLoading;
-    Unbinder unbinder;
     private List<Subjects> mList;
     private CurrentAdapter mAdapter;
     private DividerItemDecoration mItemDecoration;
@@ -88,19 +87,6 @@ public class HotCurrentFragment extends BaseFragment<CurrentPresent> implements 
         mAdapter.notifyDataSetChanged();
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // TODO: inflate a fragment view
-        View rootView = super.onCreateView(inflater, container, savedInstanceState);
-        unbinder = ButterKnife.bind(this, rootView);
-        return rootView;
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
-    }
 
     @Override
     public void onItemClick(int position, String tag) {

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/rl_onclick"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:orientation="vertical">
 
 
@@ -14,9 +14,16 @@
         android:layout_marginStart="5dp"
         android:scaleType="centerCrop"/>
 
-    <ImageView
+    <TextView
         android:id="@+id/iv_all"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginStart="5dp"
+        android:background="@color/colorTranslucence"
+        android:gravity="center"
+        android:text="查看全部"
+        android:textColor="@color/colorBlack"
+        android:textSize="14sp"
         android:visibility="gone"/>
 </RelativeLayout>

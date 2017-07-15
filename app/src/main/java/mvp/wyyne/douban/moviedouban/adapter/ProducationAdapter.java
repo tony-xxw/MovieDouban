@@ -3,12 +3,10 @@ package mvp.wyyne.douban.moviedouban.adapter;
 import android.content.Context;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.RatingBar;
 
 import java.util.List;
 
 import mvp.wyyne.douban.moviedouban.R;
-import mvp.wyyne.douban.moviedouban.api.RvItemOnClick;
 import mvp.wyyne.douban.moviedouban.api.bean.Avatars;
 import mvp.wyyne.douban.moviedouban.api.bean.Subjects;
 import mvp.wyyne.douban.moviedouban.api.bean.Works;

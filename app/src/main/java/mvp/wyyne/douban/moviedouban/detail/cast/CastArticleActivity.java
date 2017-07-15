@@ -28,6 +28,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.adapter.PhotoFmAdapter;
 import mvp.wyyne.douban.moviedouban.api.bean.CastArticle;
@@ -187,4 +188,9 @@ public class CastArticleActivity extends BaseActivity<ICastPresent> implements I
     }
 
 
+
+    @OnClick(R.id.iv_back)
+    public void onViewClicked() {
+        finish();
+    }
 }

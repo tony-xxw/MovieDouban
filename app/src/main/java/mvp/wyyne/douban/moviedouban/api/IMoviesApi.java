@@ -1,9 +1,12 @@
 package mvp.wyyne.douban.moviedouban.api;
 
 
+import com.google.gson.JsonObject;
+
 import io.reactivex.Observable;
 import mvp.wyyne.douban.moviedouban.api.bean.Article;
 import mvp.wyyne.douban.moviedouban.api.bean.CastArticle;
+import mvp.wyyne.douban.moviedouban.api.bean.CastPhoto;
 import mvp.wyyne.douban.moviedouban.api.bean.HotBean;
 import mvp.wyyne.douban.moviedouban.api.bean.MoviesReviews;
 import mvp.wyyne.douban.moviedouban.api.bean.Stills;
@@ -35,6 +38,10 @@ public interface IMoviesApi {
     //电影剧照
     @GET("movie/subject/{id}/photos?apikey=0df993c66c0c636e29ecbb5344252a4a")
     Observable<Stills> getStillsPhotos(@Path("id") String id);
+
+    //影人剧照
+    @GET("movie/celebrity/{id}/photos?apikey=0df993c66c0c636e29ecbb5344252a4a")
+    Observable<CastPhoto> getCastPhotos(@Path("id") String id);
 
     //影人条目
     @GET("movie/celebrity/{id}?apikey=0df993c66c0c636e29ecbb5344252a4a")

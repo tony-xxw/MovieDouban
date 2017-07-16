@@ -31,6 +31,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.adapter.PhotoFmAdapter;
+import mvp.wyyne.douban.moviedouban.api.RvItemOnClick;
 import mvp.wyyne.douban.moviedouban.api.bean.CastArticle;
 import mvp.wyyne.douban.moviedouban.api.bean.Photos;
 import mvp.wyyne.douban.moviedouban.home.BaseActivity;
@@ -39,7 +40,7 @@ import mvp.wyyne.douban.moviedouban.home.BaseActivity;
  * Created by XXW on 2017/6/30.
  */
 
-public class CastArticleActivity extends BaseActivity<ICastPresent> implements ICastMain, AppBarLayout.OnOffsetChangedListener {
+public class CastArticleActivity extends BaseActivity<ICastPresent> implements ICastMain, AppBarLayout.OnOffsetChangedListener, RvItemOnClick {
     //影人条目Id
     public static final String CAST_ID = "cast_id";
     @BindView(R.id.iv_back)
@@ -97,6 +98,7 @@ public class CastArticleActivity extends BaseActivity<ICastPresent> implements I
         //设置影人相册Rv
         mRvPhoto.setLayoutManager(new GridLayoutManager(this, 4));
         mFmAdapter = new PhotoFmAdapter(this, mPhotosList);
+        mFmAdapter.setRvOnClick(this);
         mRvPhoto.setAdapter(mFmAdapter);
         mIvShare.setVisibility(View.VISIBLE);
         mPresent.getCastArticle(id);
@@ -188,9 +190,22 @@ public class CastArticleActivity extends BaseActivity<ICastPresent> implements I
     }
 
 
-
     @OnClick(R.id.iv_back)
     public void onViewClicked() {
         finish();
+    }
+
+    @Override
+    public void onItemClick(int position, String tag) {
+        switch (tag) {
+            case PhotoFmAdapter.ALL:
+                Log.d("XXW", "ALL");
+                break;
+            case PhotoFmAdapter.SINGLE:
+                Log.d("XXW", "SINGLE");
+                break;
+            default:
+                break;
+        }
     }
 }

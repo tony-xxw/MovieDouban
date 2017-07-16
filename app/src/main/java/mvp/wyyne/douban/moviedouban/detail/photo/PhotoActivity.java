@@ -23,7 +23,7 @@ import mvp.wyyne.douban.moviedouban.home.BaseActivity;
 import mvp.wyyne.douban.moviedouban.widget.PhotoViewPage;
 
 /**
- * 照片放大
+ * 剧照照片放大
  * Created by XXW on 2017/7/3.
  */
 

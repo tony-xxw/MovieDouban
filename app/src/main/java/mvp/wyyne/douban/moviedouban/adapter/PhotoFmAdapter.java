@@ -3,6 +3,10 @@ package mvp.wyyne.douban.moviedouban.adapter;
 import android.content.Context;
 import android.util.Log;
 import android.view.View;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -13,7 +17,12 @@ import mvp.wyyne.douban.moviedouban.api.bean.Photos;
  * Created by XXW on 2017/7/8.
  */
 
-public class PhotoFmAdapter extends BaseRvAdapter<Photos> implements View.OnClickListener {
+public class PhotoFmAdapter extends BaseRvAdapter<Photos> {
+    public static final String ALL = "all";
+    public static final String SINGLE = "single";
+    private TextView mAll;
+    private RelativeLayout mSingle;
+
     public PhotoFmAdapter(Context context, List<Photos> data) {
         super(context, data);
     }
@@ -24,16 +33,30 @@ public class PhotoFmAdapter extends BaseRvAdapter<Photos> implements View.OnClic
     }
 
     @Override
-    void bindView(BaseItemViewHolder holder, int position) {
+    void bindView(BaseItemViewHolder holder, final int position) {
         if (mList != null && position < 8) {
             if (position == 7) {
-                holder.getView(R.id.iv_all).setVisibility(View.VISIBLE);
-                holder.getView(R.id.iv_all).setOnClickListener(this);
+                mAll = holder.getView(R.id.iv_all);
+                mAll.setVisibility(View.VISIBLE);
+                mAll.setTag(position);
+                mAll.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mClick.onItemClick(position, ALL);
+                    }
+                });
             } else {
                 holder.getView(R.id.iv_all).setVisibility(View.GONE);
                 Log.d("XXW", "photo--" + mList.get(position).getImage());
                 holder.setImgUrl(R.id.iv_cast, mList.get(position).getCover());
-                holder.getView(R.id.iv_cast).setOnClickListener(this);
+                mSingle = holder.getView(R.id.rl_onclick);
+                mSingle.setTag(position);
+                mSingle.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mClick.onItemClick(position, SINGLE);
+                    }
+                });
             }
         }
 
@@ -49,8 +72,5 @@ public class PhotoFmAdapter extends BaseRvAdapter<Photos> implements View.OnClic
 
     }
 
-    @Override
-    public void onClick(View v) {
 
-    }
 }

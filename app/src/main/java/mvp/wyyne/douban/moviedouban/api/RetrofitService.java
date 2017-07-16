@@ -17,6 +17,7 @@ import io.reactivex.schedulers.Schedulers;
 import mvp.wyyne.douban.moviedouban.AndroidApplication;
 import mvp.wyyne.douban.moviedouban.api.bean.Article;
 import mvp.wyyne.douban.moviedouban.api.bean.CastArticle;
+import mvp.wyyne.douban.moviedouban.api.bean.CastPhoto;
 import mvp.wyyne.douban.moviedouban.api.bean.HotBean;
 import mvp.wyyne.douban.moviedouban.api.bean.MoviesReviews;
 import mvp.wyyne.douban.moviedouban.api.bean.Stills;
@@ -179,5 +180,12 @@ public class RetrofitService {
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
+    public static Observable<CastPhoto> getCastList(String castId) {
+        return mMoviesApi.getCastPhotos(castId).
+                subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .subscribeOn(AndroidSchedulers.mainThread())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
 
 }

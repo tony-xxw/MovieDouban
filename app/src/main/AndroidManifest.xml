@@ -48,6 +48,10 @@
             android:name=".detail.cast.CastDetailActivity"
             android:launchMode="singleTop"
             />
+        <activity
+            android:name=".detail.photo.CastPhotoActivity"
+            android:launchMode="singleTop"
+            />
     </application>
 
 </manifest>

@@ -34,7 +34,6 @@ public class StillsAdapter extends BaseRvAdapter<StillsPhotos> {
 
     @Override
     void bindView(BaseItemViewHolder holder, final int position) {
-        Log.d("XXW", "bindView");
         if (mList != null) {
             holder.setImgUrl(R.id.iv_all_stills, mList.get(position).getImage());
             holder.getView(R.id.iv_all_stills).setOnClickListener(new View.OnClickListener() {
@@ -48,11 +47,11 @@ public class StillsAdapter extends BaseRvAdapter<StillsPhotos> {
 
     @Override
     void bindHeadView(BaseItemViewHolder holder, int position) {
-        Log.d("XXW", "bindHeadView");
+
     }
 
     @Override
     void bindFooterView(BaseItemViewHolder holder, int position) {
-        Log.d("XXW", "bindFooterView");
+
     }
 }

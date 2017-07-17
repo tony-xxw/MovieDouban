@@ -1,7 +1,10 @@
 package mvp.wyyne.douban.moviedouban.detail.photo;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -20,14 +23,16 @@ import mvp.wyyne.douban.moviedouban.api.RetrofitService;
 import mvp.wyyne.douban.moviedouban.api.bean.CastPhoto;
 import mvp.wyyne.douban.moviedouban.api.bean.Stills;
 import mvp.wyyne.douban.moviedouban.api.bean.StillsPhotos;
+import mvp.wyyne.douban.moviedouban.detail.DetailMovieActivity;
 import mvp.wyyne.douban.moviedouban.home.BaseActivity;
+import mvp.wyyne.douban.moviedouban.home.IMain;
 import mvp.wyyne.douban.moviedouban.widget.PhotoViewPage;
 
 /**
  * Created by XXW on 2017/7/15.
  */
 
-public class CastPhotoActivity extends BaseActivity implements ViewPager.OnPageChangeListener {
+public class CastPhotoActivity extends BaseActivity implements ViewPager.OnPageChangeListener, IMain {
     public static final String ID = "subjectId";
     public static final String POSITION = "position";
     @BindView(R.id.vp_page)
@@ -53,7 +58,7 @@ public class CastPhotoActivity extends BaseActivity implements ViewPager.OnPageC
     private String mSubject;
     private int position;
     private String subjectId;
-    private Stills mStills;
+    private CastPhoto mCast;
 
 
     @Override
@@ -71,6 +76,7 @@ public class CastPhotoActivity extends BaseActivity implements ViewPager.OnPageC
         if (getIntent() != null) {
             mSubject = getIntent().getStringExtra(ID);
             position = getIntent().getIntExtra(POSITION, 0);
+            Log.d("XXW", "===mSubject===" + mSubject + "===position===" + position);
         }
         mList = new ArrayList<>();
         mPageAdapter = new PhotoPageAdapter(this, mList);
@@ -83,12 +89,16 @@ public class CastPhotoActivity extends BaseActivity implements ViewPager.OnPageC
     Observer<CastPhoto> mObserver = new Observer<CastPhoto>() {
         @Override
         public void onSubscribe(@NonNull Disposable d) {
-
+            show();
         }
 
         @Override
         public void onNext(@NonNull CastPhoto castPhoto) {
-
+            mCast = castPhoto;
+            mList = castPhoto.getPhotos();
+            mPageAdapter.setList(mList);
+            mPageAdapter.notifyDataSetChanged();
+            mVpPage.setCurrentItem(position, false);
         }
 
         @Override
@@ -98,7 +108,7 @@ public class CastPhotoActivity extends BaseActivity implements ViewPager.OnPageC
 
         @Override
         public void onComplete() {
-
+            hide();
         }
     };
 
@@ -117,7 +127,7 @@ public class CastPhotoActivity extends BaseActivity implements ViewPager.OnPageC
     public void onPageSelected(int position) {
         mVpPage.setCurrentItem(position);
         subjectId = mList.get(position).getSubject_id();
-        mTvCount.setText(getString(R.string.view_image) + "(" + position++ + "/" + mStills.getCount() + ")");
+        mTvCount.setText(getString(R.string.view_image) + "(" + position++ + "/" + mCast.getCount() + ")");
         mTvCommentCount.setText(mList.get(position).getComments_count() + "");
         mTvPhotoTime.setText(mList.get(position).getCreated_at());
     }
@@ -126,4 +136,33 @@ public class CastPhotoActivity extends BaseActivity implements ViewPager.OnPageC
     public void onPageScrollStateChanged(int state) {
 
     }
+
+    @OnClick({R.id.iv_love, R.id.iv_comment, R.id.btn_article, R.id.iv_down})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.iv_love:
+
+                break;
+            case R.id.iv_comment:
+                break;
+            case R.id.btn_article:
+                Intent intent = new Intent(this, DetailMovieActivity.class);
+                intent.putExtra(DetailMovieActivity.DETAIL_TAG, subjectId);
+                startActivity(intent);
+                break;
+            case R.id.iv_down:
+                break;
+        }
+    }
+
+    @Override
+    public void show() {
+        mLodingView.show();
+    }
+
+    @Override
+    public void hide() {
+        mLodingView.hide();
+    }
+
 }

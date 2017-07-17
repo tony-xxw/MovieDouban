@@ -1,7 +1,11 @@
 package mvp.wyyne.douban.moviedouban.detail.stills;
 
 
+import java.util.List;
+
+import mvp.wyyne.douban.moviedouban.api.bean.CastPhoto;
 import mvp.wyyne.douban.moviedouban.api.bean.Stills;
+import mvp.wyyne.douban.moviedouban.api.bean.StillsPhotos;
 import mvp.wyyne.douban.moviedouban.home.IMain;
 
 /**
@@ -11,6 +15,8 @@ import mvp.wyyne.douban.moviedouban.home.IMain;
 public interface AllStillMain extends IMain {
 
     void update(Stills stills);
+
+    void updateCast(CastPhoto stills);
 
     void updateTitle();
 }

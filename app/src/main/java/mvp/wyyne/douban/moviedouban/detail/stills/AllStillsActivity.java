@@ -1,8 +1,10 @@
 package mvp.wyyne.douban.moviedouban.detail.stills;
 
 import android.content.Intent;
+import android.graphics.Point;
 import android.os.Binder;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -18,8 +20,10 @@ import butterknife.ButterKnife;
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.adapter.StillsAdapter;
 import mvp.wyyne.douban.moviedouban.api.RvItemOnClick;
+import mvp.wyyne.douban.moviedouban.api.bean.CastPhoto;
 import mvp.wyyne.douban.moviedouban.api.bean.Stills;
 import mvp.wyyne.douban.moviedouban.api.bean.StillsPhotos;
+import mvp.wyyne.douban.moviedouban.detail.photo.CastPhotoActivity;
 import mvp.wyyne.douban.moviedouban.detail.photo.PhotoActivity;
 import mvp.wyyne.douban.moviedouban.home.BaseActivity;
 
@@ -28,6 +32,8 @@ import mvp.wyyne.douban.moviedouban.home.BaseActivity;
  */
 
 public class AllStillsActivity extends BaseActivity<AllStillsPresent> implements AllStillMain, View.OnClickListener, RvItemOnClick {
+    public static final String STILLS = "stills";
+    public static final String CAST = "cast";
     @BindView(R.id.iv_back)
     ImageView mIvBack;
     @BindView(R.id.tv_stills_title)
@@ -37,7 +43,8 @@ public class AllStillsActivity extends BaseActivity<AllStillsPresent> implements
     private Stills mStills;
     private StillsAdapter mAdapter;
     private List<StillsPhotos> mList;
-    private String mId;
+    private String mStillId;
+    private String mCastId;
     private GridLayoutManager mManager;
 
     @Override
@@ -52,9 +59,10 @@ public class AllStillsActivity extends BaseActivity<AllStillsPresent> implements
 
     @Override
     protected void initView() {
-        if (getIntent().getStringExtra("id") != null) {
-            mId = getIntent().getStringExtra("id");
-            Log.d("XXW", "Id---" + mId);
+        if (getIntent() != null) {
+            mStillId = getIntent().getStringExtra(STILLS);
+            mCastId = getIntent().getStringExtra(CAST);
+            Log.d("XXW", "mStillId===" + mStillId + "===" + mCastId);
         }
         mIvBack.setOnClickListener(this);
         mPresent = new AllStillsImp(this);
@@ -64,7 +72,11 @@ public class AllStillsActivity extends BaseActivity<AllStillsPresent> implements
         mAdapter.setOnItemClick(this);
         mRvAllStills.setLayoutManager(mManager);
         mRvAllStills.setAdapter(mAdapter);
-        mPresent.getList(mId);
+        if (mStillId != null) {
+            mPresent.getStills(mStillId);
+        } else {
+            mPresent.getCasts(mCastId);
+        }
     }
 
 
@@ -81,17 +93,30 @@ public class AllStillsActivity extends BaseActivity<AllStillsPresent> implements
 
     @Override
     public void update(Stills stills) {
-        Log.d("XXW", stills.getCount() + "---count" + "---size---" + stills.getPhotos().size());
         mList = stills.getPhotos();
         mStills = stills;
         mAdapter.setList(stills.getPhotos());
         mAdapter.notifyDataSetChanged();
     }
 
+    private CastPhoto mCastPhoto;
+
+    @Override
+    public void updateCast(CastPhoto stills) {
+        mCastPhoto = stills;
+        mAdapter.setList(stills.getPhotos());
+        mAdapter.notifyDataSetChanged();
+    }
+
+
     @Override
     public void updateTitle() {
-        String title = mStills.getSubject().getTitle();
-        mTvStillsTitle.setText(title + "剧照 " + "(" + mStills.getCount() + ")");
+        if (mStills != null) {
+            String title = mStills.getSubject().getTitle();
+            mTvStillsTitle.setText(title + "剧照 " + "(" + mStills.getCount() + ")");
+        } else {
+            mTvStillsTitle.setText("" + "剧照 " + "(" + mCastPhoto.getCount() + ")");
+        }
     }
 
 
@@ -104,9 +129,18 @@ public class AllStillsActivity extends BaseActivity<AllStillsPresent> implements
 
     @Override
     public void onItemClick(int position, String tag) {
-        Intent intent = new Intent(this, PhotoActivity.class);
-        intent.putExtra(PhotoActivity.ID, mId);
-        intent.putExtra(PhotoActivity.POSITION, position);
-        startActivity(intent);
+        if (mStillId != null) {
+            Log.d("XXW", "STILLS");
+            Intent intent = new Intent(this, PhotoActivity.class);
+            intent.putExtra(PhotoActivity.ID, mStillId);
+            intent.putExtra(PhotoActivity.POSITION, position);
+            startActivity(intent);
+        } else {
+            Log.d("XXW", "mCastId");
+            Intent intent = new Intent(this, CastPhotoActivity.class);
+            intent.putExtra(CastPhotoActivity.ID, mCastId);
+            intent.putExtra(CastPhotoActivity.POSITION, position);
+            startActivity(intent);
+        }
     }
 }

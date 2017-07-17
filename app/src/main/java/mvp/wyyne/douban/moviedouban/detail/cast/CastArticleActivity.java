@@ -1,6 +1,7 @@
 package mvp.wyyne.douban.moviedouban.detail.cast;
 
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -34,6 +35,9 @@ import mvp.wyyne.douban.moviedouban.adapter.PhotoFmAdapter;
 import mvp.wyyne.douban.moviedouban.api.RvItemOnClick;
 import mvp.wyyne.douban.moviedouban.api.bean.CastArticle;
 import mvp.wyyne.douban.moviedouban.api.bean.Photos;
+import mvp.wyyne.douban.moviedouban.detail.photo.CastPhotoActivity;
+import mvp.wyyne.douban.moviedouban.detail.photo.PhotoActivity;
+import mvp.wyyne.douban.moviedouban.detail.stills.AllStillsActivity;
 import mvp.wyyne.douban.moviedouban.home.BaseActivity;
 
 /**
@@ -200,9 +204,16 @@ public class CastArticleActivity extends BaseActivity<ICastPresent> implements I
         switch (tag) {
             case PhotoFmAdapter.ALL:
                 Log.d("XXW", "ALL");
+                Intent all = new Intent(this, AllStillsActivity.class);
+                all.putExtra(AllStillsActivity.CAST, id);
+                startActivity(all);
                 break;
             case PhotoFmAdapter.SINGLE:
                 Log.d("XXW", "SINGLE");
+                Intent intent = new Intent(this, CastPhotoActivity.class);
+                intent.putExtra(PhotoActivity.ID, id);
+                intent.putExtra(PhotoActivity.POSITION, position);
+                startActivity(intent);
                 break;
             default:
                 break;

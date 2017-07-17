@@ -80,6 +80,7 @@ public class PhotoActivity extends BaseActivity<IPhotoPresent> implements IPhoto
         if (getIntent() != null) {
             mSubject = getIntent().getStringExtra(ID);
             position = getIntent().getIntExtra(POSITION, 0);
+            Log.d("XXW", "===mSubject===" + mSubject + "===position===" + position);
         }
         mList = new ArrayList<>();
         mPageAdapter = new PhotoPageAdapter(this, mList);

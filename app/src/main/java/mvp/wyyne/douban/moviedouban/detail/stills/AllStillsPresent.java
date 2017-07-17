@@ -8,5 +8,7 @@ import mvp.wyyne.douban.moviedouban.home.IPresent;
 
 public interface AllStillsPresent extends IPresent {
 
-    void getList(String id);
+    void getStills(String id);
+
+    void getCasts(String id);
 }

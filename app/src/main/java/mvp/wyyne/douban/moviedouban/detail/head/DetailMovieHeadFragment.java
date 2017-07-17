@@ -173,7 +173,7 @@ public class DetailMovieHeadFragment extends BaseFragment<DHeadImp> implements I
             getActivity().startActivity(mCastHead);
         } else if (tag.equals(PhotoAdapter.FOOTER)) {
             Intent mCastFooter = new Intent(getActivity(), AllStillsActivity.class);
-            mCastFooter.putExtra("id", mArticle.getId());
+            mCastFooter.putExtra(AllStillsActivity.STILLS, mArticle.getId());
             getActivity().startActivity(mCastFooter);
         } else if (tag.equals(CastAdapter.CAST)) {
             //跳转影人条目

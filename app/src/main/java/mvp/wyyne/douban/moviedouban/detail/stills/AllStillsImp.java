@@ -6,6 +6,8 @@ import io.reactivex.Observer;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 import mvp.wyyne.douban.moviedouban.api.RetrofitService;
+import mvp.wyyne.douban.moviedouban.api.bean.CastArticle;
+import mvp.wyyne.douban.moviedouban.api.bean.CastPhoto;
 import mvp.wyyne.douban.moviedouban.api.bean.Stills;
 
 /**
@@ -21,7 +23,7 @@ public class AllStillsImp implements AllStillsPresent {
 
 
     @Override
-    public void getList(String id) {
+    public void getStills(String id) {
         RetrofitService.getStillsPhotos(id).
                 subscribe(new Observer<Stills>() {
                     @Override
@@ -50,5 +52,33 @@ public class AllStillsImp implements AllStillsPresent {
     @Override
     public void getData() {
 
+    }
+
+
+    @Override
+    public void getCasts(String id) {
+        RetrofitService.getCastList(id).
+                subscribe(new Observer<CastPhoto>() {
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(@NonNull CastPhoto stills) {
+                        Log.d("XXW", "stills--" + stills.getCount());
+                        mMain.updateCast(stills);
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        mMain.updateTitle();
+                    }
+                });
     }
 }

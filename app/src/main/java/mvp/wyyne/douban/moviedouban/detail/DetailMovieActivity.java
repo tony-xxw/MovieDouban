@@ -36,7 +36,7 @@ import mvp.wyyne.douban.moviedouban.home.BaseActivity;
  * Created by XXW on 2017/6/18.
  */
 
-public class DetailMovieActivity extends BaseActivity<DetailMoviePresent> implements
+public class DetailMovieActivity extends BaseActivity<DetailMovieImp> implements
         IDetailMain, AppBarLayout.OnOffsetChangedListener {
     public static final String DETAIL_TAG = "detail";
     @BindView(R.id.iv_back)
@@ -96,7 +96,7 @@ public class DetailMovieActivity extends BaseActivity<DetailMoviePresent> implem
         //NestedScrollView中嵌套ViewPager不显示 设置为true
         mNestedScrollView.setFillViewport(true);
         mBarLayout.addOnOffsetChangedListener(this);
-        mPresent = new DetailMoviePresent(this, getSupportFragmentManager());
+        mPresent = new DetailMovieImp(this, getSupportFragmentManager());
         mPresent.getArticle(mSubjectsId);
 
 

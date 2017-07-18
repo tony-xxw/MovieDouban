@@ -170,6 +170,7 @@ public class DetailMovieHeadFragment extends BaseFragment<DHeadImp> implements I
             getActivity().startActivity(singlePt);
         } else if (tag.equals(PhotoAdapter.HEAD)) {
             Intent mCastHead = new Intent(getActivity(), StillsActivity.class);
+            mCastHead.putExtra(StillsActivity.MESSAGE, mArticle);
             getActivity().startActivity(mCastHead);
         } else if (tag.equals(PhotoAdapter.FOOTER)) {
             Intent mCastFooter = new Intent(getActivity(), AllStillsActivity.class);

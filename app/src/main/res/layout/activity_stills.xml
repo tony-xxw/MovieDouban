@@ -4,9 +4,9 @@
              android:layout_height="match_parent"
              android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="预告片"/>
+
+    <fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard
+        android:id="@+id/jp_video"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"/>
 </FrameLayout>

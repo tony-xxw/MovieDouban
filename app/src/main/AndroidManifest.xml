@@ -33,7 +33,9 @@
             />
         <activity
             android:name=".detail.stills.StillsActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
             android:launchMode="singleTop"
+            android:screenOrientation="portrait"
             />
         <activity
             android:name=".detail.stills.AllStillsActivity"

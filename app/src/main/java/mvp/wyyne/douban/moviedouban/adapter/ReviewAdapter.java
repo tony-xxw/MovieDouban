@@ -49,7 +49,7 @@ public class ReviewAdapter extends BaseRvAdapter<PopularCmRv> {
 
     @Override
     public int getItemCount() {
-        return mList.size() + getFooterViewCount() + getHeadViewCount();
+        return mList.size() > 5 ? 7 : mList.size() + getFooterViewCount() + getHeadViewCount();
     }
 
     @Override

@@ -35,7 +35,7 @@ public class ReviewAdapter extends BaseRvAdapter<PopularCmRv> {
     @Override
     void bindView(BaseItemViewHolder holder, int position) {
         Log.d("XXW", "size--" + mList.size());
-        if (position < 5) {
+        if (position < 5 && position < mList.size()) {
             mPopularCm = mList.get(position);
             Log.d("XXW", mPopularCm.toString());
             holder.setText(R.id.tv_reviews_title, mList.get(position).getTitle());
@@ -49,7 +49,7 @@ public class ReviewAdapter extends BaseRvAdapter<PopularCmRv> {
 
     @Override
     public int getItemCount() {
-        return 7;
+        return mList.size() + getFooterViewCount() + getHeadViewCount();
     }
 
     @Override

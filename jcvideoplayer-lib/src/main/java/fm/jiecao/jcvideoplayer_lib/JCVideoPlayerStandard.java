@@ -227,10 +227,18 @@ public class JCVideoPlayerStandard extends JCVideoPlayer {
         } else if (i == R.id.surface_container) {
             startDismissControlViewTimer();
         } else if (i == R.id.back) {
-            backPress();
+            if (mActivity != null) {
+                mActivity.finish();
+            }
         } else if (i == R.id.back_tiny) {
             backPress();
         }
+    }
+
+    private Activity mActivity;
+
+    public void setActivity(Activity context) {
+        mActivity = context;
     }
 
 

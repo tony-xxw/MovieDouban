@@ -138,12 +138,14 @@ public class DetailMovieHeadFragment extends BaseFragment<DHeadImp> implements I
         mPhoto = mArticle.getPhotos();
         mTrailerses = mArticle.getTrailers();
         mPhotosAdapter = new PhotoAdapter(getActivity(), mPhoto);
-        mPhotosAdapter.setHeadData(mTrailerses);
-        mPhotosAdapter.setFooterData(mArticle.getPhotos_count());
         mStillsManager = new LinearLayoutManager(getActivity());
         mStillsManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         mRvPhoto.setLayoutManager(mStillsManager);
-        mPhotosAdapter.setHeadView(RecycleViewUtils.addHeadView(mRvPhoto, R.layout.moview_detail_stills_head, getActivity()));
+        if (mTrailerses != null && mTrailerses.size() != 0) {
+            mPhotosAdapter.setHeadData(mTrailerses);
+            mPhotosAdapter.setHeadView(RecycleViewUtils.addHeadView(mRvPhoto, R.layout.moview_detail_stills_head, getActivity()));
+        }
+        mPhotosAdapter.setFooterData(mArticle.getPhotos_count());
         mPhotosAdapter.setFooterView(RecycleViewUtils.addHeadView(mRvPhoto, R.layout.moview_detail_stills_footer, getActivity()));
         mPhotosAdapter.setRvOnClick(this);
         mRvPhoto.setAdapter(mPhotosAdapter);

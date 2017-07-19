@@ -9,7 +9,7 @@ import java.util.List;
  * Created by XXW on 2017/6/13.
  */
 
-public class Article implements Parcelable{
+public class Article implements Parcelable {
 
 
     /**
@@ -90,7 +90,6 @@ public class Article implements Parcelable{
     private List<String> clip_urls;
     private List<Trailers> clips;
 
-
     protected Article(Parcel in) {
         trailer_urls = in.createStringArrayList();
         has_video = in.readByte() != 0;
@@ -149,57 +148,17 @@ public class Article implements Parcelable{
         }
     };
 
-    @Override
-    public int describeContents() {
-        return 0;
+    public List<Videos> getVideos() {
+        return videos;
     }
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeStringList(trailer_urls);
-        dest.writeByte((byte) (has_video ? 1 : 0));
-        dest.writeParcelable(rating, flags);
-        dest.writeTypedList(popular_comments);
-        dest.writeInt(reviews_count);
-        dest.writeInt(wish_count);
-        dest.writeString(douban_site);
-        dest.writeString(pubdate);
-        dest.writeString(year);
-        dest.writeParcelable(images, flags);
-        dest.writeString(alt);
-        dest.writeInt(photos_count);
-        dest.writeString(id);
-        dest.writeString(mainland_pubdate);
-        dest.writeString(mobile_url);
-        dest.writeString(title);
-        dest.writeString(share_url);
-        dest.writeString(schedule_url);
-        dest.writeInt(collect_count);
-        dest.writeString(original_title);
-        dest.writeString(summary);
-        dest.writeString(subtype);
-        dest.writeInt(comments_count);
-        dest.writeInt(ratings_count);
-        dest.writeTypedList(photos);
-        dest.writeStringList(languages);
-        dest.writeStringList(blooper_urls);
-        dest.writeStringList(countries);
-        dest.writeStringList(genres);
-        dest.writeStringList(pubdates);
-        dest.writeTypedList(casts);
-        dest.writeTypedList(directors);
-        dest.writeStringList(aka);
-        dest.writeTypedList(writers);
-        dest.writeString(website);
-        dest.writeStringList(tags);
-        dest.writeByte((byte) (has_schedule ? 1 : 0));
-        dest.writeStringList(durations);
-        dest.writeTypedList(trailers);
-        dest.writeByte((byte) (has_ticket ? 1 : 0));
-        dest.writeTypedList(bloopers);
-        dest.writeStringList(clip_urls);
-        dest.writeTypedList(clips);
+    public void setVideos(List<Videos> videos) {
+        this.videos = videos;
     }
+
+    private List<Videos> videos;
+
+
 
     public List<String> getTrailer_urls() {
         return trailer_urls;
@@ -639,4 +598,55 @@ public class Article implements Parcelable{
                 '}';
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeStringList(trailer_urls);
+        dest.writeByte((byte) (has_video ? 1 : 0));
+        dest.writeParcelable(rating, flags);
+        dest.writeTypedList(popular_comments);
+        dest.writeInt(reviews_count);
+        dest.writeInt(wish_count);
+        dest.writeString(douban_site);
+        dest.writeString(pubdate);
+        dest.writeString(year);
+        dest.writeParcelable(images, flags);
+        dest.writeString(alt);
+        dest.writeInt(photos_count);
+        dest.writeString(id);
+        dest.writeString(mainland_pubdate);
+        dest.writeString(mobile_url);
+        dest.writeString(title);
+        dest.writeString(share_url);
+        dest.writeString(schedule_url);
+        dest.writeInt(collect_count);
+        dest.writeString(original_title);
+        dest.writeString(summary);
+        dest.writeString(subtype);
+        dest.writeInt(comments_count);
+        dest.writeInt(ratings_count);
+        dest.writeTypedList(photos);
+        dest.writeStringList(languages);
+        dest.writeStringList(blooper_urls);
+        dest.writeStringList(countries);
+        dest.writeStringList(genres);
+        dest.writeStringList(pubdates);
+        dest.writeTypedList(casts);
+        dest.writeTypedList(directors);
+        dest.writeStringList(aka);
+        dest.writeTypedList(writers);
+        dest.writeString(website);
+        dest.writeStringList(tags);
+        dest.writeByte((byte) (has_schedule ? 1 : 0));
+        dest.writeStringList(durations);
+        dest.writeTypedList(trailers);
+        dest.writeByte((byte) (has_ticket ? 1 : 0));
+        dest.writeTypedList(bloopers);
+        dest.writeStringList(clip_urls);
+        dest.writeTypedList(clips);
+    }
 }

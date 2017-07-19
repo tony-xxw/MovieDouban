@@ -9,6 +9,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 import mvp.wyyne.douban.moviedouban.widget.StartView;
 
@@ -39,6 +40,12 @@ public class BaseItemViewHolder extends RecyclerView.ViewHolder {
     public BaseItemViewHolder setImgUrl(int viewId, String url) {
         ImageView iv = getView(viewId);
         Glide.with(mContext).load(url).into(iv);
+        return this;
+    }
+
+    public BaseItemViewHolder setImgResource(int viewId, int resourceId) {
+        ImageView iv = getView(viewId);
+        iv.setImageResource(resourceId);
         return this;
     }
 

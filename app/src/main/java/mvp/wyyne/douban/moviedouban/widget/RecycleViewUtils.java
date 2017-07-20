@@ -12,11 +12,11 @@ import android.view.View;
 
 public class RecycleViewUtils {
 
-    public static View addHeadView(RecyclerView recyclerView, int rouseId, Context context) {
-        return LayoutInflater.from(context).inflate(rouseId, recyclerView, false);
+    public static View addHeadView(int rouseId, Context context) {
+        return LayoutInflater.from(context).inflate(rouseId, null);
     }
 
-    public static View addFooterView(RecyclerView recyclerView, int rouseId, Context context) {
-        return LayoutInflater.from(context).inflate(rouseId, recyclerView, false);
+    public static View addFooterView(int rouseId, Context context) {
+        return LayoutInflater.from(context).inflate(rouseId, null);
     }
 }

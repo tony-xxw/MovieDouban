@@ -79,16 +79,16 @@ public class CommentFragment extends BaseFragment {
         mReviewsManager.setOrientation(LinearLayoutManager.VERTICAL);
         mReviewAdapter.setArticle(mArticle);
         mRvReview.setLayoutManager(mReviewsManager);
-        mReviewAdapter.setHeadView(RecycleViewUtils.addHeadView(mRvReview, R.layout.item_comment_head, getActivity()));
-        mReviewAdapter.setFooterView(RecycleViewUtils.addFooterView(mRvReview, R.layout.item_comment_footer, getActivity()));
+        mReviewAdapter.setHeadView(RecycleViewUtils.addHeadView(R.layout.item_comment_head, getActivity()));
+        mReviewAdapter.setFooterView(RecycleViewUtils.addFooterView(R.layout.item_comment_footer, getActivity()));
         mRvReview.setAdapter(mReviewAdapter);
         mAdapter = new CommentAdapter(getActivity(), mArticle.getPopular_comments());
         mAdapter.setArticle(mArticle);
         mManager = new LinearLayoutManager(getActivity());
         mManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRvComment.setLayoutManager(mManager);
-        mAdapter.setHeadView(RecycleViewUtils.addHeadView(mRvComment, R.layout.item_comment_head, getActivity()));
-        mAdapter.setFooterView(RecycleViewUtils.addFooterView(mRvReview, R.layout.item_comment_footer, getActivity()));
+        mAdapter.setHeadView(RecycleViewUtils.addHeadView(R.layout.item_comment_head, getActivity()));
+        mAdapter.setFooterView(RecycleViewUtils.addFooterView(R.layout.item_comment_footer, getActivity()));
         mRvComment.setAdapter(mAdapter);
 
     }

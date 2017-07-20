@@ -4,9 +4,13 @@ package mvp.wyyne.douban.moviedouban.detail.stills;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -15,10 +19,13 @@ import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard;
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.adapter.TvAdapter;
+import mvp.wyyne.douban.moviedouban.adapter.TvHeadAdapter;
 import mvp.wyyne.douban.moviedouban.api.bean.Article;
 import mvp.wyyne.douban.moviedouban.api.bean.Source;
+import mvp.wyyne.douban.moviedouban.api.bean.Trailers;
 import mvp.wyyne.douban.moviedouban.api.bean.TvBean;
 import mvp.wyyne.douban.moviedouban.home.BaseActivity;
+import mvp.wyyne.douban.moviedouban.widget.RecycleViewUtils;
 
 /**
  * Created by XXW on 2017/7/2.
@@ -30,9 +37,11 @@ public class StillsActivity extends BaseActivity {
     JCVideoPlayerStandard mJpVideo;
     @BindView(R.id.rv_tv)
     RecyclerView mRvTv;
+    RecyclerView mRvTvHead;
     private Article mArticle;
     private TvAdapter mTvAdapter;
     private LinearLayoutManager mManager;
+    private LinearLayoutManager mHeadManager;
     //组装数据
     private TvBean[] mBeen =
             {
@@ -48,6 +57,9 @@ public class StillsActivity extends BaseActivity {
     private List<String> mTvName;
     private List<TvBean> mTvBeendefault;
     private List<TvBean> mTvBean;
+    private TvHeadAdapter mTvHeadAdapter;
+    private List<Trailers> mTrailerses;
+    private View mHeadView;
 
 
     @Override
@@ -71,6 +83,7 @@ public class StillsActivity extends BaseActivity {
     }
 
     private void initDate() {
+        mTrailerses = new ArrayList<>();
         mTvBeendefault = Arrays.asList(mBeen);
         mTvName = Arrays.asList(mName);
         if (mArticle.getVideos() != null && mArticle.getVideos().size() != 0) {
@@ -90,8 +103,32 @@ public class StillsActivity extends BaseActivity {
         mManager = new LinearLayoutManager(this);
         mManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRvTv.setLayoutManager(mManager);
+
+        mHeadView = LayoutInflater.from(this).inflate(R.layout.activity_stills_head, null);
+        initHeadView();
+        mTvAdapter.setHeadView(mHeadView);
         mRvTv.setAdapter(mTvAdapter);
 
+    }
+
+
+    public void initHeadView() {
+        if (mArticle.getTrailers().size() != 0) {
+            for (Trailers trailers : mArticle.getTrailers()) {
+                mTrailerses.add(trailers);
+            }
+        }
+        if (mArticle.getBloopers().size() != 0) {
+            for (Trailers trailers : mArticle.getBloopers()) {
+                mTrailerses.add(trailers);
+            }
+        }
+        mRvTvHead = (RecyclerView) mHeadView.findViewById(R.id.rv_tv_head);
+        mHeadManager = new LinearLayoutManager(this);
+        mHeadManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        mRvTvHead.setLayoutManager(mHeadManager);
+        mTvHeadAdapter = new TvHeadAdapter(this, mTrailerses);
+        mRvTvHead.setAdapter(mTvHeadAdapter);
     }
 
     private void initVideo() {

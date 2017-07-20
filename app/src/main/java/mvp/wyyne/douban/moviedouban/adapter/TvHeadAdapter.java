@@ -1,6 +1,8 @@
 package mvp.wyyne.douban.moviedouban.adapter;
 
 import android.content.Context;
+import android.view.View;
+import android.widget.LinearLayout;
 
 import java.util.List;
 
@@ -11,7 +13,8 @@ import mvp.wyyne.douban.moviedouban.api.bean.Trailers;
  * Created by XXW on 2017/7/20.
  */
 
-public class TvHeadAdapter extends BaseRvAdapter<Trailers> {
+public class TvHeadAdapter extends BaseRvAdapter<Trailers> implements View.OnClickListener {
+    private LinearLayout mLayout;
 
     public TvHeadAdapter(Context context, List<Trailers> data) {
         super(context, data);
@@ -29,6 +32,9 @@ public class TvHeadAdapter extends BaseRvAdapter<Trailers> {
             holder.setImgUrl(R.id.iv_still, trailers.getMedium());
             holder.setText(R.id.tv_still, trailers.getTitle());
         }
+        mLayout = holder.getView(R.id.ll_onclick);
+        mLayout.setTag(position);
+        mLayout.setOnClickListener(this);
     }
 
     @Override
@@ -39,5 +45,10 @@ public class TvHeadAdapter extends BaseRvAdapter<Trailers> {
     @Override
     void bindFooterView(BaseItemViewHolder holder, int position) {
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        mClick.onItemClick((int) (v.getTag()), "");
     }
 }

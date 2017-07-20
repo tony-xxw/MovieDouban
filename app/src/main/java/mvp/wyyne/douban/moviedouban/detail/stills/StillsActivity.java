@@ -20,6 +20,7 @@ import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard;
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.adapter.TvAdapter;
 import mvp.wyyne.douban.moviedouban.adapter.TvHeadAdapter;
+import mvp.wyyne.douban.moviedouban.api.RvItemOnClick;
 import mvp.wyyne.douban.moviedouban.api.bean.Article;
 import mvp.wyyne.douban.moviedouban.api.bean.Source;
 import mvp.wyyne.douban.moviedouban.api.bean.Trailers;
@@ -31,7 +32,7 @@ import mvp.wyyne.douban.moviedouban.widget.RecycleViewUtils;
  * Created by XXW on 2017/7/2.
  */
 
-public class StillsActivity extends BaseActivity {
+public class StillsActivity extends BaseActivity implements RvItemOnClick {
     public static final String MESSAGE = "message";
     @BindView(R.id.jp_video)
     JCVideoPlayerStandard mJpVideo;
@@ -104,7 +105,7 @@ public class StillsActivity extends BaseActivity {
         mManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRvTv.setLayoutManager(mManager);
 
-        mHeadView = LayoutInflater.from(this).inflate(R.layout.activity_stills_head, null);
+        mHeadView = RecycleViewUtils.addHeadView(R.layout.activity_stills_head, this);
         initHeadView();
         mTvAdapter.setHeadView(mHeadView);
         mRvTv.setAdapter(mTvAdapter);
@@ -128,6 +129,7 @@ public class StillsActivity extends BaseActivity {
         mHeadManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         mRvTvHead.setLayoutManager(mHeadManager);
         mTvHeadAdapter = new TvHeadAdapter(this, mTrailerses);
+        mTvHeadAdapter.setRvOnClick(this);
         mRvTvHead.setAdapter(mTvHeadAdapter);
     }
 
@@ -161,4 +163,11 @@ public class StillsActivity extends BaseActivity {
     }
 
 
+    @Override
+    public void onItemClick(int position, String tag) {
+        if (mArticle != null) {
+            mJpVideo.setUp(mTrailerses.get(position).getResource_url(), JCVideoPlayerStandard.SCREEN_LAYOUT_NORMAL);
+            Glide.with(this).load(mTrailerses.get(position).getMedium()).into(mJpVideo.thumbImageView);
+        }
+    }
 }

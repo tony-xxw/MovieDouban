@@ -3,12 +3,9 @@ package mvp.wyyne.douban.moviedouban.adapter;
 import android.content.Context;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-
-import org.w3c.dom.Text;
 
 import java.util.List;
 

@@ -7,7 +7,6 @@ import java.util.List;
 
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.api.bean.Article;
-import mvp.wyyne.douban.moviedouban.api.bean.PopularCm;
 import mvp.wyyne.douban.moviedouban.api.bean.PopularCmRv;
 
 /**

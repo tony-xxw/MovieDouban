@@ -1,8 +1,6 @@
 package mvp.wyyne.douban.moviedouban.adapter;
 
 import android.content.Context;
-import android.nfc.Tag;
-import android.util.Log;
 import android.view.View;
 
 import java.util.List;

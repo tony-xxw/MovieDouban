@@ -1,7 +1,6 @@
 package mvp.wyyne.douban.moviedouban.adapter;
 
 import android.content.Context;
-import android.util.Log;
 
 import java.util.List;
 

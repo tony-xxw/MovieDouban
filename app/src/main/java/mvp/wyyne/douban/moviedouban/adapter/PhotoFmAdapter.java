@@ -6,8 +6,6 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 import java.util.List;
 
 import mvp.wyyne.douban.moviedouban.R;

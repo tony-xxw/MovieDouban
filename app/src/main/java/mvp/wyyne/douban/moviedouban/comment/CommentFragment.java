@@ -4,26 +4,15 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 import mvp.wyyne.douban.moviedouban.R;
-import mvp.wyyne.douban.moviedouban.adapter.BaseRvAdapter;
 import mvp.wyyne.douban.moviedouban.adapter.CommentAdapter;
 import mvp.wyyne.douban.moviedouban.adapter.ReviewAdapter;
 import mvp.wyyne.douban.moviedouban.api.bean.Article;
-import mvp.wyyne.douban.moviedouban.api.bean.MoviesReviews;
 import mvp.wyyne.douban.moviedouban.api.bean.PopularCm;
-import mvp.wyyne.douban.moviedouban.api.bean.Reviews;
 import mvp.wyyne.douban.moviedouban.home.BaseFragment;
 import mvp.wyyne.douban.moviedouban.widget.RecycleViewUtils;
 

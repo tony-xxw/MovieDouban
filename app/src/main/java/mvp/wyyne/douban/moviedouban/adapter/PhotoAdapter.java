@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import java.security.PublicKey;
 import java.util.List;
 
 import mvp.wyyne.douban.moviedouban.R;

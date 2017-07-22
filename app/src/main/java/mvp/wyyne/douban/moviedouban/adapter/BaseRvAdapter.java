@@ -2,7 +2,6 @@ package mvp.wyyne.douban.moviedouban.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.text.Layout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,9 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import mvp.wyyne.douban.moviedouban.api.RvItemOnClick;
-import mvp.wyyne.douban.moviedouban.api.bean.Article;
-import mvp.wyyne.douban.moviedouban.api.bean.Photos;
-import mvp.wyyne.douban.moviedouban.api.bean.Subjects;
 
 /**
  * Created by XXW on 2017/6/13.

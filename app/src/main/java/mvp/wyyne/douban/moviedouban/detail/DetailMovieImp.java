@@ -15,6 +15,7 @@ import io.reactivex.disposables.Disposable;
 import mvp.wyyne.douban.moviedouban.api.RetrofitService;
 import mvp.wyyne.douban.moviedouban.api.bean.Article;
 import mvp.wyyne.douban.moviedouban.comment.CommentFragment;
+import mvp.wyyne.douban.moviedouban.discuss.DiscussFragment;
 import mvp.wyyne.douban.moviedouban.movie.MovieFragment;
 
 /**
@@ -27,7 +28,6 @@ public class DetailMovieImp implements IDetailPresent {
     private DetailPagerAdapter mAdapter;
     private List<Fragment> mHotList;
     private Article mArticle;
-
 
 
     public DetailMovieImp(IDetailMain main, FragmentManager manager) {
@@ -76,13 +76,12 @@ public class DetailMovieImp implements IDetailPresent {
     @Override
     public void initPage(ViewPager viewPager) {
         mHotList.add(CommentFragment.getInstance(mArticle));
-        mHotList.add(new MovieFragment());
+        mHotList.add(DiscussFragment.getInstance());
         mAdapter = new DetailPagerAdapter(mFragmentManager);
         mAdapter.setFragment(mHotList);
         viewPager.setAdapter(mAdapter);
         mMain.onBindPage();
     }
-
 
 
     class DetailPagerAdapter extends FragmentPagerAdapter {

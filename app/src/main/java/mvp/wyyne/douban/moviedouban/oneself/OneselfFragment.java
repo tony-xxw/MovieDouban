@@ -38,8 +38,6 @@ import mvp.wyyne.douban.moviedouban.oneself.sight.SightFragment;
 
 public class OneselfFragment extends BaseFragment<OneselfPresent> implements OneselfMain {
 
-    public static final String 影人 = "影人";
-    public static final String 影人1 = "影人";
     @BindView(R.id.iv_movie)
     ImageView mIvMovie;
     @BindView(R.id.iv_setting)

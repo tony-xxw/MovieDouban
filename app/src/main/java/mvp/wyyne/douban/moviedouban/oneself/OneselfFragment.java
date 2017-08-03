@@ -1,5 +1,6 @@
 package mvp.wyyne.douban.moviedouban.oneself;
 
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
@@ -22,6 +23,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.adapter.viewpage.OneselfPageAdapter;
@@ -30,6 +32,7 @@ import mvp.wyyne.douban.moviedouban.oneself.cast.CastFragment;
 import mvp.wyyne.douban.moviedouban.oneself.lanhu.LanHuFragment;
 import mvp.wyyne.douban.moviedouban.oneself.read.ReadFragment;
 import mvp.wyyne.douban.moviedouban.oneself.review.ReviewFragment;
+import mvp.wyyne.douban.moviedouban.oneself.setting.SettingActivity;
 import mvp.wyyne.douban.moviedouban.oneself.sight.SightFragment;
 
 /**
@@ -55,6 +58,7 @@ public class OneselfFragment extends BaseFragment<OneselfPresent> implements One
     @BindView(R.id.nv_detail)
     NestedScrollView mNvDetail;
     public String[] mString = {"想看", "在看", "看过", "影评", "影人"};
+    Unbinder unbinder;
     private List<String> mTitle;
     private List<Fragment> mFragments;
     private OneselfPageAdapter mAdapter;
@@ -110,5 +114,25 @@ public class OneselfFragment extends BaseFragment<OneselfPresent> implements One
     @Override
     public void hide() {
 
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // TODO: inflate a fragment view
+        View rootView = super.onCreateView(inflater, container, savedInstanceState);
+        unbinder = ButterKnife.bind(this, rootView);
+        return rootView;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
+    }
+
+    @OnClick(R.id.iv_setting)
+    public void onViewClicked() {
+        Intent intent = new Intent(getActivity(), SettingActivity.class);
+        startActivity(intent);
     }
 }

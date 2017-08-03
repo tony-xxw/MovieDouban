@@ -54,6 +54,10 @@
             android:name=".detail.photo.CastPhotoActivity"
             android:launchMode="singleTop"
             />
+        <activity
+            android:name=".oneself.setting.SettingActivity"
+            android:launchMode="singleTop"
+            />
     </application>
 
 </manifest>

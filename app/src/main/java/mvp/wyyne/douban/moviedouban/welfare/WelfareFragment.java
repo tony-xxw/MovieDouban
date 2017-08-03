@@ -1,18 +1,12 @@
 package mvp.wyyne.douban.moviedouban.welfare;
 
-import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.adapter.WelfareAdapter;
 import mvp.wyyne.douban.moviedouban.api.bean.WelfarePhotoInfo;

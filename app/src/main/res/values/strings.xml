@@ -21,4 +21,5 @@
     <string name="constellation">星座:</string>
     <string name="gender">性别:</string>
     <string name="stills_tv">预告片/片花/拍花絮</string>
+    <string name="str_setting">设置</string>
 </resources>

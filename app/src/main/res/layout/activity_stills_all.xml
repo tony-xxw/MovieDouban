@@ -4,7 +4,8 @@
               android:layout_height="match_parent"
               android:orientation="vertical">
 
-    <include layout="@layout/default_top_layout"/>
+    <include
+        layout="@layout/default_top_layout"/>
 
 
     <android.support.v7.widget.RecyclerView

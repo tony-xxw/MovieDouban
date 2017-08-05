@@ -27,6 +27,10 @@ public class SettingActivity extends BaseActivity {
 
     }
 
+    public void show(){
+        
+    }
+
     @Override
     protected int getLayoutId() {
         return R.layout.activity_setting;

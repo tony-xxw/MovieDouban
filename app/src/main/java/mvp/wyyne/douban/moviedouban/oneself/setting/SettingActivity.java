@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.home.BaseActivity;
 
@@ -27,9 +28,6 @@ public class SettingActivity extends BaseActivity {
 
     }
 
-    public void show(){
-        
-    }
 
     @Override
     protected int getLayoutId() {
@@ -43,4 +41,8 @@ public class SettingActivity extends BaseActivity {
     }
 
 
+    @OnClick(R.id.iv_back)
+    public void onViewClicked() {
+        finish();
+    }
 }

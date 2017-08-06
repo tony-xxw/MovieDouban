@@ -19,4 +19,5 @@
     <color name="colorTranslucence">#7cdededf</color>
     <color name="colorBlackTransparency">#00292421</color>
     <color name="color_green">#5dcc55</color>
+    <color name="color_setting_bg">#f2f2f2</color>
 </resources>

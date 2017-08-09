@@ -12,6 +12,7 @@ import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.home.BaseActivity;
 
 /**
+ * 设置页面
  * Created by XXW on 2017/8/3.
  */
 

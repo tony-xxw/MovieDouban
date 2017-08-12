@@ -98,7 +98,7 @@
             android:src="@drawable/ic_right"/>
 
     </RelativeLayout>
-    
+
 
     <Button
         android:layout_width="match_parent"

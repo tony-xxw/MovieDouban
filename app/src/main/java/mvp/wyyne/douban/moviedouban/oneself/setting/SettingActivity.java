@@ -38,6 +38,7 @@ public class SettingActivity extends BaseActivity {
     protected void initView() {
         mIvShare.setVisibility(View.GONE);
         mTvStillsTitle.setText(getString(R.string.str_setting));
+        //Setting finish
     }
 
 

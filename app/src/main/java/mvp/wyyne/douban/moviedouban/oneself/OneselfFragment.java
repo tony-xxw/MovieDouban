@@ -58,7 +58,6 @@ public class OneselfFragment extends BaseFragment<OneselfPresent> implements One
     @BindView(R.id.nv_detail)
     NestedScrollView mNvDetail;
     public String[] mString = {"想看", "在看", "看过", "影评", "影人"};
-    Unbinder unbinder;
     private List<String> mTitle;
     private List<Fragment> mFragments;
     private OneselfPageAdapter mAdapter;

@@ -58,6 +58,10 @@
             android:name=".oneself.setting.SettingActivity"
             android:launchMode="singleTop"
             />
+        <activity
+            android:name=".hot.city.CityActivity"
+            android:launchMode="singleTop"
+            />
     </application>
 
 </manifest>

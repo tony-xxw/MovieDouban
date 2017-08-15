@@ -1,12 +1,21 @@
 package mvp.wyyne.douban.moviedouban.hot.main;
 
 
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import butterknife.Unbinder;
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.home.BaseFragment;
+import mvp.wyyne.douban.moviedouban.hot.city.CityActivity;
 
 
 /**
@@ -49,4 +58,8 @@ public class HotFragment extends BaseFragment<HotPresenterImp> implements HotVie
     }
 
 
+    @OnClick(R.id.tv_city)
+    public void onViewClicked() {
+        startActivity(new Intent(getActivity(), CityActivity.class));
+    }
 }

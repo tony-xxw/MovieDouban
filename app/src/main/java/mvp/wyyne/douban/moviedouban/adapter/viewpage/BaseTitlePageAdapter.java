@@ -11,12 +11,12 @@ import java.util.List;
  * Created by XXW on 2017/7/22.
  */
 
-public class OneselfPageAdapter extends FragmentPagerAdapter {
+public class BaseTitlePageAdapter extends FragmentPagerAdapter {
 
     private List<Fragment> mList;
     private List<String> mTitle;
 
-    public OneselfPageAdapter(FragmentManager fm) {
+    public BaseTitlePageAdapter(FragmentManager fm) {
         super(fm);
     }
 

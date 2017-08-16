@@ -7,6 +7,7 @@
 
     <include layout="@layout/head_left_layout"/>
 
+
     <android.support.design.widget.TabLayout
         android:id="@+id/tl_ct"
         android:layout_width="match_parent"
@@ -15,6 +16,30 @@
         app:tabIndicatorColor="@color/color_green"
         app:tabIndicatorHeight="1dp"
         />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
+        android:minHeight="50dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:padding="10dp"
+            android:src="@drawable/icon_search"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:background="@null"
+            android:hint="@string/city_hint"
+            android:textColorHint="@color/colorGray"
+            android:textSize="14sp"/>
+    </LinearLayout>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/vp_ct"

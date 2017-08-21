@@ -6,6 +6,9 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -13,6 +16,9 @@ import android.widget.TextView;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import butterknife.Unbinder;
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.adapter.CastAdapter;
 import mvp.wyyne.douban.moviedouban.adapter.PhotoAdapter;
@@ -62,6 +68,7 @@ public class DetailMovieHeadFragment extends BaseFragment<DHeadImp> implements I
     RecyclerView mRvCasts;
     @BindView(R.id.rv_photos)
     RecyclerView mRvPhoto;
+    Unbinder unbinder;
     private Article mArticle;
     private List<Casts> mCastses;
     private CastAdapter mCastAdapter;
@@ -185,5 +192,12 @@ public class DetailMovieHeadFragment extends BaseFragment<DHeadImp> implements I
             getActivity().startActivity(intent);
 
         }
+    }
+
+
+    @OnClick(R.id.cv_comment)
+    public void onViewClicked() {
+        Intent intent = new Intent(getActivity(), CommentCountActivity.class);
+        startActivity(intent);
     }
 }

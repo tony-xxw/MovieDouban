@@ -62,6 +62,10 @@
             android:name=".hot.city.CityActivity"
             android:launchMode="singleTop"
             />
+        <activity
+            android:name=".detail.head.CommentCountActivity"
+            android:launchMode="singleTop"
+            />
     </application>
 
 </manifest>

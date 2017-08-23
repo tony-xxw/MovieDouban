@@ -13,6 +13,7 @@ import butterknife.ButterKnife;
 import mvp.wyyne.douban.moviedouban.R;
 
 /**
+ * 基类Activity
  * Created by XXW on 2017/6/19.
  */
 

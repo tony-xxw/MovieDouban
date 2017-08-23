@@ -16,6 +16,7 @@ import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.utils.SwipeRefreshUtils;
 
 /**
+ *基类Fragmetn
  * Created by XXW on 2017/6/2.
  */
 

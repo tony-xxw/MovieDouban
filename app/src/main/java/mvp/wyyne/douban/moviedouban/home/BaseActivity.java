@@ -20,6 +20,8 @@ import mvp.wyyne.douban.moviedouban.R;
 public abstract class BaseActivity<T extends IPresent> extends AppCompatActivity {
 
 
+    //bindview
+
     @Nullable
     @BindView(R.id.avl_loading)
     protected AVLoadingIndicatorView mLodingView;

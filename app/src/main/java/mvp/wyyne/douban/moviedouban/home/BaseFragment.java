@@ -22,6 +22,7 @@ import mvp.wyyne.douban.moviedouban.utils.SwipeRefreshUtils;
 
 public abstract class BaseFragment<T extends IPresent> extends Fragment {
 
+    //bindview
 
     @Nullable
     @BindView(R.id.avl_loading)

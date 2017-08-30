@@ -1,5 +1,7 @@
 package mvp.wyyne.douban.moviedouban.detail.head;
 
+import android.util.Log;
+
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.home.BaseActivity;
 
@@ -21,5 +23,9 @@ public class CommentCountActivity extends BaseActivity {
     @Override
     protected void initView() {
 
+    }
+
+    public void show(){
+        Log.d("向鲜汶","你天天在这里虚度时光？");
     }
 }

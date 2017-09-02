@@ -1,6 +1,8 @@
 package mvp.wyyne.douban.moviedouban.detail.head;
 
 
+import android.util.Log;
+
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.home.BaseActivity;
 
@@ -25,5 +27,9 @@ public class CommentCountActivity extends BaseActivity {
 
     }
 
+
+    public void start() {
+        Log.d("XXW", "星星");
+    }
 
 }

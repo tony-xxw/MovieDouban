@@ -28,7 +28,7 @@ public class CommentCountActivity extends BaseActivity {
     }
 
     public void show(){
-        Log.d("XXW","玩蛇呢？");
+        Log.d("2017","22？");
     }
 
 }

@@ -58,4 +58,14 @@
         android:textColor="#35bcdc"
         android:textSize="18sp"
         android:textStyle="bold"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:text="9-23界面"
+        android:textColor="#35bcdc"
+        android:textSize="18sp"
+        android:textStyle="bold"/>
 </LinearLayout>

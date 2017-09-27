@@ -39,7 +39,10 @@ public abstract class BaseActivity<T extends IPresent> extends AppCompatActivity
     //只有在多个Fragment实例才会执行此方法
     //如果isVisibleToUser 为true表示当前用户可见的Fragment,getUserVisible也为true 就可以去执行更新的数据,实现赖加载
     //
+  
 
+
+  
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

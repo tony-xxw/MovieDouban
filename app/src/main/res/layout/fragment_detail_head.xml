@@ -42,7 +42,7 @@
 
 
     <include layout="@layout/movie_detail_casts"/>
-
+    <include layout="@layout/movie_detail_casts"/>
 
     <include layout="@layout/movie_detail_casts"/>
 

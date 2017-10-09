@@ -1,6 +1,5 @@
 package mvp.wyyne.douban.moviedouban.hot.city;
 
-import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -13,7 +12,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.adapter.viewpage.BaseTitlePageAdapter;
 import mvp.wyyne.douban.moviedouban.home.BaseActivity;

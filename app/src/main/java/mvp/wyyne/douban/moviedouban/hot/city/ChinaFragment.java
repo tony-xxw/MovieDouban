@@ -1,5 +1,9 @@
 package mvp.wyyne.douban.moviedouban.hot.city;
 
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
+
+import butterknife.BindView;
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.home.BaseFragment;
 
@@ -8,7 +12,10 @@ import mvp.wyyne.douban.moviedouban.home.BaseFragment;
  * Created by XXW on 2017/8/16.
  */
 
-public class ChinaFragment extends BaseFragment{
+public class ChinaFragment extends BaseFragment {
+    @BindView(R.id.rv_cn)
+    RecyclerView mList;
+
     @Override
     protected void refresh() {
 
@@ -21,6 +28,8 @@ public class ChinaFragment extends BaseFragment{
 
     @Override
     protected void initView() {
+        mList.setLayoutManager(new GridLayoutManager(getActivity(), 3));
+
 
     }
 }

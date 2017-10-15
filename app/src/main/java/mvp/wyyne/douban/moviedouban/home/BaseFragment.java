@@ -32,7 +32,7 @@ public abstract class BaseFragment<T extends IPresent> extends Fragment {
     @BindView(R.id.swipe_refresh)
     protected SwipeRefreshLayout mSwipeRefresh;
     //缓存Fragment
-    protected View mRootView;
+    protected View mRootView;          
     protected boolean mIsMulti = false;
 
     protected T mPresent;

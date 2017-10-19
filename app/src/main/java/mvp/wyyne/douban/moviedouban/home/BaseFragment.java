@@ -47,7 +47,7 @@ public abstract class BaseFragment<T extends IPresent> extends Fragment {
             initView();
             initSwipeRefresh();
         }
-        return mRootView;
+        return mRootView;                   
     }
 
     @Override

@@ -34,7 +34,7 @@ public class ChinaFragment extends BaseFragment {
     protected void refresh() {
 
     }
-
+    
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_china;

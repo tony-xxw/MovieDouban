@@ -2,6 +2,7 @@ package mvp.wyyne.douban.moviedouban.hot.city;
 
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.ViewGroup;
 
 import java.sql.Array;
 import java.util.ArrayList;
@@ -34,7 +35,7 @@ public class ChinaFragment extends BaseFragment {
     protected void refresh() {
 
     }
-    
+
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_china;
@@ -45,6 +46,7 @@ public class ChinaFragment extends BaseFragment {
         hotArryCity = Arrays.asList(hotCity);
 
         mRvView.setLayoutManager(new GridLayoutManager(getActivity(), 3));
+
 
 
     }

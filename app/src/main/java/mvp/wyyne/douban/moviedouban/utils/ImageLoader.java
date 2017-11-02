@@ -161,6 +161,10 @@ public class ImageLoader {
 
     }
 
+    public void bindBitmap(final String uri, final ImageView imageView) {
+        bindBitmap(uri, imageView, 0, 0);
+    }
+
     public void bindBitmap(final String url, final ImageView imageView, final int reqWidth, final int reqHeight) {
         imageView.setTag(TAG_KEY_URI, url);
         //从内存获取Bitmap

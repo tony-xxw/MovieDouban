@@ -32,7 +32,6 @@ public class WelfarePresent implements IWelfarePresent {
                     public void onNext(@NonNull WelfarePhotoList welfarePhotoList) {
                         mMain.showImg(welfarePhotoList.getResults());
                         for (int i = 0; i < welfarePhotoList.getResults().size(); i++) {
-                            Log.d("Photo", "妹子----" + welfarePhotoList.getResults().get(i).getUrl());
                         }
                     }
 

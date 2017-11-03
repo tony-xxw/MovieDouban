@@ -88,6 +88,14 @@ public class ImageLoader {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
+            LoaderResult result = (LoaderResult) msg.obj;
+            ImageView imageView = result.imageView;
+            String uri = (String) imageView.getTag(TAG_KEY_URI);
+            if (uri.equals(result.uri)) {
+                imageView.setImageBitmap(result.bitmap);
+            } else {
+                Log.w(TAG, "set image bitmap,but url has changed, ignored!");
+            }
         }
     };
 
@@ -149,7 +157,7 @@ public class ImageLoader {
     private File getDiskCacheDir(Context context, String diskdirname) {
         //判断是否有外部SD卡
         boolean externalStorageAvailable
-                = Environment.getExternalStorageDirectory().equals(Environment.MEDIA_MOUNTED);
+                = Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED);
         final String diskCachepath;
         if (externalStorageAvailable) {
             diskCachepath = context.getExternalCacheDir().getPath();

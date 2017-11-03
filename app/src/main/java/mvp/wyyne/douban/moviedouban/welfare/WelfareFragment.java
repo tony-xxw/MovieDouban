@@ -25,6 +25,7 @@ public class WelfareFragment extends BaseFragment<IWelfarePresent> implements IW
     private List<WelfarePhotoInfo> mList;
     private StaggeredGridLayoutManager mManager;
 
+
     @Override
     protected void refresh() {
 
@@ -40,7 +41,15 @@ public class WelfareFragment extends BaseFragment<IWelfarePresent> implements IW
         mPresent = new WelfarePresent(this);
         mList = new ArrayList<>();
         mAdapter = new WelfareAdapter(getActivity(), mList);
-        mManager = new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL);
+        mManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+        mManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE);
+        mRvWelfare.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                mManager.invalidateSpanAssignments();
+            }
+        });
         mRvWelfare.setLayoutManager(mManager);
         mRvWelfare.setAdapter(mAdapter);
         mPresent.getData();

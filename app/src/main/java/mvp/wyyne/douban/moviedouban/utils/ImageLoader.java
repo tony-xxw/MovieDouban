@@ -13,7 +13,6 @@ import android.util.Log;
 import android.util.LruCache;
 import android.widget.ImageView;
 
-
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -22,7 +21,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -92,6 +90,7 @@ public class ImageLoader {
             ImageView imageView = result.imageView;
             String uri = (String) imageView.getTag(TAG_KEY_URI);
             if (uri.equals(result.uri)) {
+                Log.d("XXW", "==");
                 imageView.setImageBitmap(result.bitmap);
             } else {
                 Log.w(TAG, "set image bitmap,but url has changed, ignored!");

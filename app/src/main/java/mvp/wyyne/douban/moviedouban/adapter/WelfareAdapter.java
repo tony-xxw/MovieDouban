@@ -24,7 +24,7 @@ public class WelfareAdapter extends BaseRvAdapter<WelfarePhotoInfo> {
     private Context mContext;
     private Random mRandom;
     private ImageLoader mLoader;
-    private Map<Integer, ImageView> mMap;
+    private Map<Integer, Integer> mHeightList;
     private String photoUrl;
 
     public WelfareAdapter(Context context, List<WelfarePhotoInfo> data) {
@@ -35,7 +35,8 @@ public class WelfareAdapter extends BaseRvAdapter<WelfarePhotoInfo> {
         int marginPixels = context.getResources().getDimensionPixelOffset(R.dimen.photo_margin_width);
         mPhotoWidth = widthPixels / 2 - marginPixels;
         mLoader = ImageLoader.build(context);
-        mMap = new HashMap<Integer, ImageView>();
+        mHeightList = new HashMap<>();
+
     }
 
     @Override
@@ -46,24 +47,25 @@ public class WelfareAdapter extends BaseRvAdapter<WelfarePhotoInfo> {
     @Override
     void bindView(BaseItemViewHolder holder, int position) {
         ImageView imageView = holder.getView(R.id.iv_photo);
+        imageView.setTag(mList.get(position).getUrl());
         final ViewGroup.LayoutParams params = imageView.getLayoutParams();
         int max = ((mPhotoWidth + mPhotoWidth / 2));
-        if (mMap.get(position) == null) {
-            params.width = mPhotoWidth;
+        params.width = mPhotoWidth;
+        if (mHeightList.get(position) != null) {
+            params.height = mHeightList.get(position);
+        } else {
             params.height = mRandom.nextInt(max) % (max - mPhotoWidth + 1) + mPhotoWidth;
-            imageView.setLayoutParams(params);
-            mMap.put(position, imageView);
+            mHeightList.put(position, params.height);
         }
-
-        imageView = mMap.get(position);
+        imageView.setLayoutParams(params);
 
 
 //        Glide.with(mContext).load(mList.get(position).getUrl())
 //                .into(imageView);
         photoUrl = mList.get(position).getUrl();
         Log.d("XXW", "photo-URL--" + photoUrl + "===" + position);
-        mLoader.bindBitmap(photoUrl, imageView);
 
+        mLoader.bindBitmap(photoUrl, imageView);
 
     }
 

@@ -73,7 +73,7 @@ public class ImageLoader {
         public Thread newThread(Runnable r) {
             return new Thread(r, "ImageLoader#" + mCount.getAndIncrement());
         }
-    };
+    }; 
 
 
     public static final Executor THREAD_POOL_EXECUTOR = new ThreadPoolExecutor(
@@ -178,6 +178,7 @@ public class ImageLoader {
         final Bitmap bitmap = loadBitmapFromMemCache(url);
         if (bitmap != null) {
             imageView.setImageBitmap(bitmap);
+            Log.d("XXW","从内存中获取---");
             return;
         }
 

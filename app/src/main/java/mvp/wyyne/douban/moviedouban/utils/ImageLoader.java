@@ -73,7 +73,7 @@ public class ImageLoader {
         public Thread newThread(Runnable r) {
             return new Thread(r, "ImageLoader#" + mCount.getAndIncrement());
         }
-    }; 
+    };
 
 
     public static final Executor THREAD_POOL_EXECUTOR = new ThreadPoolExecutor(

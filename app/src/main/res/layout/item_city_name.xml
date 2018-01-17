@@ -3,16 +3,18 @@
               xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:background="@color/colorWhite"
+              android:background="@color/colorGray_tint"
               android:orientation="vertical">
 
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/tv_city_name"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:gravity="center_vertical"
-        android:minHeight="48dp"
+        android:layout_margin="10dp"
+        android:background="@color/colorWhite"
+        android:gravity="center"
+        android:minHeight="42dp"
         android:textSize="14sp"
         tools:text="长沙"/>
 </LinearLayout>

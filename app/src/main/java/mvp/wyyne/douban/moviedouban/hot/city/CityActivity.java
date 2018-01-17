@@ -17,7 +17,8 @@ import mvp.wyyne.douban.moviedouban.adapter.viewpage.BaseTitlePageAdapter;
 import mvp.wyyne.douban.moviedouban.home.BaseActivity;
 
 /**
- * Created by XXW on 2017/8/15.
+ * @author XXW
+ * @date 2017/8/15.
  */
 
 public class CityActivity extends BaseActivity {
@@ -33,6 +34,7 @@ public class CityActivity extends BaseActivity {
     TabLayout mTlCt;
     @BindView(R.id.vp_ct)
     ViewPager mVpCt;
+
     private BaseTitlePageAdapter mAdapter;
     private List<String> mTitle;
     private String[] mStrings = {"国内", "海外"};

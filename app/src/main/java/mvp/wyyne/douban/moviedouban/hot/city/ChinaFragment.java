@@ -2,26 +2,26 @@ package mvp.wyyne.douban.moviedouban.hot.city;
 
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.ViewGroup;
 
-import java.sql.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import butterknife.BindView;
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.adapter.CityAdapter;
+import mvp.wyyne.douban.moviedouban.api.bean.City;
 import mvp.wyyne.douban.moviedouban.home.BaseFragment;
 
 /**
  * 国内列表
- * Created by XXW on 2017/8/16.
+ *
+ * @author XXW
+ * @date 2017/8/16.
  */
 
 public class ChinaFragment extends BaseFragment {
-    @BindView(R.id.rv_cn)
-    RecyclerView mRvView;
+    @BindView(R.id.rv_hot_city)
+    RecyclerView mRvHotCity;
     private CityAdapter mCityAdapter;
     private String[] hotCity = {
             "北京", "上海", "广州",
@@ -29,7 +29,8 @@ public class ChinaFragment extends BaseFragment {
             "杭州", "重庆", "郑州",
             "南京", "西安", "苏州",
             "天津", "长沙", "福州"};
-    private List<String> hotArryCity;
+    private List<City> mCityList = new ArrayList<>();
+
 
     @Override
     protected void refresh() {
@@ -43,10 +44,12 @@ public class ChinaFragment extends BaseFragment {
 
     @Override
     protected void initView() {
-        hotArryCity = Arrays.asList(hotCity);
-
-        mRvView.setLayoutManager(new GridLayoutManager(getActivity(), 3));
-
+        for (String city : hotCity) {
+            mCityList.add(new City(city));
+        }
+        mCityAdapter = new CityAdapter(getActivity(), mCityList);
+        mRvHotCity.setLayoutManager(new GridLayoutManager(getActivity(), 3));
+        mRvHotCity.setAdapter(mCityAdapter);
 
 
     }

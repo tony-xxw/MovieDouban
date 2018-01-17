@@ -13,7 +13,9 @@ import mvp.wyyne.douban.moviedouban.hot.city.CityActivity;
 
 
 /**
- * Created by XXW on 2017/6/2.
+ *
+ * @author XXW
+ * @date 2017/6/2
  */
 
 public class HotFragment extends BaseFragment<HotPresenterImp> implements HotView {

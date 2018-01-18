@@ -29,4 +29,5 @@
     <string name="city_select">选择城市</string>
     <string name="city_hint">请输入城市名称查询</string>
     <string name="hot_city_name">热门城市</string>
+    <string name="gps_city_name">GPS定位城市</string>
 </resources>

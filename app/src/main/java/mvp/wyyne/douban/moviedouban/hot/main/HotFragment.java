@@ -10,21 +10,25 @@ import butterknife.OnClick;
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.home.BaseFragment;
 import mvp.wyyne.douban.moviedouban.hot.city.CityActivity;
+import mvp.wyyne.douban.moviedouban.utils.StringUtils;
 
 
 /**
- *
  * @author XXW
  * @date 2017/6/2
  */
 
 public class HotFragment extends BaseFragment<HotPresenterImp> implements HotView {
-    protected static final String TAG = "HotFragment";
+    public static final String TAG = HotFragment.class.getSimpleName();
     @BindView(R.id.hot_tl)
     TabLayout mHotTl;
     @BindView(R.id.hot_vp)
     ViewPager mHotVp;
 
+
+    public static HotFragment getInstance() {
+        return new HotFragment();
+    }
 
     @Override
     protected void refresh() {

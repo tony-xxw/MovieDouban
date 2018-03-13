@@ -11,20 +11,26 @@ import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.adapter.WelfareAdapter;
 import mvp.wyyne.douban.moviedouban.api.bean.WelfarePhotoInfo;
 import mvp.wyyne.douban.moviedouban.home.BaseFragment;
+import mvp.wyyne.douban.moviedouban.hot.main.HotFragment;
 
 /**
- * Created by XXW on 2017/6/2.
+ * @author XXW
+ * @date 2017/6/2
  */
 
 public class WelfareFragment extends BaseFragment<IWelfarePresent> implements IWelfareMain {
 
-
+    public static final String TAG = WelfareFragment.class.getSimpleName();
     @BindView(R.id.rv_welfare)
     RecyclerView mRvWelfare;
     private WelfareAdapter mAdapter;
     private List<WelfarePhotoInfo> mList;
     private StaggeredGridLayoutManager mManager;
 
+
+    public static WelfareFragment getInstance() {
+        return new WelfareFragment();
+    }
 
     @Override
     protected void refresh() {

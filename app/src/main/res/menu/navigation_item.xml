@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/main_hot"
+        android:icon="@drawable/hot_selected"
+        android:title="@string/hot" />
+
+    <item
+        android:id="@+id/main_movie"
+        android:icon="@drawable/movie_selected"
+        android:title="@string/search_movie" />
+
+    <item
+        android:id="@+id/main_oneself"
+        android:icon="@drawable/oneself_selected"
+        android:title="@string/my" />
+
+    <item
+        android:id="@+id/main_welfare"
+        android:icon="@drawable/icon_welfare_normal"
+        android:title="@string/girl" />
+</menu>

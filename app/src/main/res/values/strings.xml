@@ -30,4 +30,8 @@
     <string name="city_hint">请输入城市名称查询</string>
     <string name="hot_city_name">热门城市</string>
     <string name="gps_city_name">GPS定位城市</string>
+    <string name="hot">热映</string>
+    <string name="search_movie">找片</string>
+    <string name="my">我的</string>
+    <string name="girl">妹子</string>
 </resources>

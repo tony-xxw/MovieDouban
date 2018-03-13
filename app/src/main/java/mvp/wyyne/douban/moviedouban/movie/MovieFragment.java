@@ -1,24 +1,30 @@
 package mvp.wyyne.douban.moviedouban.movie;
 
+import android.support.v4.app.Fragment;
 import android.view.View;
 import android.widget.TextView;
 
 import butterknife.BindView;
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.home.BaseFragment;
+import mvp.wyyne.douban.moviedouban.hot.main.HotFragment;
 
 /**
- * Created by XXW on 2017/6/2.
+ * @author XXW
+ * @date 2017/6/2
  */
 
 public class MovieFragment extends BaseFragment {
-
-
+    public static final String TAG = MovieFragment.class.getSimpleName();
     @BindView(R.id.tv_city)
     TextView mTvCity;
 
     private View mContentView;
 
+
+    public static MovieFragment getInstance() {
+        return new MovieFragment();
+    }
 
     @Override
     protected void refresh() {

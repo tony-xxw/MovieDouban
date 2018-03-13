@@ -14,13 +14,12 @@ import mvp.wyyne.douban.moviedouban.R;
 
 /**
  * 基类Activity
- * Created by XXW on 2017/6/19.
+ *
+ * @author XXW
+ * @date 2017/6/19
  */
 
 public abstract class BaseActivity<T extends IPresent> extends AppCompatActivity {
-
-
-    //bindview
 
     @Nullable
     @BindView(R.id.avl_loading)
@@ -29,7 +28,9 @@ public abstract class BaseActivity<T extends IPresent> extends AppCompatActivity
     @Nullable
     @BindView(R.id.swipe_refresh)
     protected SwipeRefreshLayout mSwipeRefresh;
-    //缓存Fragment
+    /**
+     * 缓存Fragment
+     */
     protected View mRootView;
     protected boolean mIsMulti = false;
 
@@ -38,11 +39,7 @@ public abstract class BaseActivity<T extends IPresent> extends AppCompatActivity
 
     //只有在多个Fragment实例才会执行此方法
     //如果isVisibleToUser 为true表示当前用户可见的Fragment,getUserVisible也为true 就可以去执行更新的数据,实现赖加载
-    //
-  
 
-
-  
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,10 +49,22 @@ public abstract class BaseActivity<T extends IPresent> extends AppCompatActivity
         initView();
     }
 
+    /**
+     * 刷新数据
+     */
     protected abstract void refresh();
 
+    /**
+     * 布局ID
+     *
+     * @return
+     */
     protected abstract int getLayoutId();
 
+
+    /**
+     * 初始化View
+     */
     protected abstract void initView();
 
 }

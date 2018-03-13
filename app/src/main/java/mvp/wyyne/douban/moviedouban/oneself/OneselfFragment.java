@@ -22,6 +22,8 @@ import butterknife.OnClick;
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.adapter.viewpage.BaseTitlePageAdapter;
 import mvp.wyyne.douban.moviedouban.home.BaseFragment;
+import mvp.wyyne.douban.moviedouban.hot.main.HotFragment;
+import mvp.wyyne.douban.moviedouban.movie.MovieFragment;
 import mvp.wyyne.douban.moviedouban.oneself.cast.CastFragment;
 import mvp.wyyne.douban.moviedouban.oneself.lanhu.LanHuFragment;
 import mvp.wyyne.douban.moviedouban.oneself.read.ReadFragment;
@@ -30,11 +32,12 @@ import mvp.wyyne.douban.moviedouban.oneself.setting.SettingActivity;
 import mvp.wyyne.douban.moviedouban.oneself.sight.SightFragment;
 
 /**
- * Created by XXW on 2017/6/2.
+ * @author XXW
+ * @date 2017/6/2
  */
 
 public class OneselfFragment extends BaseFragment<OneselfPresent> implements OneselfMain {
-
+    public static final String TAG = OneselfFragment.class.getSimpleName();
     @BindView(R.id.iv_movie)
     ImageView mIvMovie;
     @BindView(R.id.iv_setting)
@@ -55,6 +58,12 @@ public class OneselfFragment extends BaseFragment<OneselfPresent> implements One
     private List<String> mTitle;
     private List<Fragment> mFragments;
     private BaseTitlePageAdapter mAdapter;
+
+
+    public static OneselfFragment getInstance() {
+        return new OneselfFragment();
+    }
+
 
     @Override
     protected void refresh() {

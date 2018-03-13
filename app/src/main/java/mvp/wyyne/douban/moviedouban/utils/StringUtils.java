@@ -3,7 +3,8 @@ package mvp.wyyne.douban.moviedouban.utils;
 import java.util.List;
 
 /**
- * Created by XXW on 2017/6/22.
+ * @author XXW
+ * @date 2017/6/22
  */
 
 public class StringUtils {
@@ -38,5 +39,10 @@ public class StringUtils {
         String[] entmy = time.split(" ");
         Integer end = Integer.valueOf(entmy[0]);
         return time.substring(0, end);
+    }
+
+
+    public static String getClassName(Object object) {
+        return object.getClass().getSimpleName();
     }
 }

@@ -14,7 +14,9 @@ import mvp.wyyne.douban.moviedouban.hot.current.HotCurrentFragment;
 import mvp.wyyne.douban.moviedouban.hot.future.HotFutureFragment;
 
 /**
- * Created by XXW on 2017/6/4.
+ *
+ * @author XXW
+ * @date 2017/6/4
  */
 
 public class HotPresenterImp implements HotPresenter {
@@ -52,7 +54,7 @@ public class HotPresenterImp implements HotPresenter {
 
     class HotPagerAdapter extends FragmentPagerAdapter {
         private List<Fragment> mList;
-        private String[] mTitl = {"正在热映", "即将上映"};
+        private String[] mTitle = {"正在热映", "即将上映"};
 
         public HotPagerAdapter(FragmentManager fm) {
             super(fm);
@@ -76,7 +78,7 @@ public class HotPresenterImp implements HotPresenter {
 
         @Override
         public CharSequence getPageTitle(int position) {
-            return mTitl[position];
+            return mTitle[position];
         }
     }
 }

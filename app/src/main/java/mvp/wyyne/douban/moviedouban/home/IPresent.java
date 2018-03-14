@@ -2,9 +2,13 @@ package mvp.wyyne.douban.moviedouban.home;
 
 
 /**
- * Created by XXW on 2017/6/12.
+ * @author XXW
+ * @date 2017/6/12
  */
 
-public interface IPresent{
+public interface IPresent {
+    /**
+     * 获取数据
+     */
     void getData();
 }

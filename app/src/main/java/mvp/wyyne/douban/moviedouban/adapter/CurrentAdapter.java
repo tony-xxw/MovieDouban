@@ -14,7 +14,8 @@ import mvp.wyyne.douban.moviedouban.api.bean.Rating;
 import mvp.wyyne.douban.moviedouban.api.bean.Subjects;
 
 /**
- * Created by XXW on 2017/6/4.
+ * @author XXW
+ * @date 2017/6/4
  */
 
 public class CurrentAdapter extends BaseRvAdapter<Subjects> {
@@ -42,7 +43,10 @@ public class CurrentAdapter extends BaseRvAdapter<Subjects> {
         List<Directors> directors = mList.get(position).getDirectors();
         Avatars avatars = mList.get(position).getImages();
         Rating rating = mList.get(position).getRating();
-        holder.setText(R.id.tv_collect_count, mList.get(position).getCollect_count() + "人看过");
+
+        String attendance = getAttendance(mList.get(position).getCollect_count());
+
+        holder.setText(R.id.tv_collect_count, attendance);
         for (int i = 0; i < casts.size(); i++) {
             if (i == casts.size() - 1) {
                 mName.append(casts.get(i).getName());

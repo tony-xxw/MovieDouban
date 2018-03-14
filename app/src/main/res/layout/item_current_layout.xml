@@ -1,24 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:StartView="http://schemas.android.com/apk/res-auto"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/rl_layout"
-                android:background="@color/colorWhite"
-                android:minHeight="160dp"
-                android:orientation="horizontal">
+    xmlns:StartView="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rl_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorWhite"
+    android:minHeight="160dp"
+    android:orientation="horizontal">
 
 
     <ImageView
         android:id="@+id/iv_avatars"
         android:layout_width="80dp"
-        android:layout_height="110dp"
+        android:layout_height="120dp"
         android:layout_centerVertical="true"
         android:layout_marginStart="15dp"
-        android:src="@drawable/default_bg"/>
+        android:src="@drawable/default_bg" />
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/iv_avatars"
         android:layout_centerVertical="true"
@@ -31,7 +32,7 @@
         <TextView
             android:id="@+id/tv_title"
             style="@style/MovieItemTextTitle"
-            android:text="神奇女侠"/>
+            android:text="神奇女侠" />
 
 
         <LinearLayout
@@ -51,15 +52,15 @@
                 StartView:startEmpty="@drawable/start_dark"
                 StartView:startFill="@drawable/start_light"
                 StartView:startSize="15dp"
-                StartView:startSpace="5dp"/>
+                StartView:startSpace="5dp" />
 
             <TextView
                 android:id="@+id/tv_average_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="aa"
                 android:textColor="@color/colorGray_light"
-                android:textSize="12sp"/>
+                android:textSize="12sp"
+                tools:text="5.6" />
         </LinearLayout>
 
         <LinearLayout
@@ -69,11 +70,11 @@
 
             <TextView
                 style="@style/MovieItemText"
-                android:text="导演 : "/>
+                android:text="导演 : " />
 
             <TextView
                 android:id="@+id/tv_directors_name"
-                style="@style/MovieItemText"/>
+                style="@style/MovieItemText" />
 
         </LinearLayout>
 
@@ -83,31 +84,42 @@
             android:layout_marginTop="5dp">
 
             <TextView
-                android:lineSpacingExtra="5dp"
                 android:id="@+id/tv_casts_list"
                 style="@style/MovieItemText"
-                android:maxWidth="220dp"
-                />
+                android:lineSpacingExtra="5dp"
+                android:maxWidth="220dp" />
 
         </LinearLayout>
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="20dp"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/tv_collect_count"
             style="@style/MovieItemText"
-            android:layout_marginTop="5dp"
             android:text="看过"
-            android:textColor="@color/colorBlack"/>
+            android:textColor="@color/colorAccent" />
+
+        <Button
+            android:id="@+id/btn_shop"
+            android:layout_width="60dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/bg_btn_pink"
+            android:text="购票"
+            android:textColor="@color/colorAccent"
+            android:textSize="12sp" />
+
     </LinearLayout>
 
-    <Button
-        android:id="@+id/btn_shop"
-        android:layout_width="60dp"
-        android:layout_height="30dp"
-        android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
-        android:layout_marginEnd="10dp"
-        android:background="@drawable/bg_btn_pink"
-        android:text="购票"
-        android:textColor="@color/colorOrange"/>
 
 </RelativeLayout>

@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -128,13 +129,55 @@ public abstract class BaseRvAdapter<T> extends RecyclerView.Adapter<BaseItemView
         }
     }
 
+    /**
+     * 布局文件
+     *
+     * @return Item布局文件
+     */
     abstract int getLayoutId();
 
+    /**
+     * 绑定子View
+     *
+     * @param holder   子类ViewHolder
+     * @param position item位置
+     */
     abstract void bindView(BaseItemViewHolder holder, int position);
 
+
+    /**
+     * 绑定item的头部
+     *
+     * @param holder   子类ViewHolder
+     * @param position item位置
+     */
     abstract void bindHeadView(BaseItemViewHolder holder, int position);
 
+    /**
+     * 绑定item的脚步
+     *
+     * @param holder   子类ViewHolder
+     * @param position item位置
+     */
     abstract void bindFooterView(BaseItemViewHolder holder, int position);
 
 
+    /**
+     * @return 观影人数
+     */
+    public String getAttendance(int count) {
+        DecimalFormat df = new DecimalFormat("######0.0");
+        DecimalFormat dd = new DecimalFormat("#####0.0");
+
+        String attendance = null;
+        if (count > 100000) {
+            attendance = df.format(count / 10000.0) + "万人观看";
+        } else if (count > 10000) {
+            attendance = dd.format(count / 1000.0) + "万人观看";
+        } else {
+            attendance = count + "人观看";
+        }
+
+        return attendance;
+    }
 }

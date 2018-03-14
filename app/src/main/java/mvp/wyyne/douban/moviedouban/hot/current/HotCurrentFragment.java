@@ -27,7 +27,8 @@ import mvp.wyyne.douban.moviedouban.detail.DetailMovieActivity;
 import mvp.wyyne.douban.moviedouban.home.BaseFragment;
 
 /**
- * Created by XXW on 2017/6/4.
+ * @author XXW
+ * @date 2017/6/4
  */
 
 public class HotCurrentFragment extends BaseFragment<CurrentPresent> implements ICurrentMain, RvItemOnClick {

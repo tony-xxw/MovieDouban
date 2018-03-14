@@ -46,7 +46,8 @@
                 android:layout_gravity="bottom"
                 android:minHeight="30dp"
                 app:tabBackground="@color/colorWhite"
-                app:tabIndicatorColor="@color/colorGray"
+                app:tabIndicatorColor="@color/colorBlack"
+                app:tabIndicatorHeight="1dp"
                 app:tabTextColor="@color/colorGray" />
 
             <View

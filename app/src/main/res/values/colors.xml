@@ -6,7 +6,7 @@
     <color name="colorGray">#999999</color>
     <color name="colorGray_dark">#e4e2e2</color>
     <color name="colorGray_light">#666666</color>
-    <color name="colorBlack">#333333</color>
+    <color name="colorBlack">#000000</color>
     <color name="color_tab_indicator">#666666</color>
     <color name="colorGray_tint">#77e6e6e6</color>
     <color name="colorTextSizeMax">#333333</color>

@@ -1,6 +1,5 @@
 package mvp.wyyne.douban.moviedouban.hot.current;
 
-import android.util.Log;
 
 import io.reactivex.Observer;
 import io.reactivex.annotations.NonNull;
@@ -9,7 +8,8 @@ import mvp.wyyne.douban.moviedouban.api.RetrofitService;
 import mvp.wyyne.douban.moviedouban.api.bean.HotBean;
 
 /**
- * Created by XXW on 2017/6/12.
+ * @author XXW
+ * @date 2017/6/12
  */
 
 public class CurrentPresent implements ICurrentPresent {

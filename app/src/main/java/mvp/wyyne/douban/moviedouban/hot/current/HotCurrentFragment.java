@@ -32,7 +32,7 @@ import mvp.wyyne.douban.moviedouban.home.BaseFragment;
  */
 
 public class HotCurrentFragment extends BaseFragment<CurrentPresent> implements ICurrentMain, RvItemOnClick {
-    protected static final String TAG = "HotCurrentFragment";
+    public static final String TAG = HotCurrentFragment.class.getSimpleName();
     @BindView(R.id.current_rv)
     RecyclerView mCurrentRv;
     @BindView(R.id.avl_loading)

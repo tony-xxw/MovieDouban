@@ -1,6 +1,7 @@
 package mvp.wyyne.douban.moviedouban.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 
 import java.util.List;
@@ -12,6 +13,7 @@ import mvp.wyyne.douban.moviedouban.api.bean.Casts;
 import mvp.wyyne.douban.moviedouban.api.bean.Directors;
 import mvp.wyyne.douban.moviedouban.api.bean.Rating;
 import mvp.wyyne.douban.moviedouban.api.bean.Subjects;
+import mvp.wyyne.douban.moviedouban.hot.current.HotCurrentFragment;
 
 /**
  * @author XXW
@@ -20,6 +22,7 @@ import mvp.wyyne.douban.moviedouban.api.bean.Subjects;
 
 public class CurrentAdapter extends BaseRvAdapter<Subjects> {
     private RvItemOnClick mClick;
+    private Subjects mSubjects;
 
 
     public CurrentAdapter(Context context, List<Subjects> list) {
@@ -39,12 +42,13 @@ public class CurrentAdapter extends BaseRvAdapter<Subjects> {
     @Override
     void bindView(BaseItemViewHolder holder, final int position) {
         StringBuffer mName = new StringBuffer();
-        List<Casts> casts = mList.get(position).getCasts();
-        List<Directors> directors = mList.get(position).getDirectors();
-        Avatars avatars = mList.get(position).getImages();
-        Rating rating = mList.get(position).getRating();
+        mSubjects = mList.get(position);
+        List<Casts> casts = mSubjects.getCasts();
+        List<Directors> directors = mSubjects.getDirectors();
+        Avatars avatars = mSubjects.getImages();
+        Rating rating = mSubjects.getRating();
 
-        String attendance = getAttendance(mList.get(position).getCollect_count());
+        String attendance = getAttendance(mSubjects.getCollect_count());
 
         holder.setText(R.id.tv_collect_count, attendance);
         for (int i = 0; i < casts.size(); i++) {
@@ -58,7 +62,7 @@ public class CurrentAdapter extends BaseRvAdapter<Subjects> {
         }
         holder.setText(R.id.tv_casts_list, mName.toString());
         holder.setText(R.id.tv_directors_name, directors.get(0).getName());
-        holder.setText(R.id.tv_title, mList.get(position).getTitle());
+        holder.setText(R.id.tv_title, mSubjects.getTitle());
         holder.setImgUrl(R.id.iv_avatars, avatars.getMedium());
         if ((int) (rating.getAverage()) < 1) {
             holder.setVisibleStatu(R.id.average, View.GONE);
@@ -74,6 +78,8 @@ public class CurrentAdapter extends BaseRvAdapter<Subjects> {
                 mClick.onItemClick(position, "");
             }
         });
+
+        Log.d("XXW", HotCurrentFragment.TAG + "===" + mSubjects.getPubdates().get(0));
     }
 
     @Override

@@ -6,10 +6,11 @@ import android.os.Parcelable;
 import java.util.List;
 
 /**
- * Created by XXW on 2017/6/5.
+ * @author XXW
+ * @date 2017/6/5
  */
 
-public class Subjects implements Parcelable{
+public class Subjects implements Parcelable {
 
     /**
      * rating : {"max":10,"average":7.4,"stars":"40","min":0}
@@ -42,6 +43,7 @@ public class Subjects implements Parcelable{
     private List<String> genres;
     private List<Casts> casts;
     private List<Directors> directors;
+
 
     protected Subjects(Parcel in) {
         title = in.readString();
@@ -162,6 +164,13 @@ public class Subjects implements Parcelable{
         this.directors = directors;
     }
 
+    public List<String> getPubdates() {
+        return pubdates;
+    }
+
+    public void setPubdates(List<String> pubdates) {
+        this.pubdates = pubdates;
+    }
 
     @Override
     public int describeContents() {

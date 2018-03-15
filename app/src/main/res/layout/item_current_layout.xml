@@ -4,121 +4,118 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/rl_layout"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="160dp"
     android:background="@color/colorWhite"
-    android:minHeight="160dp"
     android:orientation="horizontal">
 
 
     <ImageView
         android:id="@+id/iv_avatars"
-        android:layout_width="80dp"
-        android:layout_height="120dp"
+        android:layout_width="85dp"
+        android:layout_height="110dp"
         android:layout_centerVertical="true"
-        android:layout_marginStart="15dp"
+        android:layout_margin="15dp"
         android:src="@drawable/default_bg" />
 
+
     <LinearLayout
-        android:layout_width="180dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/iv_avatars"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="10dp"
         android:layout_toEndOf="@+id/iv_avatars"
         android:gravity="center_vertical|top"
-        android:orientation="vertical">
-
-
-        <TextView
-            android:id="@+id/tv_title"
-            style="@style/MovieItemTextTitle"
-            android:text="神奇女侠" />
+        android:orientation="horizontal">
 
 
         <LinearLayout
-            android:id="@+id/ll_star"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:gravity="center_vertical">
+            android:layout_weight="1"
+            android:orientation="vertical">
 
-            <mvp.wyyne.douban.moviedouban.widget.StartView
-                android:id="@+id/average"
+            <TextView
+                android:id="@+id/tv_title"
+                style="@style/MovieItemTextTitle"
+                tools:text="神奇女侠" />
+
+
+            <LinearLayout
+                android:id="@+id/ll_star"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
-                android:text="四星"
-                StartView:startCount="5"
-                StartView:startEmpty="@drawable/start_dark"
-                StartView:startFill="@drawable/start_light"
-                StartView:startSize="15dp"
-                StartView:startSpace="5dp" />
+                android:layout_marginTop="5dp"
+                android:gravity="center_vertical">
 
-            <TextView
-                android:id="@+id/tv_average_count"
+                <mvp.wyyne.douban.moviedouban.widget.StartView
+                    android:id="@+id/average"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    StartView:startCount="5"
+                    StartView:startEmpty="@drawable/start_dark"
+                    StartView:startFill="@drawable/start_light"
+                    StartView:startSize="15dp"
+                    StartView:startSpace="5dp" />
+
+                <TextView
+                    android:id="@+id/tv_average_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorGray_light"
+                    android:textSize="12sp"
+                    tools:text="5.6" />
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorGray_light"
-                android:textSize="12sp"
-                tools:text="5.6" />
-        </LinearLayout>
+                android:layout_marginTop="5dp">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp">
+                <TextView
+                    style="@style/MovieItemText"
+                    android:text="导演 : " />
 
-            <TextView
-                style="@style/MovieItemText"
-                android:text="导演 : " />
+                <TextView
+                    android:id="@+id/tv_directors_name"
+                    style="@style/MovieItemText"
+                    tools:text="冯小刚" />
 
-            <TextView
-                android:id="@+id/tv_directors_name"
-                style="@style/MovieItemText" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp">
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/tv_casts_list"
                 style="@style/MovieItemText"
-                android:lineSpacingExtra="5dp"
-                android:maxWidth="220dp" />
+                android:layout_marginTop="5dp"
+                android:lineSpacingExtra="5dp" />
 
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginEnd="10dp"
+            android:orientation="vertical">
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/tv_collect_count"
+                style="@style/MovieItemText"
+                android:layout_gravity="center"
+                android:textColor="@color/colorAccent"
+                tools:text="10.1万人观看" />
 
+            <Button
+                android:id="@+id/btn_shop"
+                android:layout_width="60dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/bg_btn_pink"
+                android:text="购票"
+                android:textColor="@color/colorAccent"
+                android:textSize="12sp" />
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
-        android:layout_marginEnd="20dp"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/tv_collect_count"
-            style="@style/MovieItemText"
-            android:text="看过"
-            android:textColor="@color/colorAccent" />
-
-        <Button
-            android:id="@+id/btn_shop"
-            android:layout_width="60dp"
-            android:layout_height="30dp"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/bg_btn_pink"
-            android:text="购票"
-            android:textColor="@color/colorAccent"
-            android:textSize="12sp" />
-
+        </LinearLayout>
     </LinearLayout>
 
 

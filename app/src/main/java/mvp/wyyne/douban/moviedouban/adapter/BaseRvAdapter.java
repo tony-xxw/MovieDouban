@@ -14,7 +14,9 @@ import java.util.List;
 import mvp.wyyne.douban.moviedouban.api.RvItemOnClick;
 
 /**
- * Created by XXW on 2017/6/13.
+ *
+ * @author XXW
+ * @date 2017/6/13
  */
 
 public abstract class BaseRvAdapter<T> extends RecyclerView.Adapter<BaseItemViewHolder> {

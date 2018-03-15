@@ -7,14 +7,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.security.PublicKey;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import mvp.wyyne.douban.moviedouban.api.RvItemOnClick;
+import mvp.wyyne.douban.moviedouban.utils.DateUtils;
+
+import static mvp.wyyne.douban.moviedouban.utils.Constans.LAKH;
+import static mvp.wyyne.douban.moviedouban.utils.Constans.THOUSAND;
 
 /**
- *
  * @author XXW
  * @date 2017/6/13
  */
@@ -172,14 +176,27 @@ public abstract class BaseRvAdapter<T> extends RecyclerView.Adapter<BaseItemView
         DecimalFormat dd = new DecimalFormat("#####0.0");
 
         String attendance = null;
-        if (count > 100000) {
+        if (count > LAKH) {
             attendance = df.format(count / 10000.0) + "万人观看";
-        } else if (count > 10000) {
+        } else if (count > THOUSAND) {
             attendance = dd.format(count / 1000.0) + "万人观看";
         } else {
             attendance = count + "人观看";
         }
 
         return attendance;
+    }
+
+
+    /**
+     * 判断是否上映
+     *
+     * @param pubdates 上映时间
+     * @return
+     */
+    public boolean getPredate(String pubdates) {
+        int predateDate = Integer.valueOf(pubdates.substring(0, pubdates.indexOf("(")).replace("-", ""));
+        int currentDate = Integer.valueOf(DateUtils.getCurrentDateYMT());
+        return predateDate > currentDate;
     }
 }

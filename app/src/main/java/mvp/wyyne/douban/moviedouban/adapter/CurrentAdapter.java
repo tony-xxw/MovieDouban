@@ -1,8 +1,12 @@
 package mvp.wyyne.douban.moviedouban.adapter;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.ShapeDrawable;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 
 import java.util.List;
 
@@ -23,10 +27,12 @@ import mvp.wyyne.douban.moviedouban.hot.current.HotCurrentFragment;
 public class CurrentAdapter extends BaseRvAdapter<Subjects> {
     private RvItemOnClick mClick;
     private Subjects mSubjects;
+    private Context mContext;
 
 
     public CurrentAdapter(Context context, List<Subjects> list) {
         super(context, list);
+        mContext = context;
     }
 
     public void setOnclick(RvItemOnClick click) {
@@ -79,7 +85,18 @@ public class CurrentAdapter extends BaseRvAdapter<Subjects> {
             }
         });
 
-        Log.d("XXW", HotCurrentFragment.TAG + "===" + mSubjects.getPubdates().get(0));
+        if (getPredate(mSubjects.getPubdates().get(0))) {
+
+            Button button = holder.getView(R.id.btn_shop);
+            GradientDrawable drawable = (GradientDrawable) button.getBackground();
+            drawable.setStroke(1, mContext.getResources().getColor(R.color.colorOrange));
+            button.setTextColor(mContext.getResources().getColor(R.color.colorOrange));
+            button.setText(mContext.getString(R.string.reserve));
+        }
+
+        Log.d("XXW", HotCurrentFragment.TAG + "===" + getPredate(mSubjects.getPubdates().get(0)));
+
+
     }
 
     @Override

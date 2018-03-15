@@ -9,4 +9,8 @@ package mvp.wyyne.douban.moviedouban.utils;
 
 public class Constans {
 
+    public static final int LAKH = 100000;
+
+    public static final int THOUSAND = 10000;
+
 }

@@ -13,7 +13,7 @@
 <img src="https://raw.githubusercontent.com/tony-xxw/MovieDouban/master/photo/actir.png" height = "400"  align=center />
 
 ### 预告片
-<img src="https://raw.githubusercontent.com/tony-xxw/MovieDouban/master/photo/actir.png" height = "400"  align=center />
+<img src="https://raw.githubusercontent.com/tony-xxw/MovieDouban/master/photo/prevue.png" height = "400"  align=center />
 
 ### 大图
 <img src="https://raw.githubusercontent.com/tony-xxw/MovieDouban/master/photo/prevue.png" height = "400"  align=center />

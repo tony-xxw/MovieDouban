@@ -18,7 +18,9 @@ import mvp.wyyne.douban.moviedouban.utils.MovieType;
 import mvp.wyyne.douban.moviedouban.utils.TitleRecycleItemDecoration;
 
 /**
- * Created by XXW on 2017/6/4.
+ *
+ * @author XXW
+ * @date 2017/6/4
  */
 
 public class HotFutureFragment extends BaseFragment<FuturePresent> implements IFutureMain {

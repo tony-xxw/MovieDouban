@@ -18,6 +18,7 @@ import mvp.wyyne.douban.moviedouban.utils.MovieType;
 import mvp.wyyne.douban.moviedouban.utils.TitleRecycleItemDecoration;
 
 /**
+ * 即将上映
  *
  * @author XXW
  * @date 2017/6/4
@@ -63,14 +64,9 @@ public class HotFutureFragment extends BaseFragment<FuturePresent> implements IF
         mItemDecoration.setDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.line_gray_horizantal));
 
         mFutureRv.setLayoutManager(manager);
-        initHeadDecoration();
         mFutureRv.addItemDecoration(mItemDecoration);
         mFutureRv.setAdapter(mAdapter);
         mPresent.getData();
-
-    }
-
-    private void initHeadDecoration() {
 
     }
 

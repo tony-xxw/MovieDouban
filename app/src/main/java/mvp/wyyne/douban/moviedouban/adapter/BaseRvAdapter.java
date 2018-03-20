@@ -52,10 +52,8 @@ public abstract class BaseRvAdapter<T> extends RecyclerView.Adapter<BaseItemView
             throw new IllegalAccessError("Layout resource ID must be valid!");
         }
         if (data == null) {
-            Log.d("XXW", "null---");
             mList = new ArrayList<>();
         } else {
-            Log.d("XXW", "null===");
             this.mList = data;
         }
         this.mContext = context;

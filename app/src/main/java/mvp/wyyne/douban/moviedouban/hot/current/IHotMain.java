@@ -10,7 +10,7 @@ import mvp.wyyne.douban.moviedouban.home.IMain;
  * @date 2017/6/12
  */
 
-public interface ICurrentMain extends IMain {
+public interface IHotMain extends IMain {
     /**
      * 初始化数据
      *

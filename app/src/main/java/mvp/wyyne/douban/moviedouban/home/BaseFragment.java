@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,8 +17,10 @@ import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.utils.SwipeRefreshUtils;
 
 /**
- *基类Fragmetn
- * Created by XXW on 2017/6/2.
+ * 基类Fragmetn
+ *
+ * @author XXW
+ * @date 2017/6/2
  */
 
 public abstract class BaseFragment<T extends IPresent> extends Fragment {
@@ -54,7 +57,9 @@ public abstract class BaseFragment<T extends IPresent> extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         if (getUserVisibleHint() && mRootView != null) {
+            Log.e("XXW", "onActivityCreated");
             mIsMulti = true;
+            update();
         }
     }
 
@@ -66,9 +71,12 @@ public abstract class BaseFragment<T extends IPresent> extends Fragment {
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         if (isVisibleToUser && isVisible() && mRootView != null && !mIsMulti) {
+            Log.e("XXW", "setUserVisibleHint====" + isVisibleToUser);
             mIsMulti = true;
+            update();
         } else {
             super.setUserVisibleHint(isVisibleToUser);
+            Log.e("XXW", "setUserVisibleHint");
         }
     }
 
@@ -93,6 +101,15 @@ public abstract class BaseFragment<T extends IPresent> extends Fragment {
     protected abstract int getLayoutId();
 
     protected abstract void initView();
+
+    /**
+     * 更新数据
+     *
+     * @param
+     */
+    protected void update() {
+
+    }
 
 
 }

@@ -12,16 +12,21 @@ import mvp.wyyne.douban.moviedouban.api.bean.HotBean;
  * @date 2017/6/12
  */
 
-public class CurrentPresent implements ICurrentPresent {
-    private ICurrentMain mMain;
+public class HotPresent implements IHotPresent {
+    private IHotMain mMain;
 
-    public CurrentPresent(ICurrentMain main) {
+    public HotPresent(IHotMain main) {
         mMain = main;
     }
 
 
     @Override
     public void getData() {
+
+    }
+
+    @Override
+    public void getCurrentData() {
         RetrofitService.getHotList()
                 .subscribe(new Observer<HotBean>() {
                                @Override
@@ -44,5 +49,32 @@ public class CurrentPresent implements ICurrentPresent {
                                }
                            }
                 );
+    }
+
+    @Override
+    public void getFutureData() {
+        RetrofitService.getFutureList()
+                .subscribe(new Observer<HotBean>() {
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
+                        mMain.show();
+                    }
+
+                    @Override
+                    public void onNext(@NonNull HotBean hotBean) {
+                        mMain.initData(hotBean.getSubjectsList());
+
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        mMain.hide();
+                    }
+                });
     }
 }

@@ -7,6 +7,7 @@ import android.graphics.drawable.ShapeDrawable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -24,21 +25,20 @@ import mvp.wyyne.douban.moviedouban.hot.current.HotCurrentFragment;
  * @date 2017/6/4
  */
 
-public class CurrentAdapter extends BaseRvAdapter<Subjects> {
-    private RvItemOnClick mClick;
+public class HotAdapter extends BaseRvAdapter<Subjects> {
     private Subjects mSubjects;
     private Context mContext;
+    private boolean isFuture;
 
 
-    public CurrentAdapter(Context context, List<Subjects> list) {
+    public HotAdapter(Context context, List<Subjects> list) {
         super(context, list);
         mContext = context;
     }
 
-    public void setOnclick(RvItemOnClick click) {
-        mClick = click;
+    public void setFuture(boolean future) {
+        isFuture = future;
     }
-
 
     @Override
     int getLayoutId() {
@@ -47,6 +47,7 @@ public class CurrentAdapter extends BaseRvAdapter<Subjects> {
 
     @Override
     void bindView(BaseItemViewHolder holder, final int position) {
+        Log.d("XXW", "HotAdapter---" + position);
         StringBuffer mName = new StringBuffer();
         mSubjects = mList.get(position);
         List<Casts> casts = mSubjects.getCasts();
@@ -86,15 +87,14 @@ public class CurrentAdapter extends BaseRvAdapter<Subjects> {
         });
 
         if (getPredate(mSubjects.getPubdates().get(0))) {
-
             Button button = holder.getView(R.id.btn_shop);
             GradientDrawable drawable = (GradientDrawable) button.getBackground();
             drawable.setStroke(1, mContext.getResources().getColor(R.color.colorOrange));
             button.setTextColor(mContext.getResources().getColor(R.color.colorOrange));
             button.setText(mContext.getString(R.string.reserve));
+            TextView textView = holder.getView(R.id.tv_collect_count);
+            textView.setTextColor(mContext.getResources().getColor(R.color.colorOrange));
         }
-
-        Log.d("XXW", HotCurrentFragment.TAG + "===" + getPredate(mSubjects.getPubdates().get(0)));
 
 
     }

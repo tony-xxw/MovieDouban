@@ -14,7 +14,9 @@ import mvp.wyyne.douban.moviedouban.api.bean.Rating;
 import mvp.wyyne.douban.moviedouban.api.bean.Subjects;
 
 /**
- * Created by XXW on 2017/6/13.
+ *
+ * @author XXW
+ * @date 2017/6/13
  */
 
 public class FutureAdapter extends BaseRvAdapter<Subjects> {

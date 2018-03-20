@@ -3,7 +3,9 @@ package mvp.wyyne.douban.moviedouban.utils;
 import mvp.wyyne.douban.moviedouban.api.bean.Subjects;
 
 /**
- * Created by XXW on 2017/6/14.
+ *
+ * @author XXW
+ * @date 2017/6/14
  */
 
 public class MovieType {

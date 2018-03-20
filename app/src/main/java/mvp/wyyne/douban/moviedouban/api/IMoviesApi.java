@@ -14,36 +14,51 @@ import retrofit2.http.GET;
 import retrofit2.http.Path;
 
 /**
- * Created by XXW on 2017/6/5.
+ * @author XXW
+ * @date 2017/6/5
  */
 
 public interface IMoviesApi {
 
-    //正在热映
+    /**
+     * 正在热映
+     */
     @GET("movie/in_theaters?apikey=0df993c66c0c636e29ecbb5344252a4a")
     Observable<HotBean> getHotList();
 
-    //即将上映
-    @GET("movie/coming_soon")
+    /**
+     * 即将上映
+     */
+    @GET("movie/coming_soon?apikey=0df993c66c0c636e29ecbb5344252a4a")
     Observable<HotBean> getFutureList();
 
-    //电影条目信息
+    /**
+     * 电影条目信息
+     */
     @GET("movie/subject/{id}?apikey=0df993c66c0c636e29ecbb5344252a4a")
     Observable<Article> getArticle(@Path("id") String id);
 
-    //电影长评论条目信息
+    /**
+     * 电影长评论条目信息
+     */
     @GET("movie/subject/{id}/reviews?apikey=0df993c66c0c636e29ecbb5344252a4a")
     Observable<MoviesReviews> getReviews(@Path("id") String id);
 
-    //电影剧照
+    /**
+     * 电影剧照
+     */
     @GET("movie/subject/{id}/photos?apikey=0df993c66c0c636e29ecbb5344252a4a")
     Observable<Stills> getStillsPhotos(@Path("id") String id);
 
-    //影人剧照
+    /**
+     * 影人剧照
+     */
     @GET("movie/celebrity/{id}/photos?apikey=0df993c66c0c636e29ecbb5344252a4a")
     Observable<CastPhoto> getCastPhotos(@Path("id") String id);
 
-    //影人条目
+    /**
+     * 影人条
+     */
     @GET("movie/celebrity/{id}?apikey=0df993c66c0c636e29ecbb5344252a4a")
     Observable<CastArticle> getCastArticle(@Path("id") String id);
 }

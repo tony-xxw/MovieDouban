@@ -36,6 +36,8 @@ public class Subjects implements Parcelable {
     private Avatars images;
     private String alt;
     private String id;
+
+
     private String mainland_pubdate;
     private boolean has_video;
     private List<String> pubdates;
@@ -170,6 +172,14 @@ public class Subjects implements Parcelable {
 
     public void setPubdates(List<String> pubdates) {
         this.pubdates = pubdates;
+    }
+
+    public String getMainland_pubdate() {
+        return mainland_pubdate;
+    }
+
+    public void setMainland_pubdate(String mainland_pubdate) {
+        this.mainland_pubdate = mainland_pubdate;
     }
 
     @Override

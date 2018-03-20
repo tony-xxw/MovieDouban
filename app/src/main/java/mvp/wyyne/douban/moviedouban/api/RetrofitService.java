@@ -33,7 +33,9 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
- * Created by XXW on 2017/6/5.
+ *
+ * @author XXW
+ * @date 2017/6/5
  */
 
 public class RetrofitService {

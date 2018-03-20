@@ -14,7 +14,8 @@ import android.view.View;
 import java.util.List;
 
 /**
- * Created by XXW on 2017/6/14.
+ * @author XXW
+ * @date 2017/6/14
  */
 
 public class TitleRecycleItemDecoration extends RecyclerView.ItemDecoration {
@@ -22,8 +23,9 @@ public class TitleRecycleItemDecoration extends RecyclerView.ItemDecoration {
     private List<MovieType> mData;
     private Paint mPaint;
     private Rect mBound;
-    private static int COLOR_TITLE_BG = Color.parseColor("#FFDFDFDF");
-    private static int COLOR_TITLE_FONT = Color.parseColor("#FF000000");
+    private static int COLOR_TITLE_BG = Color.parseColor("#FFF5F5F5");
+    private static int COLOR_TITLE_FONT = Color.parseColor("#FF666666");
+    private static int LEFT_DP = 0;
 
 
     public TitleRecycleItemDecoration(Context context, List<MovieType> data) {
@@ -32,14 +34,16 @@ public class TitleRecycleItemDecoration extends RecyclerView.ItemDecoration {
         mData = data;
         mBound = new Rect();
         mPaint = new Paint();
-
+        mPaint.setAntiAlias(true);
+        LEFT_DP = (int) (context.getResources().getDisplayMetrics().density * 15);
+        Log.d("XXW", "LEFT_DP==" + LEFT_DP);
+        Log.d("XXW", "LEFT_DP==" + context.getResources().getDisplayMetrics().density);
     }
 
     public void setData(List<MovieType> data) {
         mData = data;
     }
 
-    //
     @Override
     public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) {
         super.onDraw(c, parent, state);
@@ -51,11 +55,12 @@ public class TitleRecycleItemDecoration extends RecyclerView.ItemDecoration {
             final RecyclerView.LayoutParams pams = (RecyclerView.LayoutParams) child.getLayoutParams();
             int position = pams.getViewLayoutPosition();
             if (position > -1) {
-                if (position == 0) {//等于0肯定要有title的
+                //第一次
+                if (position == 0) {
                     drawTitleArea(c, left, right, child, pams, position);
 
                 } else {//其他的通过判断
-                    if (null != mData.get(position).getTags() && !mData.get(position).getTags().equals(mData.get(position - 1).getTags())) {
+                    if (null != mData.get(position).getTags() && !(mData.get(position).getTags().equals(mData.get(position - 1).getTags()))) {
                         //不为空 且跟前一个tag不一样了，说明是新的分类，也要title
                         drawTitleArea(c, left, right, child, pams, position);
                     } else {
@@ -64,7 +69,6 @@ public class TitleRecycleItemDecoration extends RecyclerView.ItemDecoration {
                 }
             }
         }
-//        Log.d("XXW", "onDraw");
     }
 
 
@@ -82,12 +86,9 @@ public class TitleRecycleItemDecoration extends RecyclerView.ItemDecoration {
         mPaint.setColor(COLOR_TITLE_BG);
         c.drawRect(left, child.getTop() - params.topMargin - mTitleHeight, right, child.getTop() - params.topMargin, mPaint);
         mPaint.setColor(COLOR_TITLE_FONT);
-/*
-        Paint.FontMetricsInt fontMetrics = mPaint.getFontMetricsInt();
-        int baseline = (getMeasuredHeight() - fontMetrics.bottom + fontMetrics.top) / 2 - fontMetrics.top;*/
 
         mPaint.getTextBounds(mData.get(position).getTags(), 0, mData.get(position).getTags().length(), mBound);
-        c.drawText(mData.get(position).getTags(), child.getPaddingLeft(), child.getTop() - params.topMargin - (mTitleHeight / 2 - mBound.height() / 2), mPaint);
+        c.drawText(mData.get(position).getTags(), child.getPaddingLeft() + LEFT_DP, child.getTop() - params.topMargin - (mTitleHeight / 2 - mBound.height() / 2), mPaint);
     }
 
 
@@ -96,14 +97,18 @@ public class TitleRecycleItemDecoration extends RecyclerView.ItemDecoration {
         super.onDrawOver(c, parent, state);
         int pos = ((LinearLayoutManager) parent.getLayoutManager()).findFirstVisibleItemPosition();
         String tags = mData.get(pos).getTags();
+        Log.d("XXW", "onDrawOver====" + mData.get(pos).getTags());
+        Log.d("XXW", "onDrawOver==Next==" + mData.get(pos + 1).getTags());
         View child = parent.findViewHolderForLayoutPosition(pos).itemView;
-
-
-        boolean flag = false;//定义一个flag，Canvas是否位移过的标志
-        if ((pos + 1) < mData.size()) {//防止数组越界（一般情况不会出现）
-            if (null != tags && !tags.equals(mData.get(pos + 1).getTags())) {//当前第一个可见的Item的tag，不等于其后一个item的tag，说明悬浮的View要切换了
-                Log.d("zxt", "onDrawOver() called with: c = [" + child.getTop());//当getTop开始变负，它的绝对值，是第一个可见的Item移出屏幕的距离，
-                if (child.getHeight() + child.getTop() < mTitleHeight) {//当第一个可见的item在屏幕中还剩的高度小于title区域的高度时，我们也该开始做悬浮Title的“交换动画”
+        //定义一个flag，Canvas是否位移过的标志
+        boolean flag = false;
+        //防止数组越界（一般情况不会出现）
+        if ((pos + 1) < mData.size()) {
+            //当前第一个可见的Item的tag，不等于其后一个item的tag，说明悬浮的View要切换了
+            if (null != tags && !tags.equals(mData.get(pos + 1).getTags())) {
+                //当getTop开始变负，它的绝对值，是第一个可见的Item移出屏幕的距离，
+                if (child.getHeight() + child.getTop() < mTitleHeight) {
+                    //当第一个可见的item在屏幕中还剩的高度小于title区域的高度时，我们也该开始做悬浮Title的“交换动画”
                     c.save();//每次绘制前 保存当前Canvas状态，
                     flag = true;
 
@@ -121,22 +126,22 @@ public class TitleRecycleItemDecoration extends RecyclerView.ItemDecoration {
         c.drawRect(parent.getPaddingLeft(), parent.getPaddingTop(),
                 parent.getRight() - parent.getPaddingRight(), parent.getPaddingTop() + mTitleHeight, mPaint);
         mPaint.setColor(COLOR_TITLE_FONT);
-        mPaint.setTextSize(28);
+        mPaint.setTextSize(36);
         mPaint.getTextBounds(tags, 0, tags.length(), mBound);
-        c.drawText(tags, child.getPaddingLeft(), parent.getPaddingTop() + mTitleHeight - (mTitleHeight / 2 - mBound.height() / 2), mPaint);
-        if (flag)
+        c.drawText(tags, child.getPaddingLeft() + LEFT_DP, parent.getPaddingTop() + mTitleHeight - (mTitleHeight / 2 - mBound.height() / 2), mPaint);
+        if (flag) {
             c.restore();//恢复画布到之前保存的状态
-
+        }
 //        Log.d("XXW", "onDrawOver-------" + mTitleHeight + "----Bound----" + mBound.height());
     }
 
     @Override
     public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
         super.getItemOffsets(outRect, view, parent, state);
+        Log.e("XXW", "getItemOffsets");
         int position = ((RecyclerView.LayoutParams) view.getLayoutParams()).getViewLayoutPosition();
         if (position > -1) {
             if (position == 0) {
-//                Log.d("XXW", "position=0");
                 outRect.set(0, mTitleHeight, 0, 0);
             } else {
                 if (null != mData.get(position).getTags() && mData.get(position).getTags().equals(mData.get(position - 1).getTags())) {
@@ -147,6 +152,5 @@ public class TitleRecycleItemDecoration extends RecyclerView.ItemDecoration {
                 }
             }
         }
-//        Log.d("XXW", "getItemOffsets-----position---" + position + "-----");
     }
 }

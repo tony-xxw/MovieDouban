@@ -3,7 +3,6 @@ package mvp.wyyne.douban.moviedouban.utils;
 import mvp.wyyne.douban.moviedouban.api.bean.Subjects;
 
 /**
- *
  * @author XXW
  * @date 2017/6/14
  */

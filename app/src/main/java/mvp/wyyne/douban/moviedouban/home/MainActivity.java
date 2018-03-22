@@ -1,6 +1,8 @@
 package mvp.wyyne.douban.moviedouban.home;
 
 import android.annotation.SuppressLint;
+import android.graphics.Color;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.design.internal.BottomNavigationItemView;
 import android.support.design.internal.BottomNavigationMenuView;
@@ -12,6 +14,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -41,6 +44,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         disableShiftMode(mBottomNaviView);
         mBottomNaviView.setOnNavigationItemSelectedListener(this);
         initView();
+//        setStastuBar();
     }
 
     private void initView() {
@@ -129,4 +133,36 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             Log.e("BNVHelper", "无法修改mShiftingMode的值", e);
         }
     }
+
+
+    public void setStastuBar() {
+        ViewGroup root = (ViewGroup) getWindow().getDecorView().findViewById(android.R.id.content);
+        root.setPadding(0, getStatusBarHeight(), 0, 0);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            //5.0 以上直接设置状态栏颜色
+            getWindow().setStatusBarColor(Color.TRANSPARENT);
+        } else {
+            //根布局添加占位状态栏
+            ViewGroup decorView = (ViewGroup) getWindow().getDecorView();
+            View statusBarView = new View(this);
+            ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                    getStatusBarHeight());
+            statusBarView.setBackgroundColor(Color.TRANSPARENT);
+            decorView.addView(statusBarView, lp);
+        }
+
+
+    }
+
+    public int getStatusBarHeight() {
+        int result = 0;
+        //获取状态栏高度的资源id
+        int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
+        if (resourceId > 0) {
+            result = getResources().getDimensionPixelSize(resourceId);
+        }
+        return result;
+    }
+
+
 }

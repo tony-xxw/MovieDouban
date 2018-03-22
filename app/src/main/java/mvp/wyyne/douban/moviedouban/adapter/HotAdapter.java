@@ -47,7 +47,6 @@ public class HotAdapter extends BaseRvAdapter<Subjects> {
 
     @Override
     void bindView(BaseItemViewHolder holder, final int position) {
-        Log.d("XXW", "HotAdapter---" + position);
         StringBuffer mName = new StringBuffer();
         mSubjects = mList.get(position);
         List<Casts> casts = mSubjects.getCasts();

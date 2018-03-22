@@ -1,5 +1,6 @@
 package mvp.wyyne.douban.moviedouban.home;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -40,6 +41,17 @@ public abstract class BaseFragment<T extends IPresent> extends Fragment {
 
     protected T mPresent;
 
+    protected String TAG;
+
+    protected MainActivity mContentActivity;
+
+    protected Object object = new Object();
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mContentActivity = (MainActivity) context;
+    }
 
     @Nullable
     @Override
@@ -50,6 +62,7 @@ public abstract class BaseFragment<T extends IPresent> extends Fragment {
             initView();
             initSwipeRefresh();
         }
+        Log.d("XXW", "object==" + object.toString());
         return mRootView;
     }
 
@@ -57,29 +70,28 @@ public abstract class BaseFragment<T extends IPresent> extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         if (getUserVisibleHint() && mRootView != null) {
-            Log.e("XXW", "onActivityCreated");
             mIsMulti = true;
             update();
         }
     }
 
 
-    //只有在多个Fragment实例才会执行此方法
-    //如果isVisibleToUser 为true表示当前用户可见的Fragment,getUserVisible也为true 就可以去执行更新的数据,实现赖加载
-    //
-
+    /**
+     * 只有在多个Fragment实例才会执行此方法
+     * 如果isVisibleToUser 为true表示当前用户可见的Fragment,getUserVisible也为true 就可以去执行更新的数据,实现赖加载
+     * <p>
+     * 用户后面懒加载的页面 可以延迟加载
+     * 因为ViewPager 提前已经创建Fragment 只是没有加载数据
+     */
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         if (isVisibleToUser && isVisible() && mRootView != null && !mIsMulti) {
-            Log.e("XXW", "setUserVisibleHint====" + isVisibleToUser);
             mIsMulti = true;
             update();
         } else {
             super.setUserVisibleHint(isVisibleToUser);
-            Log.e("XXW", "setUserVisibleHint");
         }
     }
-
 
     /**
      * 初始化下拉刷新

@@ -1,10 +1,14 @@
 package mvp.wyyne.douban.moviedouban.hot.future;
 
+import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,6 +21,7 @@ import mvp.wyyne.douban.moviedouban.api.RvItemOnClick;
 import mvp.wyyne.douban.moviedouban.api.bean.Subjects;
 import mvp.wyyne.douban.moviedouban.detail.DetailMovieActivity;
 import mvp.wyyne.douban.moviedouban.home.BaseFragment;
+import mvp.wyyne.douban.moviedouban.hot.current.HotCurrentFragment;
 import mvp.wyyne.douban.moviedouban.hot.current.HotPresent;
 import mvp.wyyne.douban.moviedouban.hot.current.IHotMain;
 import mvp.wyyne.douban.moviedouban.utils.MovieType;
@@ -30,7 +35,7 @@ import mvp.wyyne.douban.moviedouban.utils.TitleRecycleItemDecoration;
  */
 
 public class HotFutureFragment extends BaseFragment<HotPresent> implements IHotMain, RvItemOnClick {
-    protected static final String TAG = "HotFutureFragment";
+    public static String TAG = HotFutureFragment.class.getSimpleName();
     @BindView(R.id.future_rv)
     RecyclerView mFutureRv;
     private HotAdapter mAdapter;
@@ -47,6 +52,14 @@ public class HotFutureFragment extends BaseFragment<HotPresent> implements IHotM
 
 
     private List<String> mTag;
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        Log.d("XXW", TAG + "onActivityCreated ==" + getUserVisibleHint());
+
+    }
+
 
     @Override
     protected void refresh() {
@@ -75,8 +88,12 @@ public class HotFutureFragment extends BaseFragment<HotPresent> implements IHotM
         mFutureRv.addItemDecoration(mItemDecoration);
         mFutureRv.setAdapter(mAdapter);
         mAdapter.setRvOnClick(this);
-        mPresent.getFutureData();
 
+    }
+
+    @Override
+    public void update() {
+        mPresent.getFutureData();
     }
 
 

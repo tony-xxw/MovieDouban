@@ -1,10 +1,14 @@
 package mvp.wyyne.douban.moviedouban.hot.current;
 
+import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +20,7 @@ import mvp.wyyne.douban.moviedouban.api.RvItemOnClick;
 import mvp.wyyne.douban.moviedouban.api.bean.Subjects;
 import mvp.wyyne.douban.moviedouban.detail.DetailMovieActivity;
 import mvp.wyyne.douban.moviedouban.home.BaseFragment;
+import mvp.wyyne.douban.moviedouban.hot.future.HotFutureFragment;
 
 /**
  * @author XXW
@@ -23,13 +28,21 @@ import mvp.wyyne.douban.moviedouban.home.BaseFragment;
  */
 
 public class HotCurrentFragment extends BaseFragment<HotPresent> implements IHotMain, RvItemOnClick {
-    public static final String TAG = HotCurrentFragment.class.getSimpleName();
+    public static String TAG = HotCurrentFragment.class.getSimpleName();
     @BindView(R.id.current_rv)
     RecyclerView mCurrentRv;
 
     private List<Subjects> mList;
     private HotAdapter mAdapter;
     private DividerItemDecoration mItemDecoration;
+
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        Log.d("XXW", TAG + "onActivityCreated==" + getUserVisibleHint());
+
+    }
 
     @Override
     protected int getLayoutId() {
@@ -49,8 +62,13 @@ public class HotCurrentFragment extends BaseFragment<HotPresent> implements IHot
         mCurrentRv.setLayoutManager(manager);
         mCurrentRv.addItemDecoration(mItemDecoration);
         mCurrentRv.setAdapter(mAdapter);
-        mPresent.getCurrentData();
 
+    }
+
+
+    @Override
+    public void update() {
+        mPresent.getCurrentData();
     }
 
 

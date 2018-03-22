@@ -14,6 +14,12 @@ import retrofit2.http.GET;
 import retrofit2.http.Path;
 
 /**
+ * movie/search?q= &start= 开始&count=结束  搜索接口
+ * movie/top250?start= 开始&count=结束  TOP250
+ * movie/box  北美票房
+ * movie/weekly 口碑榜
+ * movie/celebrity/{id}/works 影人作品
+ *
  * @author XXW
  * @date 2017/6/5
  */

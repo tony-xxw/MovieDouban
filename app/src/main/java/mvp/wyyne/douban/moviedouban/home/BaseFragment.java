@@ -1,5 +1,6 @@
 package mvp.wyyne.douban.moviedouban.home;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -43,14 +44,14 @@ public abstract class BaseFragment<T extends IPresent> extends Fragment {
 
     protected String TAG;
 
-    protected MainActivity mContentActivity;
+    protected Activity mContentActivity;
 
     protected Object object = new Object();
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        mContentActivity = (MainActivity) context;
+        mContentActivity = (Activity) context;
     }
 
     @Nullable

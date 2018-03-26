@@ -33,7 +33,6 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
- *
  * @author XXW
  * @date 2017/6/5
  */
@@ -108,7 +107,7 @@ public class RetrofitService {
                 Log.d("XXW", "request.body()==null");
             }
 
-            Log.i("XXW", request.url() + (request.body() != null ? "?" + _parseParams(request.body(), requestBuffer) : ""));
+            Log.i("XXW", request.url() + (request.body() != null ? "?" + parseParams(request.body(), requestBuffer) : ""));
             final Response response = chain.proceed(request);
             return response;
         }
@@ -116,7 +115,7 @@ public class RetrofitService {
 
 
     @NonNull
-    private static String _parseParams(RequestBody body, Buffer requestBuffer) throws UnsupportedEncodingException {
+    private static String parseParams(RequestBody body, Buffer requestBuffer) throws UnsupportedEncodingException {
         if (body.contentType() != null && !body.contentType().toString().contains("multipart")) {
             return URLDecoder.decode(requestBuffer.readUtf8(), "UTF-8");
         }
@@ -125,66 +124,41 @@ public class RetrofitService {
 
 
     public static Observable<HotBean> getHotList() {
-        return mMoviesApi.getHotList().
-                subscribeOn(Schedulers.io())
-                .unsubscribeOn(Schedulers.io())
-                .subscribeOn(AndroidSchedulers.mainThread())
-                .observeOn(AndroidSchedulers.mainThread());
+        return subscribeOnThread(mMoviesApi.getHotList());
     }
 
 
     public static Observable<HotBean> getFutureList() {
-        return mMoviesApi.getFutureList().
-                subscribeOn(Schedulers.io())
-                .unsubscribeOn(Schedulers.io())
-                .subscribeOn(AndroidSchedulers.mainThread())
-                .observeOn(AndroidSchedulers.mainThread());
+        return subscribeOnThread(mMoviesApi.getFutureList());
     }
 
     public static Observable<Article> getArticle(String id) {
-        Log.d("XXW", "Id---" + id);
-        return mMoviesApi.getArticle(id).
-                subscribeOn(Schedulers.io())
-                .unsubscribeOn(Schedulers.io())
-                .subscribeOn(AndroidSchedulers.mainThread())
-                .observeOn(AndroidSchedulers.mainThread());
+        return subscribeOnThread(mMoviesApi.getArticle(id));
     }
 
     public static Observable<WelfarePhotoList> getPhotoList(int page) {
-        return mWelfareApi.getWelfarePhoto(page).
-                subscribeOn(Schedulers.io())
-                .unsubscribeOn(Schedulers.io())
-                .subscribeOn(AndroidSchedulers.mainThread())
-                .observeOn(AndroidSchedulers.mainThread());
+        return subscribeOnThread(mWelfareApi.getWelfarePhoto(page));
     }
 
     public static Observable<MoviesReviews> getReviews(String subjectId) {
-        return mMoviesApi.getReviews(subjectId).
-                subscribeOn(Schedulers.io())
-                .unsubscribeOn(Schedulers.io())
-                .subscribeOn(AndroidSchedulers.mainThread())
-                .observeOn(AndroidSchedulers.mainThread());
+        return subscribeOnThread(mMoviesApi.getReviews(subjectId));
     }
 
     public static Observable<Stills> getStillsPhotos(String subjectId) {
-        return mMoviesApi.getStillsPhotos(subjectId).
-                subscribeOn(Schedulers.io())
-                .unsubscribeOn(Schedulers.io())
-                .subscribeOn(AndroidSchedulers.mainThread())
-                .observeOn(AndroidSchedulers.mainThread());
+        return subscribeOnThread(mMoviesApi.getStillsPhotos(subjectId));
     }
 
     public static Observable<CastArticle> getCastArticle(String castId) {
-        return mMoviesApi.getCastArticle(castId).
-                subscribeOn(Schedulers.io())
-                .unsubscribeOn(Schedulers.io())
-                .subscribeOn(AndroidSchedulers.mainThread())
-                .observeOn(AndroidSchedulers.mainThread());
+        return subscribeOnThread(mMoviesApi.getCastArticle(castId));
     }
 
     public static Observable<CastPhoto> getCastList(String castId) {
-        return mMoviesApi.getCastPhotos(castId).
-                subscribeOn(Schedulers.io())
+        return subscribeOnThread(mMoviesApi.getCastPhotos(castId));
+    }
+
+
+    private static <T> Observable<T> subscribeOnThread(Observable<T> observable) {
+        return observable.subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .subscribeOn(AndroidSchedulers.mainThread())
                 .observeOn(AndroidSchedulers.mainThread());

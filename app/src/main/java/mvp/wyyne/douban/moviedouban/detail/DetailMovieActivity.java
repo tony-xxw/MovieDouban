@@ -33,7 +33,9 @@ import mvp.wyyne.douban.moviedouban.detail.head.DetailMovieHeadFragment;
 import mvp.wyyne.douban.moviedouban.home.BaseActivity;
 
 /**
- * Created by XXW on 2017/6/18.
+ *
+ * @author XXW
+ * @date 2017/6/18
  */
 
 public class DetailMovieActivity extends BaseActivity<DetailMovieImp> implements

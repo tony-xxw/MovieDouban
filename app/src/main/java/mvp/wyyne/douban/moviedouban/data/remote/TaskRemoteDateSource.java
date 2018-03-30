@@ -1,4 +1,4 @@
-package mvp.wyyne.douban.moviedouban.api;
+package mvp.wyyne.douban.moviedouban.data.remote;
 
 import android.support.annotation.NonNull;
 import android.util.Log;
@@ -15,13 +15,10 @@ import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import mvp.wyyne.douban.moviedouban.AndroidApplication;
-import mvp.wyyne.douban.moviedouban.api.bean.Article;
-import mvp.wyyne.douban.moviedouban.api.bean.CastArticle;
-import mvp.wyyne.douban.moviedouban.api.bean.CastPhoto;
+import mvp.wyyne.douban.moviedouban.api.IMoviesApi;
+import mvp.wyyne.douban.moviedouban.api.IWelfareApi;
 import mvp.wyyne.douban.moviedouban.api.bean.HotBean;
-import mvp.wyyne.douban.moviedouban.api.bean.MoviesReviews;
-import mvp.wyyne.douban.moviedouban.api.bean.Stills;
-import mvp.wyyne.douban.moviedouban.api.bean.WelfarePhotoList;
+import mvp.wyyne.douban.moviedouban.data.TasksDataSource;
 import okhttp3.Cache;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -33,18 +30,31 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
- * @author XXW
- * @date 2017/6/5
+ * @author Wynne
+ * @date 2018/3/26
  */
 
-public class RetrofitService {
+public class TaskRemoteDateSource implements TasksDataSource.TaskRemoteData {
+    @Override
+    public Observable<HotBean> getHotList() {
+        return subscribeOnThread(mMoviesApi.getHotList());
+    }
+
+
+    private static <T> Observable<T> subscribeOnThread(Observable<T> observable) {
+        return observable.subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .subscribeOn(AndroidSchedulers.mainThread())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
     private static final String MOVIES_HOST = "https://api.douban.com/v2/";
     private static final String WELFARE_HOST = "http://gank.io";
 
     private static IMoviesApi mMoviesApi;
     private static IWelfareApi mWelfareApi;
 
-    public static void init() {
+    public void init() {
         Cache cache = new Cache(new File(AndroidApplication.getApplication().getCacheDir(), "HttpCache"), 1024 * 1024 * 100);
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .cache(cache)
@@ -121,48 +131,6 @@ public class RetrofitService {
             return URLDecoder.decode(requestBuffer.readUtf8(), "UTF-8");
         }
         return "null";
-    }
-
-
-    public static Observable<HotBean> getHotList() {
-        return subscribeOnThread(mMoviesApi.getHotList());
-    }
-
-
-    public static Observable<HotBean> getFutureList() {
-        return subscribeOnThread(mMoviesApi.getFutureList());
-    }
-
-    public static Observable<Article> getArticle(String id) {
-        return subscribeOnThread(mMoviesApi.getArticle(id));
-    }
-
-    public static Observable<WelfarePhotoList> getPhotoList(int page) {
-        return subscribeOnThread(mWelfareApi.getWelfarePhoto(page));
-    }
-
-    public static Observable<MoviesReviews> getReviews(String subjectId) {
-        return subscribeOnThread(mMoviesApi.getReviews(subjectId));
-    }
-
-    public static Observable<Stills> getStillsPhotos(String subjectId) {
-        return subscribeOnThread(mMoviesApi.getStillsPhotos(subjectId));
-    }
-
-    public static Observable<CastArticle> getCastArticle(String castId) {
-        return subscribeOnThread(mMoviesApi.getCastArticle(castId));
-    }
-
-    public static Observable<CastPhoto> getCastList(String castId) {
-        return subscribeOnThread(mMoviesApi.getCastPhotos(castId));
-    }
-
-
-    private static <T> Observable<T> subscribeOnThread(Observable<T> observable) {
-        return observable.subscribeOn(Schedulers.io())
-                .unsubscribeOn(Schedulers.io())
-                .subscribeOn(AndroidSchedulers.mainThread())
-                .observeOn(AndroidSchedulers.mainThread());
     }
 
 }

@@ -1,6 +1,6 @@
-package mvp.wyyne.douban.moviedouban.date.local;
+package mvp.wyyne.douban.moviedouban.data.local;
 
-import mvp.wyyne.douban.moviedouban.date.TasksDataSource;
+import mvp.wyyne.douban.moviedouban.data.TasksDataSource;
 
 /**
  *

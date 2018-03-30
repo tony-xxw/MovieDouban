@@ -33,7 +33,6 @@ import mvp.wyyne.douban.moviedouban.detail.head.DetailMovieHeadFragment;
 import mvp.wyyne.douban.moviedouban.home.BaseActivity;
 
 /**
- *
  * @author XXW
  * @date 2017/6/18
  */
@@ -137,7 +136,9 @@ public class DetailMovieActivity extends BaseActivity<DetailMovieImp> implements
     }
 
 
-    //设置背景图片和设置电影海报图片
+    /**
+     * 设置背景图片和设置电影海报图片
+     */
     public void setBackGroudBg(String url) {
         Glide.with(this).load(url).asBitmap().into(new SimpleTarget<Bitmap>() {
             @Override

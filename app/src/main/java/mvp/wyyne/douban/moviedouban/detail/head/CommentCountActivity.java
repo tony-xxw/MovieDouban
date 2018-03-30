@@ -8,7 +8,9 @@ import mvp.wyyne.douban.moviedouban.home.base.BaseActivity;
 
 /**
  * 评价界面
- * Created by XXW on 2017/8/21.
+ *
+ * @author XXW
+ * @date 2017/8/21
  */
 
 public class CommentCountActivity extends BaseActivity {
@@ -27,8 +29,5 @@ public class CommentCountActivity extends BaseActivity {
 
     }
 
-    public void show(){
-        Log.d("2017","22？");
-    }
 
 }

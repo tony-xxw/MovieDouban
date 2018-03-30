@@ -27,6 +27,7 @@ import mvp.wyyne.douban.moviedouban.detail.cast.CastArticleActivity;
 import mvp.wyyne.douban.moviedouban.detail.photo.PhotoActivity;
 import mvp.wyyne.douban.moviedouban.detail.stills.AllStillsActivity;
 import mvp.wyyne.douban.moviedouban.detail.stills.StillsActivity;
+import mvp.wyyne.douban.moviedouban.home.IPresent;
 import mvp.wyyne.douban.moviedouban.home.base.BaseFragment;
 import mvp.wyyne.douban.moviedouban.utils.StringUtils;
 import mvp.wyyne.douban.moviedouban.widget.ExpandableTextView;
@@ -37,7 +38,8 @@ import mvp.wyyne.douban.moviedouban.widget.RecycleViewUtils;
  * @date 2017/6/30
  */
 
-public class DetailMovieHeadFragment extends BaseFragment<DetailHeadImp> implements IDHeadMain, RvItemOnClick {
+public class DetailMovieHeadFragment extends BaseFragment<IPresent> implements RvItemOnClick {
+    public static final String TAG = "DetailMovieHeadFragment";
     @BindView(R.id.tv_detail_title)
     TextView mTvDetailTitle;
     @BindView(R.id.tv_detail_type)
@@ -64,10 +66,8 @@ public class DetailMovieHeadFragment extends BaseFragment<DetailHeadImp> impleme
     RecyclerView mRvCasts;
     @BindView(R.id.rv_photos)
     RecyclerView mRvPhoto;
-    private Article mArticle;
     private List<Casts> mCasts;
-
-    public static final String TAG = "DetailMovieHeadFragment";
+    private Article mArticle;
 
     public static DetailMovieHeadFragment getInstance(Article article) {
         Bundle bundle = new Bundle();
@@ -77,15 +77,6 @@ public class DetailMovieHeadFragment extends BaseFragment<DetailHeadImp> impleme
         return fragment;
     }
 
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments().getParcelable(TAG) != null) {
-            mArticle = getArguments().getParcelable(TAG);
-            Log.d("XXW", "Arrticle--" + mArticle.toString());
-        }
-    }
 
     @Override
     protected void refresh() {
@@ -99,63 +90,13 @@ public class DetailMovieHeadFragment extends BaseFragment<DetailHeadImp> impleme
 
     @Override
     protected void initView() {
-        mTvDetailTitle.setText(mArticle.getTitle());
-        String typeDate = mArticle.getYear() + "/" + StringUtils.getString(mArticle.getGenres());
-        mTvDetailType.setText(typeDate);
-        mTvDetailFormerly.setText(mArticle.getOriginal_title());
-        mTvDetailGrade.setText(String.valueOf(mArticle.getRating().getAverage()));
-        mTvDetailNum.setText(String.valueOf(mArticle.getRatings_count()));
-        mTbDetailNum.setRating((float) mArticle.getRating().getAverage());
-        for (String s : mArticle.getPubdates()) {
-            if (s.contains("中国大陆")) {
-                mTvDetailShow.setText(getString(R.string.china));
-            }
+        if (getArguments().getParcelable(TAG) != null) {
+            mArticle = getArguments().getParcelable(TAG);
         }
-        if (mArticle.getDurations() != null) {
-            if (mArticle.getDurations().size() != 0) {
-                mTvDetailTime.setText(getString(R.string.movie_time) + mArticle.getDurations().get(0));
-            }
-        }
-        mEtSummary.setText(mArticle.getSummary());
 
-        //初始化演员列表
-        mCasts = mArticle.getCasts();
-        List<Directors> mDirectories = mArticle.getDirectors();
-        CastAdapter mCastAdapter = new CastAdapter(getActivity(), mCasts);
-        LinearLayoutManager mCastManager = new LinearLayoutManager(getActivity());
-        mCastManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-        mRvCasts.setLayoutManager(mCastManager);
-        mRvCasts.setAdapter(mCastAdapter);
-        mCastAdapter.setHeadView(RecycleViewUtils.addHeadView(R.layout.item_cast_head, getActivity()));
-        mCastAdapter.setDirectorses(mDirectories);
-        mCastAdapter.setRvOnClick(this);
-
-        //初始化剧照
-        List<Photos> mPhoto = mArticle.getPhotos();
-        List<Trailers> mTrailers = mArticle.getTrailers();
-        PhotoAdapter mPhotosAdapter = new PhotoAdapter(getActivity(), mPhoto);
-        LinearLayoutManager mStillsManager = new LinearLayoutManager(getActivity());
-        mStillsManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-        mRvPhoto.setLayoutManager(mStillsManager);
-        if (mTrailers != null && mTrailers.size() != 0) {
-            mPhotosAdapter.setHeadData(mTrailers);
-            mPhotosAdapter.setHeadView(RecycleViewUtils.addHeadView(R.layout.moview_detail_stills_head, getActivity()));
-        }
-        mPhotosAdapter.setFooterData(mArticle.getPhotos_count());
-        mPhotosAdapter.setFooterView(RecycleViewUtils.addHeadView(R.layout.moview_detail_stills_footer, getActivity()));
-        mPhotosAdapter.setRvOnClick(this);
-        mRvPhoto.setAdapter(mPhotosAdapter);
-    }
-
-
-    @Override
-    public void show() {
-
-    }
-
-    @Override
-    public void hide() {
-
+        initMovieInfo(mArticle);
+        initCastInfo(mArticle.getCasts(), mArticle.getDirectors());
+        initCastPhoto(mArticle.getPhotos());
     }
 
 
@@ -188,5 +129,65 @@ public class DetailMovieHeadFragment extends BaseFragment<DetailHeadImp> impleme
     public void onViewClicked() {
         Intent intent = new Intent(getActivity(), CommentCountActivity.class);
         startActivity(intent);
+    }
+
+
+    /**
+     * @param article 电影列表数据
+     */
+
+    public void initMovieInfo(Article article) {
+        mTvDetailTitle.setText(article.getTitle());
+        String typeDate = article.getYear() + "/" + StringUtils.getString(article.getGenres());
+        mTvDetailType.setText(typeDate);
+        mTvDetailFormerly.setText(article.getOriginal_title());
+        mTvDetailGrade.setText(String.valueOf(article.getRating().getAverage()));
+        mTvDetailNum.setText(String.valueOf(article.getRatings_count()));
+        mTbDetailNum.setRating((float) article.getRating().getAverage());
+        for (String s : article.getPubdates()) {
+            if (s.contains("中国大陆")) {
+                mTvDetailShow.setText(getString(R.string.china));
+            }
+        }
+        if (article.getDurations() != null) {
+            if (article.getDurations().size() != 0) {
+                String detailTime = getString(R.string.movie_time) + article.getDurations().get(0);
+                mTvDetailTime.setText(detailTime);
+            }
+        }
+        mEtSummary.setText(article.getSummary());
+    }
+
+    /**
+     * @param castsList 演员列表
+     * @param directors 导演列表
+     */
+    public void initCastInfo(List<Casts> castsList, List<Directors> directors) {
+        mCasts = castsList;
+        CastAdapter mCastAdapter = new CastAdapter(getActivity(), mCasts);
+        LinearLayoutManager mCastManager = new LinearLayoutManager(getActivity());
+        mCastManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        mRvCasts.setLayoutManager(mCastManager);
+        mRvCasts.setAdapter(mCastAdapter);
+        mCastAdapter.setHeadView(RecycleViewUtils.addHeadView(R.layout.item_cast_head, getActivity()));
+        mCastAdapter.setDirectorses(directors);
+        mCastAdapter.setRvOnClick(this);
+    }
+
+
+    public void initCastPhoto(List<Photos> photosList) {
+        List<Trailers> mTrailers = mArticle.getTrailers();
+        PhotoAdapter mPhotosAdapter = new PhotoAdapter(getActivity(), photosList);
+        LinearLayoutManager mStillsManager = new LinearLayoutManager(getActivity());
+        mStillsManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        mRvPhoto.setLayoutManager(mStillsManager);
+        if (mTrailers != null && mTrailers.size() != 0) {
+            mPhotosAdapter.setHeadData(mTrailers);
+            mPhotosAdapter.setHeadView(RecycleViewUtils.addHeadView(R.layout.moview_detail_stills_head, getActivity()));
+        }
+        mPhotosAdapter.setFooterData(mArticle.getPhotos_count());
+        mPhotosAdapter.setFooterView(RecycleViewUtils.addHeadView(R.layout.moview_detail_stills_footer, getActivity()));
+        mPhotosAdapter.setRvOnClick(this);
+        mRvPhoto.setAdapter(mPhotosAdapter);
     }
 }

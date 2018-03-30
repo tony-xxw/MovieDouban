@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="StartView">
+    <declare-styleable name="StarView">
         <attr name="startSpace" format="dimension"/>
         <attr name="startSize" format="dimension"/>
         <attr name="startCount" format="integer"/>

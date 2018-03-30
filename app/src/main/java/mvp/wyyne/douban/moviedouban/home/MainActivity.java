@@ -44,7 +44,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         disableShiftMode(mBottomNaviView);
         mBottomNaviView.setOnNavigationItemSelectedListener(this);
         initView();
-//        setStastuBar();
     }
 
     private void initView() {

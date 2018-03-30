@@ -2,17 +2,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/main_hot"
-        android:icon="@drawable/hot_selected"
+        android:icon="@drawable/icon_hot_normal"
         android:title="@string/hot" />
 
     <item
         android:id="@+id/main_movie"
-        android:icon="@drawable/movie_selected"
+        android:icon="@drawable/icon_movie_normal"
         android:title="@string/search_movie" />
 
     <item
         android:id="@+id/main_oneself"
-        android:icon="@drawable/oneself_selected"
+        android:icon="@drawable/icon_oneself_normal"
         android:title="@string/my" />
 
     <item

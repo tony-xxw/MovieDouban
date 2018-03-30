@@ -6,11 +6,9 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapShader;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -18,10 +16,11 @@ import android.view.View;
 import mvp.wyyne.douban.moviedouban.R;
 
 /**
- * Created by XXW on 2017/6/12.
+ * @author XXW
+ * @date 2017/6/12
  */
 
-public class StartView extends View {
+public class StarView extends View {
     private Paint mPaint;
     private int startSpace = 0;
     private int startSize;
@@ -31,27 +30,27 @@ public class StartView extends View {
     private Bitmap startLight;
     private OnStartChangeLister mChangeLister;
     private boolean mInteggerMark = false;
-    private int maxSpace;
 
 
-    public StartView(Context context) {
+    public StarView(Context context) {
         super(context);
     }
 
-    public StartView(Context context, @Nullable AttributeSet attrs) {
+    public StarView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         init(context, attrs);
     }
 
     private void init(Context context, AttributeSet attrs) {
+        //设置不可点击
         setClickable(false);
-        TypedArray mArry = context.obtainStyledAttributes(attrs, R.styleable.StartView);
-        startSpace = (int) mArry.getDimension(R.styleable.StartView_startSpace, 0);
-        startSize = (int) mArry.getDimension(R.styleable.StartView_startSize, 2);
-        startCount = mArry.getInteger(R.styleable.StartView_startCount, 5);
-        startDark = mArry.getDrawable(R.styleable.StartView_startEmpty);
-        startLight = drawableToBitmap(mArry.getDrawable(R.styleable.StartView_startFill));
-        mArry.recycle();
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.StarView);
+        startSpace = (int) typedArray.getDimension(R.styleable.StarView_startSpace, 0);
+        startSize = (int) typedArray.getDimension(R.styleable.StarView_startSize, 2);
+        startCount = typedArray.getInteger(R.styleable.StarView_startCount, 5);
+        startDark = typedArray.getDrawable(R.styleable.StarView_startEmpty);
+        startLight = drawableToBitmap(typedArray.getDrawable(R.styleable.StarView_startFill));
+        typedArray.recycle();
 
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
@@ -60,7 +59,9 @@ public class StartView extends View {
     }
 
 
-    //是否需要整数评分
+    /**
+     * 是否需要整数评分
+     */
     public void setInteggerMark(boolean integgerMark) {
         mInteggerMark = integgerMark;
     }
@@ -72,7 +73,8 @@ public class StartView extends View {
             startMark = Math.round(mark * 10) * 1.0f / 10;
         }
         if (this.mChangeLister != null) {
-            this.mChangeLister.onStartChange(startMark);  //调用监听接口
+            //调用监听接口
+            this.mChangeLister.onStartChange(startMark);
         }
         invalidate();
     }
@@ -108,27 +110,15 @@ public class StartView extends View {
         }
 
         if (startMark > 1) {
-            maxSpace = ((startSpace + startSize) * startCount);
-//            Log.d("XXW", "maxspace---" + maxSpace);
-//            Log.d("XXW", "startMark" + startMark);
+            int maxSpace = ((startSpace + startSize) * startCount);
             canvas.drawRect(0, 0, startSize, startSize, mPaint);
             if (startMark - (int) (startMark) == 0) {
-//                Log.d("XXW", "0");
                 for (int i = 1; i < startMark / 2; i++) {
                     canvas.translate(startSpace + startSize, 0);
                     canvas.drawRect(0, 0, startSize, startSize, mPaint);
                 }
-//            } else {
-//                Log.d("XXW", "1");
-//                for (int i = 1; i < startMark - 1; i++) {
-//                    canvas.translate(startSpace + startSize, 0);
-//                    canvas.drawRect(0, 0, startSize, startSize, mPaint);
-//                }
-//                canvas.translate(startSpace + startSize, 0);
-//                canvas.drawRect(0, 0, startSize * (Math.round((startMark - (int) (startMark)) * 10) * 1.0f / 10), startSize, mPaint);
-//            }
             } else {
-            canvas.drawRect(0, 0, startSize * startMark, startSize, mPaint);
+                canvas.drawRect(0, 0, startSize * startMark, startSize, mPaint);
             }
 
         }
@@ -138,8 +128,12 @@ public class StartView extends View {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         int x = (int) event.getX();
-        if (x < 0) x = 0;
-        if (x > getMeasuredWidth()) x = getMeasuredWidth();
+        if (x < 0) {
+            x = 0;
+        }
+        if (x > getMeasuredWidth()) {
+            x = getMeasuredWidth();
+        }
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN: {
                 setStartMark(x / (getMeasuredWidth() / startCount));
@@ -152,13 +146,17 @@ public class StartView extends View {
             case MotionEvent.ACTION_UP: {
                 break;
             }
+            default:
+                break;
         }
         invalidate();
         return super.onTouchEvent(event);
     }
 
     private Bitmap drawableToBitmap(Drawable drawable) {
-        if (drawable == null) return null;
+        if (drawable == null) {
+            return null;
+        }
         Bitmap bitmap = Bitmap.createBitmap(startSize, startSize, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);
         drawable.setBounds(0, 0, startSize, startSize);

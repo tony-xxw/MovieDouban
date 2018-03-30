@@ -35,4 +35,6 @@
     <string name="my">我的</string>
     <string name="girl">妹子</string>
     <string name="reserve">预售</string>
+    <string name="wanna_see">想看</string>
+    <string name="have_seen">看过</string>
 </resources>

@@ -21,7 +21,7 @@
         android:textSize="14sp"/>
 
 
-    <mvp.wyyne.douban.moviedouban.widget.DrawableCenterEditView
+    <mvp.wyyne.douban.moviedouban.widget.DrawableCenterLeftEditView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"

@@ -4,7 +4,9 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 /**
- * Created by XXW on 2017/6/5.
+ *
+ * @author XXW
+ * @date 2017/6/5
  */
 
 public class Directors implements Parcelable{

@@ -21,5 +21,7 @@
         android:layout_height="?attr/actionBarSize"
         android:layout_gravity="bottom"
         android:background="@color/colorWhite"
+        app:itemIconTint="@color/main_menu_text_with_icon_color"
+        app:itemTextColor="@color/main_menu_text_with_icon_color"
         app:menu="@menu/navigation_item" />
 </LinearLayout>

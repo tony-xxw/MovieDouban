@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 
 import de.hdodenhof.circleimageview.CircleImageView;
-import mvp.wyyne.douban.moviedouban.widget.StartView;
+import mvp.wyyne.douban.moviedouban.widget.StarView;
 
 /**
  * Created by XXW on 2017/6/13.
@@ -61,8 +61,8 @@ public class BaseItemViewHolder extends RecyclerView.ViewHolder {
         return this;
     }
 
-    public StartView getStartView(int viewId) {
-        StartView sv = getView(viewId);
+    public StarView getStartView(int viewId) {
+        StarView sv = getView(viewId);
         return sv;
     }
 

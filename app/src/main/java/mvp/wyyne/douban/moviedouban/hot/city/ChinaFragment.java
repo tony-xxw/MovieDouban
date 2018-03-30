@@ -13,7 +13,7 @@ import butterknife.BindView;
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.adapter.CityAdapter;
 import mvp.wyyne.douban.moviedouban.api.bean.City;
-import mvp.wyyne.douban.moviedouban.home.BaseFragment;
+import mvp.wyyne.douban.moviedouban.home.base.BaseFragment;
 
 /**
  * 国内列表

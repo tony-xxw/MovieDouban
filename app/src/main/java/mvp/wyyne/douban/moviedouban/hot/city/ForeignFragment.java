@@ -1,7 +1,7 @@
 package mvp.wyyne.douban.moviedouban.hot.city;
 
 import mvp.wyyne.douban.moviedouban.R;
-import mvp.wyyne.douban.moviedouban.home.BaseFragment;
+import mvp.wyyne.douban.moviedouban.home.base.BaseFragment;
 
 /**
  * Created by XXW on 2017/8/16.

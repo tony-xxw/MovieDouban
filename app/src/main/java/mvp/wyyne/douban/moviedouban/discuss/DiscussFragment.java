@@ -3,7 +3,7 @@ package mvp.wyyne.douban.moviedouban.discuss;
 import android.support.v4.app.Fragment;
 
 import mvp.wyyne.douban.moviedouban.R;
-import mvp.wyyne.douban.moviedouban.home.BaseFragment;
+import mvp.wyyne.douban.moviedouban.home.base.BaseFragment;
 
 /**
  * Created by XXW on 2017/7/22.

@@ -10,8 +10,7 @@ import butterknife.BindView;
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.adapter.WelfareAdapter;
 import mvp.wyyne.douban.moviedouban.api.bean.WelfarePhotoInfo;
-import mvp.wyyne.douban.moviedouban.home.BaseFragment;
-import mvp.wyyne.douban.moviedouban.hot.main.HotFragment;
+import mvp.wyyne.douban.moviedouban.home.base.BaseFragment;
 
 /**
  * @author XXW

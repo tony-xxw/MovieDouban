@@ -4,9 +4,7 @@ package mvp.wyyne.douban.moviedouban.detail.stills;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
 
@@ -25,7 +23,7 @@ import mvp.wyyne.douban.moviedouban.api.bean.Article;
 import mvp.wyyne.douban.moviedouban.api.bean.Source;
 import mvp.wyyne.douban.moviedouban.api.bean.Trailers;
 import mvp.wyyne.douban.moviedouban.api.bean.TvBean;
-import mvp.wyyne.douban.moviedouban.home.BaseActivity;
+import mvp.wyyne.douban.moviedouban.home.base.BaseActivity;
 import mvp.wyyne.douban.moviedouban.widget.RecycleViewUtils;
 
 /**

@@ -1,6 +1,5 @@
 package mvp.wyyne.douban.moviedouban.hot.current;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -19,8 +18,9 @@ import mvp.wyyne.douban.moviedouban.adapter.HotAdapter;
 import mvp.wyyne.douban.moviedouban.api.RvItemOnClick;
 import mvp.wyyne.douban.moviedouban.api.bean.Subjects;
 import mvp.wyyne.douban.moviedouban.detail.DetailMovieActivity;
-import mvp.wyyne.douban.moviedouban.home.BaseFragment;
-import mvp.wyyne.douban.moviedouban.hot.future.HotFutureFragment;
+import mvp.wyyne.douban.moviedouban.home.base.BaseFragment;
+
+import static mvp.wyyne.douban.moviedouban.utils.Constans.DETAIL_TAG;
 
 /**
  * @author XXW
@@ -100,7 +100,7 @@ public class HotCurrentFragment extends BaseFragment<HotPresent> implements IHot
     @Override
     public void onItemClick(int position, String tag) {
         Intent intent = new Intent(getActivity(), DetailMovieActivity.class);
-        intent.putExtra(DetailMovieActivity.DETAIL_TAG, mList.get(position).getId());
+        intent.putExtra(DETAIL_TAG, mList.get(position).getId());
 
         getActivity().startActivity(intent);
     }

@@ -9,10 +9,12 @@ import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 import mvp.wyyne.douban.moviedouban.AndroidApplication;
 import mvp.wyyne.douban.moviedouban.api.bean.Article;
@@ -21,6 +23,7 @@ import mvp.wyyne.douban.moviedouban.api.bean.CastPhoto;
 import mvp.wyyne.douban.moviedouban.api.bean.HotBean;
 import mvp.wyyne.douban.moviedouban.api.bean.MoviesReviews;
 import mvp.wyyne.douban.moviedouban.api.bean.Stills;
+import mvp.wyyne.douban.moviedouban.api.bean.Subjects;
 import mvp.wyyne.douban.moviedouban.api.bean.WelfarePhotoList;
 import okhttp3.Cache;
 import okhttp3.Interceptor;
@@ -124,13 +127,23 @@ public class RetrofitService {
     }
 
 
-    public static Observable<HotBean> getHotList() {
-        return subscribeOnThread(mMoviesApi.getHotList());
+    public static Observable<List<Subjects>> getHotList() {
+        return subscribeOnThread(mMoviesApi.getHotList().map(new Function<HotBean, List<Subjects>>() {
+            @Override
+            public List<Subjects> apply(HotBean hotBean) throws Exception {
+                return hotBean.getSubjectsList();
+            }
+        }));
     }
 
 
-    public static Observable<HotBean> getFutureList() {
-        return subscribeOnThread(mMoviesApi.getFutureList());
+    public static Observable<List<Subjects>> getFutureList() {
+        return subscribeOnThread(mMoviesApi.getFutureList().map(new Function<HotBean, List<Subjects>>() {
+            @Override
+            public List<Subjects> apply(HotBean hotBean) throws Exception {
+                return hotBean.getSubjectsList();
+            }
+        }));
     }
 
     public static Observable<Article> getArticle(String id) {

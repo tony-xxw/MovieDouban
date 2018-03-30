@@ -13,4 +13,6 @@ public class Constans {
 
     public static final int THOUSAND = 10000;
 
+    public static final String DETAIL_TAG = "detail";
+
 }

@@ -16,16 +16,16 @@ import mvp.wyyne.douban.moviedouban.api.RetrofitService;
 import mvp.wyyne.douban.moviedouban.api.bean.Article;
 import mvp.wyyne.douban.moviedouban.comment.CommentFragment;
 import mvp.wyyne.douban.moviedouban.discuss.DiscussFragment;
-import mvp.wyyne.douban.moviedouban.movie.MovieFragment;
+import mvp.wyyne.douban.moviedouban.home.BaseObserver;
 
 /**
- * Created by XXW on 2017/6/19.
+ * @author XXW
+ * @date 2017/6/19
  */
 
 public class DetailMovieImp implements IDetailPresent {
     private IDetailMain mMain;
     private FragmentManager mFragmentManager;
-    private DetailPagerAdapter mAdapter;
     private List<Fragment> mHotList;
     private Article mArticle;
 
@@ -46,38 +46,20 @@ public class DetailMovieImp implements IDetailPresent {
     @Override
     public void getArticle(String subjectId) {
         RetrofitService.getArticle(subjectId)
-                .subscribe(new Observer<Article>() {
+                .subscribe(new BaseObserver<Article>(mMain) {
                     @Override
-                    public void onSubscribe(@NonNull Disposable d) {
-                        mMain.show();
-                    }
-
-                    @Override
-                    public void onNext(@NonNull Article article) {
+                    public void onSuccess(Article article) {
                         mArticle = article;
                         mMain.initMovieImg(article);
                     }
-
-                    @Override
-                    public void onError(@NonNull Throwable e) {
-                        Log.d("XXW", e.toString());
-                    }
-
-                    @Override
-                    public void onComplete() {
-                        mMain.initMovieGrade();
-                        mMain.hide();
-
-                    }
                 });
-
     }
 
     @Override
     public void initPage(ViewPager viewPager) {
         mHotList.add(CommentFragment.getInstance(mArticle));
         mHotList.add(DiscussFragment.getInstance());
-        mAdapter = new DetailPagerAdapter(mFragmentManager);
+        DetailPagerAdapter mAdapter = new DetailPagerAdapter(mFragmentManager);
         mAdapter.setFragment(mHotList);
         viewPager.setAdapter(mAdapter);
         mMain.onBindPage();
@@ -86,9 +68,9 @@ public class DetailMovieImp implements IDetailPresent {
 
     class DetailPagerAdapter extends FragmentPagerAdapter {
         private List<Fragment> mList;
-        private String[] mTitl = {"评论", "讨论区"};
+        private String[] mTitle = {"评论", "讨论区"};
 
-        public DetailPagerAdapter(FragmentManager fm) {
+        private DetailPagerAdapter(FragmentManager fm) {
             super(fm);
         }
 
@@ -110,7 +92,7 @@ public class DetailMovieImp implements IDetailPresent {
 
         @Override
         public CharSequence getPageTitle(int position) {
-            return mTitl[position];
+            return mTitle[position];
         }
     }
 }

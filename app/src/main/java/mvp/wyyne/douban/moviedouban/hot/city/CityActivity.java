@@ -14,7 +14,7 @@ import java.util.List;
 import butterknife.BindView;
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.adapter.viewpage.BaseTitlePageAdapter;
-import mvp.wyyne.douban.moviedouban.home.BaseActivity;
+import mvp.wyyne.douban.moviedouban.home.base.BaseActivity;
 
 /**
  * @author XXW

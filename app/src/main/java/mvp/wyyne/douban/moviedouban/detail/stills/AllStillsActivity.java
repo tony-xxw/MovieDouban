@@ -1,10 +1,6 @@
 package mvp.wyyne.douban.moviedouban.detail.stills;
 
 import android.content.Intent;
-import android.graphics.Point;
-import android.os.Binder;
-import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -16,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.adapter.StillsAdapter;
 import mvp.wyyne.douban.moviedouban.api.RvItemOnClick;
@@ -25,7 +20,7 @@ import mvp.wyyne.douban.moviedouban.api.bean.Stills;
 import mvp.wyyne.douban.moviedouban.api.bean.StillsPhotos;
 import mvp.wyyne.douban.moviedouban.detail.photo.CastPhotoActivity;
 import mvp.wyyne.douban.moviedouban.detail.photo.PhotoActivity;
-import mvp.wyyne.douban.moviedouban.home.BaseActivity;
+import mvp.wyyne.douban.moviedouban.home.base.BaseActivity;
 
 /**
  * Created by XXW on 2017/7/2.

@@ -6,7 +6,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.api.bean.CastArticle;
-import mvp.wyyne.douban.moviedouban.home.BaseActivity;
+import mvp.wyyne.douban.moviedouban.home.base.BaseActivity;
 
 /**
  * Created by XXW on 2017/7/13.

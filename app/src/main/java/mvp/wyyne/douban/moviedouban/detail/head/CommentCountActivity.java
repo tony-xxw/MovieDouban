@@ -4,7 +4,7 @@ package mvp.wyyne.douban.moviedouban.detail.head;
 import android.util.Log;
 
 import mvp.wyyne.douban.moviedouban.R;
-import mvp.wyyne.douban.moviedouban.home.BaseActivity;
+import mvp.wyyne.douban.moviedouban.home.base.BaseActivity;
 
 /**
  * 评价界面

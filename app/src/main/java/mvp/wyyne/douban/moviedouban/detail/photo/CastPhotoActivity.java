@@ -1,7 +1,6 @@
 package mvp.wyyne.douban.moviedouban.detail.photo;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.View;
@@ -21,12 +20,13 @@ import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.adapter.PhotoPageAdapter;
 import mvp.wyyne.douban.moviedouban.api.RetrofitService;
 import mvp.wyyne.douban.moviedouban.api.bean.CastPhoto;
-import mvp.wyyne.douban.moviedouban.api.bean.Stills;
 import mvp.wyyne.douban.moviedouban.api.bean.StillsPhotos;
 import mvp.wyyne.douban.moviedouban.detail.DetailMovieActivity;
-import mvp.wyyne.douban.moviedouban.home.BaseActivity;
+import mvp.wyyne.douban.moviedouban.home.base.BaseActivity;
 import mvp.wyyne.douban.moviedouban.home.IMain;
 import mvp.wyyne.douban.moviedouban.widget.PhotoViewPage;
+
+import static mvp.wyyne.douban.moviedouban.utils.Constans.DETAIL_TAG;
 
 /**
  * Created by XXW on 2017/7/15.
@@ -147,22 +147,24 @@ public class CastPhotoActivity extends BaseActivity implements ViewPager.OnPageC
                 break;
             case R.id.btn_article:
                 Intent intent = new Intent(this, DetailMovieActivity.class);
-                intent.putExtra(DetailMovieActivity.DETAIL_TAG, subjectId);
+                intent.putExtra(DETAIL_TAG, subjectId);
                 startActivity(intent);
                 break;
             case R.id.iv_down:
+                break;
+            default:
                 break;
         }
     }
 
     @Override
     public void show() {
-        mLodingView.show();
+        mLoadingView.show();
     }
 
     @Override
     public void hide() {
-        mLodingView.hide();
+        mLoadingView.hide();
     }
 
 }

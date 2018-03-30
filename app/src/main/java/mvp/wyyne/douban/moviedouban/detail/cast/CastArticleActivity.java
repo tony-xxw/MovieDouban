@@ -4,7 +4,6 @@ package mvp.wyyne.douban.moviedouban.detail.cast;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -28,7 +27,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.adapter.PhotoFmAdapter;
@@ -38,7 +36,7 @@ import mvp.wyyne.douban.moviedouban.api.bean.Photos;
 import mvp.wyyne.douban.moviedouban.detail.photo.CastPhotoActivity;
 import mvp.wyyne.douban.moviedouban.detail.photo.PhotoActivity;
 import mvp.wyyne.douban.moviedouban.detail.stills.AllStillsActivity;
-import mvp.wyyne.douban.moviedouban.home.BaseActivity;
+import mvp.wyyne.douban.moviedouban.home.base.BaseActivity;
 
 /**
  * Created by XXW on 2017/6/30.
@@ -113,12 +111,12 @@ public class CastArticleActivity extends BaseActivity<ICastPresent> implements I
 
     @Override
     public void show() {
-        mLodingView.show();
+        mLoadingView.show();
     }
 
     @Override
     public void hide() {
-        mLodingView.hide();
+        mLoadingView.hide();
     }
 
     @Override

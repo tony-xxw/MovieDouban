@@ -8,9 +8,8 @@ import android.support.v4.view.ViewPager;
 import butterknife.BindView;
 import butterknife.OnClick;
 import mvp.wyyne.douban.moviedouban.R;
-import mvp.wyyne.douban.moviedouban.home.BaseFragment;
+import mvp.wyyne.douban.moviedouban.home.base.BaseFragment;
 import mvp.wyyne.douban.moviedouban.hot.city.CityActivity;
-import mvp.wyyne.douban.moviedouban.utils.StringUtils;
 
 
 /**

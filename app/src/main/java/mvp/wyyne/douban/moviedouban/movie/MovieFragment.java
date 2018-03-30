@@ -1,13 +1,11 @@
 package mvp.wyyne.douban.moviedouban.movie;
 
-import android.support.v4.app.Fragment;
 import android.view.View;
 import android.widget.TextView;
 
 import butterknife.BindView;
 import mvp.wyyne.douban.moviedouban.R;
-import mvp.wyyne.douban.moviedouban.home.BaseFragment;
-import mvp.wyyne.douban.moviedouban.hot.main.HotFragment;
+import mvp.wyyne.douban.moviedouban.home.base.BaseFragment;
 
 /**
  * @author XXW

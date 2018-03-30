@@ -5,14 +5,15 @@ import android.support.v4.view.ViewPager;
 import mvp.wyyne.douban.moviedouban.detail.IDetailPresent;
 
 /**
- * Created by XXW on 2017/6/30.
+ * @author XXW
+ * @date 2017/6/30
  */
 
-public class DHeadImp implements IDetailPresent {
+public class DetailHeadImp implements IDetailPresent {
 
     private IDHeadMain mMain;
 
-    public DHeadImp(IDHeadMain main) {
+    public DetailHeadImp(IDHeadMain main) {
         mMain = main;
 
     }

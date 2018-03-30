@@ -1,4 +1,4 @@
-package mvp.wyyne.douban.moviedouban.home;
+package mvp.wyyne.douban.moviedouban.home.base;
 
 import android.app.Activity;
 import android.content.Context;
@@ -16,6 +16,7 @@ import com.wang.avi.AVLoadingIndicatorView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import mvp.wyyne.douban.moviedouban.R;
+import mvp.wyyne.douban.moviedouban.home.IPresent;
 import mvp.wyyne.douban.moviedouban.utils.SwipeRefreshUtils;
 
 /**

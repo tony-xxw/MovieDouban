@@ -16,7 +16,9 @@ import mvp.wyyne.douban.moviedouban.api.RvItemOnClick;
 import mvp.wyyne.douban.moviedouban.api.bean.CastArticle;
 import mvp.wyyne.douban.moviedouban.api.bean.Subjects;
 import mvp.wyyne.douban.moviedouban.detail.DetailMovieActivity;
-import mvp.wyyne.douban.moviedouban.home.BaseFragment;
+import mvp.wyyne.douban.moviedouban.home.base.BaseFragment;
+
+import static mvp.wyyne.douban.moviedouban.utils.Constans.DETAIL_TAG;
 
 /**
  * Created by XXW on 2017/7/14.
@@ -87,7 +89,7 @@ public class CastArticleFragment extends BaseFragment implements RvItemOnClick {
         Subjects subjects = mArticle.getWorks().get(position).getSubject();
         Log.d("XXW", "ID===" + subjects.getId());
         Intent intent = new Intent(getActivity(), DetailMovieActivity.class);
-        intent.putExtra(DetailMovieActivity.DETAIL_TAG, subjects.getId());
+        intent.putExtra(DETAIL_TAG, subjects.getId());
         getActivity().startActivity(intent);
     }
 }

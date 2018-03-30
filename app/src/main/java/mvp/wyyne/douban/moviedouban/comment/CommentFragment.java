@@ -13,7 +13,7 @@ import mvp.wyyne.douban.moviedouban.adapter.CommentAdapter;
 import mvp.wyyne.douban.moviedouban.adapter.ReviewAdapter;
 import mvp.wyyne.douban.moviedouban.api.bean.Article;
 import mvp.wyyne.douban.moviedouban.api.bean.PopularCm;
-import mvp.wyyne.douban.moviedouban.home.BaseFragment;
+import mvp.wyyne.douban.moviedouban.home.base.BaseFragment;
 import mvp.wyyne.douban.moviedouban.widget.RecycleViewUtils;
 
 /**

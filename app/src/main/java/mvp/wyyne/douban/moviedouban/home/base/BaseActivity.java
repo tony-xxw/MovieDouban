@@ -1,4 +1,4 @@
-package mvp.wyyne.douban.moviedouban.home;
+package mvp.wyyne.douban.moviedouban.home.base;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,6 +11,7 @@ import com.wang.avi.AVLoadingIndicatorView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import mvp.wyyne.douban.moviedouban.R;
+import mvp.wyyne.douban.moviedouban.home.IPresent;
 
 /**
  * 基类Activity
@@ -23,7 +24,8 @@ public abstract class BaseActivity<T extends IPresent> extends AppCompatActivity
 
     @Nullable
     @BindView(R.id.avl_loading)
-    protected AVLoadingIndicatorView mLodingView;
+
+    protected AVLoadingIndicatorView mLoadingView;
 
     @Nullable
     @BindView(R.id.swipe_refresh)
@@ -66,5 +68,16 @@ public abstract class BaseActivity<T extends IPresent> extends AppCompatActivity
      * 初始化View
      */
     protected abstract void initView();
+
+
+    protected void isDisplayLoading(boolean isDisplay) {
+        if (mLoadingView != null) {
+            if (isDisplay) {
+                mLoadingView.setVisibility(View.VISIBLE);
+            } else {
+                mLoadingView.setVisibility(View.GONE);
+            }
+        }
+    }
 
 }

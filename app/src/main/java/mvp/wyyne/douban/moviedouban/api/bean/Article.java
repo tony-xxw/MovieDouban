@@ -6,7 +6,9 @@ import android.os.Parcelable;
 import java.util.List;
 
 /**
- * Created by XXW on 2017/6/13.
+ *
+ * @author XXW
+ * @date 2017/6/13
  */
 
 public class Article implements Parcelable {

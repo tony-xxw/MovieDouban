@@ -5,7 +5,8 @@ import android.support.v4.view.ViewPager;
 import mvp.wyyne.douban.moviedouban.home.IPresent;
 
 /**
- * Created by XXW on 2017/6/19.
+ * @author XXW
+ * @date 2017/6/19
  */
 
 public interface IDetailPresent extends IPresent {
@@ -17,6 +18,11 @@ public interface IDetailPresent extends IPresent {
      */
     void getArticle(String subjectId);
 
+    /**
+     * 初始化ViewPage
+     *
+     * @param viewPager
+     */
     void initPage(ViewPager viewPager);
 
 }

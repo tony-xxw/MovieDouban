@@ -6,9 +6,6 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -16,9 +13,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.Unbinder;
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.adapter.CastAdapter;
 import mvp.wyyne.douban.moviedouban.adapter.PhotoAdapter;
@@ -32,16 +27,17 @@ import mvp.wyyne.douban.moviedouban.detail.cast.CastArticleActivity;
 import mvp.wyyne.douban.moviedouban.detail.photo.PhotoActivity;
 import mvp.wyyne.douban.moviedouban.detail.stills.AllStillsActivity;
 import mvp.wyyne.douban.moviedouban.detail.stills.StillsActivity;
-import mvp.wyyne.douban.moviedouban.home.BaseFragment;
+import mvp.wyyne.douban.moviedouban.home.base.BaseFragment;
 import mvp.wyyne.douban.moviedouban.utils.StringUtils;
 import mvp.wyyne.douban.moviedouban.widget.ExpandableTextView;
 import mvp.wyyne.douban.moviedouban.widget.RecycleViewUtils;
 
 /**
- * Created by XXW on 2017/6/30.
+ * @author XXW
+ * @date 2017/6/30
  */
 
-public class DetailMovieHeadFragment extends BaseFragment<DHeadImp> implements IDHeadMain, RvItemOnClick {
+public class DetailMovieHeadFragment extends BaseFragment<DetailHeadImp> implements IDHeadMain, RvItemOnClick {
     @BindView(R.id.tv_detail_title)
     TextView mTvDetailTitle;
     @BindView(R.id.tv_detail_type)
@@ -68,16 +64,8 @@ public class DetailMovieHeadFragment extends BaseFragment<DHeadImp> implements I
     RecyclerView mRvCasts;
     @BindView(R.id.rv_photos)
     RecyclerView mRvPhoto;
-    Unbinder unbinder;
     private Article mArticle;
-    private List<Casts> mCastses;
-    private CastAdapter mCastAdapter;
-    private PhotoAdapter mPhotosAdapter;
-    private LinearLayoutManager mCastManager;
-    private LinearLayoutManager mStillsManager;
-    private List<Photos> mPhoto;
-    private List<Directors> mDirectorses;
-    private List<Trailers> mTrailerses;
+    private List<Casts> mCasts;
 
     public static final String TAG = "DetailMovieHeadFragment";
 
@@ -112,14 +100,15 @@ public class DetailMovieHeadFragment extends BaseFragment<DHeadImp> implements I
     @Override
     protected void initView() {
         mTvDetailTitle.setText(mArticle.getTitle());
-        mTvDetailType.setText(mArticle.getYear() + "/" + StringUtils.getString(mArticle.getGenres()));
+        String typeDate = mArticle.getYear() + "/" + StringUtils.getString(mArticle.getGenres());
+        mTvDetailType.setText(typeDate);
         mTvDetailFormerly.setText(mArticle.getOriginal_title());
         mTvDetailGrade.setText(String.valueOf(mArticle.getRating().getAverage()));
         mTvDetailNum.setText(String.valueOf(mArticle.getRatings_count()));
         mTbDetailNum.setRating((float) mArticle.getRating().getAverage());
         for (String s : mArticle.getPubdates()) {
             if (s.contains("中国大陆")) {
-                mTvDetailShow.setText(getString(R.string.china) + s);
+                mTvDetailShow.setText(getString(R.string.china));
             }
         }
         if (mArticle.getDurations() != null) {
@@ -130,26 +119,26 @@ public class DetailMovieHeadFragment extends BaseFragment<DHeadImp> implements I
         mEtSummary.setText(mArticle.getSummary());
 
         //初始化演员列表
-        mCastses = mArticle.getCasts();
-        mDirectorses = mArticle.getDirectors();
-        mCastAdapter = new CastAdapter(getActivity(), mCastses);
-        mCastManager = new LinearLayoutManager(getActivity());
+        mCasts = mArticle.getCasts();
+        List<Directors> mDirectories = mArticle.getDirectors();
+        CastAdapter mCastAdapter = new CastAdapter(getActivity(), mCasts);
+        LinearLayoutManager mCastManager = new LinearLayoutManager(getActivity());
         mCastManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         mRvCasts.setLayoutManager(mCastManager);
         mRvCasts.setAdapter(mCastAdapter);
         mCastAdapter.setHeadView(RecycleViewUtils.addHeadView(R.layout.item_cast_head, getActivity()));
-        mCastAdapter.setDirectorses(mDirectorses);
+        mCastAdapter.setDirectorses(mDirectories);
         mCastAdapter.setRvOnClick(this);
 
         //初始化剧照
-        mPhoto = mArticle.getPhotos();
-        mTrailerses = mArticle.getTrailers();
-        mPhotosAdapter = new PhotoAdapter(getActivity(), mPhoto);
-        mStillsManager = new LinearLayoutManager(getActivity());
+        List<Photos> mPhoto = mArticle.getPhotos();
+        List<Trailers> mTrailers = mArticle.getTrailers();
+        PhotoAdapter mPhotosAdapter = new PhotoAdapter(getActivity(), mPhoto);
+        LinearLayoutManager mStillsManager = new LinearLayoutManager(getActivity());
         mStillsManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         mRvPhoto.setLayoutManager(mStillsManager);
-        if (mTrailerses != null && mTrailerses.size() != 0) {
-            mPhotosAdapter.setHeadData(mTrailerses);
+        if (mTrailers != null && mTrailers.size() != 0) {
+            mPhotosAdapter.setHeadData(mTrailers);
             mPhotosAdapter.setHeadView(RecycleViewUtils.addHeadView(R.layout.moview_detail_stills_head, getActivity()));
         }
         mPhotosAdapter.setFooterData(mArticle.getPhotos_count());
@@ -188,7 +177,7 @@ public class DetailMovieHeadFragment extends BaseFragment<DHeadImp> implements I
         } else if (tag.equals(CastAdapter.CAST)) {
             //跳转影人条目
             Intent intent = new Intent(getActivity(), CastArticleActivity.class);
-            intent.putExtra(CastArticleActivity.CAST_ID, mCastses.get(position).getId());
+            intent.putExtra(CastArticleActivity.CAST_ID, mCasts.get(position).getId());
             getActivity().startActivity(intent);
 
         }

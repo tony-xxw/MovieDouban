@@ -19,12 +19,13 @@ import mvp.wyyne.douban.moviedouban.adapter.HotAdapter;
 import mvp.wyyne.douban.moviedouban.api.RvItemOnClick;
 import mvp.wyyne.douban.moviedouban.api.bean.Subjects;
 import mvp.wyyne.douban.moviedouban.detail.DetailMovieActivity;
-import mvp.wyyne.douban.moviedouban.home.BaseFragment;
-import mvp.wyyne.douban.moviedouban.hot.current.HotCurrentFragment;
+import mvp.wyyne.douban.moviedouban.home.base.BaseFragment;
 import mvp.wyyne.douban.moviedouban.hot.current.HotPresent;
 import mvp.wyyne.douban.moviedouban.hot.current.IHotMain;
 import mvp.wyyne.douban.moviedouban.utils.MovieType;
 import mvp.wyyne.douban.moviedouban.utils.TitleRecycleItemDecoration;
+
+import static mvp.wyyne.douban.moviedouban.utils.Constans.DETAIL_TAG;
 
 /**
  * 即将上映
@@ -123,7 +124,7 @@ public class HotFutureFragment extends BaseFragment<HotPresent> implements IHotM
     @Override
     public void onItemClick(int position, String tag) {
         Intent intent = new Intent(getActivity(), DetailMovieActivity.class);
-        intent.putExtra(DetailMovieActivity.DETAIL_TAG, mList.get(position).getId());
+        intent.putExtra(DETAIL_TAG, mList.get(position).getId());
         getActivity().startActivity(intent);
     }
 }

@@ -30,7 +30,9 @@ import butterknife.OnClick;
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.api.bean.Article;
 import mvp.wyyne.douban.moviedouban.detail.head.DetailMovieHeadFragment;
-import mvp.wyyne.douban.moviedouban.home.BaseActivity;
+import mvp.wyyne.douban.moviedouban.home.base.BaseActivity;
+
+import static mvp.wyyne.douban.moviedouban.utils.Constans.DETAIL_TAG;
 
 /**
  * @author XXW
@@ -39,7 +41,6 @@ import mvp.wyyne.douban.moviedouban.home.BaseActivity;
 
 public class DetailMovieActivity extends BaseActivity<DetailMovieImp> implements
         IDetailMain, AppBarLayout.OnOffsetChangedListener {
-    public static final String DETAIL_TAG = "detail";
     @BindView(R.id.iv_back)
     ImageView mIvBack;
     @BindView(R.id.tv_img_title)
@@ -72,10 +73,7 @@ public class DetailMovieActivity extends BaseActivity<DetailMovieImp> implements
     private Bitmap mDrawableBitmap;
     private Palette.Builder mPalette;
     private Article mArticle;
-    private int boundHeight;
     private Palette.Swatch swatch;
-    private FragmentManager mManager;
-    private FragmentTransaction mTransaction;
 
     @Override
     protected void refresh() {
@@ -112,13 +110,12 @@ public class DetailMovieActivity extends BaseActivity<DetailMovieImp> implements
 
     @Override
     public void initMovieImg(Article article) {
-        mManager = getSupportFragmentManager();
-        mTransaction = mManager.beginTransaction();
+        FragmentManager mManager = getSupportFragmentManager();
+        FragmentTransaction mTransaction = mManager.beginTransaction();
         mTransaction.add(R.id.fl_head, DetailMovieHeadFragment.getInstance(article));
         mTransaction.commit();
-
         mArticle = article;
-        setBackGroudBg(article.getImages().getLarge());
+        setBackGroundBg(article.getImages().getLarge());
 
     }
 
@@ -139,7 +136,7 @@ public class DetailMovieActivity extends BaseActivity<DetailMovieImp> implements
     /**
      * 设置背景图片和设置电影海报图片
      */
-    public void setBackGroudBg(String url) {
+    public void setBackGroundBg(String url) {
         Glide.with(this).load(url).asBitmap().into(new SimpleTarget<Bitmap>() {
             @Override
             public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
@@ -166,31 +163,29 @@ public class DetailMovieActivity extends BaseActivity<DetailMovieImp> implements
 
     @Override
     public void show() {
-        mLodingView.setVisibility(View.VISIBLE);
+        isDisplayLoading(true);
         mFlContent.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hide() {
+        isDisplayLoading(false);
         mFlContent.setVisibility(View.GONE);
-        mLodingView.setVisibility(View.GONE);
     }
 
     @Override
     public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
         int y = Math.abs(verticalOffset);
         if (mIvAvatars != null) {
-            boundHeight = mIvAvatars.getHeight();
+            int boundHeight = mIvAvatars.getHeight();
             if (y <= 0) {
                 titleHide();
-//                Log.d("XXW", "onOffsetChanged-----<0" + verticalOffset);
-                mLlTitle.setBackgroundColor(Color.argb((int) 0, 227, 29, 26));//AGB由相关工具获得，或者美工提供
+                //AGB由相关工具获得，或者美工提供
+                mLlTitle.setBackgroundColor(Color.argb((int) 0, 227, 29, 26));
             } else if (y > 0 && y <= boundHeight) {
-//                Log.d("XXW", "onOffsetChanged----->0  <height"+"------"+verticalOffset);
                 mLlTitle.setBackgroundColor(ContextCompat.getColor(this, R.color.colorTranslucence));
             } else {
                 titleShow();
-//                Log.d("XXW", "onOffsetChanged----->height---" + verticalOffset);
                 mLlTitle.setBackgroundColor(swatch.getRgb());
             }
         }

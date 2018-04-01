@@ -44,12 +44,15 @@ public class CommentAdapter extends BaseRvAdapter<PopularCm> {
         holder.setText(R.id.tv_comment, mPopularCm.getContent());
         holder.setText(R.id.tv_comment_date, mList.get(position).getCreated_at());
 
+
     }
+
+
 
     @Override
     void bindHeadView(BaseItemViewHolder holder, int position) {
         if (position == 0) {
-            holder.setText(R.id.tv_head_comment,"短评");
+            holder.setText(R.id.tv_head_comment, "短评");
         }
     }
 

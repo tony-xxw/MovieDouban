@@ -2,12 +2,14 @@ package mvp.wyyne.douban.moviedouban.hot.main;
 
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 import mvp.wyyne.douban.moviedouban.R;
+import mvp.wyyne.douban.moviedouban.api.bean.User;
 import mvp.wyyne.douban.moviedouban.home.base.BaseFragment;
 import mvp.wyyne.douban.moviedouban.hot.city.CityActivity;
 
@@ -47,6 +49,7 @@ public class HotFragment extends BaseFragment<HotPresenterImp> implements HotVie
         mHotTl.addTab(mHotTl.newTab().setText("正在热映"));
         mHotTl.addTab(mHotTl.newTab().setText("即将上映"));
         mPresent.initPage(mHotVp);
+
     }
 
 

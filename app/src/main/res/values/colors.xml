@@ -14,6 +14,7 @@
     <color name="default_bg">#ffffff</color>
     <color name="colorPink">#f47d7d</color>
     <color name="colorOrange">#f47202</color>
+    <color name="colorOrange_light">#FFEF9D56</color>
     <color name="colorTablayoutBg">#FFD7D7D7</color>
     <color name="colorTransparency">#00000000</color>
     <color name="colorTranslucence">#7cdededf</color>

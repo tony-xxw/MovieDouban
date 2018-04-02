@@ -3,28 +3,34 @@ package mvp.wyyne.douban.moviedouban.api.bean;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
- * Created by XXW on 2017/6/5.
+ * @author XXW
+ * @date 2017/6/5
  */
 
 public class Rating implements Parcelable {
 
+
     /**
      * max : 10
-     * average : 7.4
-     * stars : 40
+     * average : 9.1
+     * details : {"1":168,"2":380,"3":4350,"4":21229,"5":42205}
+     * stars : 45
      * min : 0
      */
 
     private int max;
     private double average;
+    private StarDetail details;
     private String stars;
     private int min;
-    private StarDetail details;
 
     protected Rating(Parcel in) {
         max = in.readInt();
         average = in.readDouble();
+        details = in.readParcelable(StarDetail.class.getClassLoader());
         stars = in.readString();
         min = in.readInt();
     }
@@ -57,6 +63,14 @@ public class Rating implements Parcelable {
         this.average = average;
     }
 
+    public StarDetail getDetails() {
+        return details;
+    }
+
+    public void setDetails(StarDetail details) {
+        this.details = details;
+    }
+
     public String getStars() {
         return stars;
     }
@@ -73,13 +87,6 @@ public class Rating implements Parcelable {
         this.min = min;
     }
 
-    public StarDetail getDetails() {
-        return details;
-    }
-
-    public void setDetails(StarDetail details) {
-        this.details = details;
-    }
 
     @Override
     public int describeContents() {
@@ -90,6 +97,7 @@ public class Rating implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(max);
         dest.writeDouble(average);
+        dest.writeParcelable(details, flags);
         dest.writeString(stars);
         dest.writeInt(min);
     }

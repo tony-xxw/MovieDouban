@@ -1,5 +1,6 @@
 package mvp.wyyne.douban.moviedouban.utils;
 
+import java.text.NumberFormat;
 import java.util.List;
 
 /**
@@ -44,5 +45,17 @@ public class StringUtils {
 
     public static String getClassName(Object object) {
         return object.getClass().getSimpleName();
+    }
+
+
+    public static String getNumberFormat(int num, int sum) {
+        NumberFormat numberFormat = NumberFormat.getNumberInstance();
+        numberFormat.setMaximumFractionDigits(2);
+        return numberFormat.format((float) num / (float) sum * 100);
+    }
+
+
+    public static int getDoubleToInt(double count) {
+        return Double.valueOf(count).intValue();
     }
 }

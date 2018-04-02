@@ -18,6 +18,7 @@ import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.api.bean.Article;
 import mvp.wyyne.douban.moviedouban.home.base.BaseActivity;
 import mvp.wyyne.douban.moviedouban.utils.Constans;
+import mvp.wyyne.douban.moviedouban.widget.ChartRect;
 
 /**
  * 评价界面
@@ -36,6 +37,8 @@ public class CommentCountActivity extends BaseActivity {
     TextView tvGrade;
     @BindView(R.id.tv_comment_count)
     TextView tvCommentCount;
+    @BindView(R.id.cr_chart)
+    ChartRect crChart;
     private Article mArticle;
 
     private GestureDetector mGesture;
@@ -73,7 +76,7 @@ public class CommentCountActivity extends BaseActivity {
         }
 
         mGesture = new GestureDetector(this, onGestureListener);
-
+        crChart.setStarDetail(mArticle.getRating().getDetails(), mArticle.getRatings_count());
 
     }
 

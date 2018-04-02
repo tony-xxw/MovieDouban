@@ -3,32 +3,41 @@ package mvp.wyyne.douban.moviedouban.api.bean;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
- * Created by XXW on 2017/6/24.
+ * @author XXW
+ * @date 2017/6/24
  */
 
 public class StarDetail implements Parcelable {
 
+
     /**
-     * grade1 : 1159
-     * grade2 : 1753
-     * grade3 : 1723
-     * grade4 : 478
-     * grade5 : 263
+     * 1 : 168
+     * 2 : 380
+     * 3 : 4350
+     * 4 : 21229
+     * 5 : 42205
      */
 
-    private int grade1;
-    private int grade2;
-    private int grade3;
-    private int grade4;
-    private int grade5;
+    @SerializedName("1")
+    private int _$1;
+    @SerializedName("2")
+    private int _$2;
+    @SerializedName("3")
+    private int _$3;
+    @SerializedName("4")
+    private int _$4;
+    @SerializedName("5")
+    private int _$5;
 
     protected StarDetail(Parcel in) {
-        grade1 = in.readInt();
-        grade2 = in.readInt();
-        grade3 = in.readInt();
-        grade4 = in.readInt();
-        grade5 = in.readInt();
+        _$1 = in.readInt();
+        _$2 = in.readInt();
+        _$3 = in.readInt();
+        _$4 = in.readInt();
+        _$5 = in.readInt();
     }
 
     public static final Creator<StarDetail> CREATOR = new Creator<StarDetail>() {
@@ -43,44 +52,44 @@ public class StarDetail implements Parcelable {
         }
     };
 
-    public int getGrade1() {
-        return grade1;
+    public int get_$1() {
+        return _$1;
     }
 
-    public void setGrade1(int grade1) {
-        this.grade1 = grade1;
+    public void set_$1(int _$1) {
+        this._$1 = _$1;
     }
 
-    public int getGrade2() {
-        return grade2;
+    public int get_$2() {
+        return _$2;
     }
 
-    public void setGrade2(int grade2) {
-        this.grade2 = grade2;
+    public void set_$2(int _$2) {
+        this._$2 = _$2;
     }
 
-    public int getGrade3() {
-        return grade3;
+    public int get_$3() {
+        return _$3;
     }
 
-    public void setGrade3(int grade3) {
-        this.grade3 = grade3;
+    public void set_$3(int _$3) {
+        this._$3 = _$3;
     }
 
-    public int getGrade4() {
-        return grade4;
+    public int get_$4() {
+        return _$4;
     }
 
-    public void setGrade4(int grade4) {
-        this.grade4 = grade4;
+    public void set_$4(int _$4) {
+        this._$4 = _$4;
     }
 
-    public int getGrade5() {
-        return grade5;
+    public int get_$5() {
+        return _$5;
     }
 
-    public void setGrade5(int grade5) {
-        this.grade5 = grade5;
+    public void set_$5(int _$5) {
+        this._$5 = _$5;
     }
 
     @Override
@@ -90,10 +99,10 @@ public class StarDetail implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(grade1);
-        dest.writeInt(grade2);
-        dest.writeInt(grade3);
-        dest.writeInt(grade4);
-        dest.writeInt(grade5);
+        dest.writeInt(_$1);
+        dest.writeInt(_$2);
+        dest.writeInt(_$3);
+        dest.writeInt(_$4);
+        dest.writeInt(_$5);
     }
 }

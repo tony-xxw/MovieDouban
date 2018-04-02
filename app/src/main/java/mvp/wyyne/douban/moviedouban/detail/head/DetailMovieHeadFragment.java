@@ -33,6 +33,8 @@ import mvp.wyyne.douban.moviedouban.utils.StringUtils;
 import mvp.wyyne.douban.moviedouban.widget.ExpandableTextView;
 import mvp.wyyne.douban.moviedouban.widget.RecycleViewUtils;
 
+import static mvp.wyyne.douban.moviedouban.utils.Constans.DATA_ARTICLE;
+
 /**
  * @author XXW
  * @date 2017/6/30
@@ -128,7 +130,11 @@ public class DetailMovieHeadFragment extends BaseFragment<IPresent> implements R
     @OnClick(R.id.cv_comment)
     public void onViewClicked() {
         Intent intent = new Intent(getActivity(), CommentCountActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putParcelable(DATA_ARTICLE, mArticle);
+        intent.putExtra(DATA_ARTICLE, bundle);
         startActivity(intent);
+        getActivity().overridePendingTransition(R.anim.comment_tanslate, 0);
     }
 
 

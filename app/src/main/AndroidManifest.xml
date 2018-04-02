@@ -78,7 +78,8 @@
             android:launchMode="singleTop" />
         <activity
             android:name=".detail.head.CommentCountActivity"
-            android:launchMode="singleTop" />
+            android:launchMode="singleTop"
+            android:theme="@style/ColorTranslucentTheme" />
     </application>
 
 </manifest>

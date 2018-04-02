@@ -15,4 +15,6 @@ public class Constans {
 
     public static final String DETAIL_TAG = "detail";
 
+    public static final String DATA_ARTICLE = "article";
+
 }

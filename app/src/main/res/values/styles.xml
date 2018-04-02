@@ -40,4 +40,10 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">42dp</item>
     </style>
+
+
+    <style name="ColorTranslucentTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+    </style>
 </resources>

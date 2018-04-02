@@ -52,8 +52,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="10dp"
                     StartView:startCount="5"
-                    StartView:startEmpty="@drawable/start_dark"
-                    StartView:startFill="@drawable/start_light"
+                    StartView:startEmpty="@drawable/star_dark"
+                    StartView:startFill="@drawable/star_light"
                     StartView:startSize="15dp"
                     StartView:startSpace="5dp" />
 

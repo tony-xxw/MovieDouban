@@ -156,7 +156,7 @@ public class ChartRect extends View {
             //精确到1.1时
             return RECT_LEFT + result;
         } else {
-            return result;
+            return RECT_LEFT + result;
         }
     }
 

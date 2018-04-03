@@ -48,6 +48,13 @@ public class StringUtils {
     }
 
 
+    /**
+     * 百分比长度
+     *
+     * @param num 占有量
+     * @param sum 总量
+     * @return
+     */
     public static String getNumberFormat(int num, int sum) {
         NumberFormat numberFormat = NumberFormat.getNumberInstance();
         numberFormat.setMaximumFractionDigits(2);

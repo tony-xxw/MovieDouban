@@ -10,6 +10,9 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.api.bean.StarDetail;
 import mvp.wyyne.douban.moviedouban.utils.StringUtils;
@@ -35,6 +38,7 @@ public class ChartRect extends View {
     private Context mContext;
     private Rect bound;
     private int textHeight;
+    private final int RECT_LEFT = 80;
 
     public ChartRect(Context context) {
         super(context);
@@ -91,13 +95,44 @@ public class ChartRect extends View {
     }
 
     private void drawRectStar(Canvas canvas) {
-        Rect rect = new Rect(80, textCoordinateY - textHeight,
-                StringUtils.getDoubleToInt(Double.parseDouble(fiveStar)) * 5, textCoordinateY);
-        canvas.drawRect(rect, mRectPaint);
-
-        canvas.drawText(fiveStar + "%", StringUtils.getDoubleToInt(Double.parseDouble(fiveStar)) * 5 + 30, textCoordinateY, mRectPaint);
+        drawPercentWithLength(canvas);
     }
 
+    /**
+     * 画百分文字比与长度
+     *
+     * @param canvas
+     */
+    private void drawPercentWithLength(Canvas canvas) {
+        Rect fiveRect = new Rect(RECT_LEFT, textCoordinateY - textHeight, getRectLength(fiveStar), textCoordinateY);
+        canvas.drawRect(fiveRect, mRectPaint);
+        canvas.drawText(getPercentText(fiveStar), getRectLength(fiveStar) + 30, textCoordinateY, mTextPaint);
+
+        Rect fourRect = new Rect(RECT_LEFT, textCoordinateY * 2 - textHeight, getRectLength(fourStar), textCoordinateY * 2);
+        canvas.drawRect(fourRect, mRectPaint);
+        canvas.drawText(getPercentText(fourStar), getRectLength(fourStar) + 30, textCoordinateY * 2, mTextPaint);
+
+        Rect threeRect = new Rect(RECT_LEFT, textCoordinateY * 3 - textHeight, getRectLength(threeStar), textCoordinateY * 3);
+        canvas.drawRect(threeRect, mRectPaint);
+        canvas.drawText(getPercentText(threeStar), getRectLength(threeStar) + 30, textCoordinateY * 3, mTextPaint);
+
+        Rect twoRect = new Rect(RECT_LEFT, textCoordinateY * 4 - textHeight, getRectLength(twoStar), textCoordinateY * 4);
+        canvas.drawRect(twoRect, mRectPaint);
+        canvas.drawText(getPercentText(twoStar), getRectLength(twoStar) + 30, textCoordinateY * 4, mTextPaint);
+
+
+        Rect oneRect = new Rect(RECT_LEFT, textCoordinateY * 5 - textHeight, getRectLength(oneStar), textCoordinateY * 5);
+        canvas.drawRect(oneRect, mRectPaint);
+        canvas.drawText(getPercentText(oneStar), getRectLength(oneStar) + 30, textCoordinateY * 5, mTextPaint);
+
+    }
+
+
+    /**
+     * 画星级
+     *
+     * @param canvas
+     */
     private void drawTextStar(Canvas canvas) {
         String text = mContext.getResources().getString(R.string.five_star);
         canvas.drawText(text, 0, textCoordinateY, mTextPaint);
@@ -107,6 +142,29 @@ public class ChartRect extends View {
         canvas.drawText("1星", 0, textCoordinateY * 5, mTextPaint);
         mTextPaint.getTextBounds(text, 0, text.length(), bound);
         textHeight = Math.abs(bound.top) + bound.bottom;
+    }
+
+
+    public int getRectLength(String xstar) {
+        int result = StringUtils.getDoubleToInt(Double.parseDouble(xstar)) * 5;
+        if (xstar.length() <= 1) {
+            return RECT_LEFT + result;
+        } else if (result < 1) {
+            //精确到0.1时
+            return RECT_LEFT + result + 10;
+        } else if (xstar.indexOf(".") == 1) {
+            //精确到1.1时
+            return RECT_LEFT + result;
+        } else {
+            return result;
+        }
+    }
+
+    public String getPercentText(String percent) {
+        Log.d("XXW", "percent :" + percent.indexOf("."));
+        double num = Double.parseDouble(percent);
+        BigDecimal bigDecimal = new BigDecimal(num).setScale(1, RoundingMode.UP);
+        return bigDecimal + "%";
     }
 
 

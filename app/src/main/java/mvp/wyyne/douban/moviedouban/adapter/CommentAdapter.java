@@ -10,7 +10,9 @@ import mvp.wyyne.douban.moviedouban.api.bean.PopularCm;
 import mvp.wyyne.douban.moviedouban.api.bean.User;
 
 /**
- * Created by XXW on 2017/6/24.
+ *
+ * @author XXW
+ * @date 2017/6/24
  */
 
 public class CommentAdapter extends BaseRvAdapter<PopularCm> {

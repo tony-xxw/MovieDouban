@@ -2,7 +2,7 @@ package mvp.wyyne.douban.moviedouban;
 
 import android.app.Application;
 
-import com.tencent.bugly.crashreport.CrashReport;
+
 
 import mvp.wyyne.douban.moviedouban.api.RetrofitService;
 
@@ -20,9 +20,6 @@ public class AndroidApplication extends Application {
         super.onCreate();
         mApplication = this;
         RetrofitService.init();
-
-        // 集成Bugly
-        CrashReport.initCrashReport(this);
 
     }
 

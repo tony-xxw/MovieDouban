@@ -31,10 +31,6 @@ public class HotFragment extends BaseFragment<HotPresenterImp> implements HotVie
         return new HotFragment();
     }
 
-    @Override
-    protected void refresh() {
-
-    }
 
     @Override
     protected int getLayoutId() {

@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,39 +14,37 @@ import com.wang.avi.AVLoadingIndicatorView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.home.IPresent;
 import mvp.wyyne.douban.moviedouban.utils.SwipeRefreshUtils;
 
 /**
- * 基类Fragmetn
+ * 基类Fragment
  *
  * @author XXW
  * @date 2017/6/2
  */
 
 public abstract class BaseFragment<T extends IPresent> extends Fragment {
-
-    //bindview
-
     @Nullable
     @BindView(R.id.avl_loading)
     protected AVLoadingIndicatorView mLodingView;
-
     @Nullable
     @BindView(R.id.swipe_refresh)
     protected SwipeRefreshLayout mSwipeRefresh;
-    //缓存Fragment
+    /**
+     * 缓存Fragment
+     **/
     protected View mRootView;
     protected boolean mIsMulti = false;
 
     protected T mPresent;
 
-    protected String TAG;
+    private Unbinder unbinder;
+
 
     protected Activity mContentActivity;
-
-    protected Object object = new Object();
 
     @Override
     public void onAttach(Context context) {
@@ -60,11 +57,10 @@ public abstract class BaseFragment<T extends IPresent> extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         if (mRootView == null) {
             mRootView = inflater.inflate(getLayoutId(), null);
-            ButterKnife.bind(this, mRootView);
+            unbinder = ButterKnife.bind(this, mRootView);
             initView();
             initSwipeRefresh();
         }
-        Log.d("XXW", "object==" + object.toString());
         return mRootView;
     }
 
@@ -110,20 +106,33 @@ public abstract class BaseFragment<T extends IPresent> extends Fragment {
     }
 
 
-    protected abstract void refresh();
-
+    /**
+     * 设置布局ID
+     *
+     * @return 资源id
+     */
     protected abstract int getLayoutId();
 
+    /**
+     * 初始化Views
+     */
     protected abstract void initView();
 
     /**
      * 更新数据
-     *
-     * @param
      */
     protected void update() {
-
     }
 
+    /**
+     * 刷新数据
+     */
+    protected void refresh() {
+    }
 
+    @Override
+    public void onDestroy() {
+        unbinder.unbind();
+        super.onDestroy();
+    }
 }

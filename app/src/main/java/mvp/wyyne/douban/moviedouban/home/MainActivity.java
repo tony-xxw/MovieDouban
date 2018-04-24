@@ -29,10 +29,12 @@ import mvp.wyyne.douban.moviedouban.utils.StringUtils;
 import mvp.wyyne.douban.moviedouban.welfare.WelfareFragment;
 
 /**
+ * 主页面
+ *
  * @author Wynne
  */
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
-    private BottomNavigationView mBottomNaviView;
+
     private long mCurrentTime = 0;
 
 
@@ -40,9 +42,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mBottomNaviView = (BottomNavigationView) findViewById(R.id.bnm_menu);
-        disableShiftMode(mBottomNaviView);
-        mBottomNaviView.setOnNavigationItemSelectedListener(this);
+        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bnm_menu);
+        disableShiftMode(bottomNavigationView);
+        bottomNavigationView.setOnNavigationItemSelectedListener(this);
         initView();
     }
 
@@ -89,6 +91,13 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     }
 
 
+    /**
+     * 退出两次判定
+     *
+     * @param keyCode
+     * @param event
+     * @return
+     */
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
@@ -131,36 +140,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         } catch (IllegalAccessException e) {
             Log.e("BNVHelper", "无法修改mShiftingMode的值", e);
         }
-    }
-
-
-    public void setStastuBar() {
-        ViewGroup root = (ViewGroup) getWindow().getDecorView().findViewById(android.R.id.content);
-        root.setPadding(0, getStatusBarHeight(), 0, 0);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            //5.0 以上直接设置状态栏颜色
-            getWindow().setStatusBarColor(Color.TRANSPARENT);
-        } else {
-            //根布局添加占位状态栏
-            ViewGroup decorView = (ViewGroup) getWindow().getDecorView();
-            View statusBarView = new View(this);
-            ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                    getStatusBarHeight());
-            statusBarView.setBackgroundColor(Color.TRANSPARENT);
-            decorView.addView(statusBarView, lp);
-        }
-
-
-    }
-
-    public int getStatusBarHeight() {
-        int result = 0;
-        //获取状态栏高度的资源id
-        int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
-        if (resourceId > 0) {
-            result = getResources().getDimensionPixelSize(resourceId);
-        }
-        return result;
     }
 
 

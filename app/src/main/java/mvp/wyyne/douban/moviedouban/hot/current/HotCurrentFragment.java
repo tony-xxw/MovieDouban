@@ -31,10 +31,8 @@ public class HotCurrentFragment extends BaseFragment<HotPresent> implements IHot
     public static String TAG = HotCurrentFragment.class.getSimpleName();
     @BindView(R.id.current_rv)
     RecyclerView mCurrentRv;
-
-    private List<Subjects> mList;
+    private List<Subjects> mList = new ArrayList<>();
     private HotAdapter mAdapter;
-    private DividerItemDecoration mItemDecoration;
 
 
     @Override
@@ -52,11 +50,10 @@ public class HotCurrentFragment extends BaseFragment<HotPresent> implements IHot
     @Override
     protected void initView() {
         mPresent = new HotPresent(this);
-        mList = new ArrayList<>();
         mAdapter = new HotAdapter(getActivity(), mList);
         LinearLayoutManager manager = new LinearLayoutManager(getActivity());
         manager.setOrientation(LinearLayoutManager.VERTICAL);
-        mItemDecoration = new DividerItemDecoration(mCurrentRv.getContext(), manager.getOrientation());
+        DividerItemDecoration mItemDecoration = new DividerItemDecoration(mCurrentRv.getContext(), manager.getOrientation());
         mItemDecoration.setDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.line_gray_horizantal));
         mAdapter.setRvOnClick(this);
         mCurrentRv.setLayoutManager(manager);
@@ -66,6 +63,9 @@ public class HotCurrentFragment extends BaseFragment<HotPresent> implements IHot
     }
 
 
+    /**
+     * 懒加载 只有在进入页面才获取数据
+     */
     @Override
     public void update() {
         mPresent.getCurrentData();

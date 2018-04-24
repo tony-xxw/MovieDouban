@@ -40,7 +40,6 @@ public class HotFutureFragment extends BaseFragment<HotPresent> implements IHotM
     RecyclerView mFutureRv;
     private HotAdapter mAdapter;
     private List<Subjects> mList;
-    private DividerItemDecoration mItemDecoration;
     private List<MovieType> mMovieTypes;
     private TitleRecycleItemDecoration mDecoration;
     private String[] mTags = {"6月15日,星期四", "6月15日,星期四", "6月15日,星期四", "6月15日,星期四",
@@ -81,7 +80,7 @@ public class HotFutureFragment extends BaseFragment<HotPresent> implements IHotM
         mAdapter = new HotAdapter(getActivity(), mList);
         LinearLayoutManager manager = new LinearLayoutManager(getActivity());
         manager.setOrientation(LinearLayoutManager.VERTICAL);
-        mItemDecoration = new DividerItemDecoration(mFutureRv.getContext(), manager.getOrientation());
+        DividerItemDecoration mItemDecoration = new DividerItemDecoration(mFutureRv.getContext(), manager.getOrientation());
         mItemDecoration.setDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.line_gray_horizantal));
 
         mFutureRv.setLayoutManager(manager);
@@ -109,14 +108,14 @@ public class HotFutureFragment extends BaseFragment<HotPresent> implements IHotM
     }
 
     @Override
-    public void initData(List<Subjects> subjectses) {
-        for (int i = 0; i < subjectses.size(); i++) {
-            mMovieTypes.add(new MovieType(mTag.get(i), subjectses.get(i)));
+    public void initData(List<Subjects> subjects) {
+        for (int i = 0; i < subjects.size(); i++) {
+            mMovieTypes.add(new MovieType(mTag.get(i), subjects.get(i)));
         }
-        mList = subjectses;
+        mList = subjects;
         mDecoration = new TitleRecycleItemDecoration(getActivity(), mMovieTypes);
         mFutureRv.addItemDecoration(mDecoration);
-        mAdapter.setList(subjectses);
+        mAdapter.setList(subjects);
         mAdapter.notifyDataSetChanged();
     }
 

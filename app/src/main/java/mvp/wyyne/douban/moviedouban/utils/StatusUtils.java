@@ -16,10 +16,17 @@ import android.view.ViewGroup;
 
 public class StatusUtils {
 
-    public void setStastuBar(Activity context) {
+    /**
+     * 4.4改变状态栏颜色解决方案
+     *
+     * @param context
+     */
+    public static void setStastusBar(Activity context) {
         ViewGroup root = (ViewGroup) context.getWindow().getDecorView().findViewById(android.R.id.content);
         root.setPadding(0, getStatusBarHeight(context), 0, 0);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            context.getWindow().setStatusBarColor(Color.WHITE);
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             //5.0 以上直接设置状态栏颜色
             context.getWindow().setStatusBarColor(Color.TRANSPARENT);
         } else {
@@ -35,7 +42,7 @@ public class StatusUtils {
 
     }
 
-    public int getStatusBarHeight(Context context) {
+    public static int getStatusBarHeight(Context context) {
         int result = 0;
         //获取状态栏高度的资源id
         int resourceId = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
@@ -44,4 +51,6 @@ public class StatusUtils {
         }
         return result;
     }
+
+
 }

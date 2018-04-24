@@ -6,7 +6,9 @@ import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.home.base.BaseFragment;
 
 /**
- * Created by XXW on 2017/7/22.
+ *
+ * @author XXW
+ * @date 2017/7/22
  */
 
 public class LanHuFragment extends BaseFragment {

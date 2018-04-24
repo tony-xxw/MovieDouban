@@ -11,7 +11,9 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -34,7 +36,7 @@ import mvp.wyyne.douban.moviedouban.oneself.sight.SightFragment;
  * @date 2017/6/2
  */
 
-public class OneselfFragment extends BaseFragment<OneselfPresent> implements OneselfMain {
+public class OneselfFragment extends BaseFragment<OneselfPresent> implements OneselfMain, AppBarLayout.OnOffsetChangedListener {
     public static final String TAG = OneselfFragment.class.getSimpleName();
     @BindView(R.id.iv_movie)
     ImageView mIvMovie;
@@ -52,6 +54,8 @@ public class OneselfFragment extends BaseFragment<OneselfPresent> implements One
     ViewPager mVpDetail;
     @BindView(R.id.nv_detail)
     NestedScrollView mNvDetail;
+    @BindView(R.id.rl_title_layout)
+    RelativeLayout mRlTitleLayout;
     public String[] mString = {"想看", "在看", "看过", "影评", "影人"};
     private List<String> mTitle;
     private List<Fragment> mFragments;
@@ -104,6 +108,7 @@ public class OneselfFragment extends BaseFragment<OneselfPresent> implements One
         mVpDetail.setAdapter(mAdapter);
         mTlDetail.setupWithViewPager(mVpDetail);
 
+        mAppBar.addOnOffsetChangedListener(this);
     }
 
     @Override
@@ -121,5 +126,15 @@ public class OneselfFragment extends BaseFragment<OneselfPresent> implements One
     public void onViewClicked() {
         Intent intent = new Intent(getActivity(), SettingActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+        Log.d("XXW", " verticalOffset: " + verticalOffset);
+        if (verticalOffset == 0) {
+            mRlTitleLayout.setVisibility(View.GONE);
+        } else {
+            mRlTitleLayout.setVisibility(View.VISIBLE);
+        }
     }
 }

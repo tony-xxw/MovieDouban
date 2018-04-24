@@ -80,6 +80,10 @@
             android:name=".detail.head.CommentCountActivity"
             android:launchMode="singleTop"
             android:theme="@style/ColorTranslucentTheme" />
+
+        <activity
+            android:name=".login.LoginActivity"
+            android:launchMode="singleTop" />
     </application>
 
 </manifest>

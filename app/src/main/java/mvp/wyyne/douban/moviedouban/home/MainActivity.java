@@ -25,6 +25,7 @@ import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.hot.main.HotFragment;
 import mvp.wyyne.douban.moviedouban.movie.MovieFragment;
 import mvp.wyyne.douban.moviedouban.oneself.OneselfFragment;
+import mvp.wyyne.douban.moviedouban.utils.StatusUtils;
 import mvp.wyyne.douban.moviedouban.utils.StringUtils;
 import mvp.wyyne.douban.moviedouban.welfare.WelfareFragment;
 
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        StatusUtils.setStatusBarActivity(this);
         setContentView(R.layout.activity_main);
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bnm_menu);
         disableShiftMode(bottomNavigationView);

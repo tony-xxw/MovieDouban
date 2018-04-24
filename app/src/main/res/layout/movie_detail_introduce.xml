@@ -138,6 +138,7 @@
         android:orientation="horizontal">
 
         <Button
+            android:id="@+id/btn_think_see"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20sp"
@@ -149,6 +150,7 @@
 
 
         <LinearLayout
+            android:id="@+id/ll_have_seen"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginEnd="20dp"

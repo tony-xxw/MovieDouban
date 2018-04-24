@@ -101,7 +101,7 @@
                 android:id="@+id/tv_collect_count"
                 style="@style/MovieItemText"
                 android:layout_gravity="center"
-                android:textColor="@color/colorAccent"
+                android:textColor="@color/color_range_line"
                 tools:text="10.1万人观看" />
 
             <Button
@@ -112,7 +112,7 @@
                 android:layout_marginTop="5dp"
                 android:background="@drawable/bg_btn_pink"
                 android:text="购票"
-                android:textColor="@color/colorAccent"
+                android:textColor="@color/color_range_line"
                 android:textSize="12sp" />
 
         </LinearLayout>

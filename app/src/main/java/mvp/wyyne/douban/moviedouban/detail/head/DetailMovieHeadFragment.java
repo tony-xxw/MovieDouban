@@ -3,9 +3,11 @@ package mvp.wyyne.douban.moviedouban.detail.head;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -29,6 +31,7 @@ import mvp.wyyne.douban.moviedouban.detail.stills.AllStillsActivity;
 import mvp.wyyne.douban.moviedouban.detail.stills.StillsActivity;
 import mvp.wyyne.douban.moviedouban.home.IPresent;
 import mvp.wyyne.douban.moviedouban.home.base.BaseFragment;
+import mvp.wyyne.douban.moviedouban.login.LoginActivity;
 import mvp.wyyne.douban.moviedouban.utils.StringUtils;
 import mvp.wyyne.douban.moviedouban.widget.ExpandableTextView;
 import mvp.wyyne.douban.moviedouban.widget.RecycleViewUtils;
@@ -195,5 +198,21 @@ public class DetailMovieHeadFragment extends BaseFragment<IPresent> implements R
         mPhotosAdapter.setFooterView(RecycleViewUtils.addHeadView(R.layout.moview_detail_stills_footer, getActivity()));
         mPhotosAdapter.setRvOnClick(this);
         mRvPhoto.setAdapter(mPhotosAdapter);
+    }
+
+    @OnClick({R.id.btn_think_see, R.id.ll_have_seen})
+    public void onViewClick(View view) {
+        switch (view.getId()) {
+            case R.id.btn_think_see:
+                Intent thinkSeeIntent = new Intent(getActivity(), LoginActivity.class);
+                startActivity(thinkSeeIntent);
+                break;
+            case R.id.ll_have_seen:
+                Intent haveSeenIntent = new Intent(getActivity(), LoginActivity.class);
+                startActivity(haveSeenIntent);
+                break;
+            default:
+                break;
+        }
     }
 }

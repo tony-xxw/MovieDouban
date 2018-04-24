@@ -17,7 +17,9 @@ import mvp.wyyne.douban.moviedouban.home.base.BaseFragment;
 import mvp.wyyne.douban.moviedouban.widget.RecycleViewUtils;
 
 /**
- * Created by XXW on 2017/6/22.
+ *
+ * @author XXW
+ * @date 2017/6/22
  */
 
 public class CommentFragment extends BaseFragment {

@@ -39,4 +39,12 @@
     <string name="have_seen">看过</string>
     <string name="five_star">5星</string>
     <string name="please_login">请登录</string>
+
+
+    <string name="welcome_dou_ban">欢迎来到豆瓣</string>
+    <string name="phone_number_with_email">手机号/邮箱</string>
+    <string name="password">密码</string>
+    <string name="login">登陆</string>
+    <string name="register_dou_ban">注册豆瓣</string>
+    <string name="forget_password">忘记密码</string>
 </resources>

@@ -48,7 +48,7 @@ public class HotFragment extends BaseFragment<HotPresenterImp> implements HotVie
 
     @Override
     protected void initView() {
-        StatusUtils.setStatusColor(getActivity(), Color.WHITE);
+        StatusUtils.setStatusColor(getActivity(), Color.WHITE,true);
         //Fragment里 嵌套Fragment的Manager要用getChildFragmentManager()
         mPresent = new HotPresenterImp(this, getChildFragmentManager());
         mHotTl.setTabMode(TabLayout.MODE_FIXED);

@@ -90,10 +90,23 @@ public class StatusUtils {
         }
     }
 
+    public static void setStatusTextWithColor(Activity activity, boolean lightStatusBar) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            View decor = activity.getWindow().getDecorView();
+            int ui = decor.getSystemUiVisibility();
+            if (lightStatusBar) {
+                ui |= View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+            } else {
+                ui &= ~View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+            }
+            decor.setSystemUiVisibility(ui);
 
-    public static void setStatusColor(Activity activity, int color) {
+        }
+    }
+
+    public static void setStatusColor(Activity activity, int color, boolean isLightStatus) {
         activity.getWindow().setStatusBarColor(color);
-        setStatusTextColor(activity);
+        setStatusTextWithColor(activity, isLightStatus);
     }
 
 

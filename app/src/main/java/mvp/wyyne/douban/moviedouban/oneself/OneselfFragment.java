@@ -80,7 +80,7 @@ public class OneselfFragment extends BaseFragment<OneselfPresent> implements One
 
     @Override
     protected void initView() {
-        StatusUtils.setStatusColor(getActivity(), getResources().getColor(R.color.color_green));
+        StatusUtils.setStatusColor(getActivity(), getResources().getColor(R.color.color_green), false);
         mTitle = Arrays.asList(mString);
         mFragments = new ArrayList<>();
         //初始化TabLayout

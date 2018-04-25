@@ -1,5 +1,6 @@
 package mvp.wyyne.douban.moviedouban.welfare;
 
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 
@@ -11,6 +12,7 @@ import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.adapter.WelfareAdapter;
 import mvp.wyyne.douban.moviedouban.api.bean.WelfarePhotoInfo;
 import mvp.wyyne.douban.moviedouban.home.base.BaseFragment;
+import mvp.wyyne.douban.moviedouban.utils.StatusUtils;
 
 /**
  * @author XXW
@@ -43,6 +45,7 @@ public class WelfareFragment extends BaseFragment<IWelfarePresent> implements IW
 
     @Override
     protected void initView() {
+        StatusUtils.setStatusBarActivity(getActivity(), true, Color.TRANSPARENT);
         mPresent = new WelfarePresent(this);
         mList = new ArrayList<>();
         mAdapter = new WelfareAdapter(getActivity(), mList);

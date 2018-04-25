@@ -6,7 +6,6 @@ import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.home.base.BaseFragment;
 
 /**
- *
  * @author XXW
  * @date 2017/7/22
  */
@@ -14,7 +13,7 @@ import mvp.wyyne.douban.moviedouban.home.base.BaseFragment;
 public class LanHuFragment extends BaseFragment {
 
 
-    public static Fragment getInstace() {
+    public static Fragment getInstance() {
         LanHuFragment fragment = new LanHuFragment();
         return fragment;
     }

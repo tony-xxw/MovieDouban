@@ -42,7 +42,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        StatusUtils.setStatusBarActivity(this);
         setContentView(R.layout.activity_main);
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bnm_menu);
         disableShiftMode(bottomNavigationView);

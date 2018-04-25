@@ -30,6 +30,7 @@ import mvp.wyyne.douban.moviedouban.oneself.read.ReadFragment;
 import mvp.wyyne.douban.moviedouban.oneself.review.ReviewFragment;
 import mvp.wyyne.douban.moviedouban.oneself.setting.SettingActivity;
 import mvp.wyyne.douban.moviedouban.oneself.sight.SightFragment;
+import mvp.wyyne.douban.moviedouban.utils.StatusUtils;
 
 /**
  * @author XXW
@@ -79,6 +80,7 @@ public class OneselfFragment extends BaseFragment<OneselfPresent> implements One
 
     @Override
     protected void initView() {
+        StatusUtils.setStatusColor(getActivity(), getResources().getColor(R.color.color_green));
         mTitle = Arrays.asList(mString);
         mFragments = new ArrayList<>();
         //初始化TabLayout
@@ -97,11 +99,11 @@ public class OneselfFragment extends BaseFragment<OneselfPresent> implements One
 
     public void initPage() {
         Log.d("XXW", "initPage");
-        mFragments.add(LanHuFragment.getInstace());
-        mFragments.add(SightFragment.getInstace());
-        mFragments.add(ReadFragment.getInstace());
-        mFragments.add(ReviewFragment.getInstace());
-        mFragments.add(CastFragment.getInstace());
+        mFragments.add(LanHuFragment.getInstance());
+        mFragments.add(SightFragment.getInstance());
+        mFragments.add(ReadFragment.getInstance());
+        mFragments.add(ReviewFragment.getInstance());
+        mFragments.add(CastFragment.getInstance());
         mAdapter = new BaseTitlePageAdapter(getChildFragmentManager());
         mAdapter.setFragment(mFragments);
         mAdapter.setTitleList(mTitle);

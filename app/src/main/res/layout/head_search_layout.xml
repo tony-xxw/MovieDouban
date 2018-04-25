@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/colorWhite"
-                android:minHeight="48dp"
-                android:orientation="horizontal">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorWhite"
+    android:minHeight="48dp"
+    android:orientation="horizontal">
 
     <TextView
         android:id="@+id/tv_city"
@@ -18,7 +18,7 @@
         android:drawablePadding="5dp"
         android:text="城市"
         android:textColor="@color/colorTextSizeMax"
-        android:textSize="14sp"/>
+        android:textSize="14sp" />
 
 
     <mvp.wyyne.douban.moviedouban.widget.DrawableCenterLeftEditView
@@ -32,12 +32,11 @@
         android:drawablePadding="10dp"
         android:drawableStart="@drawable/icon_search"
         android:gravity="center_vertical"
-        android:text="@string/hot_hint"
         android:minHeight="30dp"
+        android:text="@string/hot_hint"
         android:textColorHint="@color/colorTextSizeMax"
         android:textSize="14sp"
-        android:visibility="visible"
-        />
+        android:visibility="visible" />
 
 
 </RelativeLayout>

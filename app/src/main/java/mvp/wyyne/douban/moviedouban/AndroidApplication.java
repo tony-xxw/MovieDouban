@@ -3,6 +3,7 @@ package mvp.wyyne.douban.moviedouban;
 import android.app.Application;
 
 
+import com.blankj.utilcode.util.Utils;
 
 import mvp.wyyne.douban.moviedouban.api.RetrofitService;
 
@@ -20,6 +21,8 @@ public class AndroidApplication extends Application {
         super.onCreate();
         mApplication = this;
         RetrofitService.init();
+
+        Utils.init(this);
 
     }
 

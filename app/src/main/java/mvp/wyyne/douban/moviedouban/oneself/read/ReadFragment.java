@@ -11,7 +11,7 @@ import mvp.wyyne.douban.moviedouban.home.base.BaseFragment;
 
 public class ReadFragment extends BaseFragment {
 
-    public static Fragment getInstace() {
+    public static Fragment getInstance() {
         ReadFragment fragment = new ReadFragment();
         return fragment;
     }

@@ -51,6 +51,7 @@ public abstract class BaseFragment<T extends IPresent> extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         mContentActivity = (Activity) context;
+
     }
 
     @Nullable
@@ -63,6 +64,7 @@ public abstract class BaseFragment<T extends IPresent> extends Fragment {
             initSwipeRefresh();
         }
         return mRootView;
+
     }
 
     @Override

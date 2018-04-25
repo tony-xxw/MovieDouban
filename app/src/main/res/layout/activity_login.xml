@@ -15,7 +15,6 @@
         android:textSize="28sp" />
 
     <EditText
-        style="@style/EditTextLineColor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginEnd="15dp"
@@ -27,7 +26,6 @@
 
 
     <EditText
-        style="@style/EditTextLineColor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginEnd="15dp"

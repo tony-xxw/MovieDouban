@@ -20,7 +20,7 @@
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             android:padding="10dp"
-            android:src="@drawable/ic_back"/>
+            android:src="@drawable/ic_bar_back_white"/>
 
 
         <TextView

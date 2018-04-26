@@ -1,13 +1,21 @@
 package mvp.wyyne.douban.moviedouban.utils;
 
+import android.annotation.TargetApi;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.os.Build;
+import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.WindowManager;
+
+import java.lang.reflect.Field;
+
+import mvp.wyyne.douban.moviedouban.R;
 
 /**
  * 状态栏工具类
@@ -116,4 +124,6 @@ public class StatusUtils {
             actionBar.hide();
         }
     }
+
+
 }

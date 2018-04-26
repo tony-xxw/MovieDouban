@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:padding="10dp"
-        android:src="@drawable/ic_back"/>
+        android:src="@drawable/ic_bar_back_white"/>
 
     <TextView
         android:id="@+id/tv_stills_title"

@@ -40,7 +40,7 @@
     <android.support.v4.widget.NestedScrollView
         android:id="@+id/nv_detail"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
@@ -57,11 +57,22 @@
                 app:tabBackground="@color/colorWhite"
                 app:tabIndicatorColor="@color/color_tab_indicator" />
 
+
             <android.support.v4.view.ViewPager
                 android:id="@+id/vp_detail"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/anonymous_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="?android:actionBarSize"
+                android:src="@drawable/ic_anonymous" />
         </LinearLayout>
+
 
     </android.support.v4.widget.NestedScrollView>
 </android.support.design.widget.CoordinatorLayout>

@@ -3,7 +3,7 @@
     <color name="colorPrimary">#47b53f</color>
     <color name="colorPrimaryDark">#FFFFFF</color>
     <color name="colorAccent">#47b53f</color>
-    <color name="colorGray">#999999</color>
+    <color name="colorGray">#ff9b9b9b</color>
     <color name="colorGray_dark">#e4e2e2</color>
     <color name="colorGray_light">#666666</color>
     <color name="colorBlack">#000000</color>
@@ -19,9 +19,10 @@
     <color name="colorTransparency">#00000000</color>
     <color name="colorTranslucence">#7cdededf</color>
     <color name="colorBlackTransparency">#00292421</color>
-    <color name="color_green">#5dcc55</color>
+    <color name="color_green">#42bd56</color>
     <color name="color_setting_bg">#f2f2f2</color>
     <color name="color_range_line">#FF4081</color>
+    <color name="hint_color">#ffcccccc</color>
 
 
 </resources>

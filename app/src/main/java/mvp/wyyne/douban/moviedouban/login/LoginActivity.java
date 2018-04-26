@@ -1,7 +1,9 @@
 package mvp.wyyne.douban.moviedouban.login;
 
 import android.graphics.Color;
+import android.view.View;
 
+import butterknife.OnClick;
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.home.base.BaseActivity;
 import mvp.wyyne.douban.moviedouban.utils.StatusUtils;
@@ -25,5 +27,17 @@ public class LoginActivity extends BaseActivity {
     @Override
     protected void initView() {
         StatusUtils.setStatusBarActivity(this, false, Color.TRANSPARENT);
+    }
+
+
+    @OnClick({R.id.iv_back})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.iv_back:
+                finish();
+                break;
+            default:
+                break;
+        }
     }
 }

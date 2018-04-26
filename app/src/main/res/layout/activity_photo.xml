@@ -101,7 +101,7 @@
             android:paddingEnd="10dp"
             android:paddingStart="20dp"
             android:paddingTop="10dp"
-            android:src="@drawable/ic_back"/>
+            android:src="@drawable/ic_bar_back_white"/>
 
         <TextView
             android:id="@+id/tv_count"

@@ -54,7 +54,7 @@ public class CityActivity extends BaseActivity {
     @Override
     protected void initView() {
         mTvCtTitle.setText(getString(R.string.city_select));
-        mIvBack.setImageResource(R.drawable.ic_back_green);
+        mIvBack.setImageResource(R.drawable.ic_bar_back_green);
 
         mTlCt.addTab(mTlCt.newTab().setText(mStrings[0]));
         mTlCt.addTab(mTlCt.newTab().setText(mStrings[1]));

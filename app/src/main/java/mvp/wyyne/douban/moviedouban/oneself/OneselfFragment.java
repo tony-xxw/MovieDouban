@@ -57,7 +57,7 @@ public class OneselfFragment extends BaseFragment<OneselfPresent> implements One
     NestedScrollView mNvDetail;
     @BindView(R.id.rl_title_layout)
     RelativeLayout mRlTitleLayout;
-    public String[] mString = {"想看", "在看", "看过", "影评", "影人"};
+    public String[] mString = {"讨论","想看", "在看", "看过", "影评", "影人"};
     private List<String> mTitle;
     private List<Fragment> mFragments;
     private BaseTitlePageAdapter mAdapter;

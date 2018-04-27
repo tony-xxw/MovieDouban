@@ -1,4 +1,4 @@
-package mvp.wyyne.douban.moviedouban.oneself.review;
+package mvp.wyyne.douban.moviedouban.oneself.tab;
 
 import android.support.v4.app.Fragment;
 
@@ -6,13 +6,16 @@ import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.home.base.BaseFragment;
 
 /**
- * Created by XXW on 2017/7/22.
+ * 我的-影人
+ *
+ * @author XXW
+ * @date 2017/7/22
  */
 
-public class ReviewFragment extends BaseFragment {
+public class CastFragment extends BaseFragment {
 
     public static Fragment getInstance() {
-        ReviewFragment fragment = new ReviewFragment();
+        CastFragment fragment = new CastFragment();
         return fragment;
     }
 
@@ -23,7 +26,7 @@ public class ReviewFragment extends BaseFragment {
 
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_review;
+        return R.layout.fragment_cast;
     }
 
     @Override

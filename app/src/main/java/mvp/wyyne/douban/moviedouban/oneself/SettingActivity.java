@@ -1,4 +1,4 @@
-package mvp.wyyne.douban.moviedouban.oneself.setting;
+package mvp.wyyne.douban.moviedouban.oneself;
 
 import android.view.View;
 import android.widget.ImageView;
@@ -11,7 +11,9 @@ import mvp.wyyne.douban.moviedouban.home.base.BaseActivity;
 
 /**
  * 设置页面
- * Created by XXW on 2017/8/3.
+ *
+ * @author XXW
+ * @date 2017/8/3
  */
 
 public class SettingActivity extends BaseActivity {

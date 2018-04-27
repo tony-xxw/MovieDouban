@@ -71,7 +71,7 @@
             android:name=".detail.photo.CastPhotoActivity"
             android:launchMode="singleTop" />
         <activity
-            android:name=".oneself.setting.SettingActivity"
+            android:name=".oneself.SettingActivity"
             android:launchMode="singleTop" />
         <activity
             android:name=".hot.city.CityActivity"

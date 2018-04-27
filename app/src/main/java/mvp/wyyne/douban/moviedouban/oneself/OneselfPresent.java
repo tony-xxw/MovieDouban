@@ -8,4 +8,6 @@ import mvp.wyyne.douban.moviedouban.home.IPresent;
  */
 
 public interface OneselfPresent extends IPresent {
+
+
 }

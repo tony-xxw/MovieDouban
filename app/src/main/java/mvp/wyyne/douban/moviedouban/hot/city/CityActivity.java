@@ -13,7 +13,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import mvp.wyyne.douban.moviedouban.R;
-import mvp.wyyne.douban.moviedouban.adapter.viewpage.BaseTitlePageAdapter;
+import mvp.wyyne.douban.moviedouban.adapter.viewpage.SubjectTitlePageAdapter;
 import mvp.wyyne.douban.moviedouban.home.base.BaseActivity;
 
 /**
@@ -35,7 +35,7 @@ public class CityActivity extends BaseActivity {
     @BindView(R.id.vp_ct)
     ViewPager mVpCt;
 
-    private BaseTitlePageAdapter mAdapter;
+    private SubjectTitlePageAdapter mAdapter;
     private List<String> mTitle;
     private String[] mStrings = {"国内", "海外"};
     private List<Fragment> mList;
@@ -65,7 +65,7 @@ public class CityActivity extends BaseActivity {
         mList.add(new ChinaFragment());
         mList.add(new ForeignFragment());
 
-        mAdapter = new BaseTitlePageAdapter(getSupportFragmentManager());
+        mAdapter = new SubjectTitlePageAdapter(getSupportFragmentManager());
         mAdapter.setTitleList(mTitle);
         mAdapter.setFragment(mList);
         mVpCt.setAdapter(mAdapter);

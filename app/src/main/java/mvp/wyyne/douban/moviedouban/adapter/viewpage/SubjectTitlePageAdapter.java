@@ -8,15 +8,16 @@ import android.util.Log;
 import java.util.List;
 
 /**
- * Created by XXW on 2017/7/22.
+ * @author XXW
+ * @date 2017/7/22
  */
 
-public class BaseTitlePageAdapter extends FragmentPagerAdapter {
+public class SubjectTitlePageAdapter extends FragmentPagerAdapter {
 
     private List<Fragment> mList;
     private List<String> mTitle;
 
-    public BaseTitlePageAdapter(FragmentManager fm) {
+    public SubjectTitlePageAdapter(FragmentManager fm) {
         super(fm);
     }
 

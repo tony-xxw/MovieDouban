@@ -12,15 +12,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
 
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.hot.main.HotFragment;
 import mvp.wyyne.douban.moviedouban.movie.MovieFragment;
 import mvp.wyyne.douban.moviedouban.oneself.OneselfFragment;
+import mvp.wyyne.douban.moviedouban.utils.StatusUtils;
 import mvp.wyyne.douban.moviedouban.utils.StringUtils;
 import mvp.wyyne.douban.moviedouban.welfare.WelfareFragment;
 
@@ -33,7 +37,11 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
     private long mCurrentTime = 0;
     private Fragment currentFragment;
-
+    private List<Fragment> mListFragment = new ArrayList<>();
+    private HotFragment hotFragment;
+    private MovieFragment movieFragment;
+    private OneselfFragment oneselfFragment;
+    private WelfareFragment welfareFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,16 +50,27 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bnm_menu);
         disableShiftMode(bottomNavigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
+
+        initFragment();
         initView();
+    }
+
+    private void initFragment() {
+        hotFragment = HotFragment.getInstance();
+        movieFragment = MovieFragment.getInstance();
+        oneselfFragment = OneselfFragment.getInstance();
+        welfareFragment = WelfareFragment.getInstance();
+
     }
 
 
     private void initView() {
-        currentFragment = HotFragment.getInstance();
+        currentFragment = hotFragment;
         getSupportFragmentManager()
                 .beginTransaction().add(R.id.fl_main, currentFragment, StringUtils.getClassName(HotFragment.class))
                 .addToBackStack(StringUtils.getClassName(HotFragment.class))
                 .commit();
+        mListFragment.add(hotFragment);
     }
 
 
@@ -59,17 +78,25 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.main_hot:
-                switchFragment(HotFragment.getInstance());
-                return true;
+                if (!item.isChecked()) {
+                    switchFragment(hotFragment);
+                    return true;
+                }
             case R.id.main_movie:
-                switchFragment(MovieFragment.getInstance());
-                return true;
+                if (!item.isChecked()) {
+                    switchFragment(movieFragment);
+                    return true;
+                }
             case R.id.main_oneself:
-                switchFragment(OneselfFragment.getInstance());
-                return true;
+                if (!item.isChecked()) {
+                    switchFragment(oneselfFragment);
+                    return true;
+                }
             case R.id.main_welfare:
-                switchFragment(WelfareFragment.getInstance());
-                return true;
+                if (!item.isChecked()) {
+                    switchFragment(welfareFragment);
+                    return true;
+                }
             default:
                 break;
 
@@ -138,16 +165,18 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     private void switchFragment(Fragment targetFragment) {
         FragmentTransaction transaction = getSupportFragmentManager()
                 .beginTransaction();
-        if (!targetFragment.isAdded()) {
+        if (!mListFragment.contains(targetFragment)) {
             transaction
                     .hide(currentFragment)
                     .add(R.id.fl_main, targetFragment)
                     .commit();
+            mListFragment.add(targetFragment);
         } else {
             transaction
                     .hide(currentFragment)
                     .show(targetFragment)
                     .commit();
+
         }
         currentFragment = targetFragment;
     }

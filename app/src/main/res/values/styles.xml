@@ -58,13 +58,10 @@
         <item name="android:background">@color/white</item>
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">40.0dip</item>
-        <item name="tabIndicatorColor">@color/dou_ban_green</item>
-        <item name="tabIndicatorHeight">2.0dip</item>
-        <item name="tabBackground">@color/white</item>
-        <item name="tabMode">fixed</item>
-        <item name="tabTextColor">@color/tab_unselected_text_color</item>
-        <item name="tabSelectedTextColor">@color/dou_ban_green</item>
+
+        <item name="tabSelectedTextColor">@color/colorBlack</item>
+
     </style>
 
-    <color name="tab_unselected_text_color">#ff9b9b9b</color>
+
 </resources>

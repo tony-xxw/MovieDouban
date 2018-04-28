@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -15,6 +16,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -47,12 +49,16 @@ public class OneselfFragment extends BaseFragment<OneselfPresent>
     ImageView mIvSetting;
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
-    @BindView(R.id.toolbar_layout)
-    CollapsingToolbarLayout mToolbarLayout;
     @BindView(R.id.app_bar)
     AppBarLayout mAppBar;
     @BindView(R.id.rl_title_layout)
     RelativeLayout mRlTitleLayout;
+    @BindView(R.id.rl_head_layout)
+    RelativeLayout mRlHeadLayout;
+    @BindView(R.id.ct_layout)
+    CoordinatorLayout ctLayout;
+    @BindView(R.id.tv_title)
+    TextView mTitleText;
 
 
     public static OneselfFragment getInstance() {
@@ -72,10 +78,13 @@ public class OneselfFragment extends BaseFragment<OneselfPresent>
 
     @Override
     protected void initView() {
-        StatusUtils.setStatusColor(getActivity(), getResources().getColor(R.color.color_green), false);
+        StatusUtils.setStatusColor(getActivity(), R.color.transparent, false);
         mAppBar.addOnOffsetChangedListener(this);
         mPresent = new OneselfImp();
         initFragment();
+        Log.d("XXW", "Dpi-- " + getResources().getDisplayMetrics().density);
+
+
     }
 
 
@@ -98,11 +107,26 @@ public class OneselfFragment extends BaseFragment<OneselfPresent>
 
     @Override
     public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-        Log.d("XXW", " verticalOffset: " + verticalOffset);
+
         if (verticalOffset == 0) {
-            mRlTitleLayout.setVisibility(View.GONE);
+            Log.d("XXW", "展开");
+            mTitleText.setVisibility(View.GONE);
+            mRlTitleLayout.setBackgroundColor(getResources().getColor(R.color.transparent));
+            mIvSetting.setImageDrawable(getResources().getDrawable(R.drawable.ic_setting_white));
+            StatusUtils.setStatusColor(getActivity(), getResources().getColor(R.color.color_green), false);
+        } else if (Math.abs(verticalOffset) != mAppBar.getTotalScrollRange()) {
+            //滑动中
+            Log.d("XXW", "滑动中");
+            mTitleText.setVisibility(View.GONE);
+            mRlTitleLayout.setBackgroundColor(getResources().getColor(R.color.transparent));
         } else {
-            mRlTitleLayout.setVisibility(View.VISIBLE);
+
+            //滑动结束
+            Log.d("XXW", "折叠");
+            mTitleText.setVisibility(View.VISIBLE);
+            mIvSetting.setImageDrawable(getResources().getDrawable(R.drawable.ic_setting_black));
+            mRlTitleLayout.setBackgroundColor(getResources().getColor(R.color.colorWhite));
+            StatusUtils.setStatusColor(getActivity(), getResources().getColor(R.color.colorWhite), true);
         }
     }
 

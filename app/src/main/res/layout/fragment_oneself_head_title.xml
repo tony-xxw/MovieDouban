@@ -3,8 +3,7 @@
     android:id="@+id/rl_title_layout"
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
-    android:background="@color/colorWhite"
-    android:visibility="gone">
+    android:visibility="visible">
 
 
     <TextView
@@ -27,8 +26,8 @@
 
     <ImageView
         android:id="@+id/iv_setting"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
         android:layout_marginEnd="20dp"

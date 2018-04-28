@@ -34,6 +34,7 @@ public class SubjectWidthFragment extends BaseFragment {
     private List<String> mTitle;
     private List<Fragment> mFragments;
     private SubjectTitlePageAdapter mAdapter;
+    private boolean isLogin;
 
 
     public static SubjectWidthFragment getInstance() {
@@ -53,30 +54,34 @@ public class SubjectWidthFragment extends BaseFragment {
         tabLayout.setTabMode(TabLayout.MODE_FIXED);
         for (String title : mTitle) {
             tabLayout.addTab(tabLayout.newTab().setText(title));
-            tabLayout.addTab(tabLayout.newTab().setText(title));
-            tabLayout.addTab(tabLayout.newTab().setText(title));
-            tabLayout.addTab(tabLayout.newTab().setText(title));
-            tabLayout.addTab(tabLayout.newTab().setText(title));
-            tabLayout.addTab(tabLayout.newTab().setText(title));
         }
 
-        tabLayout.setTabTextColors(ColorStateList.valueOf(ContextCompat.getColor(getActivity(), R.color.colorBlack)));
+        isLogin = false;
         initPage();
 
     }
 
     private void initPage() {
-        mFragments.add(LanHuFragment.getInstance());
-        mFragments.add(SightFragment.getInstance());
-        mFragments.add(ReadFragment.getInstance());
-        mFragments.add(ReviewFragment.getInstance());
-        mFragments.add(CastFragment.getInstance());
-        mFragments.add(CastFragment.getInstance());
+        initFragment();
         mAdapter = new SubjectTitlePageAdapter(getChildFragmentManager());
-        mAdapter.setFragment(mFragments);
-        mAdapter.setTitleList(mTitle);
-        vpSubject.setAdapter(mAdapter);
+//        mAdapter.setFragment(mFragments);
+//        mAdapter.setTitleList(mTitle);
+//        vpSubject.setAdapter(mAdapter);
+
         tabLayout.setupWithViewPager(vpSubject);
+    }
+
+
+    public void initFragment() {
+        if (isLogin) {
+            mFragments.clear();
+            mFragments.add(LanHuFragment.getInstance());
+            mFragments.add(SightFragment.getInstance());
+            mFragments.add(ReadFragment.getInstance());
+            mFragments.add(ReviewFragment.getInstance());
+            mFragments.add(CastFragment.getInstance());
+            mFragments.add(CastFragment.getInstance());
+        }
     }
 
 

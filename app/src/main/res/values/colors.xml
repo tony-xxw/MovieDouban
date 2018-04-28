@@ -29,5 +29,5 @@
     <color name="black_transparent_50">#80000000</color>
     <color name="text_white">#ffffffff</color>
     <color name="dou_ban_green">#ff42bd56</color>
-
+    <color name="tab_unselected_text_color">#ff9b9b9b</color>
 </resources>

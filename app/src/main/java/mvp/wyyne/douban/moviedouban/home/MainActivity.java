@@ -1,6 +1,7 @@
 package mvp.wyyne.douban.moviedouban.home;
 
 import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.design.internal.BottomNavigationItemView;
 import android.support.design.internal.BottomNavigationMenuView;
@@ -42,10 +43,12 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     private MovieFragment movieFragment;
     private OneselfFragment oneselfFragment;
     private WelfareFragment welfareFragment;
+    private boolean isSwitch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        StatusUtils.setStatusColor(this, Color.WHITE, true);
         setContentView(R.layout.activity_main);
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bnm_menu);
         disableShiftMode(bottomNavigationView);
@@ -179,6 +182,15 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
         }
         currentFragment = targetFragment;
+
+
+        if (currentFragment != oneselfFragment) {
+            isSwitch = true;
+        } else {
+            isSwitch = false;
+        }
+
+        StatusUtils.tabSwitch(true, this);
     }
 
 

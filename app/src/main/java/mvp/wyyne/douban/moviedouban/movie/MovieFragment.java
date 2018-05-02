@@ -44,7 +44,7 @@ public class MovieFragment extends BaseFragment {
 
     @Override
     protected void initView() {
-        StatusUtils.setStatusColor(getActivity(),Color.WHITE,true);
+
         mTvCity.setVisibility(View.GONE);
     }
 

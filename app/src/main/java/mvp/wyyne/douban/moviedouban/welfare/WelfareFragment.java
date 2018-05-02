@@ -45,7 +45,6 @@ public class WelfareFragment extends BaseFragment<IWelfarePresent> implements IW
 
     @Override
     protected void initView() {
-        StatusUtils.setStatusColor(getActivity(), Color.WHITE, true);
         mPresent = new WelfarePresent(this);
         mList = new ArrayList<>();
         mAdapter = new WelfareAdapter(getActivity(), mList);

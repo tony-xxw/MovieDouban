@@ -78,7 +78,6 @@ public class OneselfFragment extends BaseFragment<OneselfPresent>
 
     @Override
     protected void initView() {
-        StatusUtils.setStatusColor(getActivity(), R.color.transparent, false);
         mAppBar.addOnOffsetChangedListener(this);
         mPresent = new OneselfImp();
         initFragment();

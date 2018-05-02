@@ -125,5 +125,13 @@ public class StatusUtils {
         }
     }
 
+    public static void tabSwitch(boolean isOneself, Activity activity) {
+        if (isOneself) {
+            StatusUtils.setStatusColor(activity, Color.WHITE, true);
+        } else {
+            StatusUtils.setStatusColor(activity, R.color.color_green, true);
+        }
+    }
+
 
 }

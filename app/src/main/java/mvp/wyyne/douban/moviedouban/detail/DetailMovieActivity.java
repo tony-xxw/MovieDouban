@@ -32,7 +32,7 @@ import mvp.wyyne.douban.moviedouban.api.bean.Article;
 import mvp.wyyne.douban.moviedouban.detail.head.DetailMovieHeadFragment;
 import mvp.wyyne.douban.moviedouban.home.base.BaseActivity;
 
-import static mvp.wyyne.douban.moviedouban.utils.Constans.DETAIL_TAG;
+import static mvp.wyyne.douban.moviedouban.utils.Constant.DETAIL_TAG;
 
 /**
  * @author XXW

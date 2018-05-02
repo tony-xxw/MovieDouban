@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -24,9 +25,11 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import mvp.wyyne.douban.moviedouban.AndroidApplication;
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.adapter.viewpage.SubjectTitlePageAdapter;
 import mvp.wyyne.douban.moviedouban.home.base.BaseFragment;
+import mvp.wyyne.douban.moviedouban.login.LoginActivity;
 import mvp.wyyne.douban.moviedouban.oneself.tab.CastFragment;
 import mvp.wyyne.douban.moviedouban.oneself.tab.LanHuFragment;
 import mvp.wyyne.douban.moviedouban.oneself.tab.ReadFragment;
@@ -98,10 +101,23 @@ public class OneselfFragment extends BaseFragment<OneselfPresent>
     }
 
 
-    @OnClick(R.id.iv_setting)
-    public void onViewClicked() {
-        Intent intent = new Intent(getActivity(), SettingActivity.class);
-        startActivity(intent);
+    @OnClick({R.id.iv_setting, R.id.info_container})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.iv_setting:
+                Intent intent = new Intent(getActivity(), SettingActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.info_container:
+                if (!AndroidApplication.getApplication().Login()) {
+                    Intent loginIntent = new Intent(getActivity(), LoginActivity.class);
+                    startActivity(loginIntent);
+                }
+                break;
+            default:
+                break;
+        }
+
     }
 
     @Override

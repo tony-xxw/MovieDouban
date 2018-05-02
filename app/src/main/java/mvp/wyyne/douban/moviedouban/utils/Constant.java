@@ -7,7 +7,7 @@ package mvp.wyyne.douban.moviedouban.utils;
  * @date 2018/1/17
  */
 
-public class Constans {
+public class Constant {
 
     public static final int LAKH = 100000;
 
@@ -16,5 +16,10 @@ public class Constans {
     public static final String DETAIL_TAG = "detail";
 
     public static final String DATA_ARTICLE = "article";
+
+    public static final String LOGIN_ACCOUNT = "admin";
+    public static final String LOGIN_PASSWORD = "123456";
+    public static final String LOGIN = "login";
+
 
 }

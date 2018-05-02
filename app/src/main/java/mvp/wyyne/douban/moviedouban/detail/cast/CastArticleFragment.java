@@ -18,7 +18,7 @@ import mvp.wyyne.douban.moviedouban.api.bean.Subjects;
 import mvp.wyyne.douban.moviedouban.detail.DetailMovieActivity;
 import mvp.wyyne.douban.moviedouban.home.base.BaseFragment;
 
-import static mvp.wyyne.douban.moviedouban.utils.Constans.DETAIL_TAG;
+import static mvp.wyyne.douban.moviedouban.utils.Constant.DETAIL_TAG;
 
 /**
  * Created by XXW on 2017/7/14.

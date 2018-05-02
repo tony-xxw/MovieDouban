@@ -2,12 +2,10 @@ package mvp.wyyne.douban.moviedouban.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.security.PublicKey;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,8 +13,8 @@ import java.util.List;
 import mvp.wyyne.douban.moviedouban.api.RvItemOnClick;
 import mvp.wyyne.douban.moviedouban.utils.DateUtils;
 
-import static mvp.wyyne.douban.moviedouban.utils.Constans.LAKH;
-import static mvp.wyyne.douban.moviedouban.utils.Constans.THOUSAND;
+import static mvp.wyyne.douban.moviedouban.utils.Constant.LAKH;
+import static mvp.wyyne.douban.moviedouban.utils.Constant.THOUSAND;
 
 /**
  * @author XXW

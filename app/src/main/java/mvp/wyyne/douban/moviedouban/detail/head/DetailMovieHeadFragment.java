@@ -2,11 +2,8 @@ package mvp.wyyne.douban.moviedouban.detail.head;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RatingBar;
@@ -36,7 +33,7 @@ import mvp.wyyne.douban.moviedouban.utils.StringUtils;
 import mvp.wyyne.douban.moviedouban.widget.ExpandableTextView;
 import mvp.wyyne.douban.moviedouban.widget.RecycleViewUtils;
 
-import static mvp.wyyne.douban.moviedouban.utils.Constans.DATA_ARTICLE;
+import static mvp.wyyne.douban.moviedouban.utils.Constant.DATA_ARTICLE;
 
 /**
  * @author XXW

@@ -1,11 +1,15 @@
 package mvp.wyyne.douban.moviedouban;
 
 import android.app.Application;
+import android.content.SharedPreferences;
+import android.text.TextUtils;
 
 
 import com.blankj.utilcode.util.Utils;
 
 import mvp.wyyne.douban.moviedouban.api.RetrofitService;
+
+import static mvp.wyyne.douban.moviedouban.utils.Constant.LOGIN;
 
 /**
  * @author XXW
@@ -14,6 +18,7 @@ import mvp.wyyne.douban.moviedouban.api.RetrofitService;
 
 public class AndroidApplication extends Application {
     private static AndroidApplication mApplication;
+    private SharedPreferences loginShared;
 
 
     @Override
@@ -24,9 +29,24 @@ public class AndroidApplication extends Application {
 
         Utils.init(this);
 
+
+        loginShared = getSharedPreferences("login", MODE_PRIVATE);
+
     }
 
     public static AndroidApplication getApplication() {
         return mApplication;
+    }
+
+    public void recodeLogin() {
+        loginShared.edit().putString(LOGIN, LOGIN).apply();
+    }
+
+    public boolean Login() {
+        String result = loginShared.getString(LOGIN, "");
+        if (!TextUtils.isEmpty(result) && result.equals(LOGIN)) {
+            return true;
+        }
+        return false;
     }
 }

@@ -17,7 +17,7 @@ import butterknife.OnClick;
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.api.bean.Article;
 import mvp.wyyne.douban.moviedouban.home.base.BaseActivity;
-import mvp.wyyne.douban.moviedouban.utils.Constans;
+import mvp.wyyne.douban.moviedouban.utils.Constant;
 import mvp.wyyne.douban.moviedouban.widget.ChartRect;
 
 /**
@@ -51,8 +51,8 @@ public class CommentCountActivity extends BaseActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        if (getIntent().getBundleExtra(Constans.DATA_ARTICLE) != null) {
-            mArticle = getIntent().getBundleExtra(Constans.DATA_ARTICLE).getParcelable(Constans.DATA_ARTICLE);
+        if (getIntent().getBundleExtra(Constant.DATA_ARTICLE) != null) {
+            mArticle = getIntent().getBundleExtra(Constant.DATA_ARTICLE).getParcelable(Constant.DATA_ARTICLE);
         }
         super.onCreate(savedInstanceState);
 

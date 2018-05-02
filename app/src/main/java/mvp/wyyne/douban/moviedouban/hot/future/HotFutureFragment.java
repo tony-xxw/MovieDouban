@@ -25,7 +25,7 @@ import mvp.wyyne.douban.moviedouban.hot.current.IHotMain;
 import mvp.wyyne.douban.moviedouban.utils.MovieType;
 import mvp.wyyne.douban.moviedouban.utils.TitleRecycleItemDecoration;
 
-import static mvp.wyyne.douban.moviedouban.utils.Constans.DETAIL_TAG;
+import static mvp.wyyne.douban.moviedouban.utils.Constant.DETAIL_TAG;
 
 /**
  * 即将上映

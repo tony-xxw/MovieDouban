@@ -26,7 +26,7 @@ import mvp.wyyne.douban.moviedouban.home.base.BaseActivity;
 import mvp.wyyne.douban.moviedouban.home.IMain;
 import mvp.wyyne.douban.moviedouban.widget.PhotoViewPage;
 
-import static mvp.wyyne.douban.moviedouban.utils.Constans.DETAIL_TAG;
+import static mvp.wyyne.douban.moviedouban.utils.Constant.DETAIL_TAG;
 
 /**
  * Created by XXW on 2017/7/15.

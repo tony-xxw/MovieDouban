@@ -36,9 +36,10 @@
 
 
     <style name="SettingLayout">
+        <item name="android:paddingLeft">10dp</item>
         <item name="android:background">@color/colorWhite</item>
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">42dp</item>
+        <item name="android:layout_height">48dp</item>
     </style>
 
 

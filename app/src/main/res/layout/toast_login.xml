@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorGray"
+    android:background="@drawable/bg_transparency"
     android:minHeight="40dp">
 
 
@@ -11,10 +10,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
         android:background="@drawable/bg_transparency"
         android:gravity="center"
+        android:text="请填写邮箱或电话"
         android:textColor="@color/white"
-        android:textSize="16sp"
-        tools:text="请填写邮箱或电话" />
+        android:textSize="14sp" />
 
-</FrameLayout>
+</LinearLayout>

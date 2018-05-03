@@ -1,15 +1,10 @@
 package mvp.wyyne.douban.moviedouban.login;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
 
 import android.widget.EditText;
-import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -18,6 +13,7 @@ import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.home.MainActivity;
 import mvp.wyyne.douban.moviedouban.home.base.BaseActivity;
 import mvp.wyyne.douban.moviedouban.utils.StatusUtils;
+import mvp.wyyne.douban.moviedouban.utils.ToastUtils;
 
 /**
  * @author Wynne
@@ -29,6 +25,7 @@ public class LoginActivity extends BaseActivity<ILoginImp> implements ILoginMain
     EditText etAccount;
     @BindView(R.id.et_password)
     EditText etPassword;
+
 
     @Override
     protected void refresh() {
@@ -92,14 +89,9 @@ public class LoginActivity extends BaseActivity<ILoginImp> implements ILoginMain
 
     @Override
     public void showToast(String msg) {
-        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        if (inflater != null) {
-            View view = inflater.inflate(R.layout.toast_login, null);
-            Toast toast = new Toast(this);
-            toast.setGravity(Gravity.CENTER, 0, 200);
-            toast.setDuration(Toast.LENGTH_SHORT);
-            toast.setView(view);
-            toast.show();
-        }
+        View inflater = View.inflate(this, R.layout.toast_login, null);
+        ToastUtils.getInstance(getApplicationContext()).makeToastSelfViewAnim(inflater, R.style.ToastStyle);
+
     }
 }
+

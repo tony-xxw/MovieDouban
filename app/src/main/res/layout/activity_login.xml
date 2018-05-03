@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:scrollbars="none">
+    android:layout_height="match_parent">
 
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
         <include layout="@layout/default_top_layout" />
@@ -16,10 +15,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="60dp"
             android:text="@string/welcome_dou_ban"
             android:textColor="@color/color_green"
-            android:textSize="40sp" />
+            android:textSize="36sp" />
 
 
         <LinearLayout
@@ -104,4 +103,43 @@
         </LinearLayout>
 
     </LinearLayout>
-</ScrollView>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:minHeight="40dp">
+
+
+        <mvp.wyyne.douban.moviedouban.widget.DrawableCenterLeftEditView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawablePadding="10dp"
+            android:drawableStart="@drawable/ic_wechat"
+            android:gravity="center_vertical"
+            android:text="@string/wx_login"
+            android:textColor="@color/colorGray"
+            android:textSize="14sp" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="10dp"
+            android:layout_gravity="center"
+            android:layout_marginEnd="5dp"
+            android:layout_marginStart="5dp"
+            android:background="@color/colorGray" />
+
+        <mvp.wyyne.douban.moviedouban.widget.DrawableCenterLeftEditView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawablePadding="10dp"
+            android:drawableStart="@drawable/ic_weibo"
+            android:gravity="center_vertical"
+            android:text="@string/xl_login"
+            android:textColor="@color/colorGray"
+            android:textSize="14sp" />
+    </LinearLayout>
+</FrameLayout>

@@ -1,6 +1,10 @@
 apply plugin: 'com.android.application'
 apply plugin: 'android-apt'
+apply from: 'tinkerpatch.gradle'
 
+configurations.all {
+    resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+}
 
 
 android {

@@ -3,22 +3,39 @@
 buildscript {
     repositories {
         jcenter()
+
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.0'
-        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+
+
+        if (project.hasProperty('GRADLE_3') && GRADLE_3.equalsIgnoreCase('TRUE')) {
+            classpath 'com.android.tools.build:gradle:3.0.1'
+        } else {
+            classpath 'com.android.tools.build:gradle:2.3.3'
+        }
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
+        classpath("com.tinkerpatch.sdk:tinkerpatch-gradle-plugin:${TINKERPATCH_VERSION}") {
+            changing = true
+        }
+
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
     }
 }
 
 allprojects {
     repositories {
         jcenter()
+
     }
 }
 
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+def is_gradle_3() {
+    return hasProperty('GRADLE_3') && GRADLE_3.equalsIgnoreCase('TRUE')
+}
+

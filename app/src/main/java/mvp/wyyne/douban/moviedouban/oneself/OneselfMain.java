@@ -8,5 +8,8 @@ import mvp.wyyne.douban.moviedouban.home.IMain;
  */
 
 public interface OneselfMain extends IMain {
+    /**
+     * 初始化Fragment
+     */
     void initFragment();
 }

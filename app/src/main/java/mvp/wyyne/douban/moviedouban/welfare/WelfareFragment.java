@@ -1,8 +1,8 @@
 package mvp.wyyne.douban.moviedouban.welfare;
 
-import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,17 +10,17 @@ import java.util.List;
 import butterknife.BindView;
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.adapter.WelfareAdapter;
+import mvp.wyyne.douban.moviedouban.api.RvItemOnClick;
 import mvp.wyyne.douban.moviedouban.api.bean.WelfarePhotoInfo;
 import mvp.wyyne.douban.moviedouban.home.base.BaseFragment;
-import mvp.wyyne.douban.moviedouban.utils.StatusUtils;
+
 
 /**
  * @author XXW
  * @date 2017/6/2
  */
 
-public class WelfareFragment extends BaseFragment<IWelfarePresent> implements IWelfareMain {
-
+public class WelfareFragment extends BaseFragment<WelfarePresent> implements IWelfareMain, RvItemOnClick {
     public static final String TAG = WelfareFragment.class.getSimpleName();
     @BindView(R.id.rv_welfare)
     RecyclerView mRvWelfare;
@@ -45,9 +45,10 @@ public class WelfareFragment extends BaseFragment<IWelfarePresent> implements IW
 
     @Override
     protected void initView() {
-        mPresent = new WelfarePresent(this);
+        mPresent = new WelfarePresent(this, getContext());
         mList = new ArrayList<>();
         mAdapter = new WelfareAdapter(getActivity(), mList);
+        mAdapter.setRvOnClick(this);
         mManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         mManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE);
         mRvWelfare.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -78,5 +79,11 @@ public class WelfareFragment extends BaseFragment<IWelfarePresent> implements IW
         mList = list;
         mAdapter.setList(mList);
         mAdapter.notifyDataSetChanged();
+    }
+
+
+    @Override
+    public void onItemClick(int position, String tag) {
+        Toast.makeText(getActivity(), mList.get(position).getDesc(), Toast.LENGTH_SHORT).show();
     }
 }

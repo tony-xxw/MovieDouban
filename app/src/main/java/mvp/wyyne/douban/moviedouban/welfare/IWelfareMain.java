@@ -6,9 +6,18 @@ import mvp.wyyne.douban.moviedouban.api.bean.WelfarePhotoInfo;
 import mvp.wyyne.douban.moviedouban.home.IMain;
 
 /**
- * Created by XXW on 2017/6/25.
+ * @author XXW
+ * @date 2017/6/25
  */
 
 public interface IWelfareMain extends IMain {
+
+    /**
+     * 显示图片
+     *
+     * @param list
+     */
     void showImg(List<WelfarePhotoInfo> list);
+
+
 }

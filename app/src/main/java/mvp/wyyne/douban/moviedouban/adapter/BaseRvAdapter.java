@@ -31,9 +31,9 @@ public abstract class BaseRvAdapter<T> extends RecyclerView.Adapter<BaseItemView
     private static final int HEAD_TYPE = 0;
     private static final int FOOTER_TYPE = 1;
     private static final int CONTENT_TYPE = 2;
-    protected View mHeadView;
-    protected View mFooterView;
-    protected RvItemOnClick mClick;
+    public View mHeadView;
+    public View mFooterView;
+    public RvItemOnClick mClick;
 
     public void setList(List<T> list) {
         mList = list;

@@ -1,5 +1,6 @@
 package mvp.wyyne.douban.moviedouban.welfare;
 
+import android.content.Context;
 import android.util.Log;
 
 import io.reactivex.Observer;
@@ -9,14 +10,18 @@ import mvp.wyyne.douban.moviedouban.api.RetrofitService;
 import mvp.wyyne.douban.moviedouban.api.bean.WelfarePhotoList;
 
 /**
- * Created by XXW on 2017/6/25.
+ * @author XXW
+ * @date 2017/6/25
  */
 
 public class WelfarePresent implements IWelfarePresent {
-    IWelfareMain mMain;
+    private IWelfareMain mMain;
 
-    public WelfarePresent(IWelfareMain main) {
+
+    public WelfarePresent(IWelfareMain main, Context context) {
         mMain = main;
+
+
     }
 
     @Override
@@ -47,4 +52,6 @@ public class WelfarePresent implements IWelfarePresent {
                 });
 
     }
+
+
 }

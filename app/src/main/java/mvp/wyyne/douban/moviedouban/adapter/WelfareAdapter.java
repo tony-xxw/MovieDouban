@@ -1,41 +1,37 @@
 package mvp.wyyne.douban.moviedouban.adapter;
 
 import android.content.Context;
-import android.util.Log;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
-import java.util.HashMap;
+import com.bumptech.glide.Glide;
+
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.Random;
 
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.api.bean.WelfarePhotoInfo;
 import mvp.wyyne.douban.moviedouban.utils.ImageLoader;
 
 /**
- * Created by XXW on 2017/6/25.
+ * @author XXW
+ * @date 2017/6/25
  */
 
-public class WelfareAdapter extends BaseRvAdapter<WelfarePhotoInfo> {
-
-    private int mPhotoWidth;
-    private Context mContext;
-    private Random mRandom;
+public class WelfareAdapter extends BaseRvAdapter<WelfarePhotoInfo> implements View.OnClickListener {
     private ImageLoader mLoader;
-    private Map<Integer, Integer> mHeightList;
+    private ArrayList<Integer> mHeightList;
     private String photoUrl;
+    private Context mContext;
 
     public WelfareAdapter(Context context, List<WelfarePhotoInfo> data) {
         super(context, data);
         mContext = context;
-        mRandom = new Random();
-        int widthPixels = context.getResources().getDisplayMetrics().widthPixels;
-        int marginPixels = context.getResources().getDimensionPixelOffset(R.dimen.photo_margin_width);
-        mPhotoWidth = widthPixels / 2 - marginPixels;
         mLoader = ImageLoader.build(context);
-        mHeightList = new HashMap<>();
+        mHeightList = new ArrayList<>();
 
     }
 
@@ -46,27 +42,29 @@ public class WelfareAdapter extends BaseRvAdapter<WelfarePhotoInfo> {
 
     @Override
     void bindView(BaseItemViewHolder holder, int position) {
+        initItemHeight();
         ImageView imageView = holder.getView(R.id.iv_photo);
-        imageView.setTag(mList.get(position).getUrl());
-        final ViewGroup.LayoutParams params = imageView.getLayoutParams();
-        int max = ((mPhotoWidth + mPhotoWidth / 2));
-        params.width = mPhotoWidth;
-        if (mHeightList.get(position) != null) {
-            params.height = mHeightList.get(position);
-        } else {
-            params.height = mRandom.nextInt(max) % (max - mPhotoWidth + 1) + mPhotoWidth;
-            mHeightList.put(position, params.height);
-        }
+        LinearLayout linearLayout = holder.getView(R.id.ll_item);
+        ViewGroup.LayoutParams params = imageView.getLayoutParams();
+        params.height = mHeightList.get(position);
         imageView.setLayoutParams(params);
+        TextView textView = holder.getView(R.id.tv_date);
+        textView.setText(mList.get(position).getDesc());
 
-
-//        Glide.with(mContext).load(mList.get(position).getUrl())
-//                .into(imageView);
         photoUrl = mList.get(position).getUrl();
-        Log.d("XXW", "photo-URL--" + photoUrl + "===" + position);
+//        mLoader.bindBitmap(photoUrl, imageView);
+        Glide.with(mContext).load(photoUrl).centerCrop().into(imageView);
 
-        mLoader.bindBitmap(photoUrl, imageView);
+        linearLayout.setTag(position);
+        linearLayout.setOnClickListener(this);
+    }
 
+    private void initItemHeight() {
+        if (mList.size() != 0) {
+            for (WelfarePhotoInfo welfarePhotoInfo : mList) {
+                mHeightList.add((int) (300 + Math.random() * 400));
+            }
+        }
     }
 
     @Override
@@ -80,4 +78,14 @@ public class WelfareAdapter extends BaseRvAdapter<WelfarePhotoInfo> {
     }
 
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.ll_item:
+                mClick.onItemClick((Integer) v.getTag(), "");
+                break;
+            default:
+                break;
+        }
+    }
 }

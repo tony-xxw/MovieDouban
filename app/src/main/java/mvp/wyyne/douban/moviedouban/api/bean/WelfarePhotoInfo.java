@@ -2,10 +2,9 @@ package mvp.wyyne.douban.moviedouban.api.bean;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
-
 /**
- * Created by XXW on 2017/6/25.
+ * @author XXW
+ * @date 2017/6/25
  */
 
 public class WelfarePhotoInfo {
@@ -30,7 +29,9 @@ public class WelfarePhotoInfo {
     private String url;
     private boolean used;
     private String who;
-    // 保存图片宽高
+    /**
+     * 保存图片宽高
+     **/
     private String pixel;
 
     public String getPixel() {

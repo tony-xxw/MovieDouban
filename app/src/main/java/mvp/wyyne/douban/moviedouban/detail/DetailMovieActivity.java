@@ -24,13 +24,13 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 
-
 import butterknife.BindView;
 import butterknife.OnClick;
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.api.bean.Article;
 import mvp.wyyne.douban.moviedouban.detail.head.DetailMovieHeadFragment;
 import mvp.wyyne.douban.moviedouban.home.base.BaseActivity;
+import mvp.wyyne.douban.moviedouban.utils.StatusUtils;
 
 import static mvp.wyyne.douban.moviedouban.utils.Constant.DETAIL_TAG;
 
@@ -71,7 +71,6 @@ public class DetailMovieActivity extends BaseActivity<DetailMovieImp> implements
     FrameLayout mFlContent;
     private String mSubjectsId;
     private Bitmap mDrawableBitmap;
-    private Palette.Builder mPalette;
     private Article mArticle;
     private Palette.Swatch swatch;
 
@@ -143,19 +142,24 @@ public class DetailMovieActivity extends BaseActivity<DetailMovieImp> implements
                 if (resource != null) {
                     mDrawableBitmap = resource;
                     //设置颜色调试器
-                    mPalette = Palette.from(mDrawableBitmap);
+                    Palette palette = Palette.from(mDrawableBitmap).generate();
                     //颜色调试器回调监听
-                    mPalette.generate(new Palette.PaletteAsyncListener() {
-                        @Override
-                        public void onGenerated(Palette palette) {
-                            swatch = palette.getMutedSwatch();
-                            if (swatch != null) {
-                                mFlAvatarsBg.setBackgroundColor(swatch.getRgb());
-                                mLlTitle.setBackgroundColor(Color.TRANSPARENT);
-                                mLayout.setBackgroundColor(Color.TRANSPARENT);
-                            }
-                        }
-                    });
+                    swatch = palette.getMutedSwatch();
+                    if (swatch == null) {
+                        swatch = palette.getLightMutedSwatch();
+                    }
+
+                    if (swatch != null) {
+                        mFlAvatarsBg.setBackgroundColor(swatch.getRgb());
+                        mLlTitle.setBackgroundColor(Color.TRANSPARENT);
+                        mLayout.setBackgroundColor(Color.TRANSPARENT);
+                        StatusUtils.setStatusColor(DetailMovieActivity.this, swatch.getRgb(), true);
+                    } else {
+                        mFlAvatarsBg.setBackgroundColor(Color.WHITE);
+                        mLlTitle.setBackgroundColor(Color.TRANSPARENT);
+                        mLayout.setBackgroundColor(Color.TRANSPARENT);
+                        StatusUtils.setStatusColor(DetailMovieActivity.this, Color.WHITE, true);
+                    }
                 }
             }
         });
@@ -186,7 +190,11 @@ public class DetailMovieActivity extends BaseActivity<DetailMovieImp> implements
                 mLlTitle.setBackgroundColor(ContextCompat.getColor(this, R.color.colorTranslucence));
             } else {
                 titleShow();
-                mLlTitle.setBackgroundColor(swatch.getRgb());
+                if (swatch != null) {
+                    mLlTitle.setBackgroundColor(swatch.getRgb());
+                } else {
+                    mLlTitle.setBackgroundColor(Color.WHITE);
+                }
             }
         }
 

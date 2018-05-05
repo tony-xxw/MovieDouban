@@ -30,7 +30,7 @@
             android:layout_centerInParent="true"
             android:layout_gravity="center"
             android:drawablePadding="3dp"
-            android:drawableStart="@drawable/ic_popcorn"
+            android:drawableStart="@drawable/ic_subject_toolbar_movie"
             android:gravity="center_vertical"
             android:text="@string/movie"
             android:textColor="@color/colorBlack"

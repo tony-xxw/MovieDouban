@@ -17,6 +17,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.tinkerpatch.sdk.TinkerPatch;
+
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
@@ -56,6 +58,15 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
         initFragment();
         initView();
+
+        startPatch();
+    }
+
+    /**
+     * 下载热更新补丁
+     */
+    private void startPatch() {
+        TinkerPatch.with().fetchPatchUpdate(true);
     }
 
     private void initFragment() {

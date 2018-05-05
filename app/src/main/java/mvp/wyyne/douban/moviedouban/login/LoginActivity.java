@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.view.View;
 
 import android.widget.EditText;
+import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -90,6 +91,8 @@ public class LoginActivity extends BaseActivity<ILoginImp> implements ILoginMain
     @Override
     public void showToast(String msg) {
         View inflater = View.inflate(this, R.layout.toast_login, null);
+        TextView textView = (TextView) inflater.findViewById(R.id.tv_text);
+        textView.setText(msg);
         ToastUtils.getInstance(getApplicationContext()).makeToastSelfViewAnim(inflater, R.style.ToastStyle);
 
     }

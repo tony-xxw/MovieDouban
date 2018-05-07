@@ -14,7 +14,8 @@ import mvp.wyyne.douban.moviedouban.api.bean.Casts;
 import mvp.wyyne.douban.moviedouban.api.bean.Directors;
 
 /**
- * Created by XXW on 2017/6/24.
+ * @author XXW
+ * @date 2017/6/24
  */
 
 public class CastAdapter extends BaseRvAdapter<Casts> implements View.OnClickListener {
@@ -56,6 +57,7 @@ public class CastAdapter extends BaseRvAdapter<Casts> implements View.OnClickLis
 
     }
 
+    @Override
     public void bindHeadView(BaseItemViewHolder holder, int position) {
         if (position == 0 && mDirectorses.size() != 0) {
             for (Directors directorse : mDirectorses) {

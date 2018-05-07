@@ -29,7 +29,9 @@ import mvp.wyyne.douban.moviedouban.widget.PhotoViewPage;
 import static mvp.wyyne.douban.moviedouban.utils.Constant.DETAIL_TAG;
 
 /**
- * Created by XXW on 2017/7/15.
+ *
+ * @author XXW
+ * @date 2017/7/15
  */
 
 public class CastPhotoActivity extends BaseActivity implements ViewPager.OnPageChangeListener, IMain {

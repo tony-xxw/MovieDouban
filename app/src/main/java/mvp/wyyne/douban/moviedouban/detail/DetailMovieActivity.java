@@ -1,6 +1,7 @@
 package mvp.wyyne.douban.moviedouban.detail;
 
 
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -29,6 +30,7 @@ import butterknife.OnClick;
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.api.bean.Article;
 import mvp.wyyne.douban.moviedouban.detail.head.DetailMovieHeadFragment;
+import mvp.wyyne.douban.moviedouban.detail.photo.PhotoActivity;
 import mvp.wyyne.douban.moviedouban.home.base.BaseActivity;
 import mvp.wyyne.douban.moviedouban.utils.StatusUtils;
 
@@ -212,9 +214,21 @@ public class DetailMovieActivity extends BaseActivity<DetailMovieImp> implements
     }
 
 
-    @OnClick(R.id.iv_back)
-    public void onViewClicked() {
-        finish();
+    @OnClick({R.id.iv_back, R.id.iv_avatars})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.iv_back:
+                finish();
+                break;
+            case R.id.iv_avatars:
+                Intent intent = new Intent(this, PhotoActivity.class);
+                intent.putExtra(PhotoActivity.ID, mArticle.getId());
+                intent.putExtra(PhotoActivity.POSITION, 0);
+                startActivity(intent);
+                break;
+            default:
+                break;
+        }
     }
 
 }

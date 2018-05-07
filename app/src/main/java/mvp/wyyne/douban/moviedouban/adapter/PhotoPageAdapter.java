@@ -2,6 +2,7 @@ package mvp.wyyne.douban.moviedouban.adapter;
 
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +17,8 @@ import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.api.bean.StillsPhotos;
 
 /**
- * Created by XXW on 2017/7/4.
+ * @author XXW
+ * @date 2017/7/4
  */
 
 public class PhotoPageAdapter extends PagerAdapter {
@@ -53,7 +55,9 @@ public class PhotoPageAdapter extends PagerAdapter {
         View view = LayoutInflater.from(mContext).inflate(R.layout.page_photo_layout, null, false);
         final ImageView imageView = (ImageView) view.findViewById(R.id.iv_stills_photo);
         Log.d("XXW", "----" + mList.get(position).getImage());
-        Glide.with(mContext).load(mList.get(position).getImage()).into(imageView);
+        if (!TextUtils.isEmpty(mList.get(position).getImage())) {
+            Glide.with(mContext).load(mList.get(position).getImage()).into(imageView);
+        }
         container.addView(view);
         return view;
     }

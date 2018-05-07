@@ -1,5 +1,7 @@
 package mvp.wyyne.douban.moviedouban.home.base;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -78,6 +80,16 @@ public abstract class BaseActivity<T extends IPresent> extends AppCompatActivity
                 mLoadingView.setVisibility(View.GONE);
             }
         }
+    }
+
+
+    /**
+     * @param context 上下文
+     * @param active  目标类
+     */
+    public void intentActivity(Context context, Class active) {
+        Intent intent = new Intent(context, active);
+        startActivity(intent);
     }
 
 }

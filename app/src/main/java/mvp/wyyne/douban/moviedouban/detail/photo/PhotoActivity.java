@@ -25,7 +25,9 @@ import static mvp.wyyne.douban.moviedouban.utils.Constant.DETAIL_TAG;
 
 /**
  * 剧照照片放大
- * Created by XXW on 2017/7/3.
+ *
+ * @author XXW
+ * @date 2017/7/3
  */
 
 public class PhotoActivity extends BaseActivity<IPhotoPresent> implements IPhotoMain, ViewPager.OnPageChangeListener {
@@ -114,11 +116,14 @@ public class PhotoActivity extends BaseActivity<IPhotoPresent> implements IPhoto
     public void onPageSelected(int position) {
         mVpPage.setCurrentItem(position);
         subjectId = mList.get(position).getSubject_id();
-        mTvCount.setText(getString(R.string.view_image) + "(" + position++ + "/" + mStills.getCount() + ")");
-        mTvCommentCount.setText(mList.get(position).getComments_count() + "");
-        mTvPhotoTime.setText(mList.get(position).getCreated_at());
-
-
+        if (mStills != null) {
+            String currentPosition = getString(R.string.view_image) + "(" + (position + 1) + "/" + mStills.getCount() + ")";
+            String commentPosition = mList.get(position).getComments_count() + "";
+            String currentDate = mList.get(position).getCreated_at();
+            mTvCount.setText(currentPosition);
+            mTvCommentCount.setText(commentPosition);
+            mTvPhotoTime.setText(currentDate);
+        }
     }
 
 

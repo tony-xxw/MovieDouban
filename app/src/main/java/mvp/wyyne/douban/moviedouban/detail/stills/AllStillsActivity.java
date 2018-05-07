@@ -23,7 +23,8 @@ import mvp.wyyne.douban.moviedouban.detail.photo.PhotoActivity;
 import mvp.wyyne.douban.moviedouban.home.base.BaseActivity;
 
 /**
- * Created by XXW on 2017/7/2.
+ * @author XXW
+ * @date 2017/7/2
  */
 
 public class AllStillsActivity extends BaseActivity<AllStillsPresent> implements AllStillMain, View.OnClickListener, RvItemOnClick {

@@ -39,7 +39,9 @@ import mvp.wyyne.douban.moviedouban.detail.stills.AllStillsActivity;
 import mvp.wyyne.douban.moviedouban.home.base.BaseActivity;
 
 /**
- * Created by XXW on 2017/6/30.
+ *
+ * @author XXW
+ * @date 2017/6/30
  */
 
 public class CastArticleActivity extends BaseActivity<ICastPresent> implements ICastMain, AppBarLayout.OnOffsetChangedListener, RvItemOnClick {

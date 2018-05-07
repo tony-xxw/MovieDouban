@@ -1,8 +1,6 @@
 package mvp.wyyne.douban.moviedouban.api;
 
 
-import com.google.gson.JsonObject;
-
 import io.reactivex.Observable;
 import mvp.wyyne.douban.moviedouban.api.bean.Article;
 import mvp.wyyne.douban.moviedouban.api.bean.CastArticle;
@@ -27,43 +25,62 @@ import retrofit2.http.Path;
 public interface IMoviesApi {
 
     /**
-     * 正在热映
+     * 获取上映电影列表
+     *
+     * @return 上映电影实体类
      */
     @GET("movie/in_theaters?apikey=0df993c66c0c636e29ecbb5344252a4a")
     Observable<HotBean> getHotList();
 
     /**
      * 即将上映
+     *
+     * @return 即将上映
      */
     @GET("movie/coming_soon?apikey=0df993c66c0c636e29ecbb5344252a4a")
     Observable<HotBean> getFutureList();
 
     /**
      * 电影条目信息
+     *
+     * @param id
+     * @return 条目信息
      */
     @GET("movie/subject/{id}?apikey=0df993c66c0c636e29ecbb5344252a4a")
     Observable<Article> getArticle(@Path("id") String id);
 
     /**
      * 电影长评论条目信息
+     *
+     * @return 评论bean
+     * * @param id
      */
     @GET("movie/subject/{id}/reviews?apikey=0df993c66c0c636e29ecbb5344252a4a")
     Observable<MoviesReviews> getReviews(@Path("id") String id);
 
     /**
      * 电影剧照
+     *
+     * @return 剧照bean
+     * * @param id
      */
     @GET("movie/subject/{id}/photos?apikey=0df993c66c0c636e29ecbb5344252a4a")
     Observable<Stills> getStillsPhotos(@Path("id") String id);
 
     /**
      * 影人剧照
+     *
+     * @return 剧照bean
+     * * @param id
      */
     @GET("movie/celebrity/{id}/photos?apikey=0df993c66c0c636e29ecbb5344252a4a")
     Observable<CastPhoto> getCastPhotos(@Path("id") String id);
 
     /**
      * 影人条
+     *
+     * @param id
+     * @return 影人Bean
      */
     @GET("movie/celebrity/{id}?apikey=0df993c66c0c636e29ecbb5344252a4a")
     Observable<CastArticle> getCastArticle(@Path("id") String id);

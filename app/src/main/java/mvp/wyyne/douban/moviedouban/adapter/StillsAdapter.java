@@ -10,7 +10,9 @@ import mvp.wyyne.douban.moviedouban.api.RvItemOnClick;
 import mvp.wyyne.douban.moviedouban.api.bean.StillsPhotos;
 
 /**
- * Created by XXW on 2017/7/2.
+ *
+ * @author XXW
+ * @date 2017/7/2
  */
 
 public class StillsAdapter extends BaseRvAdapter<StillsPhotos> {

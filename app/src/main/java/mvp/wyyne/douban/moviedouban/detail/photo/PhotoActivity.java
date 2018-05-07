@@ -17,11 +17,11 @@ import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.adapter.PhotoPageAdapter;
 import mvp.wyyne.douban.moviedouban.api.bean.Stills;
 import mvp.wyyne.douban.moviedouban.api.bean.StillsPhotos;
-import mvp.wyyne.douban.moviedouban.detail.DetailMovieActivity;
+import mvp.wyyne.douban.moviedouban.detail.stills.AllStillsActivity;
 import mvp.wyyne.douban.moviedouban.home.base.BaseActivity;
 import mvp.wyyne.douban.moviedouban.widget.PhotoViewPage;
 
-import static mvp.wyyne.douban.moviedouban.utils.Constant.DETAIL_TAG;
+import static mvp.wyyne.douban.moviedouban.detail.stills.AllStillsActivity.STILLS;
 
 /**
  * 剧照照片放大
@@ -141,8 +141,8 @@ public class PhotoActivity extends BaseActivity<IPhotoPresent> implements IPhoto
             case R.id.iv_comment:
                 break;
             case R.id.btn_article:
-                Intent intent = new Intent(this, DetailMovieActivity.class);
-                intent.putExtra(DETAIL_TAG, subjectId);
+                Intent intent = new Intent(this, AllStillsActivity.class);
+                intent.putExtra(STILLS, mStills.getSubject().getId());
                 startActivity(intent);
                 break;
             case R.id.iv_down:

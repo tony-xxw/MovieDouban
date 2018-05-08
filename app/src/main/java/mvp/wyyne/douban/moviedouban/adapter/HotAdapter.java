@@ -1,10 +1,7 @@
 package mvp.wyyne.douban.moviedouban.adapter;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
-import android.graphics.drawable.ShapeDrawable;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -12,13 +9,11 @@ import android.widget.TextView;
 import java.util.List;
 
 import mvp.wyyne.douban.moviedouban.R;
-import mvp.wyyne.douban.moviedouban.api.RvItemOnClick;
 import mvp.wyyne.douban.moviedouban.api.bean.Avatars;
 import mvp.wyyne.douban.moviedouban.api.bean.Casts;
 import mvp.wyyne.douban.moviedouban.api.bean.Directors;
 import mvp.wyyne.douban.moviedouban.api.bean.Rating;
 import mvp.wyyne.douban.moviedouban.api.bean.Subjects;
-import mvp.wyyne.douban.moviedouban.hot.current.HotCurrentFragment;
 
 /**
  * @author XXW
@@ -41,12 +36,12 @@ public class HotAdapter extends BaseRvAdapter<Subjects> {
     }
 
     @Override
-    int getLayoutId() {
+    protected int getLayoutId() {
         return R.layout.item_current_layout;
     }
 
     @Override
-    void bindView(BaseItemViewHolder holder, final int position) {
+    public void bindView(BaseItemViewHolder holder, final int position) {
         StringBuffer mName = new StringBuffer();
         mSubjects = mList.get(position);
         List<Casts> casts = mSubjects.getCasts();
@@ -99,12 +94,12 @@ public class HotAdapter extends BaseRvAdapter<Subjects> {
     }
 
     @Override
-    void bindHeadView(BaseItemViewHolder holder, int position) {
+    public void bindHeadView(BaseItemViewHolder holder, int position) {
 
     }
 
     @Override
-    void bindFooterView(BaseItemViewHolder holder, int position) {
+    public void bindFooterView(BaseItemViewHolder holder, int position) {
 
     }
 

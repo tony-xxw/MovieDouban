@@ -27,12 +27,12 @@ public class ReviewAdapter extends BaseRvAdapter<PopularCmRv> {
     }
 
     @Override
-    int getLayoutId() {
+    protected int getLayoutId() {
         return R.layout.item_reviews_layout;
     }
 
     @Override
-    void bindView(BaseItemViewHolder holder, int position) {
+    public void bindView(BaseItemViewHolder holder, int position) {
         Log.d("XXW", "size--" + mList.size());
         if (position < 5 && position < mList.size()) {
             mPopularCm = mList.get(position);
@@ -52,14 +52,14 @@ public class ReviewAdapter extends BaseRvAdapter<PopularCmRv> {
     }
 
     @Override
-    void bindHeadView(BaseItemViewHolder holder, int position) {
+    public void bindHeadView(BaseItemViewHolder holder, int position) {
         if (position == 0) {
             holder.setText(R.id.tv_head_comment, "影评");
         }
     }
 
     @Override
-    void bindFooterView(BaseItemViewHolder holder, int position) {
+    public void bindFooterView(BaseItemViewHolder holder, int position) {
         if (position == getItemCount() - 1) {
             holder.setText(R.id.tv_footer, "全部短评" + mArticle.getReviews_count() + "个");
         }

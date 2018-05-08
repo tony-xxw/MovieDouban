@@ -101,6 +101,14 @@ public class PhotoActivity extends BaseActivity<IPhotoPresent> implements IPhoto
         mPageAdapter.setList(mList);
         mPageAdapter.notifyDataSetChanged();
         mVpPage.setCurrentItem(position, false);
+        initPhoto();
+    }
+
+    private void initPhoto() {
+        if (mList.size() != 0) {
+            String commentCount = mList.get(0).getComments_count() + "";
+            mTvCommentCount.setText(commentCount);
+        }
     }
 
 
@@ -141,6 +149,7 @@ public class PhotoActivity extends BaseActivity<IPhotoPresent> implements IPhoto
                 break;
             case R.id.iv_comment:
                 Intent commentIntent = new Intent(this, PhotoCommentActivity.class);
+                commentIntent.putExtra(PhotoCommentActivity.TAG, mStills.getSubject().getId());
                 startActivity(commentIntent);
                 break;
             case R.id.btn_article:

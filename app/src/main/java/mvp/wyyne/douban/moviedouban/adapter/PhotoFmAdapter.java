@@ -26,12 +26,12 @@ public class PhotoFmAdapter extends BaseRvAdapter<Photos> {
     }
 
     @Override
-    int getLayoutId() {
+    protected int getLayoutId() {
         return R.layout.item_cast_article_fm;
     }
 
     @Override
-    void bindView(BaseItemViewHolder holder, final int position) {
+    public void bindView(BaseItemViewHolder holder, final int position) {
         if (mList != null && position < 8) {
             if (position == 7) {
                 mAll = holder.getView(R.id.iv_all);
@@ -61,12 +61,12 @@ public class PhotoFmAdapter extends BaseRvAdapter<Photos> {
     }
 
     @Override
-    void bindHeadView(BaseItemViewHolder holder, int position) {
+    public void bindHeadView(BaseItemViewHolder holder, int position) {
 
     }
 
     @Override
-    void bindFooterView(BaseItemViewHolder holder, int position) {
+    public void bindFooterView(BaseItemViewHolder holder, int position) {
 
     }
 

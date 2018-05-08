@@ -21,12 +21,12 @@ public class TvHeadAdapter extends BaseRvAdapter<Trailers> implements View.OnCli
     }
 
     @Override
-    int getLayoutId() {
+    protected int getLayoutId() {
         return R.layout.item_stills_tv_head_layout;
     }
 
     @Override
-    void bindView(BaseItemViewHolder holder, int position) {
+    public void bindView(BaseItemViewHolder holder, int position) {
         if (mList.get(position) != null) {
             Trailers trailers = mList.get(position);
             holder.setImgUrl(R.id.iv_still, trailers.getMedium());
@@ -38,12 +38,12 @@ public class TvHeadAdapter extends BaseRvAdapter<Trailers> implements View.OnCli
     }
 
     @Override
-    void bindHeadView(BaseItemViewHolder holder, int position) {
+    public void bindHeadView(BaseItemViewHolder holder, int position) {
 
     }
 
     @Override
-    void bindFooterView(BaseItemViewHolder holder, int position) {
+    public void bindFooterView(BaseItemViewHolder holder, int position) {
 
     }
 

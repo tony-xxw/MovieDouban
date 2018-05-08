@@ -20,23 +20,23 @@ public class CityAdapter extends BaseRvAdapter<City> {
     }
 
     @Override
-    int getLayoutId() {
+    protected int getLayoutId() {
         return R.layout.item_city_name;
     }
 
     @Override
-    void bindView(BaseItemViewHolder holder, int position) {
+    public void bindView(BaseItemViewHolder holder, int position) {
         TextView tvCityName = holder.getView(R.id.tv_city_name);
         tvCityName.setText(mList.get(position).getCityName());
     }
 
     @Override
-    void bindHeadView(BaseItemViewHolder holder, int position) {
+    public void bindHeadView(BaseItemViewHolder holder, int position) {
 
     }
 
     @Override
-    void bindFooterView(BaseItemViewHolder holder, int position) {
+    public void bindFooterView(BaseItemViewHolder holder, int position) {
 
     }
 }

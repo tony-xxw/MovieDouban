@@ -31,12 +31,12 @@ public class CommentAdapter extends BaseRvAdapter<PopularCm> {
 
 
     @Override
-    int getLayoutId() {
+    protected int getLayoutId() {
         return R.layout.item_comment_layout;
     }
 
     @Override
-    void bindView(BaseItemViewHolder holder, int position) {
+    public void bindView(BaseItemViewHolder holder, int position) {
         mUser = mList.get(position).getAuthor();
         mPopularCm = mList.get(position);
         holder.setImgUrl(R.id.iv_avatars, mUser.getAvatar());
@@ -52,7 +52,7 @@ public class CommentAdapter extends BaseRvAdapter<PopularCm> {
 
 
     @Override
-    void bindHeadView(BaseItemViewHolder holder, int position) {
+    public void bindHeadView(BaseItemViewHolder holder, int position) {
         if (position == 0) {
             holder.setText(R.id.tv_head_comment, "短评");
         }

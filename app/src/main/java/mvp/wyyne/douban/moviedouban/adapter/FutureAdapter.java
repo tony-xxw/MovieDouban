@@ -27,12 +27,12 @@ public class FutureAdapter extends BaseRvAdapter<Subjects> {
 
 
     @Override
-    int getLayoutId() {
+    protected int getLayoutId() {
         return R.layout.item_current_layout;
     }
 
     @Override
-    void bindView(BaseItemViewHolder holder, int position) {
+    public void bindView(BaseItemViewHolder holder, int position) {
         List<Casts> casts = mList.get(position).getCasts();
         List<Directors> directors = mList.get(position).getDirectors();
         Avatars avatars = mList.get(position).getImages();
@@ -50,12 +50,12 @@ public class FutureAdapter extends BaseRvAdapter<Subjects> {
     }
 
     @Override
-    void bindHeadView(BaseItemViewHolder holder, int position) {
+    public void bindHeadView(BaseItemViewHolder holder, int position) {
 
     }
 
     @Override
-    void bindFooterView(BaseItemViewHolder holder, int position) {
+    public void bindFooterView(BaseItemViewHolder holder, int position) {
 
     }
 

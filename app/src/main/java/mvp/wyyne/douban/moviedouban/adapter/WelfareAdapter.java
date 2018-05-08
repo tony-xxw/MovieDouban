@@ -36,12 +36,12 @@ public class WelfareAdapter extends BaseRvAdapter<WelfarePhotoInfo> implements V
     }
 
     @Override
-    int getLayoutId() {
+    protected int getLayoutId() {
         return R.layout.item_welfare_layout;
     }
 
     @Override
-    void bindView(BaseItemViewHolder holder, int position) {
+    public void bindView(BaseItemViewHolder holder, int position) {
         initItemHeight();
         ImageView imageView = holder.getView(R.id.iv_photo);
         LinearLayout linearLayout = holder.getView(R.id.ll_item);
@@ -68,12 +68,12 @@ public class WelfareAdapter extends BaseRvAdapter<WelfarePhotoInfo> implements V
     }
 
     @Override
-    void bindHeadView(BaseItemViewHolder holder, int position) {
+    public void bindHeadView(BaseItemViewHolder holder, int position) {
 
     }
 
     @Override
-    void bindFooterView(BaseItemViewHolder holder, int position) {
+    public void bindFooterView(BaseItemViewHolder holder, int position) {
 
     }
 

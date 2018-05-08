@@ -136,7 +136,7 @@ public abstract class BaseRvAdapter<T> extends RecyclerView.Adapter<BaseItemView
      *
      * @return Item布局文件
      */
-    abstract int getLayoutId();
+    protected abstract int getLayoutId();
 
     /**
      * 绑定子View
@@ -144,7 +144,7 @@ public abstract class BaseRvAdapter<T> extends RecyclerView.Adapter<BaseItemView
      * @param holder   子类ViewHolder
      * @param position item位置
      */
-    abstract void bindView(BaseItemViewHolder holder, int position);
+    public abstract void bindView(BaseItemViewHolder holder, int position);
 
 
     /**
@@ -153,7 +153,7 @@ public abstract class BaseRvAdapter<T> extends RecyclerView.Adapter<BaseItemView
      * @param holder   子类ViewHolder
      * @param position item位置
      */
-    abstract void bindHeadView(BaseItemViewHolder holder, int position);
+    public abstract void bindHeadView(BaseItemViewHolder holder, int position);
 
     /**
      * 绑定item的脚步
@@ -161,7 +161,7 @@ public abstract class BaseRvAdapter<T> extends RecyclerView.Adapter<BaseItemView
      * @param holder   子类ViewHolder
      * @param position item位置
      */
-    abstract void bindFooterView(BaseItemViewHolder holder, int position);
+    public abstract void bindFooterView(BaseItemViewHolder holder, int position);
 
 
     /**

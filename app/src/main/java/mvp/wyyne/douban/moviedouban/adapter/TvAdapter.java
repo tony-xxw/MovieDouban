@@ -19,12 +19,12 @@ public class TvAdapter extends BaseRvAdapter<TvBean> {
     }
 
     @Override
-    int getLayoutId() {
+    protected int getLayoutId() {
         return R.layout.item_stills_tv_layout;
     }
 
     @Override
-    void bindView(BaseItemViewHolder holder, int position) {
+    public void bindView(BaseItemViewHolder holder, int position) {
         TvBean mBean = mList.get(position);
 
         if (mBean.getAvatar() != null) {
@@ -37,12 +37,12 @@ public class TvAdapter extends BaseRvAdapter<TvBean> {
     }
 
     @Override
-    void bindHeadView(BaseItemViewHolder holder, int position) {
+    public void bindHeadView(BaseItemViewHolder holder, int position) {
 
     }
 
     @Override
-    void bindFooterView(BaseItemViewHolder holder, int position) {
+    public void bindFooterView(BaseItemViewHolder holder, int position) {
 
     }
 }

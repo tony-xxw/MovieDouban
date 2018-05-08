@@ -23,14 +23,14 @@ public class ProducationAdapter extends BaseRvAdapter<Works> implements View.OnC
     }
 
     @Override
-    int getLayoutId() {
+    protected int getLayoutId() {
         return R.layout.item_producation_layout;
     }
 
 
 
     @Override
-    void bindView(BaseItemViewHolder holder, int position) {
+    public void bindView(BaseItemViewHolder holder, int position) {
         if (mList.size() != 0) {
             Subjects subjects = mList.get(position).getSubject();
             Avatars avatars = subjects.getImages();
@@ -46,12 +46,12 @@ public class ProducationAdapter extends BaseRvAdapter<Works> implements View.OnC
     }
 
     @Override
-    void bindHeadView(BaseItemViewHolder holder, int position) {
+    public void bindHeadView(BaseItemViewHolder holder, int position) {
 
     }
 
     @Override
-    void bindFooterView(BaseItemViewHolder holder, int position) {
+    public void bindFooterView(BaseItemViewHolder holder, int position) {
 
     }
 

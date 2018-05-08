@@ -37,12 +37,12 @@ public class CastAdapter extends BaseRvAdapter<Casts> implements View.OnClickLis
 
 
     @Override
-    int getLayoutId() {
+    protected int getLayoutId() {
         return R.layout.item_cast_layout;
     }
 
     @Override
-    void bindView(BaseItemViewHolder holder, int position) {
+    public void bindView(BaseItemViewHolder holder, int position) {
         if (mList.size() != 0) {
             mCasts = mList.get(position);
             holder.setText(R.id.tv_identity, mCasts.getName());
@@ -70,9 +70,10 @@ public class CastAdapter extends BaseRvAdapter<Casts> implements View.OnClickLis
     }
 
     @Override
-    void bindFooterView(BaseItemViewHolder holder, int position) {
+    public void bindFooterView(BaseItemViewHolder holder, int position) {
 
     }
+
 
     @Override
     public void onClick(View v) {

@@ -40,12 +40,12 @@ public class PhotoAdapter extends BaseRvAdapter<Photos> implements View.OnClickL
 
 
     @Override
-    int getLayoutId() {
+    protected int getLayoutId() {
         return R.layout.movie_detail_stills;
     }
 
     @Override
-    void bindView(BaseItemViewHolder holder, int position) {
+    public void bindView(BaseItemViewHolder holder, int position) {
         holder.setImgUrl(R.id.iv_stills, mList.get(position).getImage());
         mContent = holder.getView(R.id.ll_stills);
         mContent.setOnClickListener(this);
@@ -53,7 +53,7 @@ public class PhotoAdapter extends BaseRvAdapter<Photos> implements View.OnClickL
     }
 
     @Override
-    void bindHeadView(BaseItemViewHolder holder, int position) {
+    public void bindHeadView(BaseItemViewHolder holder, int position) {
         if (position == 0 && mData.size() != 0) {
             holder.setImgUrl(R.id.iv_stills, mData.get(0).getMedium());
             holder.setText(R.id.tv_stills_date, "00:29");
@@ -63,7 +63,7 @@ public class PhotoAdapter extends BaseRvAdapter<Photos> implements View.OnClickL
     }
 
     @Override
-    void bindFooterView(BaseItemViewHolder holder, int position) {
+    public void bindFooterView(BaseItemViewHolder holder, int position) {
         if (position == getItemCount() - 1) {
             holder.setText(R.id.tv_stills_count, stills_count + "张");
         }

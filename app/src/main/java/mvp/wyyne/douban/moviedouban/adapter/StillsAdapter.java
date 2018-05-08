@@ -24,7 +24,7 @@ public class StillsAdapter extends BaseRvAdapter<StillsPhotos> {
     }
 
     @Override
-    int getLayoutId() {
+    protected int getLayoutId() {
         return R.layout.item_stills_layout;
     }
 
@@ -33,7 +33,7 @@ public class StillsAdapter extends BaseRvAdapter<StillsPhotos> {
     }
 
     @Override
-    void bindView(BaseItemViewHolder holder, final int position) {
+    public void bindView(BaseItemViewHolder holder, final int position) {
         if (mList != null) {
             holder.setImgUrl(R.id.iv_all_stills, mList.get(position).getImage());
             holder.getView(R.id.iv_all_stills).setOnClickListener(new View.OnClickListener() {
@@ -46,12 +46,12 @@ public class StillsAdapter extends BaseRvAdapter<StillsPhotos> {
     }
 
     @Override
-    void bindHeadView(BaseItemViewHolder holder, int position) {
+    public void bindHeadView(BaseItemViewHolder holder, int position) {
 
     }
 
     @Override
-    void bindFooterView(BaseItemViewHolder holder, int position) {
+    public void bindFooterView(BaseItemViewHolder holder, int position) {
 
     }
 }

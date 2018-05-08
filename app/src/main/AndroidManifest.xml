@@ -84,6 +84,11 @@
         <activity
             android:name=".login.LoginActivity"
             android:launchMode="singleTop" />
+
+
+        <activity
+            android:name=".detail.comment.photo.PhotoCommentActivity"
+            android:launchMode="singleTop" />
     </application>
 
 </manifest>

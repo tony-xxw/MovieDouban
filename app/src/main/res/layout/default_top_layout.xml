@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/ll_title"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -23,8 +23,8 @@
         android:layout_marginStart="20dp"
         android:layout_toEndOf="@+id/iv_back"
         android:textColor="@color/colorBlack"
-        android:textSize="16sp" />
-
+        android:textSize="16sp"
+        tools:text="Default" />
 
     <ImageView
         android:id="@+id/iv_share"

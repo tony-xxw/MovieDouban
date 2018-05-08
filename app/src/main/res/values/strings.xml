@@ -50,4 +50,5 @@
     <string name="login_account_error">用户名和密码不匹配</string>
     <string name="wx_login">微信登录</string>
     <string name="xl_login">微博登录</string>
+    <string name="write_reply">写回复</string>
 </resources>

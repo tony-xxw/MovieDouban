@@ -17,6 +17,7 @@ import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.adapter.PhotoPageAdapter;
 import mvp.wyyne.douban.moviedouban.api.bean.Stills;
 import mvp.wyyne.douban.moviedouban.api.bean.StillsPhotos;
+import mvp.wyyne.douban.moviedouban.detail.comment.photo.PhotoCommentActivity;
 import mvp.wyyne.douban.moviedouban.detail.stills.AllStillsActivity;
 import mvp.wyyne.douban.moviedouban.home.base.BaseActivity;
 import mvp.wyyne.douban.moviedouban.widget.PhotoViewPage;
@@ -139,11 +140,13 @@ public class PhotoActivity extends BaseActivity<IPhotoPresent> implements IPhoto
 
                 break;
             case R.id.iv_comment:
+                Intent commentIntent = new Intent(this, PhotoCommentActivity.class);
+                startActivity(commentIntent);
                 break;
             case R.id.btn_article:
-                Intent intent = new Intent(this, AllStillsActivity.class);
-                intent.putExtra(STILLS, mStills.getSubject().getId());
-                startActivity(intent);
+                Intent allStillIntent = new Intent(this, AllStillsActivity.class);
+                allStillIntent.putExtra(STILLS, mStills.getSubject().getId());
+                startActivity(allStillIntent);
                 break;
             case R.id.iv_down:
                 break;

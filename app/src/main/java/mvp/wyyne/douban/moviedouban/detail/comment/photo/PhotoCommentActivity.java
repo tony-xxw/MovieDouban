@@ -1,8 +1,10 @@
 package mvp.wyyne.douban.moviedouban.detail.comment.photo;
 
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -30,6 +32,8 @@ public class PhotoCommentActivity extends BaseActivity<IPhotoCommentPresent> imp
 
     private PhotoCommentAdapter mAdapter;
 
+    private List<Reviews> mReviewsList;
+
     @Override
     protected void refresh() {
 
@@ -45,8 +49,15 @@ public class PhotoCommentActivity extends BaseActivity<IPhotoCommentPresent> imp
         if (!TextUtils.isEmpty(getIntent().getStringExtra(TAG))) {
             mId = getIntent().getStringExtra(TAG);
         }
+        mReviewsList = new ArrayList<>();
         mPresent = new PhotoCommentImp(this, mId);
+        mAdapter = new PhotoCommentAdapter(this, mReviewsList);
+        LinearLayoutManager manager = new LinearLayoutManager(this);
+        manager.setOrientation(LinearLayoutManager.VERTICAL);
+        rvComment.setLayoutManager(manager);
+        rvComment.setAdapter(mAdapter);
         mPresent.getData();
+
     }
 
     @Override
@@ -61,7 +72,9 @@ public class PhotoCommentActivity extends BaseActivity<IPhotoCommentPresent> imp
 
 
     @Override
-    public void noticeAdapter(List<Reviews> mList) {
-
+    public void noticeAdapter(List<Reviews> list) {
+        mReviewsList = list;
+        mAdapter.setList(mReviewsList);
+        mAdapter.notifyDataSetChanged();
     }
 }

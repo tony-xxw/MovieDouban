@@ -4,6 +4,7 @@ import android.content.Context;
 
 import java.util.List;
 
+import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.adapter.BaseItemViewHolder;
 import mvp.wyyne.douban.moviedouban.adapter.BaseRvAdapter;
 import mvp.wyyne.douban.moviedouban.api.bean.Reviews;
@@ -23,7 +24,7 @@ public class PhotoCommentAdapter extends BaseRvAdapter<Reviews> {
 
     @Override
     protected int getLayoutId() {
-        return 0;
+        return R.layout.item_photo_comment;
     }
 
     @Override

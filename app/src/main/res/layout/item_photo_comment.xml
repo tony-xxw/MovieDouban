@@ -7,13 +7,17 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/riv_avatar"
-        android:layout_width="48dp"
-        android:layout_height="48dp" />
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="10dp" />
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
         android:layout_weight="1"
         android:orientation="vertical">
 
@@ -29,13 +33,35 @@
                 android:textSize="18sp"
                 android:textStyle="bold"
                 tools:text="深海" />
+
+            <TextView
+                android:id="@+id/tv_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:textColor="@color/colorGray"
+                android:textSize="14sp"
+                tools:text="4月29日" />
         </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/tv_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLength="20"
+            android:singleLine="true"
+            android:textColor="@color/colorBlack"
+            android:textSize="17sp"
+            tools:text="评论内容评论内容评论内容评论内容" />
     </LinearLayout>
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
         android:layout_marginEnd="10dp"
-        android:layout_marginTop="10dp"
+
         android:src="@drawable/ic_more_action_overflow" />
 </LinearLayout>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -10,15 +10,17 @@
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:layout_gravity="center_vertical"
-        android:layout_marginStart="10dp" />
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp" />
 
     <LinearLayout
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/riv_avatar"
         android:layout_gravity="center"
         android:layout_marginEnd="10dp"
         android:layout_marginStart="10dp"
-        android:layout_weight="1"
+        android:layout_toEndOf="@+id/riv_avatar"
         android:orientation="vertical">
 
         <LinearLayout
@@ -36,12 +38,20 @@
 
             <TextView
                 android:id="@+id/tv_date"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
+                android:layout_weight="1"
                 android:textColor="@color/colorGray"
                 android:textSize="14sp"
                 tools:text="4月29日" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginEnd="10dp"
+                android:src="@drawable/ic_more_action_overflow" />
         </LinearLayout>
 
 
@@ -49,19 +59,13 @@
             android:id="@+id/tv_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:ellipsize="end"
-            android:maxLength="20"
-            android:singleLine="true"
+            android:maxLines="2"
             android:textColor="@color/colorBlack"
-            android:textSize="17sp"
-            tools:text="评论内容评论内容评论内容评论内容" />
+            android:textSize="15sp"
+            tools:text=" 论内容评论内容评论内容评论内容评论内容评论内容" />
     </LinearLayout>
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_marginEnd="10dp"
 
-        android:src="@drawable/ic_more_action_overflow" />
-</LinearLayout>
+</RelativeLayout>

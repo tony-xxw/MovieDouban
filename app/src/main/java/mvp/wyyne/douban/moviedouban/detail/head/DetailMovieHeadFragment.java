@@ -6,7 +6,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.RatingBar;
 import android.widget.TextView;
 
 import java.util.List;
@@ -32,6 +31,7 @@ import mvp.wyyne.douban.moviedouban.login.LoginActivity;
 import mvp.wyyne.douban.moviedouban.utils.StringUtils;
 import mvp.wyyne.douban.moviedouban.widget.ExpandableTextView;
 import mvp.wyyne.douban.moviedouban.widget.RecycleViewUtils;
+import mvp.wyyne.douban.moviedouban.widget.StarView;
 
 import static mvp.wyyne.douban.moviedouban.utils.Constant.DATA_ARTICLE;
 
@@ -54,8 +54,8 @@ public class DetailMovieHeadFragment extends BaseFragment<IPresent> implements R
     TextView mTvDetailTime;
     @BindView(R.id.tv_detail_grade)
     TextView mTvDetailGrade;
-    @BindView(R.id.tb_detail_num)
-    RatingBar mTbDetailNum;
+    @BindView(R.id.sv_grade)
+    StarView svGrade;
     @BindView(R.id.tv_detail_num)
     TextView mTvDetailNum;
     @BindView(R.id.iv_detail_shop)
@@ -149,7 +149,7 @@ public class DetailMovieHeadFragment extends BaseFragment<IPresent> implements R
         mTvDetailFormerly.setText(article.getOriginal_title());
         mTvDetailGrade.setText(String.valueOf(article.getRating().getAverage()));
         mTvDetailNum.setText(String.valueOf(article.getRatings_count()));
-        mTbDetailNum.setRating((float) article.getRating().getAverage());
+        svGrade.setStartMark((int) article.getRating().getAverage());
         for (String s : article.getPubdates()) {
             if (s.contains("中国大陆")) {
                 mTvDetailShow.setText(getString(R.string.china));

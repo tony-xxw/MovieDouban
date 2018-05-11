@@ -169,7 +169,7 @@ public abstract class BaseRvAdapter<T> extends RecyclerView.Adapter<BaseItemView
      */
     public String getAttendance(int count) {
         DecimalFormat df = new DecimalFormat("######0.0");
-        DecimalFormat dd = new DecimalFormat("#####0.0");
+        DecimalFormat dd = new DecimalFormat("######0.0");
 
         String attendance = null;
         if (count > LAKH) {

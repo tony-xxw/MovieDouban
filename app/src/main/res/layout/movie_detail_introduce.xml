@@ -95,13 +95,16 @@
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
-                <RatingBar
-                    android:id="@+id/tb_detail_num"
-                    style="?android:attr/ratingBarStyleSmall"
+                <mvp.wyyne.douban.moviedouban.widget.StarView
+                    android:id="@+id/sv_grade"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:numStars="5"
-                    android:stepSize="2.4" />
+                    android:layout_gravity="center"
+                    StartView:startCount="5"
+                    StartView:startEmpty="@drawable/star_light_line"
+                    StartView:startFill="@drawable/star_light"
+                    StartView:startSize="12dp"
+                    StartView:startSpace="1dp" />
 
                 <TextView
                     android:id="@+id/tv_detail_num"

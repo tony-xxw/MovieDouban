@@ -67,6 +67,7 @@
             android:orientation="vertical">
 
             <mvp.wyyne.douban.moviedouban.widget.StarView
+                android:id="@+id/sv_grade"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:startCount="5"

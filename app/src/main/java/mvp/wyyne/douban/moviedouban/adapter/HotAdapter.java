@@ -21,18 +21,13 @@ import mvp.wyyne.douban.moviedouban.api.bean.Subjects;
  */
 
 public class HotAdapter extends BaseRvAdapter<Subjects> {
-    private Subjects mSubjects;
+
     private Context mContext;
-    private boolean isFuture;
 
 
     public HotAdapter(Context context, List<Subjects> list) {
         super(context, list);
         mContext = context;
-    }
-
-    public void setFuture(boolean future) {
-        isFuture = future;
     }
 
     @Override
@@ -43,7 +38,7 @@ public class HotAdapter extends BaseRvAdapter<Subjects> {
     @Override
     public void bindView(BaseItemViewHolder holder, final int position) {
         StringBuffer mName = new StringBuffer();
-        mSubjects = mList.get(position);
+        Subjects mSubjects = mList.get(position);
         List<Casts> casts = mSubjects.getCasts();
         List<Directors> directors = mSubjects.getDirectors();
         Avatars avatars = mSubjects.getImages();

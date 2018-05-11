@@ -12,13 +12,15 @@ import mvp.wyyne.douban.moviedouban.api.bean.Subjects;
 import mvp.wyyne.douban.moviedouban.api.bean.Works;
 
 /**
- * Created by XXW on 2017/7/15.
+ *
+ * @author XXW
+ * @date 2017/7/15
  */
 
-public class ProducationAdapter extends BaseRvAdapter<Works> implements View.OnClickListener {
+public class ProductionAdapter extends BaseRvAdapter<Works> implements View.OnClickListener {
     private LinearLayout mLayout;
 
-    public ProducationAdapter(Context context, List<Works> data) {
+    public ProductionAdapter(Context context, List<Works> data) {
         super(context, data);
     }
 

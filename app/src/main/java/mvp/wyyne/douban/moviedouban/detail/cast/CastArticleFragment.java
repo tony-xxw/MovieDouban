@@ -11,7 +11,7 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.OnClick;
 import mvp.wyyne.douban.moviedouban.R;
-import mvp.wyyne.douban.moviedouban.adapter.ProducationAdapter;
+import mvp.wyyne.douban.moviedouban.adapter.ProductionAdapter;
 import mvp.wyyne.douban.moviedouban.api.RvItemOnClick;
 import mvp.wyyne.douban.moviedouban.api.bean.CastArticle;
 import mvp.wyyne.douban.moviedouban.api.bean.Subjects;
@@ -35,7 +35,7 @@ public class CastArticleFragment extends BaseFragment implements RvItemOnClick {
     @BindView(R.id.rv_production)
     RecyclerView mRvProduction;
     private CastArticle mArticle;
-    private ProducationAdapter mAdapter;
+    private ProductionAdapter mAdapter;
     private LinearLayoutManager mManager;
 
 
@@ -65,7 +65,7 @@ public class CastArticleFragment extends BaseFragment implements RvItemOnClick {
             mArticle = getArguments().getParcelable(TAG);
         }
 
-        mAdapter = new ProducationAdapter(getActivity(), mArticle.getWorks());
+        mAdapter = new ProductionAdapter(getActivity(), mArticle.getWorks());
         mAdapter.setRvOnClick(this);
         mManager = new LinearLayoutManager(getActivity());
         mManager.setOrientation(LinearLayoutManager.HORIZONTAL);

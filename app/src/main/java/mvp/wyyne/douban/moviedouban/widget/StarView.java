@@ -136,11 +136,11 @@ public class StarView extends View {
         }
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN: {
-                setStartMark(x / (getMeasuredWidth() / startCount));
+//                setStartMark(x / (getMeasuredWidth() / startCount));
                 break;
             }
             case MotionEvent.ACTION_MOVE: {
-                setStartMark(x / (getMeasuredWidth() / startCount));
+//                setStartMark(x / (getMeasuredWidth() / startCount));
                 break;
             }
             case MotionEvent.ACTION_UP: {

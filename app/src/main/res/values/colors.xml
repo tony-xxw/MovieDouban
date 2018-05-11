@@ -4,9 +4,11 @@
     <color name="colorPrimaryDark">#FFFFFF</color>
     <color name="colorAccent">#47b53f</color>
     <color name="colorGray">#ff9b9b9b</color>
+    <color name="colorGray_dark2">#ffcccccc</color>
     <color name="colorGray_dark">#e4e2e2</color>
     <color name="colorGray_light">#666666</color>
     <color name="colorBlack">#000000</color>
+    <color name="colorBold">#ff494949</color>
     <color name="color_tab_indicator">#666666</color>
     <color name="colorGray_tint">#77e6e6e6</color>
     <color name="colorTextSizeMax">#333333</color>

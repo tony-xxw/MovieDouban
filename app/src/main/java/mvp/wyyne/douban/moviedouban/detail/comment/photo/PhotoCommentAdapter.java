@@ -44,6 +44,7 @@ public class PhotoCommentAdapter extends BaseRvAdapter<Reviews> {
         String tvCreateTimeStr = mList.get(position).getCreated_at();
         if (!TextUtils.isEmpty(avatarUrl)) {
             Glide.with(mContext).load(avatarUrl).into(avatar);
+
         }
         if (!TextUtils.isEmpty(tvContentStr)) {
             tvContent.setText(tvContentStr);
@@ -54,6 +55,8 @@ public class PhotoCommentAdapter extends BaseRvAdapter<Reviews> {
         if (!TextUtils.isEmpty(tvCreateTimeStr)) {
             tvCreateTime.setText(tvCreateTimeStr);
         }
+
+
     }
 
     @Override

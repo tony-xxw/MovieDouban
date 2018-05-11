@@ -13,17 +13,21 @@
         android:layout_height="0dp"
         android:layout_weight="1" />
 
+    <View
+        android:background="@color/colorGray"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorGray_dark"
-        android:minHeight="64dp"
+        android:background="@color/image_color_background"
+        android:minHeight="48dp"
         android:orientation="horizontal">
 
 
         <EditText
-
+            android:id="@+id/et_comment"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginBottom="10dp"
@@ -33,6 +37,8 @@
             android:layout_weight="1"
             android:background="@drawable/bg_btn_gray"
             android:hint="@string/write_reply"
+            android:textColor="@color/colorGray_light"
+            android:textSize="12sp"
             android:paddingEnd="10dp"
             android:paddingStart="10dp" />
 

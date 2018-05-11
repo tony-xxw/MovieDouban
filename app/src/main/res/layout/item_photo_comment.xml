@@ -2,8 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:minHeight="60dp">
+    android:layout_height="80dp">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/riv_avatar"
@@ -14,6 +13,7 @@
         android:layout_marginTop="10dp" />
 
     <LinearLayout
+        android:id="@+id/ll_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/riv_avatar"
@@ -31,8 +31,8 @@
                 android:id="@+id/tv_user"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorBlack"
-                android:textSize="18sp"
+                android:textColor="@color/colorBold"
+                android:textSize="15sp"
                 android:textStyle="bold"
                 tools:text="深海" />
 
@@ -42,8 +42,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_weight="1"
-                android:textColor="@color/colorGray"
-                android:textSize="14sp"
+                android:textColor="@color/colorGray_dark2"
+                android:textSize="12sp"
                 tools:text="4月29日" />
 
             <ImageView
@@ -59,13 +59,21 @@
             android:id="@+id/tv_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
             android:layout_marginTop="5dp"
             android:ellipsize="end"
+            android:lineSpacingMultiplier="1.5"
             android:maxLines="2"
             android:textColor="@color/colorBlack"
-            android:textSize="15sp"
+            android:textSize="13sp"
             tools:text=" 论内容评论内容评论内容评论内容评论内容评论内容" />
     </LinearLayout>
 
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/ll_content"
+        android:background="@color/colorGray" />
 </RelativeLayout>

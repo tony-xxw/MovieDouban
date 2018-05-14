@@ -15,4 +15,11 @@ public interface IPhotoPresent extends IPresent {
      * @param subjectId 类别ID
      */
     void getPhoto(String subjectId);
+
+    /**
+     * 下载到本地
+     *
+     * @param position 当前Item
+     */
+    void downloadToLocal(int position);
 }

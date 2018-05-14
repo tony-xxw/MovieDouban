@@ -99,6 +99,7 @@ public class DetailMovieActivity extends BaseActivity<DetailMovieImp> implements
         mPresent = new DetailMovieImp(this, getSupportFragmentManager());
         mPresent.getArticle(mSubjectsId);
 
+        mTvImgTitle.setTextColor(getResources().getColor(R.color.white));
 
         //初始化TabLayout
         mTabLayout.setTabMode(TabLayout.MODE_FIXED);

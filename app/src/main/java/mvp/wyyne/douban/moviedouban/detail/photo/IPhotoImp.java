@@ -1,7 +1,5 @@
 package mvp.wyyne.douban.moviedouban.detail.photo;
 
-import android.util.Log;
-
 import java.util.List;
 
 import io.reactivex.Observer;
@@ -12,7 +10,8 @@ import mvp.wyyne.douban.moviedouban.api.bean.Stills;
 import mvp.wyyne.douban.moviedouban.api.bean.StillsPhotos;
 
 /**
- * Created by XXW on 2017/7/3.
+ * @author XXW
+ * @date 2017/7/3
  */
 
 public class IPhotoImp implements IPhotoPresent {
@@ -44,7 +43,6 @@ public class IPhotoImp implements IPhotoPresent {
                     @Override
                     public void onNext(@NonNull Stills stills) {
                         if (stills.getPhotos() != null) {
-                            Log.d("XXW", "onNext--" + stills.getPhotos().size());
                             mList = stills.getPhotos();
                             mMain.showPage(stills);
                         }
@@ -60,5 +58,10 @@ public class IPhotoImp implements IPhotoPresent {
                         mMain.hide();
                     }
                 });
+    }
+
+    @Override
+    public void downloadToLocal(int position) {
+        mList.get(position).getImage();
     }
 }

@@ -1,15 +1,27 @@
 package mvp.wyyne.douban.moviedouban.detail.photo;
 
-import java.util.List;
-
 import mvp.wyyne.douban.moviedouban.api.bean.Stills;
-import mvp.wyyne.douban.moviedouban.api.bean.StillsPhotos;
 import mvp.wyyne.douban.moviedouban.home.IMain;
 
 /**
- * Created by XXW on 2017/7/3.
+ * @author XXW
+ * @date 2017/7/3
  */
 
 public interface IPhotoMain extends IMain {
+
+    /**
+     * 刷新页面
+     *
+     * @param stills 剧照Bean
+     */
     void showPage(Stills stills);
+
+
+    /**
+     * 显示Toast
+     *
+     * @param toastString 内容文本
+     */
+    void showToast(String toastString);
 }

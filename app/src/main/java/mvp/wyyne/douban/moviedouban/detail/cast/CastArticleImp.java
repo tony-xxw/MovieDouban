@@ -1,15 +1,12 @@
 package mvp.wyyne.douban.moviedouban.detail.cast;
 
-import android.util.Log;
-
-import io.reactivex.Observer;
-import io.reactivex.annotations.NonNull;
-import io.reactivex.disposables.Disposable;
 import mvp.wyyne.douban.moviedouban.api.RetrofitService;
 import mvp.wyyne.douban.moviedouban.api.bean.CastArticle;
+import mvp.wyyne.douban.moviedouban.home.BaseObserver;
 
 /**
- * Created by XXW on 2017/7/7.
+ * @author XXW
+ * @date 2017/7/7
  */
 
 public class CastArticleImp implements ICastPresent {
@@ -28,28 +25,13 @@ public class CastArticleImp implements ICastPresent {
     @Override
     public void getCastArticle(String castId) {
         RetrofitService.getCastArticle(castId)
-                .subscribe(new Observer<CastArticle>() {
+                .subscribe(new BaseObserver<CastArticle>(mMain) {
                     @Override
-                    public void onSubscribe(@NonNull Disposable d) {
-                        mMain.show();
-                    }
-
-                    @Override
-                    public void onNext(@NonNull CastArticle castArticle) {
+                    public void onSuccess(CastArticle castArticle) {
                         if (castArticle != null) {
-                            Log.d("XXW", "星座--" + castArticle.getConstellation());
+
                             mMain.showPage(castArticle);
                         }
-                    }
-
-                    @Override
-                    public void onError(@NonNull Throwable e) {
-                        Log.d("XXW", "castArticle--" + e.toString());
-                    }
-
-                    @Override
-                    public void onComplete() {
-                        mMain.hide();
                     }
                 });
     }

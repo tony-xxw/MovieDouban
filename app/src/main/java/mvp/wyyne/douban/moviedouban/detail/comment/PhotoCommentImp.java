@@ -2,13 +2,12 @@ package mvp.wyyne.douban.moviedouban.detail.comment;
 
 import java.util.List;
 
-import io.reactivex.Observer;
-import io.reactivex.disposables.Disposable;
 import mvp.wyyne.douban.moviedouban.api.RetrofitService;
 import mvp.wyyne.douban.moviedouban.api.bean.MoviesReviews;
 import mvp.wyyne.douban.moviedouban.api.bean.Reviews;
 import mvp.wyyne.douban.moviedouban.detail.comment.photo.IPhotoCommentMain;
 import mvp.wyyne.douban.moviedouban.detail.comment.photo.IPhotoCommentPresent;
+import mvp.wyyne.douban.moviedouban.home.BaseObserver;
 
 /**
  * @author Wynne
@@ -28,24 +27,10 @@ public class PhotoCommentImp implements IPhotoCommentPresent {
 
     @Override
     public void getData() {
-        RetrofitService.getReviews(mId).subscribe(new Observer<MoviesReviews>() {
+        RetrofitService.getReviews(mId).subscribe(new BaseObserver<MoviesReviews>(mMain) {
             @Override
-            public void onSubscribe(Disposable d) {
-
-            }
-
-            @Override
-            public void onNext(MoviesReviews moviesReviews) {
+            public void onSuccess(MoviesReviews moviesReviews) {
                 mList = moviesReviews.getReviews();
-            }
-
-            @Override
-            public void onError(Throwable e) {
-                e.printStackTrace();
-            }
-
-            @Override
-            public void onComplete() {
                 mMain.noticeAdapter(mList);
             }
         });

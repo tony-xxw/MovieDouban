@@ -1,17 +1,11 @@
 package mvp.wyyne.douban.moviedouban.detail.stills;
 
-import android.util.Log;
-
-import io.reactivex.Observer;
-import io.reactivex.annotations.NonNull;
-import io.reactivex.disposables.Disposable;
 import mvp.wyyne.douban.moviedouban.api.RetrofitService;
-import mvp.wyyne.douban.moviedouban.api.bean.CastArticle;
 import mvp.wyyne.douban.moviedouban.api.bean.CastPhoto;
 import mvp.wyyne.douban.moviedouban.api.bean.Stills;
+import mvp.wyyne.douban.moviedouban.home.BaseObserver;
 
 /**
- *
  * @author XXW
  * @date 2017/7/2
  */
@@ -27,25 +21,10 @@ public class AllStillsImp implements AllStillsPresent {
     @Override
     public void getStills(String id) {
         RetrofitService.getStillsPhotos(id).
-                subscribe(new Observer<Stills>() {
+                subscribe(new BaseObserver<Stills>(mMain) {
                     @Override
-                    public void onSubscribe(@NonNull Disposable d) {
-
-                    }
-
-                    @Override
-                    public void onNext(@NonNull Stills stills) {
-                        Log.d("XXW", "stills--" + stills.getCount());
+                    public void onSuccess(Stills stills) {
                         mMain.update(stills);
-                    }
-
-                    @Override
-                    public void onError(@NonNull Throwable e) {
-
-                    }
-
-                    @Override
-                    public void onComplete() {
                         mMain.updateTitle();
                     }
                 });
@@ -60,25 +39,10 @@ public class AllStillsImp implements AllStillsPresent {
     @Override
     public void getCasts(String id) {
         RetrofitService.getCastList(id).
-                subscribe(new Observer<CastPhoto>() {
+                subscribe(new BaseObserver<CastPhoto>(mMain) {
                     @Override
-                    public void onSubscribe(@NonNull Disposable d) {
-
-                    }
-
-                    @Override
-                    public void onNext(@NonNull CastPhoto stills) {
-                        Log.d("XXW", "stills--" + stills.getCount());
-                        mMain.updateCast(stills);
-                    }
-
-                    @Override
-                    public void onError(@NonNull Throwable e) {
-
-                    }
-
-                    @Override
-                    public void onComplete() {
+                    public void onSuccess(CastPhoto response) {
+                        mMain.updateCast(response);
                         mMain.updateTitle();
                     }
                 });

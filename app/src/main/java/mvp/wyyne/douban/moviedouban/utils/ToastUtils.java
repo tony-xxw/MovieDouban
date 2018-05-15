@@ -114,7 +114,8 @@ public class ToastUtils {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
             e.printStackTrace();
+        } finally {
+            toast.show();
         }
-        toast.show();
     }
 }

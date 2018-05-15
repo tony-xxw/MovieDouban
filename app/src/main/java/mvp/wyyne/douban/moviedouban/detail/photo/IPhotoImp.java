@@ -2,6 +2,8 @@ package mvp.wyyne.douban.moviedouban.detail.photo;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.os.Handler;
+import android.os.Message;
 
 import java.io.File;
 import java.util.List;
@@ -23,10 +25,13 @@ public class IPhotoImp implements IPhotoPresent {
     private IPhotoMain mMain;
     private List<StillsPhotos> mList;
     private Context mContext;
+    public static final int SUCCESS = 0;
+    private MyHandle myHandle;
 
     public IPhotoImp(IPhotoMain main, Context context) {
         mMain = main;
         mContext = context;
+        myHandle = new MyHandle();
     }
 
 
@@ -64,7 +69,10 @@ public class IPhotoImp implements IPhotoPresent {
             @Override
             public void onDownLoadSuccess(Bitmap bitmap, String path) {
                 String toastMsg = "图片已经保存到 :" + path;
-                mMain.showToast(toastMsg);
+                Message msg = myHandle.obtainMessage();
+                msg.obj = toastMsg;
+                msg.what = SUCCESS;
+                myHandle.sendMessage(msg);
             }
 
             @Override
@@ -78,4 +86,18 @@ public class IPhotoImp implements IPhotoPresent {
     }
 
 
+    public class MyHandle extends Handler {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+                case SUCCESS:
+                    String toastMsg = (String) msg.obj;
+                    mMain.showToast(toastMsg);
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
 }

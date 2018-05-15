@@ -2,7 +2,6 @@ package mvp.wyyne.douban.moviedouban.home;
 
 import android.net.ParseException;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.google.gson.JsonParseException;
 import com.jakewharton.retrofit2.adapter.rxjava2.HttpException;
@@ -151,6 +150,8 @@ public abstract class BaseObserver<T> implements Observer<T> {
             }
             mMain.show();
         }
+
+
     }
 
 }

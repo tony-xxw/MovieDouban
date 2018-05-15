@@ -5,9 +5,11 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.blankj.utilcode.util.PermissionUtils;
@@ -62,6 +64,7 @@ public class PhotoActivity extends BaseActivity<IPhotoPresent> implements IPhoto
     TextView mTvPhotoTime;
     @BindView(R.id.tv_comment_count)
     TextView mTvCommentCount;
+
     private PhotoPageAdapter mPageAdapter;
     private List<StillsPhotos> mList;
     private String mSubject;
@@ -121,9 +124,11 @@ public class PhotoActivity extends BaseActivity<IPhotoPresent> implements IPhoto
 
     @Override
     public void showToast(String toastString) {
-        View inflater = View.inflate(this, R.layout.toast_login, null);
+        View inflater = LayoutInflater.from(this).inflate(R.layout.toast_login, null);
         TextView textView = (TextView) inflater.findViewById(R.id.tv_text);
         textView.setText(toastString);
+        LinearLayout llShape = (LinearLayout) inflater.findViewById(R.id.ll_shape);
+        llShape.setBackground(getResources().getDrawable(R.drawable.bg_green));
         ToastUtils.getInstance(getApplicationContext()).makeToastSelfViewAnim(inflater, R.style.ToastStyle);
     }
 

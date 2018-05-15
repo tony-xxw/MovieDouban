@@ -1,13 +1,10 @@
 package mvp.wyyne.douban.moviedouban.welfare;
 
 import android.content.Context;
-import android.util.Log;
 
-import io.reactivex.Observer;
-import io.reactivex.annotations.NonNull;
-import io.reactivex.disposables.Disposable;
 import mvp.wyyne.douban.moviedouban.api.RetrofitService;
 import mvp.wyyne.douban.moviedouban.api.bean.WelfarePhotoList;
+import mvp.wyyne.douban.moviedouban.home.BaseObserver;
 
 /**
  * @author XXW
@@ -27,30 +24,14 @@ public class WelfarePresent implements IWelfarePresent {
     @Override
     public void getData() {
         RetrofitService.getPhotoList(0)
-                .subscribe(new Observer<WelfarePhotoList>() {
+                .subscribe(new BaseObserver<WelfarePhotoList>(mMain) {
                     @Override
-                    public void onSubscribe(@NonNull Disposable d) {
-
-                    }
-
-                    @Override
-                    public void onNext(@NonNull WelfarePhotoList welfarePhotoList) {
+                    public void onSuccess(WelfarePhotoList welfarePhotoList) {
                         mMain.showImg(welfarePhotoList.getResults());
                         for (int i = 0; i < welfarePhotoList.getResults().size(); i++) {
                         }
                     }
-
-                    @Override
-                    public void onError(@NonNull Throwable e) {
-                        Log.d("XXW", e.toString());
-                    }
-
-                    @Override
-                    public void onComplete() {
-
-                    }
                 });
-
     }
 
 

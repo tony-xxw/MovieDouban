@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_shape"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/bg_transparency"
@@ -13,7 +14,6 @@
         android:layout_gravity="center"
         android:layout_marginEnd="20dp"
         android:layout_marginStart="20dp"
-        android:background="@drawable/bg_transparency"
         android:gravity="center"
         android:text="请填写邮箱或电话"
         android:textColor="@color/white"

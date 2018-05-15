@@ -1,6 +1,7 @@
 package mvp.wyyne.douban.moviedouban.adapter;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -64,7 +65,10 @@ public class CastAdapter extends BaseRvAdapter<Casts> implements View.OnClickLis
                 TextView textView = (TextView) mHeadView.findViewById(R.id.tv_identity);
                 textView.setText(directorse.getName());
                 ImageView imageView = (ImageView) mHeadView.findViewById(R.id.iv_casts);
-                Glide.with(mContext).load(directorse.getAvatars().getMedium()).into(imageView);
+                String url = directorse.getAvatars().getMedium();
+                if (!TextUtils.isEmpty(url)) {
+                    Glide.with(mContext).load(directorse.getAvatars().getMedium()).into(imageView);
+                }
             }
         }
     }

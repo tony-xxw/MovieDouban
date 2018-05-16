@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         initFragment();
         initView();
 
-        startPatch();
+//        startPatch();
     }
 
     /**

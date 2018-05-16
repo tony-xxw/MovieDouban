@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
@@ -25,6 +26,9 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 
+import java.io.IOException;
+import java.net.URL;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 import mvp.wyyne.douban.moviedouban.R;
@@ -32,6 +36,7 @@ import mvp.wyyne.douban.moviedouban.api.bean.Article;
 import mvp.wyyne.douban.moviedouban.detail.head.DetailMovieHeadFragment;
 import mvp.wyyne.douban.moviedouban.detail.photo.PhotoActivity;
 import mvp.wyyne.douban.moviedouban.home.base.BaseActivity;
+import mvp.wyyne.douban.moviedouban.utils.ShareUtils;
 import mvp.wyyne.douban.moviedouban.utils.StatusUtils;
 
 import static mvp.wyyne.douban.moviedouban.utils.Constant.DETAIL_TAG;
@@ -49,8 +54,6 @@ public class DetailMovieActivity extends BaseActivity<DetailMovieImp> implements
     TextView mTvImgTitle;
     @BindView(R.id.tv_title)
     TextView mTvTitle;
-    @BindView(R.id.iv_share)
-    ImageView mIvShare;
     @BindView(R.id.ll_title)
     RelativeLayout mLlTitle;
     @BindView(R.id.ll_layout)
@@ -215,7 +218,7 @@ public class DetailMovieActivity extends BaseActivity<DetailMovieImp> implements
     }
 
 
-    @OnClick({R.id.iv_back, R.id.iv_avatars})
+    @OnClick({R.id.iv_back, R.id.iv_avatars, R.id.iv_share})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_back:
@@ -226,6 +229,9 @@ public class DetailMovieActivity extends BaseActivity<DetailMovieImp> implements
                 intent.putExtra(PhotoActivity.ID, mArticle.getId());
                 intent.putExtra(PhotoActivity.POSITION, 0);
                 startActivity(intent);
+                break;
+            case R.id.iv_share:
+//                ShareUtils.shareBinaryContent(this, mArticle.getImages().getLarge());
                 break;
             default:
                 break;

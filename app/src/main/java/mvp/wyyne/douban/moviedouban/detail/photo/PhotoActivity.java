@@ -27,6 +27,7 @@ import mvp.wyyne.douban.moviedouban.detail.comment.photo.PhotoCommentActivity;
 import mvp.wyyne.douban.moviedouban.detail.stills.AllStillsActivity;
 import mvp.wyyne.douban.moviedouban.home.base.BaseActivity;
 import mvp.wyyne.douban.moviedouban.utils.SdCardUtils;
+import mvp.wyyne.douban.moviedouban.utils.ShareUtils;
 import mvp.wyyne.douban.moviedouban.utils.ToastUtils;
 import mvp.wyyne.douban.moviedouban.widget.PhotoViewPage;
 
@@ -137,16 +138,7 @@ public class PhotoActivity extends BaseActivity<IPhotoPresent> implements IPhoto
 
     @Override
     public void shareIntent() {
-        Intent sendIntent = new Intent(Intent.ACTION_SEND);
-        sendIntent.putExtra(Intent.EXTRA_TEXT, "Share");
-        sendIntent.setType("text/plan");
-        String title = "";
-        //强制分享多个应用,如果想分享给默认应用则不需要通过createChoose来获取Intent
-        Intent shareIntent = Intent.createChooser(sendIntent, title);
-        //至少存在一个处理项
-        if (sendIntent.resolveActivity(getPackageManager()) != null) {
-            startActivity(shareIntent);
-        }
+        ShareUtils.shareTextContent(this);
     }
 
 

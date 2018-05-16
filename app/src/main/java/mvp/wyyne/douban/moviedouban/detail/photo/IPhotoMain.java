@@ -24,4 +24,10 @@ public interface IPhotoMain extends IMain {
      * @param toastString 内容文本
      */
     void showToast(String toastString);
+
+
+    /**
+     * 跳转分享页面
+     */
+    void shareIntent();
 }

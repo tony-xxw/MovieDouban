@@ -119,7 +119,10 @@ public class PhotoActivity extends BaseActivity<IPhotoPresent> implements IPhoto
         mPageAdapter.setList(mList);
         mPageAdapter.notifyDataSetChanged();
         mVpPage.setCurrentItem(position, false);
-        initPhoto();
+        if (mList.size() != 0) {
+            String commentCount = mList.get(0).getComments_count() + "";
+            mTvCommentCount.setText(commentCount);
+        }
     }
 
     @Override
@@ -132,10 +135,17 @@ public class PhotoActivity extends BaseActivity<IPhotoPresent> implements IPhoto
         ToastUtils.getInstance(getApplicationContext()).makeToastSelfViewAnim(inflater, R.style.ToastStyle);
     }
 
-    private void initPhoto() {
-        if (mList.size() != 0) {
-            String commentCount = mList.get(0).getComments_count() + "";
-            mTvCommentCount.setText(commentCount);
+    @Override
+    public void shareIntent() {
+        Intent sendIntent = new Intent(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, "Share");
+        sendIntent.setType("text/plan");
+        String title = "";
+        //强制分享多个应用,如果想分享给默认应用则不需要通过createChoose来获取Intent
+        Intent shareIntent = Intent.createChooser(sendIntent, title);
+        //至少存在一个处理项
+        if (sendIntent.resolveActivity(getPackageManager()) != null) {
+            startActivity(shareIntent);
         }
     }
 
@@ -165,11 +175,11 @@ public class PhotoActivity extends BaseActivity<IPhotoPresent> implements IPhoto
     }
 
 
-    @OnClick({R.id.iv_love, R.id.iv_comment, R.id.btn_article, R.id.iv_down, R.id.iv_back})
+    @OnClick({R.id.iv_share, R.id.iv_comment, R.id.btn_article, R.id.iv_down, R.id.iv_back})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.iv_love:
-
+            case R.id.iv_share:
+                shareIntent();
                 break;
             case R.id.iv_comment:
                 Intent commentIntent = new Intent(this, PhotoCommentActivity.class);
@@ -183,7 +193,7 @@ public class PhotoActivity extends BaseActivity<IPhotoPresent> implements IPhoto
                 break;
             case R.id.iv_down:
                 //下载图片
-                initPermissions();
+                checkPermissionsWithDownload();
                 break;
             case R.id.iv_back:
                 finish();
@@ -193,7 +203,11 @@ public class PhotoActivity extends BaseActivity<IPhotoPresent> implements IPhoto
         }
     }
 
-    public void initPermissions() {
+
+    /**
+     * 下载图片并开启权限
+     */
+    public void checkPermissionsWithDownload() {
         if (!PermissionUtils.isGranted(permission)) {
             if (ActivityCompat.shouldShowRequestPermissionRationale(this, permission)) {
                 Log.d("XXW", "权限已经开启");

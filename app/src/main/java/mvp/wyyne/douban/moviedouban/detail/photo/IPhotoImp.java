@@ -86,6 +86,8 @@ public class IPhotoImp implements IPhotoPresent {
     }
 
 
+
+
     public class MyHandle extends Handler {
         @Override
         public void handleMessage(Message msg) {

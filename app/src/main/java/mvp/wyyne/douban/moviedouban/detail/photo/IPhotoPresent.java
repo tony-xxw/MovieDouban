@@ -22,4 +22,6 @@ public interface IPhotoPresent extends IPresent {
      * @param position 当前Item
      */
     void downloadToLocal(int position);
+
+
 }

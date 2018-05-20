@@ -1,5 +1,7 @@
 package mvp.wyyne.douban.moviedouban.oneself.photo;
 
+import android.util.Log;
+
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.home.base.BaseActivity;
 
@@ -21,6 +23,7 @@ public class OneSelfPhotoActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+        Log.d("XXW", "initView");
 
     }
 }

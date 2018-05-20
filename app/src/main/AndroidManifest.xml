@@ -8,7 +8,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_LOGS" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:name=".AndroidApplication"
@@ -89,6 +89,10 @@
 
         <activity
             android:name=".detail.comment.photo.PhotoCommentActivity"
+            android:launchMode="singleTop" />
+
+        <activity
+            android:name=".oneself.photo.OneSelfPhotoActivity"
             android:launchMode="singleTop" />
     </application>
 

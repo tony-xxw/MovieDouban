@@ -6,7 +6,9 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 
 /**
- * Created by XXW on 2017/7/4.
+ *
+ * @author XXW
+ * @date 2017/7/4
  */
 
 public class PhotoViewPage extends ViewPager {

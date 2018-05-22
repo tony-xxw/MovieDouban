@@ -6,11 +6,14 @@ import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.home.base.BaseActivity;
 
 /**
+ * 福利照片查看器
+ *
  * @author Wynne
  * @date 2018/5/17
  */
 
 public class OneSelfPhotoActivity extends BaseActivity {
+
     @Override
     protected void refresh() {
 

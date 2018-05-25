@@ -23,38 +23,26 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/tv_detail_type"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:textColor="@color/colorGray"
-                android:textSize="12sp"
+                android:id="@+id/tv_detail_type"
+                style="@style/introduce_text"
                 tools:text="2018/动作/科幻/冒险" />
 
 
             <TextView
                 android:id="@+id/tv_detail_formerly"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorGray"
-                android:textSize="12sp"
+                style="@style/introduce_text"
                 tools:text="原名: Ready player One" />
 
 
             <TextView
                 android:id="@+id/tv_detail_show"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorGray"
-                android:textSize="12sp"
+                style="@style/introduce_text"
                 tools:text="上映时间:2018-03-30(中国大陆)" />
 
             <TextView
                 android:id="@+id/tv_detail_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorGray"
-                android:textSize="12sp"
+                style="@style/introduce_text"
                 tools:text="片长: 140分钟" />
 
 
@@ -67,7 +55,6 @@
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:layout_marginEnd="20dp"
-            android:minHeight="100dp"
             android:minWidth="80dp"
             app:cardCornerRadius="5dp"
             app:cardElevation="5dp">
@@ -76,6 +63,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
                 android:gravity="center"
                 android:orientation="vertical">
 
@@ -145,10 +134,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20sp"
-            android:background="@drawable/bg_btn_orange"
+            android:background="@drawable/bg_btn_orange_select"
             android:minWidth="128dp"
             android:text="@string/wanna_see"
-            android:textColor="@color/colorOrange"
+            android:textColor="@drawable/bg_btn_orange_color"
             android:textSize="14sp" />
 
 
@@ -158,7 +147,7 @@
             android:layout_height="match_parent"
             android:layout_marginEnd="20dp"
             android:layout_marginStart="20sp"
-            android:background="@drawable/bg_btn_orange"
+            android:background="@drawable/bg_btn_orange_select"
             android:gravity="center_vertical">
 
             <TextView
@@ -167,7 +156,7 @@
                 android:layout_gravity="center"
                 android:layout_marginStart="40dp"
                 android:text="@string/have_seen"
-                android:textColor="@color/colorOrange"
+                android:textColor="@drawable/bg_btn_orange_color"
                 android:textSize="14sp" />
 
 

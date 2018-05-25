@@ -68,7 +68,13 @@
     <style name="ToastStyle" parent="Base.Animation.AppCompat.Dialog">
         <item name="android:windowEnterAnimation">@anim/translate_int_toast</item>
         <item name="android:windowExitAnimation">@anim/translate_out_toast</item>
+    </style>
 
+    <style name="introduce_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorGray</item>
+        <item name="android:textSize">12sp</item>
     </style>
 
 

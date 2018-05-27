@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">豆瓣电影</string>
     <string name="hot_hint">电影 / 电视剧/ 影人</string>
+    <string name="hot_hint_search">搜索电影 / 电视剧/ 影人</string>
     <string name="movie">电影</string>
     <string name="douban_grade">豆瓣评分</string>
     <string name="no_data">找不到数据</string>
@@ -52,4 +53,9 @@
     <string name="wx_login">微信登录</string>
     <string name="xl_login">微博登录</string>
     <string name="write_reply">写回复</string>
+    <string name="cancel">取消</string>
+    <string name="search_history">搜索历史</string>
+    <string name="clear_up">清除</string>
+    <string name="hot_search">热门搜索</string>
+    <string name="city">城市</string>
 </resources>

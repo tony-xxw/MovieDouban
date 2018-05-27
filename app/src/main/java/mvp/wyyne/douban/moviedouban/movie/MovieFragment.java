@@ -1,19 +1,15 @@
 package mvp.wyyne.douban.moviedouban.movie;
 
-import android.graphics.Color;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
+import android.content.Intent;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.blankj.utilcode.util.BarUtils;
-
 import butterknife.BindView;
+import butterknife.OnClick;
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.home.base.BaseFragment;
-import mvp.wyyne.douban.moviedouban.utils.StatusUtils;
+import mvp.wyyne.douban.moviedouban.search.SearchMovieActivity;
 
 /**
  * @author XXW
@@ -49,9 +45,14 @@ public class MovieFragment extends BaseFragment {
     }
 
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-//        BarUtils.addMarginTopEqualStatusBarHeight(mLlMovie);
+    @OnClick({R.id.dcl_search})
+    public void onViewClick(View view) {
+        switch (view.getId()) {
+            case R.id.dcl_search:
+                startActivity(new Intent(getActivity(), SearchMovieActivity.class));
+                break;
+            default:
+                break;
+        }
     }
 }

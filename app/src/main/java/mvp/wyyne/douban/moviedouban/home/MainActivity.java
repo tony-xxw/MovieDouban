@@ -2,19 +2,18 @@ package mvp.wyyne.douban.moviedouban.home;
 
 import android.annotation.SuppressLint;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.internal.BottomNavigationItemView;
 import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.tinkerpatch.sdk.TinkerPatch;
@@ -24,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import mvp.wyyne.douban.moviedouban.R;
+import mvp.wyyne.douban.moviedouban.api.bean.Subjects;
 import mvp.wyyne.douban.moviedouban.hot.main.HotFragment;
 import mvp.wyyne.douban.moviedouban.movie.MovieFragment;
 import mvp.wyyne.douban.moviedouban.oneself.OneselfFragment;
@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     private OneselfFragment oneselfFragment;
     private WelfareFragment welfareFragment;
     private boolean isSwitch;
+    public ArrayList<Subjects> mList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +61,24 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         initView();
 
 //        startPatch();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        StatusUtils.setStatusBarActivity(this, false, getResources().getColor(R.color.colorWhite));
+        hotFragment.llSearch.setVisibility(View.VISIBLE);
+        hotFragment.llSearchMain.setVisibility(View.GONE);
+        hotFragment.flSearch.setBackgroundColor(getResources().getColor(R.color.colorWhite));
+    }
+
+
+    public void setSubjects(ArrayList<Subjects> mList) {
+        this.mList = mList;
+    }
+
+    public ArrayList<Subjects> getSubjects() {
+        return mList;
     }
 
     /**

@@ -1,13 +1,10 @@
 package mvp.wyyne.douban.moviedouban.hot.current;
 
 import android.content.Intent;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +15,7 @@ import mvp.wyyne.douban.moviedouban.adapter.HotAdapter;
 import mvp.wyyne.douban.moviedouban.api.RvItemOnClick;
 import mvp.wyyne.douban.moviedouban.api.bean.Subjects;
 import mvp.wyyne.douban.moviedouban.detail.DetailMovieActivity;
+import mvp.wyyne.douban.moviedouban.home.MainActivity;
 import mvp.wyyne.douban.moviedouban.home.base.BaseFragment;
 
 import static mvp.wyyne.douban.moviedouban.utils.Constant.DETAIL_TAG;
@@ -33,14 +31,8 @@ public class HotCurrentFragment extends BaseFragment<HotPresent> implements IHot
     RecyclerView mCurrentRv;
     private List<Subjects> mList = new ArrayList<>();
     private HotAdapter mAdapter;
-
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        Log.d("XXW", TAG + "onActivityCreated==" + getUserVisibleHint());
-
-    }
+    private MainActivity mainActivity;
+    private ArrayList<Subjects> mArry = new ArrayList<>();
 
     @Override
     protected int getLayoutId() {
@@ -49,6 +41,7 @@ public class HotCurrentFragment extends BaseFragment<HotPresent> implements IHot
 
     @Override
     protected void initView() {
+        mainActivity = (MainActivity) getActivity();
         mPresent = new HotPresent(this);
         mAdapter = new HotAdapter(getActivity(), mList);
         LinearLayoutManager manager = new LinearLayoutManager(getActivity());
@@ -94,6 +87,8 @@ public class HotCurrentFragment extends BaseFragment<HotPresent> implements IHot
         mList = subjects;
         mAdapter.setList(subjects);
         mAdapter.notifyDataSetChanged();
+        mArry.addAll(subjects);
+        mainActivity.setSubjects(mArry);
     }
 
 

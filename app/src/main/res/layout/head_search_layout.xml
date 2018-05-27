@@ -1,42 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fl_search"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/colorWhite"
-    android:minHeight="48dp"
-    android:orientation="horizontal">
+    android:layout_height="48dp"
+    android:background="@color/colorWhite">
 
-    <TextView
-        android:id="@+id/tv_city"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_marginBottom="10dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:drawableEnd="@drawable/pulldown"
-        android:drawablePadding="5dp"
-        android:text="城市"
-        android:textColor="@color/colorTextSizeMax"
-        android:textSize="14sp" />
-
-
-    <mvp.wyyne.douban.moviedouban.widget.DrawableCenterLeftEditView
+    <LinearLayout
+        android:id="@+id/ll_search"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_marginEnd="10dp"
-        android:layout_marginStart="10dp"
-        android:layout_toEndOf="@+id/tv_city"
-        android:background="@drawable/btn_gray"
-        android:drawablePadding="10dp"
-        android:drawableStart="@drawable/icon_search"
-        android:gravity="center_vertical"
-        android:minHeight="30dp"
-        android:text="@string/hot_hint"
-        android:textColorHint="@color/colorTextSizeMax"
-        android:textSize="14sp"
-        android:visibility="visible" />
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:visibility="visible">
+
+        <TextView
+            android:id="@+id/tv_city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:drawableEnd="@drawable/pulldown"
+            android:drawablePadding="5dp"
+            android:text="@string/city"
+            android:textColor="@color/colorTextSizeMax"
+            android:textSize="14sp" />
 
 
-</RelativeLayout>
+        <mvp.wyyne.douban.moviedouban.widget.DrawableCenterLeftEditView
+            android:id="@+id/dcl_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/btn_gray"
+            android:drawablePadding="10dp"
+            android:drawableStart="@drawable/ic_search"
+            android:gravity="center_vertical"
+            android:minHeight="30dp"
+            android:text="@string/hot_hint"
+            android:textColorHint="@color/colorTextSizeMax"
+            android:textSize="14sp"
+            android:visibility="visible" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/ll_search_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+
+        <EditText
+            android:id="@+id/dcl_search_main"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="10dp"
+            android:layout_weight="2"
+            android:background="@drawable/btn_white_solid"
+            android:drawablePadding="10dp"
+            android:drawableStart="@drawable/ic_search"
+            android:gravity="center_vertical"
+            android:hint="@string/hot_hint_search"
+            android:minHeight="30dp"
+            android:paddingEnd="5dp"
+            android:paddingStart="10dp"
+            android:textColor="@color/tab_unselected_text_color"
+            android:textSize="14sp"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/tv_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:text="@string/cancel"
+            android:textColor="@color/colorWhite"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+</FrameLayout>

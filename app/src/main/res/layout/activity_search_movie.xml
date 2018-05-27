@@ -9,21 +9,66 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:scrollbars="none">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+
             <LinearLayout
-                android:id="@+id/ll_history"
+                android:id="@+id/ll_parent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:visibility="gone">
+                android:orientation="vertical">
 
-                <RelativeLayout
+                <LinearLayout
+                    android:id="@+id/ll_history"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:background="@color/colorGray_tint">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="10dp"
+                            android:text="@string/search_history"
+                            android:textColor="@color/colorGray"
+                            android:textSize="14sp" />
+
+
+                        <TextView
+                            android:id="@+id/tv_clear"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="15dp"
+                            android:layout_marginStart="10dp"
+                            android:text="@string/clear_up"
+                            android:textColor="@color/colorGray_light"
+                            android:textSize="13sp" />
+
+                    </RelativeLayout>
+
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rv_history"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:background="@color/colorGray_tint">
@@ -31,54 +76,71 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:layout_centerVertical="true"
+                        android:layout_gravity="center_vertical"
                         android:layout_marginStart="10dp"
-                        android:text="@string/search_history"
+                        android:text="@string/hot_search"
                         android:textColor="@color/colorGray"
                         android:textSize="14sp" />
-
-
-                    <TextView
-                        android:id="@+id/tv_clear"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginEnd="15dp"
-                        android:layout_marginStart="10dp"
-                        android:text="@string/clear_up"
-                        android:textColor="@color/colorGray_light"
-                        android:textSize="13sp" />
-
-                </RelativeLayout>
-
+                </FrameLayout>
 
                 <android.support.v7.widget.RecyclerView
-                    android:id="@+id/rv_history"
+                    android:id="@+id/rv_hot_search"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="match_parent"
+                    android:background="@color/colorWhite" />
             </LinearLayout>
 
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:background="@color/colorGray_tint">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginStart="10dp"
-                    android:text="@string/hot_search"
-                    android:textColor="@color/colorGray"
-                    android:textSize="14sp" />
-            </FrameLayout>
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/rv_hot_search"
+            <LinearLayout
+                android:id="@+id/ll_result"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@color/colorGray_tint">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="10dp"
+                        android:text="@string/movie"
+                        android:textColor="@color/colorGray"
+                        android:textSize="14sp" />
+                </FrameLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_result"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+
+                <LinearLayout
+                    android:id="@+id/ll_empty"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_empty" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/search_empty"
+                        android:textColor="@color/colorGray" />
+                </LinearLayout>
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
+
 </LinearLayout>

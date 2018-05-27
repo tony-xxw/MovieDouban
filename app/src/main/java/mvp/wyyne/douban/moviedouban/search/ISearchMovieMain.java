@@ -1,0 +1,35 @@
+package mvp.wyyne.douban.moviedouban.search;
+
+import java.util.List;
+
+import mvp.wyyne.douban.moviedouban.api.bean.Subjects;
+import mvp.wyyne.douban.moviedouban.home.IMain;
+
+/**
+ * @author Wynne
+ * @date 2018/5/27
+ */
+
+public interface ISearchMovieMain extends IMain {
+
+    /**
+     * 刷新通知结果
+     *
+     * @param list 电影条目列表
+     */
+    void notifyResultRefresh(List<Subjects> list);
+
+    /**
+     * Set
+     *
+     * @param list
+     */
+    void setSubject(List<Subjects> list);
+
+    /**
+     * get
+     *
+     * @return
+     */
+    List<Subjects> getSubject();
+}

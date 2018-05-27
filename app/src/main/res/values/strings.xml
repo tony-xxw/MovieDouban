@@ -58,4 +58,5 @@
     <string name="clear_up">清除</string>
     <string name="hot_search">热门搜索</string>
     <string name="city">城市</string>
+    <string name="search_empty">该词搜索为空</string>
 </resources>

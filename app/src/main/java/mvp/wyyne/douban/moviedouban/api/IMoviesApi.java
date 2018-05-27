@@ -10,6 +10,7 @@ import mvp.wyyne.douban.moviedouban.api.bean.MoviesReviews;
 import mvp.wyyne.douban.moviedouban.api.bean.Stills;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 /**
  * movie/search?q= &start= 开始&count=结束  搜索接口
@@ -84,5 +85,11 @@ public interface IMoviesApi {
      */
     @GET("movie/celebrity/{id}?apikey=0df993c66c0c636e29ecbb5344252a4a")
     Observable<CastArticle> getCastArticle(@Path("id") String id);
+
+
+    @GET("movie/search?")
+    Observable<HotBean> searchMovieSubject(@Query("q") String text,
+                                           @Query("start") String start,
+                                           @Query("count") String count);
 }
 

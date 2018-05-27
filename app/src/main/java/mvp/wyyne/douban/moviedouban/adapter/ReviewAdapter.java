@@ -10,7 +10,10 @@ import mvp.wyyne.douban.moviedouban.api.bean.Article;
 import mvp.wyyne.douban.moviedouban.api.bean.PopularCmRv;
 
 /**
- * Created by XXW on 2017/6/28.
+ * 评论Adapter
+ *
+ * @author XXW
+ * @date 2017/6/28
  */
 
 public class ReviewAdapter extends BaseRvAdapter<PopularCmRv> {

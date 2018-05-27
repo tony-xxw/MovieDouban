@@ -23,7 +23,7 @@ import static mvp.wyyne.douban.moviedouban.utils.Constant.THOUSAND;
 
 public abstract class BaseRvAdapter<T> extends RecyclerView.Adapter<BaseItemViewHolder> {
     private BaseItemViewHolder mBase;
-    private Context mContext;
+    public Context mContext;
     private View mView;
     protected List<T> mList;
     private int mLayoutResId;

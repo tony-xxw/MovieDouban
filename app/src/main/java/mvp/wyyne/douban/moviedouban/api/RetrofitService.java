@@ -166,6 +166,10 @@ public class RetrofitService {
         return subscribeOnThread(mMoviesApi.getCastArticle(castId));
     }
 
+    public static Observable<HotBean> searchMovieSubject(String text, String start, String count) {
+        return subscribeOnThread(mMoviesApi.searchMovieSubject(text, start, count));
+    }
+
     public static Observable<CastPhoto> getCastList(String castId) {
         return subscribeOnThread(mMoviesApi.getCastPhotos(castId));
     }

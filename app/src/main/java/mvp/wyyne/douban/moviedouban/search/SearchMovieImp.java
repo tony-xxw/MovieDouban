@@ -64,10 +64,8 @@ public class SearchMovieImp implements ISearchMoviePresent {
                     @Override
                     public void onSuccess(HotBean response) {
                         mSearchList = response.getSubjectsList();
-                        if (mSearchList.size() > 0) {
-                            movieMain.setSubject(mSearchList);
-                        }
-                        Log.d("XXW", " mSearchList :" + mSearchList.size());
+                        movieMain.setSubject(mSearchList);
+                        Log.d("XXW", " mSearchList   size :" + mSearchList.size());
                     }
                 });
     }

@@ -8,11 +8,11 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -61,8 +61,12 @@ public class SearchMovieActivity extends BaseActivity<SearchMovieImp> implements
     LinearLayout llParent;
     @BindView(R.id.rv_result)
     RecyclerView rvResult;
-    @BindView(R.id.ll_result)
-    LinearLayout llResult;
+    @BindView(R.id.ll_result_parent)
+    LinearLayout llResultLayout;
+    @BindView(R.id.sv_content_parent)
+    ScrollView svContentParent;
+    @BindView(R.id.ll_empty)
+    LinearLayout llEmpty;
     private List<Subjects> mResultList;
     private SearchAdapter mResultAdapter;
 
@@ -148,14 +152,17 @@ public class SearchMovieActivity extends BaseActivity<SearchMovieImp> implements
     public void onTextChanged(CharSequence s, int start, int before, int count) {
         if (s.length() == 0) {
             llParent.setVisibility(View.VISIBLE);
-            llResult.setVisibility(View.GONE);
+            llResultLayout.setVisibility(View.GONE);
+            llEmpty.setVisibility(View.GONE);
+            svContentParent.setVisibility(View.VISIBLE);
 
         } else {
             llParent.setVisibility(View.GONE);
-            llResult.setVisibility(View.VISIBLE);
+            llResultLayout.setVisibility(View.VISIBLE);
+            mPresent.searchMovieSubject(s.toString(), "1", "10");
         }
 
-        mPresent.searchMovieSubject(s.toString(), "1", "10");
+
     }
 
     @Override
@@ -164,9 +171,15 @@ public class SearchMovieActivity extends BaseActivity<SearchMovieImp> implements
 
     @Override
     public void notifyResultRefresh(List<Subjects> list) {
-        Log.d("XXW", "notifyResultRefresh size : " + list.size());
-        mResultAdapter.setList(list);
-        mResultAdapter.notifyDataSetChanged();
+        if (mResultList.size() > 0) {
+            svContentParent.setVisibility(View.VISIBLE);
+            llEmpty.setVisibility(View.GONE);
+            mResultAdapter.setList(list);
+            mResultAdapter.notifyDataSetChanged();
+        } else {
+            svContentParent.setVisibility(View.GONE);
+            llEmpty.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override

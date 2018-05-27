@@ -8,9 +8,11 @@
 
 
     <ScrollView
+        android:id="@+id/sv_content_parent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbars="none">
+        android:scrollbars="none"
+        android:visibility="visible">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -92,26 +94,32 @@
 
 
             <LinearLayout
-                android:id="@+id/ll_result"
+                android:id="@+id/ll_result_parent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:visibility="gone">
 
-                <FrameLayout
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:background="@color/colorGray_tint">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginStart="10dp"
-                        android:text="@string/movie"
-                        android:textColor="@color/colorGray"
-                        android:textSize="14sp" />
-                </FrameLayout>
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:background="@color/colorGray_tint">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="10dp"
+                            android:text="@string/movie"
+                            android:textColor="@color/colorGray"
+                            android:textSize="14sp" />
+                    </FrameLayout>
+                </LinearLayout>
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/rv_result"
@@ -119,28 +127,32 @@
                     android:layout_height="match_parent" />
 
 
-                <LinearLayout
-                    android:id="@+id/ll_empty"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:visibility="gone">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:src="@drawable/ic_empty" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="10dp"
-                        android:text="@string/search_empty"
-                        android:textColor="@color/colorGray" />
-                </LinearLayout>
             </LinearLayout>
+
+
         </LinearLayout>
     </ScrollView>
 
+
+    <LinearLayout
+        android:id="@+id/ll_empty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_empty" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="@string/search_empty"
+            android:textColor="@color/colorGray_light"
+            android:textSize="18sp" />
+    </LinearLayout>
 </LinearLayout>

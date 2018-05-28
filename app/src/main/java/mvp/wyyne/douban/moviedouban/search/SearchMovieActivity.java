@@ -27,6 +27,7 @@ import mvp.wyyne.douban.moviedouban.adapter.SearchHistoryAdapter;
 import mvp.wyyne.douban.moviedouban.adapter.SearchHotAdapter;
 import mvp.wyyne.douban.moviedouban.api.RvItemOnClick;
 import mvp.wyyne.douban.moviedouban.api.bean.Subjects;
+import mvp.wyyne.douban.moviedouban.api.model.SearchModelBean;
 import mvp.wyyne.douban.moviedouban.detail.DetailMovieActivity;
 import mvp.wyyne.douban.moviedouban.home.base.BaseActivity;
 import mvp.wyyne.douban.moviedouban.utils.StatusUtils;
@@ -72,6 +73,7 @@ public class SearchMovieActivity extends BaseActivity<SearchMovieImp> implements
     private List<Subjects> mResultList;
     private SearchAdapter mResultAdapter;
     private SearchHistoryAdapter mHistoryAdapter;
+    private long historyCount = 1;
 
     @Override
     protected void refresh() {
@@ -120,18 +122,31 @@ public class SearchMovieActivity extends BaseActivity<SearchMovieImp> implements
 
         //搜索条目初始化
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
-        mHistoryAdapter = new SearchHistoryAdapter(this, mPresent.handleHistorySet());
+        mHistoryAdapter = new SearchHistoryAdapter(this, mPresent.getSearchBeanList());
         rvHistory.setLayoutManager(gridLayoutManager);
         rvHistory.setAdapter(mHistoryAdapter);
+
+
+        if (mPresent.getSubjectsList().size() != 0) {
+            llHistory.setVisibility(View.VISIBLE);
+        } else {
+            llHistory.setVisibility(View.GONE);
+        }
+
 
     }
 
 
-    @OnClick(R.id.tv_cancel)
+    @OnClick({R.id.tv_cancel, R.id.tv_clear})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_cancel:
                 finish();
+                break;
+            case R.id.tv_clear:
+                historyCount = 1;
+                mPresent.clearSearchBean();
+                llHistory.setVisibility(View.GONE);
                 break;
             default:
                 break;
@@ -152,18 +167,20 @@ public class SearchMovieActivity extends BaseActivity<SearchMovieImp> implements
     @Override
     public void onItemClick(int position, String tag) {
         Intent intent = new Intent(this, DetailMovieActivity.class);
-        ;
         if (tag.equals(SearchAdapter.TAG)) {
-
             intent.putExtra(DETAIL_TAG, mResultList.get(position).getId());
-//            if (mResultList.size() > 0 && !TextUtils.isEmpty(mResultList.get(position).getTitle())) {
-//                AndroidApplication.getApplication().recodeSearchHistory(mResultList.get(position).getTitle());
-//                notifyHistoryRefresh(mPresent.handleHistorySet());
-//            }
+            if (historyCount < 4) {
+                historyCount++;
+            } else {
+                mPresent.updateSearchLast(new SearchModelBean(historyCount, mResultList.get(position).getTitle(), mResultList.get(position).getId()));
+            }
+            mPresent.insertSearchBean(new SearchModelBean(historyCount, mResultList.get(position).getTitle(), mResultList.get(position).getId()));
+            notifyHistoryRefresh(mPresent.getSearchBeanList());
+
         } else if (tag.equals(SearchHotAdapter.TAG)) {
             intent.putExtra(DETAIL_TAG, mPresent.getSubjectsList().get(position).getSubjects().getId());
         } else {
-
+            intent.putExtra(DETAIL_TAG, mPresent.getSearchBeanList().get(position).getMovieId());
         }
         startActivity(intent);
 
@@ -209,8 +226,9 @@ public class SearchMovieActivity extends BaseActivity<SearchMovieImp> implements
     }
 
     @Override
-    public void notifyHistoryRefresh(List<String> list) {
-
+    public void notifyHistoryRefresh(List<SearchModelBean> list) {
+        mHistoryAdapter.setList(list);
+        mHistoryAdapter.notifyDataSetChanged();
     }
 
     @Override

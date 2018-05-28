@@ -3,6 +3,7 @@ package mvp.wyyne.douban.moviedouban.search;
 import java.util.List;
 
 import mvp.wyyne.douban.moviedouban.api.bean.HotSearch;
+import mvp.wyyne.douban.moviedouban.api.model.SearchModelBean;
 import mvp.wyyne.douban.moviedouban.home.IPresent;
 
 /**
@@ -37,7 +38,16 @@ public interface ISearchMoviePresent extends IPresent {
      *
      * @return
      */
-    List<String> handleHistorySet();
+    List<SearchModelBean> getSearchBeanList();
 
+
+    int getSearchBeanLisCount();
+
+    void insertSearchBean(SearchModelBean bean);
+
+
+    void clearSearchBean();
+
+    void updateSearchLast(SearchModelBean bean);
 
 }

@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/ll_item_parent"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:minHeight="64dp"
-    android:orientation="horizontal">
+    android:minHeight="64dp">
 
 
     <ImageView
         android:id="@+id/iv_avatar"
         android:layout_width="36dp"
         android:layout_height="48dp"
-        android:layout_gravity="center"
+        android:layout_centerVertical="true"
         android:layout_marginStart="10dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_centerVertical="true"
         android:layout_marginStart="10dp"
+        android:layout_toEndOf="@+id/iv_avatar"
         android:orientation="vertical">
 
         <TextView
@@ -43,4 +43,4 @@
 
 
     </LinearLayout>
-</LinearLayout>
+</RelativeLayout>

@@ -12,6 +12,7 @@ import mvp.wyyne.douban.moviedouban.api.RetrofitService;
 import mvp.wyyne.douban.moviedouban.api.bean.HotBean;
 import mvp.wyyne.douban.moviedouban.api.bean.HotSearch;
 import mvp.wyyne.douban.moviedouban.api.bean.Subjects;
+import mvp.wyyne.douban.moviedouban.api.model.SearchModelBean;
 import mvp.wyyne.douban.moviedouban.home.BaseObserver;
 
 /**
@@ -29,13 +30,11 @@ public class SearchMovieImp implements ISearchMoviePresent {
             , R.drawable.ic_hot_8, R.drawable.ic_hot_9, R.drawable.ic_hot_10};
     private ISearchMovieMain movieMain;
     private List<Subjects> mSearchList;
-    private List<String> mHistoryList;
 
     public SearchMovieImp(Context context, ISearchMovieMain main) {
         mContext = context;
         movieMain = main;
         mActivity = (SearchMovieActivity) context;
-        mHistoryList = new ArrayList<>();
         mHotList = new ArrayList<>();
     }
 
@@ -73,8 +72,27 @@ public class SearchMovieImp implements ISearchMoviePresent {
     }
 
     @Override
-    public List<String> handleHistorySet() {
+    public List<SearchModelBean> getSearchBeanList() {
+        return SearchModel.getInstance().queryModelList();
+    }
 
-        return mHistoryList;
+    @Override
+    public int getSearchBeanLisCount() {
+        return SearchModel.getInstance().queryModelListCount();
+    }
+
+    @Override
+    public void insertSearchBean(SearchModelBean bean) {
+        SearchModel.getInstance().insertModel(bean);
+    }
+
+    @Override
+    public void clearSearchBean() {
+        SearchModel.getInstance().deleteModel();
+    }
+
+    @Override
+    public void updateSearchLast(SearchModelBean bean) {
+        SearchModel.getInstance().updateModel(bean);
     }
 }

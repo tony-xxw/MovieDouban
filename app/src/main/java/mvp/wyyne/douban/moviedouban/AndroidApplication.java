@@ -10,7 +10,11 @@ import com.tencent.tinker.loader.app.ApplicationLike;
 import com.tinkerpatch.sdk.TinkerPatch;
 import com.tinkerpatch.sdk.loader.TinkerPatchApplicationLike;
 
+import org.greenrobot.greendao.database.Database;
+
 import mvp.wyyne.douban.moviedouban.api.RetrofitService;
+import mvp.wyyne.douban.moviedouban.model.DaoMaster;
+import mvp.wyyne.douban.moviedouban.model.DaoSession;
 
 import static mvp.wyyne.douban.moviedouban.utils.Constant.LOGIN;
 
@@ -23,6 +27,8 @@ public class AndroidApplication extends Application {
     private static AndroidApplication mApplication;
     private SharedPreferences loginShared;
     private ApplicationLike tinkerApplicationLike;
+    private String DB_SEARCH_NAME = "search_name";
+    private static DaoSession daoSession;
 
     @Override
     public void onCreate() {
@@ -34,10 +40,30 @@ public class AndroidApplication extends Application {
 
         initTinkerPatch();
         initSharedPreferences();
+        initDateBase();
 
 
     }
 
+
+    public static DaoSession getDaoSession() {
+        return daoSession;
+    }
+
+
+    /*** 初始化数据库*/
+
+    private void initDateBase() {
+        DaoMaster.DevOpenHelper openHelper = new DaoMaster.DevOpenHelper(this, DB_SEARCH_NAME);
+        Database database = openHelper.getWritableDb();
+        DaoMaster daoMaster = new DaoMaster(database);
+        daoSession = daoMaster.newSession();
+    }
+
+
+    /**
+     * 初始化SharePreferences
+     */
     private void initSharedPreferences() {
         loginShared = getSharedPreferences("login", MODE_PRIVATE);
     }

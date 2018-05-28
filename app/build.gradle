@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'android-apt'
 apply from: 'tinkerpatch.gradle'
+apply plugin: 'org.greenrobot.greendao'
 
 configurations.all {
     resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
@@ -28,6 +29,13 @@ android {
     packagingOptions {
         exclude 'META-INF/rxjava.xml'
         exclude 'META-INF/rxjava.properties'
+    }
+
+    greendao {
+        schemaVersion 1//数据库版本号
+        daoPackage 'mvp.wyyne.douban.moviedouban.model'//设置DaoMaster、DaoSession、Dao包名
+        targetGenDir 'src/main/java'//设置DaoMaster、DaoSession、Dao目录
+
     }
 }
 
@@ -61,4 +69,5 @@ dependencies {
     releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.1'
     testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.1'
     compile 'com.blankj:utilcode:1.11.1'
+    compile 'org.greenrobot:greendao:3.2.2'
 }

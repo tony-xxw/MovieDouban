@@ -65,9 +65,11 @@ public class CastAdapter extends BaseRvAdapter<Casts> implements View.OnClickLis
                 TextView textView = (TextView) mHeadView.findViewById(R.id.tv_identity);
                 textView.setText(directorse.getName());
                 ImageView imageView = (ImageView) mHeadView.findViewById(R.id.iv_casts);
-                String url = directorse.getAvatars().getMedium();
-                if (!TextUtils.isEmpty(url)) {
-                    Glide.with(mContext).load(directorse.getAvatars().getMedium()).into(imageView);
+                if (directorse.getAvatars() != null) {
+                    String url = directorse.getAvatars().getMedium();
+                    if (!TextUtils.isEmpty(url)) {
+                        Glide.with(mContext).load(directorse.getAvatars().getMedium()).into(imageView);
+                    }
                 }
             }
         }

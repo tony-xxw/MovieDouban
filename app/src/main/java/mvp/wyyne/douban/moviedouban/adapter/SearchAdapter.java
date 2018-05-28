@@ -1,6 +1,7 @@
 package mvp.wyyne.douban.moviedouban.adapter;
 
 import android.content.Context;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,6 +20,7 @@ import mvp.wyyne.douban.moviedouban.api.bean.Subjects;
  */
 
 public class SearchAdapter extends BaseRvAdapter<Subjects> {
+    public static final String TAG = SearchAdapter.class.getSimpleName();
 
     public SearchAdapter(Context context, List<Subjects> data) {
         super(context, data);
@@ -31,7 +33,7 @@ public class SearchAdapter extends BaseRvAdapter<Subjects> {
     }
 
     @Override
-    public void bindView(BaseItemViewHolder holder, int position) {
+    public void bindView(BaseItemViewHolder holder, final int position) {
         TextView tvName = holder.getView(R.id.tv_name);
         ImageView ivAvatar = holder.getView(R.id.iv_avatar);
         TextView tvContent = holder.getView(R.id.tv_content);
@@ -52,6 +54,13 @@ public class SearchAdapter extends BaseRvAdapter<Subjects> {
         String country = date.substring(date.indexOf("("), date.indexOf(")") + 1);
         String content = average + "/" + date + "/" + country;
         tvContent.setText(content);
+
+        holder.getView(R.id.ll_item_parent).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mClick.onItemClick(position, TAG);
+            }
+        });
 
 
     }

@@ -29,11 +29,13 @@ public class SearchMovieImp implements ISearchMoviePresent {
             , R.drawable.ic_hot_8, R.drawable.ic_hot_9, R.drawable.ic_hot_10};
     private ISearchMovieMain movieMain;
     private List<Subjects> mSearchList;
+    private List<String> mHistoryList;
 
     public SearchMovieImp(Context context, ISearchMovieMain main) {
         mContext = context;
         movieMain = main;
         mActivity = (SearchMovieActivity) context;
+        mHistoryList = new ArrayList<>();
         mHotList = new ArrayList<>();
     }
 
@@ -68,5 +70,11 @@ public class SearchMovieImp implements ISearchMoviePresent {
                         Log.d("XXW", " mSearchList   size :" + mSearchList.size());
                     }
                 });
+    }
+
+    @Override
+    public List<String> handleHistorySet() {
+
+        return mHistoryList;
     }
 }

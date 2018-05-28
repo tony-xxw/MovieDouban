@@ -20,6 +20,7 @@ public class Constant {
     public static final String LOGIN_ACCOUNT = "admin";
     public static final String LOGIN_PASSWORD = "123456";
     public static final String LOGIN = "login";
+    public static final String SEARCH_HISTORY = "search_history";
 
 
 }

@@ -32,4 +32,12 @@ public interface ISearchMoviePresent extends IPresent {
     void searchMovieSubject(String text, String start, String count);
 
 
+    /**
+     * 处理搜索历史记录
+     *
+     * @return
+     */
+    List<String> handleHistorySet();
+
+
 }

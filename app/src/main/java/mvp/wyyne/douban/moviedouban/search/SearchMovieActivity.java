@@ -4,6 +4,7 @@ package mvp.wyyne.douban.moviedouban.search;
 import android.content.Intent;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
@@ -22,6 +23,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.adapter.SearchAdapter;
+import mvp.wyyne.douban.moviedouban.adapter.SearchHistoryAdapter;
 import mvp.wyyne.douban.moviedouban.adapter.SearchHotAdapter;
 import mvp.wyyne.douban.moviedouban.api.RvItemOnClick;
 import mvp.wyyne.douban.moviedouban.api.bean.Subjects;
@@ -69,6 +71,7 @@ public class SearchMovieActivity extends BaseActivity<SearchMovieImp> implements
     LinearLayout llEmpty;
     private List<Subjects> mResultList;
     private SearchAdapter mResultAdapter;
+    private SearchHistoryAdapter mHistoryAdapter;
 
     @Override
     protected void refresh() {
@@ -93,6 +96,8 @@ public class SearchMovieActivity extends BaseActivity<SearchMovieImp> implements
     protected void initView() {
         mPresent = new SearchMovieImp(this, this);
         mResultList = new ArrayList<>();
+
+        //热门搜索初始化
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         DividerItemDecoration mItemDecoration = new DividerItemDecoration(this, layoutManager.getOrientation());
         mItemDecoration.setDrawable(ContextCompat.getDrawable(this, R.drawable.line_gray_horizantal));
@@ -111,6 +116,14 @@ public class SearchMovieActivity extends BaseActivity<SearchMovieImp> implements
         rvResult.setLayoutManager(resultManager);
         rvResult.addItemDecoration(mItemDecoration);
         rvResult.setAdapter(mResultAdapter);
+
+
+        //搜索条目初始化
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
+        mHistoryAdapter = new SearchHistoryAdapter(this, mPresent.handleHistorySet());
+        rvHistory.setLayoutManager(gridLayoutManager);
+        rvHistory.setAdapter(mHistoryAdapter);
+
     }
 
 
@@ -139,8 +152,21 @@ public class SearchMovieActivity extends BaseActivity<SearchMovieImp> implements
     @Override
     public void onItemClick(int position, String tag) {
         Intent intent = new Intent(this, DetailMovieActivity.class);
-        intent.putExtra(DETAIL_TAG, mPresent.getSubjectsList().get(position).getSubjects().getId());
+        ;
+        if (tag.equals(SearchAdapter.TAG)) {
+
+            intent.putExtra(DETAIL_TAG, mResultList.get(position).getId());
+//            if (mResultList.size() > 0 && !TextUtils.isEmpty(mResultList.get(position).getTitle())) {
+//                AndroidApplication.getApplication().recodeSearchHistory(mResultList.get(position).getTitle());
+//                notifyHistoryRefresh(mPresent.handleHistorySet());
+//            }
+        } else if (tag.equals(SearchHotAdapter.TAG)) {
+            intent.putExtra(DETAIL_TAG, mPresent.getSubjectsList().get(position).getSubjects().getId());
+        } else {
+
+        }
         startActivity(intent);
+
     }
 
     @Override
@@ -180,6 +206,11 @@ public class SearchMovieActivity extends BaseActivity<SearchMovieImp> implements
             svContentParent.setVisibility(View.GONE);
             llEmpty.setVisibility(View.VISIBLE);
         }
+    }
+
+    @Override
+    public void notifyHistoryRefresh(List<String> list) {
+
     }
 
     @Override

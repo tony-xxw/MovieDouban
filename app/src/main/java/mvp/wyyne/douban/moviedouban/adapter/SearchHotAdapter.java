@@ -18,6 +18,7 @@ import mvp.wyyne.douban.moviedouban.api.bean.HotSearch;
  */
 
 public class SearchHotAdapter extends BaseRvAdapter<HotSearch> {
+    public static final String TAG = SearchHotAdapter.class.getSimpleName();
 
     public SearchHotAdapter(Context context, List<HotSearch> data) {
         super(context, data);
@@ -38,7 +39,7 @@ public class SearchHotAdapter extends BaseRvAdapter<HotSearch> {
         tvMovie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mClick.onItemClick(position, "");
+                mClick.onItemClick(position, TAG);
             }
         });
     }

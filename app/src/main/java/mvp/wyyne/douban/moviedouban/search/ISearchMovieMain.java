@@ -13,11 +13,19 @@ import mvp.wyyne.douban.moviedouban.home.IMain;
 public interface ISearchMovieMain extends IMain {
 
     /**
-     * 刷新通知结果
+     * 通知刷新结果
      *
      * @param list 电影条目列表
      */
     void notifyResultRefresh(List<Subjects> list);
+
+
+    /**
+     * 通知刷新历史记录
+     *
+     * @param list
+     */
+    void notifyHistoryRefresh(List<String> list);
 
     /**
      * Set

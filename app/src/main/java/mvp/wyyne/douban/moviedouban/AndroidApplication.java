@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 import android.text.TextUtils;
 import android.util.Log;
 
-
 import com.blankj.utilcode.util.Utils;
 import com.tencent.tinker.loader.app.ApplicationLike;
 import com.tinkerpatch.sdk.TinkerPatch;
@@ -34,16 +33,26 @@ public class AndroidApplication extends Application {
         Utils.init(this);
 
         initTinkerPatch();
-        loginShared = getSharedPreferences("login", MODE_PRIVATE);
+        initSharedPreferences();
 
+
+    }
+
+    private void initSharedPreferences() {
+        loginShared = getSharedPreferences("login", MODE_PRIVATE);
     }
 
     public static AndroidApplication getApplication() {
         return mApplication;
     }
 
+
+    /**
+     * 记录是否登陆
+     */
     public void recodeLogin() {
         loginShared.edit().putString(LOGIN, LOGIN).apply();
+
     }
 
     public boolean Login() {

@@ -50,4 +50,6 @@ public interface ISearchMoviePresent extends IPresent {
 
     void updateSearchLast(SearchModelBean bean);
 
+    SearchModelBean createSearchModelBean(String title, String id);
+
 }

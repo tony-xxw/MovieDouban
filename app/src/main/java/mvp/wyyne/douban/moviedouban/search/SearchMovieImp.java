@@ -95,4 +95,12 @@ public class SearchMovieImp implements ISearchMoviePresent {
     public void updateSearchLast(SearchModelBean bean) {
         SearchModel.getInstance().updateModel(bean);
     }
+
+    @Override
+    public SearchModelBean createSearchModelBean(String title, String id) {
+        SearchModelBean searchModelBean = new SearchModelBean();
+        searchModelBean.setMovieId(id);
+        searchModelBean.setName(title);
+        return searchModelBean;
+    }
 }

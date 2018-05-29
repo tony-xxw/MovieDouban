@@ -29,7 +29,7 @@ public class SearchModel {
         try {
             dao.insert(model);
         } catch (Exception e) {
-            Log.d("XXW", TAG + ":   增加失败");
+            Log.d("XXW", "增加失败 : " + e.toString());
         }
     }
 
@@ -38,14 +38,14 @@ public class SearchModel {
         try {
             dao.deleteAll();
         } catch (Exception e) {
-            Log.d("XXW", TAG + ":   删除失败");
+            Log.d("XXW", "删除失败 : " + e.toString());
         }
     }
 
     public void updateModel(SearchModelBean modelDao) {
         SearchModelBeanDao dao = AndroidApplication.getDaoSession().getSearchModelBeanDao();
-        if (queryModelListCount() == 4) {
-            dao.deleteByKey((long) queryModelList().size());
+        if (queryModelListCount() >= 4) {
+            dao.delete(queryModelList().get(0));
             dao.insert(modelDao);
         }
     }

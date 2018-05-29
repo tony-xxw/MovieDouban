@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.FrameLayout;
@@ -128,7 +129,7 @@ public class SearchMovieActivity extends BaseActivity<SearchMovieImp> implements
         //搜索条目初始化
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
         GridRecycleItemDecoration itemDecoration = new GridRecycleItemDecoration(this, 2, getResources().getColor(R.color.colorTranslucence));
-        mHistoryAdapter = new SearchHistoryAdapter(this, mPresent.getSearchBeanList());
+        mHistoryAdapter = new SearchHistoryAdapter(this,collecTions());
         rvHistory.setLayoutManager(gridLayoutManager);
         rvHistory.setAdapter(mHistoryAdapter);
 
@@ -152,13 +153,16 @@ public class SearchMovieActivity extends BaseActivity<SearchMovieImp> implements
                 finish();
                 break;
             case R.id.tv_clear:
-                historyCount = mPresent.getSearchBeanLisCount();
                 mPresent.clearSearchBean();
+                historyCount = mPresent.getSearchBeanLisCount();
                 llHistory.setVisibility(View.GONE);
                 break;
             case R.id.iv_close:
                 dclSearchMain.setText("");
                 notifyHistoryRefresh(collecTions());
+                if (collecTions().size() != 0) {
+                    llHistory.setVisibility(View.VISIBLE);
+                }
                 break;
             default:
                 break;
@@ -183,10 +187,14 @@ public class SearchMovieActivity extends BaseActivity<SearchMovieImp> implements
             intent.putExtra(DETAIL_TAG, mResultList.get(position).getId());
             if (historyCount < 4) {
                 historyCount++;
+                mPresent.insertSearchBean(mPresent.createSearchModelBean(mResultList.get(position).getTitle(), mResultList.get(position).getId()));
             } else {
-                mPresent.updateSearchLast(new SearchModelBean(historyCount, mResultList.get(position).getTitle(), mResultList.get(position).getId()));
+                mPresent.updateSearchLast(mPresent.createSearchModelBean(mResultList.get(position).getTitle(), mResultList.get(position).getId()));
+
             }
-            mPresent.insertSearchBean(new SearchModelBean(historyCount, mResultList.get(position).getTitle(), mResultList.get(position).getId()));
+            Log.d("XXW", "historyCount :" + historyCount);
+            Log.d("XXW", "title :" + mResultList.get(position).getTitle());
+            Log.d("XXW", "id :" + mResultList.get(position).getId());
             notifyHistoryRefresh(collecTions());
 
         } else if (tag.equals(SearchHotAdapter.TAG)) {
@@ -197,6 +205,7 @@ public class SearchMovieActivity extends BaseActivity<SearchMovieImp> implements
         startActivity(intent);
 
     }
+
 
     @Override
     public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -258,6 +267,7 @@ public class SearchMovieActivity extends BaseActivity<SearchMovieImp> implements
 
     public List<SearchModelBean> collecTions() {
         List<SearchModelBean> list = mPresent.getSearchBeanList();
+        Log.d("XXW", "collecTions : " + list.size());
         Collections.reverse(list);
         return list;
     }

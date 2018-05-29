@@ -44,8 +44,8 @@ public class SearchModel {
 
     public void updateModel(SearchModelBean modelDao) {
         SearchModelBeanDao dao = AndroidApplication.getDaoSession().getSearchModelBeanDao();
-        if (queryModelListCount() > 4) {
-            dao.deleteByKey((long) queryModelListCount());
+        if (queryModelListCount() == 4) {
+            dao.deleteByKey((long) queryModelList().size());
             dao.insert(modelDao);
         }
     }

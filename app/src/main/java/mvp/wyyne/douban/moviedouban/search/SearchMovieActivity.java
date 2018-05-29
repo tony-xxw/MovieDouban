@@ -12,11 +12,13 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import butterknife.BindView;
@@ -31,6 +33,7 @@ import mvp.wyyne.douban.moviedouban.api.model.SearchModelBean;
 import mvp.wyyne.douban.moviedouban.detail.DetailMovieActivity;
 import mvp.wyyne.douban.moviedouban.home.base.BaseActivity;
 import mvp.wyyne.douban.moviedouban.utils.StatusUtils;
+import mvp.wyyne.douban.moviedouban.widget.GridRecycleItemDecoration;
 
 import static mvp.wyyne.douban.moviedouban.utils.Constant.DETAIL_TAG;
 
@@ -70,10 +73,12 @@ public class SearchMovieActivity extends BaseActivity<SearchMovieImp> implements
     ScrollView svContentParent;
     @BindView(R.id.ll_empty)
     LinearLayout llEmpty;
+    @BindView(R.id.iv_close)
+    ImageView ivClose;
     private List<Subjects> mResultList;
     private SearchAdapter mResultAdapter;
     private SearchHistoryAdapter mHistoryAdapter;
-    private long historyCount = 1;
+    private long historyCount;
 
     @Override
     protected void refresh() {
@@ -122,12 +127,15 @@ public class SearchMovieActivity extends BaseActivity<SearchMovieImp> implements
 
         //搜索条目初始化
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
+        GridRecycleItemDecoration itemDecoration = new GridRecycleItemDecoration(this, 2, getResources().getColor(R.color.colorTranslucence));
         mHistoryAdapter = new SearchHistoryAdapter(this, mPresent.getSearchBeanList());
         rvHistory.setLayoutManager(gridLayoutManager);
         rvHistory.setAdapter(mHistoryAdapter);
 
 
-        if (mPresent.getSubjectsList().size() != 0) {
+        historyCount = mPresent.getSearchBeanLisCount();
+
+        if (mPresent.getSearchBeanList().size() != 0) {
             llHistory.setVisibility(View.VISIBLE);
         } else {
             llHistory.setVisibility(View.GONE);
@@ -137,16 +145,20 @@ public class SearchMovieActivity extends BaseActivity<SearchMovieImp> implements
     }
 
 
-    @OnClick({R.id.tv_cancel, R.id.tv_clear})
+    @OnClick({R.id.tv_cancel, R.id.tv_clear, R.id.iv_close})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_cancel:
                 finish();
                 break;
             case R.id.tv_clear:
-                historyCount = 1;
+                historyCount = mPresent.getSearchBeanLisCount();
                 mPresent.clearSearchBean();
                 llHistory.setVisibility(View.GONE);
+                break;
+            case R.id.iv_close:
+                dclSearchMain.setText("");
+                notifyHistoryRefresh(collecTions());
                 break;
             default:
                 break;
@@ -175,7 +187,7 @@ public class SearchMovieActivity extends BaseActivity<SearchMovieImp> implements
                 mPresent.updateSearchLast(new SearchModelBean(historyCount, mResultList.get(position).getTitle(), mResultList.get(position).getId()));
             }
             mPresent.insertSearchBean(new SearchModelBean(historyCount, mResultList.get(position).getTitle(), mResultList.get(position).getId()));
-            notifyHistoryRefresh(mPresent.getSearchBeanList());
+            notifyHistoryRefresh(collecTions());
 
         } else if (tag.equals(SearchHotAdapter.TAG)) {
             intent.putExtra(DETAIL_TAG, mPresent.getSubjectsList().get(position).getSubjects().getId());
@@ -198,11 +210,13 @@ public class SearchMovieActivity extends BaseActivity<SearchMovieImp> implements
             llResultLayout.setVisibility(View.GONE);
             llEmpty.setVisibility(View.GONE);
             svContentParent.setVisibility(View.VISIBLE);
-
+            notifyHistoryRefresh(collecTions());
+            ivClose.setVisibility(View.GONE);
         } else {
             llParent.setVisibility(View.GONE);
             llResultLayout.setVisibility(View.VISIBLE);
             mPresent.searchMovieSubject(s.toString(), "1", "10");
+            ivClose.setVisibility(View.VISIBLE);
         }
 
 
@@ -240,5 +254,11 @@ public class SearchMovieActivity extends BaseActivity<SearchMovieImp> implements
     @Override
     public List<Subjects> getSubject() {
         return mResultList;
+    }
+
+    public List<SearchModelBean> collecTions() {
+        List<SearchModelBean> list = mPresent.getSearchBeanList();
+        Collections.reverse(list);
+        return list;
     }
 }

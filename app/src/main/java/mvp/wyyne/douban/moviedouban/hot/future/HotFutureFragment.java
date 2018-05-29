@@ -23,7 +23,7 @@ import mvp.wyyne.douban.moviedouban.home.base.BaseFragment;
 import mvp.wyyne.douban.moviedouban.hot.current.HotPresent;
 import mvp.wyyne.douban.moviedouban.hot.current.IHotMain;
 import mvp.wyyne.douban.moviedouban.utils.MovieType;
-import mvp.wyyne.douban.moviedouban.utils.TitleRecycleItemDecoration;
+import mvp.wyyne.douban.moviedouban.widget.TitleRecycleItemDecoration;
 
 import static mvp.wyyne.douban.moviedouban.utils.Constant.DETAIL_TAG;
 

@@ -55,24 +55,41 @@
         android:visibility="gone">
 
 
-        <EditText
-            android:id="@+id/dcl_search_main"
+        <FrameLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginStart="10dp"
-            android:layout_weight="2"
-            android:background="@drawable/btn_white_solid"
-            android:drawablePadding="10dp"
-            android:drawableStart="@drawable/ic_search"
-            android:gravity="center_vertical"
-            android:hint="@string/hot_hint_search"
-            android:minHeight="30dp"
-            android:paddingEnd="5dp"
-            android:paddingStart="10dp"
-            android:textColor="@color/tab_unselected_text_color"
-            android:textSize="14sp"
-            android:visibility="visible" />
+            android:layout_weight="2">
+
+            <EditText
+                android:id="@+id/dcl_search_main"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"
+                android:background="@drawable/btn_white_solid"
+                android:drawablePadding="10dp"
+                android:drawableStart="@drawable/ic_search"
+                android:gravity="center_vertical"
+                android:hint="@string/hot_hint_search"
+                android:minHeight="30dp"
+                android:paddingEnd="5dp"
+                android:paddingStart="10dp"
+                android:textColor="@color/tab_unselected_text_color"
+                android:textSize="14sp"
+                android:visibility="visible" />
+
+
+            <ImageView
+                android:id="@+id/iv_close"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|end"
+                android:layout_marginEnd="10dp"
+                android:padding="5dp"
+                android:src="@drawable/ic_close_light_gray"
+                android:visibility="gone" />
+        </FrameLayout>
 
         <TextView
             android:id="@+id/tv_cancel"

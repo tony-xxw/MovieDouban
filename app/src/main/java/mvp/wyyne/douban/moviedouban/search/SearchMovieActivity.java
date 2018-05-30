@@ -128,9 +128,10 @@ public class SearchMovieActivity extends BaseActivity<SearchMovieImp> implements
 
         //搜索条目初始化
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
-        GridRecycleItemDecoration itemDecoration = new GridRecycleItemDecoration(this, 2, getResources().getColor(R.color.colorTranslucence));
-        mHistoryAdapter = new SearchHistoryAdapter(this,collecTions());
+        GridRecycleItemDecoration itemDecoration = new GridRecycleItemDecoration(this);
+        mHistoryAdapter = new SearchHistoryAdapter(this, collecTions());
         rvHistory.setLayoutManager(gridLayoutManager);
+        rvHistory.addItemDecoration(itemDecoration);
         rvHistory.setAdapter(mHistoryAdapter);
 
 

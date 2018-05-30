@@ -47,8 +47,8 @@ public class TitleRecycleItemDecoration extends RecyclerView.ItemDecoration {
     }
 
     @Override
-    public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) {
-        super.onDraw(c, parent, state);
+    public void onDraw(Canvas canvas, RecyclerView parent, RecyclerView.State state) {
+        super.onDraw(canvas, parent, state);
         final int left = parent.getPaddingLeft();
         final int right = parent.getWidth() - parent.getPaddingRight();
         final int childCount = parent.getChildCount();
@@ -59,12 +59,12 @@ public class TitleRecycleItemDecoration extends RecyclerView.ItemDecoration {
             if (position > -1) {
                 //第一次
                 if (position == 0) {
-                    drawTitleArea(c, left, right, child, pams, position);
+                    drawTitleArea(canvas, left, right, child, pams, position);
 
                 } else {//其他的通过判断
                     if (null != mData.get(position).getTags() && !(mData.get(position).getTags().equals(mData.get(position - 1).getTags()))) {
                         //不为空 且跟前一个tag不一样了，说明是新的分类，也要title
-                        drawTitleArea(c, left, right, child, pams, position);
+                        drawTitleArea(canvas, left, right, child, pams, position);
                     } else {
                         //none
                     }

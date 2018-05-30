@@ -1,6 +1,7 @@
 package mvp.wyyne.douban.moviedouban.adapter;
 
 import android.content.Context;
+import android.view.View;
 import android.widget.TextView;
 
 import java.util.List;
@@ -28,9 +29,15 @@ public class SearchHistoryAdapter extends BaseRvAdapter<SearchModelBean> {
     }
 
     @Override
-    public void bindView(BaseItemViewHolder holder, int position) {
+    public void bindView(BaseItemViewHolder holder, final int position) {
         TextView tvName = holder.getView(R.id.tv_name);
         tvName.setText(mList.get(position).getName());
+        holder.getView(R.id.ll_content).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mClick.onItemClick(position, TAG);
+            }
+        });
     }
 
     @Override

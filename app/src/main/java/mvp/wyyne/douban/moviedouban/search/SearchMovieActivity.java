@@ -129,9 +129,10 @@ public class SearchMovieActivity extends BaseActivity<SearchMovieImp> implements
         //搜索条目初始化
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
         GridRecycleItemDecoration itemDecoration = new GridRecycleItemDecoration(this);
-        mHistoryAdapter = new SearchHistoryAdapter(this, collecTions());
-        rvHistory.setLayoutManager(gridLayoutManager);
+        mHistoryAdapter = new SearchHistoryAdapter(this, collections());
+        mHistoryAdapter.setRvOnClick(this);
         rvHistory.addItemDecoration(itemDecoration);
+        rvHistory.setLayoutManager(gridLayoutManager);
         rvHistory.setAdapter(mHistoryAdapter);
 
 
@@ -160,8 +161,8 @@ public class SearchMovieActivity extends BaseActivity<SearchMovieImp> implements
                 break;
             case R.id.iv_close:
                 dclSearchMain.setText("");
-                notifyHistoryRefresh(collecTions());
-                if (collecTions().size() != 0) {
+                notifyHistoryRefresh(collections());
+                if (collections().size() != 0) {
                     llHistory.setVisibility(View.VISIBLE);
                 }
                 break;
@@ -196,12 +197,12 @@ public class SearchMovieActivity extends BaseActivity<SearchMovieImp> implements
             Log.d("XXW", "historyCount :" + historyCount);
             Log.d("XXW", "title :" + mResultList.get(position).getTitle());
             Log.d("XXW", "id :" + mResultList.get(position).getId());
-            notifyHistoryRefresh(collecTions());
+            notifyHistoryRefresh(collections());
 
         } else if (tag.equals(SearchHotAdapter.TAG)) {
             intent.putExtra(DETAIL_TAG, mPresent.getSubjectsList().get(position).getSubjects().getId());
         } else {
-            intent.putExtra(DETAIL_TAG, mPresent.getSearchBeanList().get(position).getMovieId());
+            intent.putExtra(DETAIL_TAG, collections().get(position).getMovieId());
         }
         startActivity(intent);
 
@@ -220,7 +221,7 @@ public class SearchMovieActivity extends BaseActivity<SearchMovieImp> implements
             llResultLayout.setVisibility(View.GONE);
             llEmpty.setVisibility(View.GONE);
             svContentParent.setVisibility(View.VISIBLE);
-            notifyHistoryRefresh(collecTions());
+            notifyHistoryRefresh(collections());
             ivClose.setVisibility(View.GONE);
         } else {
             llParent.setVisibility(View.GONE);
@@ -266,9 +267,15 @@ public class SearchMovieActivity extends BaseActivity<SearchMovieImp> implements
         return mResultList;
     }
 
-    public List<SearchModelBean> collecTions() {
+
+    /**
+     * 排序反转
+     *
+     * @return
+     */
+    public List<SearchModelBean> collections() {
         List<SearchModelBean> list = mPresent.getSearchBeanList();
-        Log.d("XXW", "collecTions : " + list.size());
+        Log.d("XXW", "collections : " + list.size());
         Collections.reverse(list);
         return list;
     }

@@ -97,6 +97,10 @@
         <activity
             android:name=".oneself.photo.OneSelfPhotoActivity"
             android:launchMode="singleTop" />
+
+        <activity
+            android:name=".welfare.WelfarePhotoActivity"
+            android:launchMode="singleTop" />
     </application>
 
 </manifest>

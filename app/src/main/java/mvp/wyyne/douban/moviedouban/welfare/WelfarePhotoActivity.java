@@ -4,6 +4,8 @@ import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.home.base.BaseActivity;
 
 /**
+ * 妹子图 相片管理器
+ *
  * @author Wynne
  * @date 2018/5/31
  */

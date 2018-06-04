@@ -1,10 +1,10 @@
 package mvp.wyyne.douban.moviedouban.adapter;
 
 import android.content.Context;
+import android.support.v7.widget.CardView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -21,7 +21,7 @@ import mvp.wyyne.douban.moviedouban.utils.ImageLoader;
  * @date 2017/6/25
  */
 
-public class WelfareAdapter extends BaseRvAdapter<WelfarePhotoInfo> implements View.OnClickListener {
+public class WelfareAdapter extends BaseRvAdapter<WelfarePhotoInfo> implements View.OnClickListener, View.OnLongClickListener {
     private ImageLoader mLoader;
     private ArrayList<Integer> mHeightList;
     private String photoUrl;
@@ -41,22 +41,20 @@ public class WelfareAdapter extends BaseRvAdapter<WelfarePhotoInfo> implements V
     }
 
     @Override
-    public void bindView(BaseItemViewHolder holder, int position) {
+    public void bindView(BaseItemViewHolder holder, final int position) {
         initItemHeight();
         ImageView imageView = holder.getView(R.id.iv_photo);
-        LinearLayout linearLayout = holder.getView(R.id.ll_item);
+        CardView cardView = holder.getView(R.id.ll_item);
         ViewGroup.LayoutParams params = imageView.getLayoutParams();
         params.height = mHeightList.get(position);
         imageView.setLayoutParams(params);
         TextView textView = holder.getView(R.id.tv_date);
         textView.setText(mList.get(position).getDesc());
-
         photoUrl = mList.get(position).getUrl();
-//        mLoader.bindBitmap(photoUrl, imageView);
         Glide.with(mContext).load(photoUrl).centerCrop().into(imageView);
-
-        linearLayout.setTag(position);
-        linearLayout.setOnClickListener(this);
+        cardView.setTag(position);
+        cardView.setOnClickListener(this);
+        cardView.setOnLongClickListener(this);
     }
 
     private void initItemHeight() {
@@ -87,5 +85,11 @@ public class WelfareAdapter extends BaseRvAdapter<WelfarePhotoInfo> implements V
             default:
                 break;
         }
+    }
+
+    @Override
+    public boolean onLongClick(View v) {
+        mLongClick.onItemLongClick((Integer) v.getTag(), "");
+        return true;
     }
 }

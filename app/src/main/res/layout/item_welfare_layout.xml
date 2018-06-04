@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/ll_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:layout_margin="5dp"
+    app:cardCornerRadius="7dp"
+    app:cardElevation="7dp">
 
     <ImageView
         android:id="@+id/iv_photo"
@@ -17,9 +20,10 @@
         android:id="@+id/tv_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="5dp"
         android:layout_marginTop="5dp"
-        android:textColor="@color/colorGray_light"
+        android:textColor="@color/colorWhite"
         android:textSize="14sp"
         tools:text="测试" />
-</LinearLayout>
+</android.support.v7.widget.CardView>

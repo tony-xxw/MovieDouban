@@ -10,6 +10,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import mvp.wyyne.douban.moviedouban.api.RvItemLongOnClick;
 import mvp.wyyne.douban.moviedouban.api.RvItemOnClick;
 import mvp.wyyne.douban.moviedouban.utils.DateUtils;
 
@@ -34,6 +35,12 @@ public abstract class BaseRvAdapter<T> extends RecyclerView.Adapter<BaseItemView
     public View mHeadView;
     public View mFooterView;
     public RvItemOnClick mClick;
+    public RvItemLongOnClick mLongClick;
+
+    public void setRvLongOnClick(RvItemLongOnClick mLongClick) {
+        this.mLongClick = mLongClick;
+    }
+
 
     public void setList(List<T> list) {
         mList = list;

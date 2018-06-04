@@ -1,5 +1,8 @@
 package mvp.wyyne.douban.moviedouban.api.bean;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
 /**
@@ -7,7 +10,7 @@ import com.google.gson.annotations.SerializedName;
  * @date 2017/6/25
  */
 
-public class WelfarePhotoInfo {
+public class WelfarePhotoInfo implements Parcelable {
     /**
      * _id : 57facc74421aa95de3b8ab6b
      * createdAt : 2016-10-10T07:02:12.35Z
@@ -33,6 +36,31 @@ public class WelfarePhotoInfo {
      * 保存图片宽高
      **/
     private String pixel;
+
+    protected WelfarePhotoInfo(Parcel in) {
+        id = in.readString();
+        createdAt = in.readString();
+        desc = in.readString();
+        publishedAt = in.readString();
+        source = in.readString();
+        type = in.readString();
+        url = in.readString();
+        used = in.readByte() != 0;
+        who = in.readString();
+        pixel = in.readString();
+    }
+
+    public static final Creator<WelfarePhotoInfo> CREATOR = new Creator<WelfarePhotoInfo>() {
+        @Override
+        public WelfarePhotoInfo createFromParcel(Parcel in) {
+            return new WelfarePhotoInfo(in);
+        }
+
+        @Override
+        public WelfarePhotoInfo[] newArray(int size) {
+            return new WelfarePhotoInfo[size];
+        }
+    };
 
     public String getPixel() {
         return pixel;
@@ -130,4 +158,22 @@ public class WelfarePhotoInfo {
                 '}';
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(id);
+        dest.writeString(createdAt);
+        dest.writeString(desc);
+        dest.writeString(publishedAt);
+        dest.writeString(source);
+        dest.writeString(type);
+        dest.writeString(url);
+        dest.writeByte((byte) (used ? 1 : 0));
+        dest.writeString(who);
+        dest.writeString(pixel);
+    }
 }

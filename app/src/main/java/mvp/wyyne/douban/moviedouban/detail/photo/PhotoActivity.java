@@ -26,7 +26,6 @@ import mvp.wyyne.douban.moviedouban.api.bean.StillsPhotos;
 import mvp.wyyne.douban.moviedouban.detail.comment.photo.PhotoCommentActivity;
 import mvp.wyyne.douban.moviedouban.detail.stills.AllStillsActivity;
 import mvp.wyyne.douban.moviedouban.home.base.BaseActivity;
-import mvp.wyyne.douban.moviedouban.utils.SdCardUtils;
 import mvp.wyyne.douban.moviedouban.utils.ShareUtils;
 import mvp.wyyne.douban.moviedouban.utils.ToastUtils;
 import mvp.wyyne.douban.moviedouban.widget.PhotoViewPage;
@@ -102,9 +101,8 @@ public class PhotoActivity extends BaseActivity<IPhotoPresent> implements IPhoto
         if (getIntent() != null) {
             mSubject = getIntent().getStringExtra(ID);
             position = getIntent().getIntExtra(POSITION, 0);
-            Log.d("XXW", "===mSubject===" + mSubject + "===position===" + position);
+
         }
-        Log.d("xxw", "getPicturesFilePath  " + SdCardUtils.getPicturesFilePath().getPath());
         mList = new ArrayList<>();
         mPageAdapter = new PhotoPageAdapter(this, mList);
         mVpPage.setAdapter(mPageAdapter);

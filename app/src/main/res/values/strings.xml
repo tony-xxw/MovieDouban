@@ -59,4 +59,6 @@
     <string name="hot_search">热门搜索</string>
     <string name="city">城市</string>
     <string name="search_empty">该词搜索为空</string>
+    <string name="setting_wallpaper">设置壁纸</string>
+    <string name="save_original">保存原图</string>
 </resources>

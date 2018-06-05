@@ -61,4 +61,7 @@
     <string name="search_empty">该词搜索为空</string>
     <string name="setting_wallpaper">设置壁纸</string>
     <string name="save_original">保存原图</string>
+    <string name="manager_grids">GridsManager</string>
+    <string name="manager_linear">LinearManager</string>
+    <string name="manager_staggered">StaggeredManager</string>
 </resources>

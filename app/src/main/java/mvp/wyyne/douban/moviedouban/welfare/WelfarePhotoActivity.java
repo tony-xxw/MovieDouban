@@ -10,7 +10,6 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -27,6 +26,7 @@ import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.down.DownPhotoService;
 import mvp.wyyne.douban.moviedouban.down.DownloadCallBack;
 import mvp.wyyne.douban.moviedouban.home.base.BaseActivity;
+import mvp.wyyne.douban.moviedouban.utils.DialogUtils;
 import mvp.wyyne.douban.moviedouban.utils.StatusUtils;
 import mvp.wyyne.douban.moviedouban.utils.ToastUtils;
 
@@ -71,7 +71,7 @@ public class WelfarePhotoActivity extends BaseActivity implements View.OnLongCli
         }
 
         ivGirl.setOnLongClickListener(this);
-        dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_list_welfare_photo, null);
+        dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_welfare_list_photo, null);
         dialogView.findViewById(R.id.tv_wallpaper).setOnClickListener(this);
         dialogView.findViewById(R.id.tv_save).setOnClickListener(this);
 
@@ -89,11 +89,7 @@ public class WelfarePhotoActivity extends BaseActivity implements View.OnLongCli
     @Override
     public boolean onLongClick(View v) {
         alertDialog.show();
-        WindowManager windowManager = getWindowManager();
-        WindowManager.LayoutParams layoutParams = alertDialog.getWindow().getAttributes();
-        layoutParams.width = (int) (windowManager.getDefaultDisplay().getWidth() * 0.75);
-        alertDialog.getWindow().setAttributes(layoutParams);
-
+        DialogUtils.setDialogWidth(alertDialog, this, 0.75);
         return false;
     }
 

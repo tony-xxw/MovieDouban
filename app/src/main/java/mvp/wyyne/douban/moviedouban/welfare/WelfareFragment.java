@@ -1,9 +1,13 @@
 package mvp.wyyne.douban.moviedouban.welfare;
 
+import android.app.AlertDialog;
 import android.content.Intent;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.widget.Toast;
+import android.view.LayoutInflater;
+import android.view.View;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,14 +26,16 @@ import mvp.wyyne.douban.moviedouban.home.base.BaseFragment;
  * @date 2017/6/2
  */
 
-public class WelfareFragment extends BaseFragment<WelfarePresent> implements IWelfareMain, RvItemOnClick, RvItemLongOnClick {
+public class WelfareFragment extends BaseFragment<WelfarePresent> implements IWelfareMain, RvItemOnClick, RvItemLongOnClick, View.OnClickListener {
     public static final String TAG = WelfareFragment.class.getSimpleName();
     @BindView(R.id.rv_welfare)
     RecyclerView mRvWelfare;
     private WelfareAdapter mAdapter;
     private List<WelfarePhotoInfo> mList;
-    private StaggeredGridLayoutManager mManager;
-
+    private StaggeredGridLayoutManager mStaggerManager;
+    private LinearLayoutManager mLlManager;
+    private GridLayoutManager mGlManager;
+    private AlertDialog alertDialog;
 
     public static WelfareFragment getInstance() {
         return new WelfareFragment();
@@ -52,19 +58,20 @@ public class WelfareFragment extends BaseFragment<WelfarePresent> implements IWe
         mAdapter = new WelfareAdapter(getActivity(), mList);
         mAdapter.setRvOnClick(this);
         mAdapter.setRvLongOnClick(this);
-        mManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
-        mManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE);
-        mRvWelfare.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
-                mManager.invalidateSpanAssignments();
-            }
-        });
-        mRvWelfare.setLayoutManager(mManager);
-        mRvWelfare.setAdapter(mAdapter);
         mPresent.getData();
+        setStaggeredManager();
+        initDialog();
 
+    }
+
+    private void initDialog() {
+        View dialogView = LayoutInflater.from(getActivity()).inflate(R.layout.dialog_welfare_manager, null);
+        dialogView.findViewById(R.id.tv_grids).setOnClickListener(this);
+        dialogView.findViewById(R.id.tv_linear).setOnClickListener(this);
+        dialogView.findViewById(R.id.tv_staggered).setOnClickListener(this);
+        alertDialog = new AlertDialog.Builder(getActivity())
+                .setView(dialogView)
+                .create();
     }
 
     @Override
@@ -95,6 +102,54 @@ public class WelfareFragment extends BaseFragment<WelfarePresent> implements IWe
 
     @Override
     public void onItemLongClick(int position, String tag) {
-        Toast.makeText(getActivity(), "长按事件", Toast.LENGTH_LONG).show();
+        alertDialog.show();
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.tv_grids:
+                setGridsManager();
+                alertDialog.dismiss();
+                break;
+            case R.id.tv_linear:
+                setLinearManager();
+                alertDialog.dismiss();
+                break;
+            case R.id.tv_staggered:
+                setStaggeredManager();
+                alertDialog.dismiss();
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void setGridsManager() {
+        mGlManager = new GridLayoutManager(getActivity(), 2);
+        mRvWelfare.setLayoutManager(mGlManager);
+        mAdapter.setLayoutManager(WelfareAdapter.GRIDS);
+        mRvWelfare.setAdapter(mAdapter);
+    }
+
+    private void setLinearManager() {
+        mLlManager = new LinearLayoutManager(getActivity());
+        mRvWelfare.setLayoutManager(mLlManager);
+        mAdapter.setLayoutManager(WelfareAdapter.LINEAR);
+        mRvWelfare.setAdapter(mAdapter);
+    }
+
+    public void setStaggeredManager() {
+        mStaggerManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+        mStaggerManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE);
+        mRvWelfare.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                mStaggerManager.invalidateSpanAssignments();
+            }
+        });
+        mRvWelfare.setLayoutManager(mStaggerManager);
+        mRvWelfare.setAdapter(mAdapter);
     }
 }

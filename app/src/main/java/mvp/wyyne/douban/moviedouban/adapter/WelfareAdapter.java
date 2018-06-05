@@ -2,6 +2,7 @@ package mvp.wyyne.douban.moviedouban.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.CardView;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -26,6 +27,10 @@ public class WelfareAdapter extends BaseRvAdapter<WelfarePhotoInfo> implements V
     private ArrayList<Integer> mHeightList;
     private String photoUrl;
     private Context mContext;
+    public static final String LINEAR = "linear";
+    public static final String GRIDS = "grids";
+
+    private String layoutManager;
 
     public WelfareAdapter(Context context, List<WelfarePhotoInfo> data) {
         super(context, data);
@@ -35,6 +40,10 @@ public class WelfareAdapter extends BaseRvAdapter<WelfarePhotoInfo> implements V
 
     }
 
+    public void setLayoutManager(String layoutManager) {
+        this.layoutManager = layoutManager;
+    }
+
     @Override
     protected int getLayoutId() {
         return R.layout.item_welfare_layout;
@@ -42,19 +51,37 @@ public class WelfareAdapter extends BaseRvAdapter<WelfarePhotoInfo> implements V
 
     @Override
     public void bindView(BaseItemViewHolder holder, final int position) {
-        initItemHeight();
         ImageView imageView = holder.getView(R.id.iv_photo);
         CardView cardView = holder.getView(R.id.ll_item);
-        ViewGroup.LayoutParams params = imageView.getLayoutParams();
-        params.height = mHeightList.get(position);
-        imageView.setLayoutParams(params);
         TextView textView = holder.getView(R.id.tv_date);
-        textView.setText(mList.get(position).getDesc());
-        photoUrl = mList.get(position).getUrl();
-        Glide.with(mContext).load(photoUrl).centerCrop().into(imageView);
         cardView.setTag(position);
         cardView.setOnClickListener(this);
         cardView.setOnLongClickListener(this);
+
+
+        if (!TextUtils.isEmpty(layoutManager)) {
+
+            if (layoutManager.equals(LINEAR)) {
+                cardView.setMinimumHeight(30);
+            } else if (layoutManager.equals(GRIDS)) {
+                imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+                cardView.setMinimumHeight(30);
+            }
+        } else {
+            initItemHeight();
+            ViewGroup.LayoutParams params = imageView.getLayoutParams();
+            params.height = mHeightList.get(position);
+            imageView.setLayoutParams(params);
+
+        }
+        textView.setText(mList.get(position).getDesc());
+        photoUrl = mList.get(position).getUrl();
+        Glide.with(mContext).load(photoUrl).into(imageView);
+
+    }
+
+    private void switchLayoutManager() {
+
     }
 
     private void initItemHeight() {

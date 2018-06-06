@@ -85,7 +85,7 @@ public abstract class BaseRvAdapter<T> extends RecyclerView.Adapter<BaseItemView
                 mBase = new BaseItemViewHolder(mFooterView, mContext);
                 break;
             case CONTENT_TYPE:
-                mView = mLayoutInflater.inflate(getLayoutId(), null);
+                mView = mLayoutInflater.inflate(getLayoutId(), parent,false);
                 mBase = new BaseItemViewHolder(mView, mContext);
                 break;
             default:

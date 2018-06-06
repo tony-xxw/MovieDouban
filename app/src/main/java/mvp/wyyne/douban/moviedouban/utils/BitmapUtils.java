@@ -4,31 +4,21 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
-
 /**
  * Created by XXW on 2017/6/20.
  */
 
-public class BitMapUtils {
-    public static BitMapUtils mUtils;
+public class BitmapUtils {
+    public static BitmapUtils mUtils;
     private Context mContext;
 
-    private BitMapUtils(Context context) {
+    private BitmapUtils(Context context) {
         mContext = context;
     }
 
-    public static BitMapUtils getInstace(Context context) {
+    public static BitmapUtils getInstace(Context context) {
         if (mUtils == null) {
-            mUtils = new BitMapUtils(context);
+            mUtils = new BitmapUtils(context);
         }
         return mUtils;
     }

@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +17,7 @@ import java.util.List;
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.api.bean.WelfarePhotoInfo;
 import mvp.wyyne.douban.moviedouban.utils.ImageLoader;
+import mvp.wyyne.douban.moviedouban.utils.TransformSize;
 
 /**
  * @author XXW
@@ -57,26 +59,50 @@ public class WelfareAdapter extends BaseRvAdapter<WelfarePhotoInfo> implements V
         cardView.setTag(position);
         cardView.setOnClickListener(this);
         cardView.setOnLongClickListener(this);
-
+        textView.setText(mList.get(position).getDesc());
+        photoUrl = mList.get(position).getUrl();
 
         if (!TextUtils.isEmpty(layoutManager)) {
 
             if (layoutManager.equals(LINEAR)) {
-                cardView.setMinimumHeight(30);
+
+                ViewGroup.LayoutParams params = imageView.getLayoutParams();
+                params.height = TransformSize.pxToDp(mContext, 150);
+                imageView.setLayoutParams(params);
+
+                Glide.with(mContext).
+                        load(photoUrl).
+                        thumbnail(0.5f).
+                        diskCacheStrategy(DiskCacheStrategy.ALL)
+                        .into(imageView);
+
+
             } else if (layoutManager.equals(GRIDS)) {
-                imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-                cardView.setMinimumHeight(30);
+                ViewGroup.LayoutParams params = imageView.getLayoutParams();
+                params.height = TransformSize.pxToDp(mContext, 120);
+                imageView.setLayoutParams(params);
+
+                Glide.with(mContext).
+                        load(photoUrl).
+                        diskCacheStrategy(DiskCacheStrategy.ALL).
+                        into(imageView);
+
             }
         } else {
+
             initItemHeight();
             ViewGroup.LayoutParams params = imageView.getLayoutParams();
             params.height = mHeightList.get(position);
             imageView.setLayoutParams(params);
 
+
+            Glide.with(mContext).
+                    load(photoUrl).
+                    thumbnail(0.7f).
+                    diskCacheStrategy(DiskCacheStrategy.ALL).
+                    into(imageView);
         }
-        textView.setText(mList.get(position).getDesc());
-        photoUrl = mList.get(position).getUrl();
-        Glide.with(mContext).load(photoUrl).into(imageView);
+
 
     }
 

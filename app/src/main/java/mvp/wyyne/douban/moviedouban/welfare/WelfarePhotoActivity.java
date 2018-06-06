@@ -64,6 +64,7 @@ public class WelfarePhotoActivity extends BaseActivity implements View.OnLongCli
         StatusUtils.setStatusBarActivity(this, true, Color.TRANSPARENT);
         if (getIntent() != null) {
             mPhotoUrl = getIntent().getStringExtra(TAG);
+            Log.d("XXW", "mPhotoUrl  :" + mPhotoUrl);
         }
 
         if (!TextUtils.isEmpty(mPhotoUrl)) {

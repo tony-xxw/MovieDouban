@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scaleType="fitXY"
-        android:src="@drawable/bg_advertisement" />
+        android:src="@drawable/ic_avatar" />
 
     <TextView
         android:id="@+id/tv_date"

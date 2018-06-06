@@ -58,9 +58,10 @@ public class WelfareFragment extends BaseFragment<WelfarePresent> implements IWe
         mAdapter = new WelfareAdapter(getActivity(), mList);
         mAdapter.setRvOnClick(this);
         mAdapter.setRvLongOnClick(this);
-        mPresent.getData();
-        setStaggeredManager();
+        setLinearManager();
         initDialog();
+        mPresent.getData();
+
 
     }
 

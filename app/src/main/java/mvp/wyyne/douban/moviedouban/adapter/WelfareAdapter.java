@@ -31,6 +31,7 @@ public class WelfareAdapter extends BaseRvAdapter<WelfarePhotoInfo> implements V
     private Context mContext;
     public static final String LINEAR = "linear";
     public static final String GRIDS = "grids";
+    public static final String STAGGERED = "staggered";
 
     private String layoutManager;
 
@@ -87,20 +88,19 @@ public class WelfareAdapter extends BaseRvAdapter<WelfarePhotoInfo> implements V
                         diskCacheStrategy(DiskCacheStrategy.ALL).
                         into(imageView);
 
+            } else {
+                initItemHeight();
+                ViewGroup.LayoutParams params = imageView.getLayoutParams();
+                params.height = mHeightList.get(position);
+                imageView.setLayoutParams(params);
+
+
+                Glide.with(mContext).
+                        load(photoUrl).
+                        thumbnail(0.7f).
+                        diskCacheStrategy(DiskCacheStrategy.ALL).
+                        into(imageView);
             }
-        } else {
-
-            initItemHeight();
-            ViewGroup.LayoutParams params = imageView.getLayoutParams();
-            params.height = mHeightList.get(position);
-            imageView.setLayoutParams(params);
-
-
-            Glide.with(mContext).
-                    load(photoUrl).
-                    thumbnail(0.7f).
-                    diskCacheStrategy(DiskCacheStrategy.ALL).
-                    into(imageView);
         }
 
 

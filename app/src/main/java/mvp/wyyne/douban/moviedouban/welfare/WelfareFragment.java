@@ -20,6 +20,8 @@ import mvp.wyyne.douban.moviedouban.api.RvItemOnClick;
 import mvp.wyyne.douban.moviedouban.api.bean.WelfarePhotoInfo;
 import mvp.wyyne.douban.moviedouban.home.base.BaseFragment;
 
+import static mvp.wyyne.douban.moviedouban.adapter.WelfareAdapter.STAGGERED;
+
 
 /**
  * @author XXW
@@ -142,6 +144,7 @@ public class WelfareFragment extends BaseFragment<WelfarePresent> implements IWe
 
     public void setStaggeredManager() {
         mStaggerManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+        mAdapter.setLayoutManager(STAGGERED);
         mStaggerManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE);
         mRvWelfare.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override

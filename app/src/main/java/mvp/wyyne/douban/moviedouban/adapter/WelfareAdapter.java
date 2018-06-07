@@ -68,13 +68,15 @@ public class WelfareAdapter extends BaseRvAdapter<WelfarePhotoInfo> implements V
             if (layoutManager.equals(LINEAR)) {
 
                 ViewGroup.LayoutParams params = imageView.getLayoutParams();
-                params.height = TransformSize.pxToDp(mContext, 150);
+                params.height = TransformSize.pxToDp(mContext, 200);
                 imageView.setLayoutParams(params);
 
                 Glide.with(mContext).
                         load(photoUrl).
-                        thumbnail(0.5f).
-                        diskCacheStrategy(DiskCacheStrategy.ALL)
+                        override(300, 300).
+                        placeholder(R.drawable.ic_image_background).
+                        skipMemoryCache(true).
+                        diskCacheStrategy(DiskCacheStrategy.RESULT)
                         .into(imageView);
 
 
@@ -85,7 +87,10 @@ public class WelfareAdapter extends BaseRvAdapter<WelfarePhotoInfo> implements V
 
                 Glide.with(mContext).
                         load(photoUrl).
-                        diskCacheStrategy(DiskCacheStrategy.ALL).
+                        override(300, 300).
+                        placeholder(R.drawable.ic_image_background).
+                        skipMemoryCache(true).
+                        diskCacheStrategy(DiskCacheStrategy.RESULT).
                         into(imageView);
 
             } else {
@@ -97,8 +102,10 @@ public class WelfareAdapter extends BaseRvAdapter<WelfarePhotoInfo> implements V
 
                 Glide.with(mContext).
                         load(photoUrl).
-                        thumbnail(0.7f).
-                        diskCacheStrategy(DiskCacheStrategy.ALL).
+                        override(300, 300).
+                        placeholder(R.drawable.ic_image_background).
+                        skipMemoryCache(true).
+                        diskCacheStrategy(DiskCacheStrategy.RESULT).
                         into(imageView);
             }
         }

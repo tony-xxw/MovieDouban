@@ -26,4 +26,9 @@
         android:textColor="@color/colorWhite"
         android:textSize="14sp"
         tools:text="测试" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_select" />
 </android.support.v7.widget.CardView>

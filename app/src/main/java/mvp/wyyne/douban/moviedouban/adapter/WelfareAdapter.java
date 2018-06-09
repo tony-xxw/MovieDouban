@@ -32,6 +32,10 @@ public class WelfareAdapter extends BaseRvAdapter<WelfarePhotoInfo> implements V
     public static final String LINEAR = "linear";
     public static final String GRIDS = "grids";
     public static final String STAGGERED = "staggered";
+    /**
+     * 多线程下载
+     */
+    private boolean isMultithread = false;
 
     private String layoutManager;
 
@@ -41,6 +45,10 @@ public class WelfareAdapter extends BaseRvAdapter<WelfarePhotoInfo> implements V
         mLoader = ImageLoader.build(context);
         mHeightList = new ArrayList<>();
 
+    }
+
+    public void setMultithread(boolean multithread) {
+        isMultithread = multithread;
     }
 
     public void setLayoutManager(String layoutManager) {

@@ -64,4 +64,5 @@
     <string name="manager_grids">GridsManager</string>
     <string name="manager_linear">LinearManager</string>
     <string name="manager_staggered">StaggeredManager</string>
+    <string name="dialog_multithreading">多线程下载</string>
 </resources>

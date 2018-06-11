@@ -13,10 +13,12 @@ import mvp.wyyne.douban.moviedouban.home.BaseObserver;
 
 public class WelfarePresent implements IWelfarePresent {
     private IWelfareMain mMain;
+    private Context mContext;
 
 
     public WelfarePresent(IWelfareMain main, Context context) {
         mMain = main;
+        mContext = context;
 
 
     }

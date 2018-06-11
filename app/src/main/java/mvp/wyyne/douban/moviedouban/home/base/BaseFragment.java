@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -65,7 +66,6 @@ public abstract class BaseFragment<T extends IPresent> extends Fragment {
         if (mRootView == null) {
             mRootView = inflater.inflate(getLayoutId(), null);
             unbinder = ButterKnife.bind(this, mRootView);
-            isNullView();
             initView();
             initSwipeRefresh();
         }
@@ -80,6 +80,13 @@ public abstract class BaseFragment<T extends IPresent> extends Fragment {
             mIsMulti = true;
             update();
         }
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        isNullView();
     }
 
 
@@ -149,6 +156,7 @@ public abstract class BaseFragment<T extends IPresent> extends Fragment {
         if (ivNullView != null) {
             //未登录
             if (!AndroidApplication.getApplication().Login()) {
+                Log.d("XXW", "未登录");
                 ivNullView.setVisibility(View.VISIBLE);
             } else {
                 ivNullView.setVisibility(View.GONE);

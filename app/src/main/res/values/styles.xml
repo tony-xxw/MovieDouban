@@ -54,14 +54,8 @@
     </style>
 
 
-    <style name="TabLayout">
-        <item name="android:textSize">15.0sp</item>
-        <item name="android:background">@color/white</item>
-        <item name="android:layout_width">fill_parent</item>
-        <item name="android:layout_height">40.0dip</item>
-
-        <item name="tabSelectedTextColor">@color/colorBlack</item>
-
+    <style name="tabLayoutStyleTextSize">
+        <item name="android:textSize">16.0sp</item>
     </style>
 
 

@@ -8,7 +8,6 @@
 
 
     <ImageView
-        android:id="@+id/background"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:scaleType="centerCrop" />
@@ -46,6 +45,8 @@
                 android:ellipsize="end"
                 android:gravity="center"
                 android:maxLines="1"
+                android:textSize="18sp"
+                android:textStyle="bold"
                 android:textColor="@color/text_white" />
 
             <TextView
@@ -54,13 +55,14 @@
                 android:layout_height="35.0dip"
                 android:layout_marginEnd="22.0dip"
                 android:layout_marginTop="20.0dip"
-                android:background="@drawable/btn_white"
+                android:background="@drawable/bg_white"
                 android:drawablePadding="8.0dip"
                 android:drawableStart="@drawable/ic_ticket_white"
                 android:gravity="center_vertical"
                 android:paddingLeft="16.0dip"
                 android:paddingRight="16.0dip"
                 android:text="@string/my_tickets"
+                android:textSize="16sp"
                 android:textColor="@color/text_white" />
         </LinearLayout>
 

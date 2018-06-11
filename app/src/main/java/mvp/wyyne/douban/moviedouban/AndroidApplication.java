@@ -74,13 +74,26 @@ public class AndroidApplication extends Application {
 
 
     /**
-     * 记录是否登陆
+     * 记录登陆状态
      */
     public void recodeLogin() {
         loginShared.edit().putString(LOGIN, LOGIN).apply();
 
     }
 
+    /**
+     * 退出登陆状态
+     */
+    public void cancelLogin() {
+        loginShared.edit().putString(LOGIN, "").apply();
+    }
+
+
+    /**
+     * 判断是否登陆
+     *
+     * @return
+     */
     public boolean Login() {
         String result = loginShared.getString(LOGIN, "");
         if (!TextUtils.isEmpty(result) && result.equals(LOGIN)) {

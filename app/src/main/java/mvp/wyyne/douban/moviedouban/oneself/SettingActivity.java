@@ -61,8 +61,19 @@ public class SettingActivity extends BaseActivity {
     }
 
 
-    @OnClick(R.id.iv_back)
-    public void onViewClicked() {
-        finish();
+    @OnClick({R.id.iv_back, R.id.btn_exit})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.iv_back:
+                finish();
+                break;
+            case R.id.btn_exit:
+                AndroidApplication.getApplication().cancelLogin();
+                finish();
+                break;
+            default:
+                break;
+        }
+
     }
 }

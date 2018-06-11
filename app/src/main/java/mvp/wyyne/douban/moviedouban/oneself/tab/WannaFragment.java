@@ -11,25 +11,21 @@ import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.home.base.BaseFragment;
 
 /**
- * 我的-影人
+ * 我的-想看
  *
  * @author XXW
  * @date 2017/7/22
  */
 
-public class CastFragment extends BaseFragment {
-
-    @BindView(R.id.tv_number_subject)
-    TextView tvNumberSubject;
+public class WannaFragment extends BaseFragment {
     @BindView(R.id.tv_filtrate)
     TextView tvFiltrate;
-    @BindView(R.id.ll_tab_content)
-    LinearLayout llTabContent;
-    @BindView(R.id.ll_cast_content)
-    LinearLayout llCastContent;
+    @BindView(R.id.ll_wanna_content)
+    LinearLayout llWannaContent;
+
 
     public static Fragment getInstance() {
-        CastFragment fragment = new CastFragment();
+        WannaFragment fragment = new WannaFragment();
         return fragment;
     }
 
@@ -46,20 +42,19 @@ public class CastFragment extends BaseFragment {
 
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_cast;
+        return R.layout.fragment_wanna;
     }
 
     @Override
     protected void initView() {
+
     }
 
     private void handleLogin() {
         if (AndroidApplication.getApplication().Login()) {
-            llCastContent.setVisibility(View.VISIBLE);
-            tvNumberSubject.setText("0位");
-            llTabContent.setVisibility(View.GONE);
+            llWannaContent.setVisibility(View.VISIBLE);
         }else {
-            llCastContent.setVisibility(View.GONE);
+            llWannaContent.setVisibility(View.GONE);
         }
     }
 

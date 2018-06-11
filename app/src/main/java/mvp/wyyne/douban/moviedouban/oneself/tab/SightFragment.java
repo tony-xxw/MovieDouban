@@ -1,7 +1,12 @@
 package mvp.wyyne.douban.moviedouban.oneself.tab;
 
 import android.support.v4.app.Fragment;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
+import butterknife.BindView;
+import mvp.wyyne.douban.moviedouban.AndroidApplication;
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.home.base.BaseFragment;
 
@@ -13,6 +18,11 @@ import mvp.wyyne.douban.moviedouban.home.base.BaseFragment;
  */
 
 public class SightFragment extends BaseFragment {
+    @BindView(R.id.tv_filtrate)
+    TextView tvFiltrate;
+    @BindView(R.id.ll_sight_content)
+    LinearLayout llSightContent;
+
 
     public static Fragment getInstance() {
         SightFragment fragment = new SightFragment();
@@ -34,4 +44,20 @@ public class SightFragment extends BaseFragment {
     protected void initView() {
 
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        handleLogin();
+    }
+
+    private void handleLogin() {
+        if (AndroidApplication.getApplication().Login()) {
+            llSightContent.setVisibility(View.VISIBLE);
+        } else {
+            llSightContent.setVisibility(View.GONE);
+        }
+    }
+
+
 }

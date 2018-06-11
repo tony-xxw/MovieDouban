@@ -4,6 +4,7 @@ package mvp.wyyne.douban.moviedouban.oneself.tab;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -53,6 +54,12 @@ public class SubjectWidthFragment extends BaseFragment {
 
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.d("XXW", "S  onPause");
+    }
+
     private void initPage() {
         SubjectTitlePageAdapter mAdapter = new SubjectTitlePageAdapter(getChildFragmentManager());
         mAdapter.setFragment(mFragments);
@@ -63,7 +70,7 @@ public class SubjectWidthFragment extends BaseFragment {
 
 
     public void initFragment() {
-        mFragments.add(LanHuFragment.getInstance());
+        mFragments.add(WannaFragment.getInstance());
         mFragments.add(SightFragment.getInstance());
         mFragments.add(ReadFragment.getInstance());
         mFragments.add(ReviewFragment.getInstance());

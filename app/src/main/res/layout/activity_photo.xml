@@ -80,7 +80,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
-                android:background="@drawable/btn_white"
+                android:background="@drawable/bg_white"
                 android:minHeight="32dp"
                 android:text="查看条目"
                 android:textColor="@color/colorWhite"

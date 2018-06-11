@@ -65,4 +65,9 @@
     <string name="manager_linear">LinearManager</string>
     <string name="manager_staggered">StaggeredManager</string>
     <string name="dialog_multithreading">多线程下载</string>
+    <string name="user_name">Wynne</string>
+    <string name="tab_number">0部</string>
+    <string name="check_all">全选</string>
+    <string name="filtrate_tab">标签筛选</string>
+    <string name="empty_hint">你还没标记相关内容</string>
 </resources>

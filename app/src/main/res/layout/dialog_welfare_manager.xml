@@ -42,14 +42,6 @@
             android:textColor="@color/set_text_color"
             android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/tv_multithreading"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:text="@string/dialog_multithreading"
-            android:textColor="@color/set_text_color"
-            android:textSize="20sp" />
 
     </LinearLayout>
 </android.support.v7.widget.CardView>

@@ -72,7 +72,7 @@ public class WelfareFragment extends BaseFragment<WelfarePresent> implements IWe
         dialogView.findViewById(R.id.tv_grids).setOnClickListener(this);
         dialogView.findViewById(R.id.tv_linear).setOnClickListener(this);
         dialogView.findViewById(R.id.tv_staggered).setOnClickListener(this);
-        dialogView.findViewById(R.id.tv_multithreading).setOnClickListener(this);
+
         alertDialog = new AlertDialog.Builder(getActivity())
                 .setView(dialogView)
                 .create();
@@ -124,9 +124,7 @@ public class WelfareFragment extends BaseFragment<WelfarePresent> implements IWe
                 setStaggeredManager();
                 alertDialog.dismiss();
                 break;
-            case R.id.tv_multithreading:
 
-                break;
             default:
                 break;
         }

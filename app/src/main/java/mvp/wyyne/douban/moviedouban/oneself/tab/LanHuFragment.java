@@ -34,4 +34,6 @@ public class LanHuFragment extends BaseFragment {
     protected void initView() {
 
     }
+
+
 }

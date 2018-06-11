@@ -6,7 +6,7 @@ import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.home.base.BaseFragment;
 
 /**
- * 我的 -再看
+ * 我的 -在看
  *
  * @author XXW
  * @date 2017/7/22

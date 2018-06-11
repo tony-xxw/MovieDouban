@@ -3,7 +3,9 @@ package mvp.wyyne.douban.moviedouban.utils;
 import android.support.v4.widget.SwipeRefreshLayout;
 
 /**
- * Created by XXW on 2017/6/12.
+ *
+ * @author XXW
+ * @date 2017/6/12
  */
 
 public class SwipeRefreshUtils {

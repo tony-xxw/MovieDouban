@@ -9,15 +9,16 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.wang.avi.AVLoadingIndicatorView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import mvp.wyyne.douban.moviedouban.AndroidApplication;
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.home.IPresent;
-import mvp.wyyne.douban.moviedouban.utils.StatusUtils;
 import mvp.wyyne.douban.moviedouban.utils.SwipeRefreshUtils;
 
 /**
@@ -34,6 +35,9 @@ public abstract class BaseFragment<T extends IPresent> extends Fragment {
     @Nullable
     @BindView(R.id.swipe_refresh)
     protected SwipeRefreshLayout mSwipeRefresh;
+    @Nullable
+    @BindView(R.id.iv_null_view)
+    protected ImageView ivNullView;
     /**
      * 缓存Fragment
      **/
@@ -46,6 +50,7 @@ public abstract class BaseFragment<T extends IPresent> extends Fragment {
 
 
     protected Activity mContentActivity;
+
 
     @Override
     public void onAttach(Context context) {
@@ -60,6 +65,7 @@ public abstract class BaseFragment<T extends IPresent> extends Fragment {
         if (mRootView == null) {
             mRootView = inflater.inflate(getLayoutId(), null);
             unbinder = ButterKnife.bind(this, mRootView);
+            isNullView();
             initView();
             initSwipeRefresh();
         }
@@ -137,5 +143,16 @@ public abstract class BaseFragment<T extends IPresent> extends Fragment {
     public void onDestroy() {
         unbinder.unbind();
         super.onDestroy();
+    }
+
+    public void isNullView() {
+        if (ivNullView != null) {
+            //未登录
+            if (!AndroidApplication.getApplication().Login()) {
+                ivNullView.setVisibility(View.VISIBLE);
+            } else {
+                ivNullView.setVisibility(View.GONE);
+            }
+        }
     }
 }

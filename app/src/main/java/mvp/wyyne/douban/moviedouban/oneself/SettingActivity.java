@@ -52,6 +52,12 @@ public class SettingActivity extends BaseActivity {
         if (AndroidApplication.getApplication().Login()) {
             mBtnExit.setVisibility(View.VISIBLE);
         }
+
+        initCache();
+    }
+
+    private void initCache() {
+
     }
 
 

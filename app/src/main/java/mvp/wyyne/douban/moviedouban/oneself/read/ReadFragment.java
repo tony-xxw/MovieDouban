@@ -1,4 +1,4 @@
-package mvp.wyyne.douban.moviedouban.oneself.tab;
+package mvp.wyyne.douban.moviedouban.oneself.read;
 
 import android.support.v4.app.Fragment;
 import android.view.View;

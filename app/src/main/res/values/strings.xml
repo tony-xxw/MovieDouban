@@ -73,4 +73,7 @@
     <string name="not_ticket">你还没有购买过电影票</string>
     <string name="ticket_advertising">在线选座,随时购买,无需排队</string>
     <string name="be_on_movie">查看上映电影</string>
+    <string name="confirm">确认</string>
+    <string name="wanna">想看</string>
+    <string name="read">看过</string>
 </resources>

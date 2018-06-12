@@ -1,4 +1,4 @@
-package mvp.wyyne.douban.moviedouban.oneself.tab;
+package mvp.wyyne.douban.moviedouban.oneself;
 
 
 import android.support.design.widget.TabLayout;
@@ -14,6 +14,11 @@ import butterknife.BindView;
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.adapter.viewpage.SubjectTitlePageAdapter;
 import mvp.wyyne.douban.moviedouban.home.base.BaseFragment;
+import mvp.wyyne.douban.moviedouban.oneself.cast.CastFragment;
+import mvp.wyyne.douban.moviedouban.oneself.read.ReadFragment;
+import mvp.wyyne.douban.moviedouban.oneself.review.ReviewFragment;
+import mvp.wyyne.douban.moviedouban.oneself.sight.SightFragment;
+import mvp.wyyne.douban.moviedouban.oneself.wanna.WannaFragment;
 
 /**
  * @author Wynne

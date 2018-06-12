@@ -40,8 +40,8 @@
 
 
         <activity
-            android:name=".home.MainActivity"
-            android:launchMode="singleTask">
+            android:name=".splash.SplashActivity"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -99,6 +99,13 @@
             android:name=".oneself.ticket.MovieTicketActivity"
             android:launchMode="singleTop" />
 
+        <activity
+            android:name=".interest.InterestActivity"
+            android:launchMode="singleTop" />
+
+        <activity
+            android:name=".home.MainActivity"
+            android:launchMode="singleTask" />
         <activity
             android:name=".welfare.WelfarePhotoActivity"
             android:launchMode="singleTop" />

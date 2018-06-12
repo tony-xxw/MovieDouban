@@ -1,4 +1,4 @@
-package mvp.wyyne.douban.moviedouban.oneself.tab;
+package mvp.wyyne.douban.moviedouban.oneself.review;
 
 import android.support.v4.app.Fragment;
 import android.view.View;
@@ -11,13 +11,13 @@ import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.home.base.BaseFragment;
 
 /**
- * 我的-影人
+ * 我的 - 影评
  *
  * @author XXW
  * @date 2017/7/22
  */
 
-public class CastFragment extends BaseFragment {
+public class ReviewFragment extends BaseFragment {
 
     @BindView(R.id.tv_number_subject)
     TextView tvNumberSubject;
@@ -25,11 +25,14 @@ public class CastFragment extends BaseFragment {
     TextView tvFiltrate;
     @BindView(R.id.ll_tab_content)
     LinearLayout llTabContent;
-    @BindView(R.id.ll_cast_content)
-    LinearLayout llCastContent;
+    @BindView(R.id.ll_review_content)
+    LinearLayout llReviewContent;
+    @BindView(R.id.tv_empty)
+    TextView tvEmpty;
+
 
     public static Fragment getInstance() {
-        CastFragment fragment = new CastFragment();
+        ReviewFragment fragment = new ReviewFragment();
         return fragment;
     }
 
@@ -37,6 +40,7 @@ public class CastFragment extends BaseFragment {
     protected void refresh() {
 
     }
+
 
     @Override
     public void onResume() {
@@ -46,20 +50,23 @@ public class CastFragment extends BaseFragment {
 
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_cast;
+        return R.layout.fragment_review;
     }
 
     @Override
     protected void initView() {
+
+
     }
 
     private void handleLogin() {
         if (AndroidApplication.getApplication().Login()) {
-            llCastContent.setVisibility(View.VISIBLE);
-            tvNumberSubject.setText("0位");
+            llReviewContent.setVisibility(View.VISIBLE);
+            tvNumberSubject.setText("0篇");
+            tvEmpty.setText("你还没有发表影评");
             llTabContent.setVisibility(View.GONE);
-        }else {
-            llCastContent.setVisibility(View.GONE);
+        } else {
+            llReviewContent.setVisibility(View.GONE);
         }
     }
 

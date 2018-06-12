@@ -12,6 +12,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import mvp.wyyne.douban.moviedouban.AndroidApplication;
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.adapter.CastAdapter;
 import mvp.wyyne.douban.moviedouban.adapter.PhotoAdapter;
@@ -27,6 +28,7 @@ import mvp.wyyne.douban.moviedouban.detail.stills.AllStillsActivity;
 import mvp.wyyne.douban.moviedouban.detail.stills.StillsActivity;
 import mvp.wyyne.douban.moviedouban.home.IPresent;
 import mvp.wyyne.douban.moviedouban.home.base.BaseFragment;
+import mvp.wyyne.douban.moviedouban.interest.InterestActivity;
 import mvp.wyyne.douban.moviedouban.login.LoginActivity;
 import mvp.wyyne.douban.moviedouban.utils.StringUtils;
 import mvp.wyyne.douban.moviedouban.widget.ExpandableTextView;
@@ -197,19 +199,34 @@ public class DetailMovieHeadFragment extends BaseFragment<IPresent> implements R
         mRvPhoto.setAdapter(mPhotosAdapter);
     }
 
-    @OnClick({R.id.btn_think_see, R.id.ll_have_seen})
+    @OnClick({R.id.btn_wanna, R.id.ll_read})
     public void onViewClick(View view) {
         switch (view.getId()) {
-            case R.id.btn_think_see:
-                Intent thinkSeeIntent = new Intent(getActivity(), LoginActivity.class);
-                startActivity(thinkSeeIntent);
+            case R.id.btn_wanna:
+                if (AndroidApplication.getApplication().Login()) {
+                    intentInterest(getActivity().getString(R.string.wanna));
+                } else {
+                    Intent thinkSeeIntent = new Intent(getActivity(), LoginActivity.class);
+                    startActivity(thinkSeeIntent);
+                }
                 break;
-            case R.id.ll_have_seen:
-                Intent haveSeenIntent = new Intent(getActivity(), LoginActivity.class);
-                startActivity(haveSeenIntent);
+            case R.id.ll_read:
+                if (AndroidApplication.getApplication().Login()) {
+                    intentInterest(getActivity().getString(R.string.read));
+                } else {
+                    Intent haveSeenIntent = new Intent(getActivity(), LoginActivity.class);
+                    startActivity(haveSeenIntent);
+                }
                 break;
             default:
                 break;
         }
+    }
+
+
+    public void intentInterest(String tag) {
+        Intent interestIntent = new Intent(getActivity(), InterestActivity.class);
+        interestIntent.putExtra(InterestActivity.TAG, tag);
+        startActivity(interestIntent);
     }
 }

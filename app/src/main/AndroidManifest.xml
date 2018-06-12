@@ -95,7 +95,9 @@
             android:name=".detail.comment.photo.PhotoCommentActivity"
             android:launchMode="singleTop" />
 
-         `
+        <activity
+            android:name=".oneself.ticket.MovieTicketActivity"
+            android:launchMode="singleTop" />
 
         <activity
             android:name=".welfare.WelfarePhotoActivity"

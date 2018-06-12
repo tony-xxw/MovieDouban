@@ -70,11 +70,7 @@
 
         <TextView
             android:id="@+id/tv_empty"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:text="@string/empty_hint"
-            android:textColor="@color/colorBlack"
-            android:textSize="14sp" />
+            style="@style/EmptyBottomTextView"
+            android:text="@string/empty_hint" />
     </LinearLayout>
 </LinearLayout>

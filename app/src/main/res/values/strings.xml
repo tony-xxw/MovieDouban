@@ -70,4 +70,7 @@
     <string name="check_all">全选</string>
     <string name="filtrate_tab">标签筛选</string>
     <string name="empty_hint">你还没标记相关内容</string>
+    <string name="not_ticket">你还没有购买过电影票</string>
+    <string name="ticket_advertising">在线选座,随时购买,无需排队</string>
+    <string name="be_on_movie">查看上映电影</string>
 </resources>

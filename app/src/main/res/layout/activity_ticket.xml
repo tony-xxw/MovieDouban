@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <include layout="@layout/default_top_layout" />
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_empty" />
+
+        <TextView
+            style="@style/EmptyBottomTextView"
+            android:text="@string/not_ticket" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="@string/ticket_advertising"
+            android:textColor="@color/colorGray_dark2"
+            android:textSize="12sp" />
+
+
+        <Button
+            android:id="@+id/btn_be_on"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:background="@drawable/bg_btn_green"
+            android:text="@string/be_on_movie"
+            android:textColor="@color/color_green"
+            android:textSize="16sp" />
+    </LinearLayout>
+</FrameLayout>

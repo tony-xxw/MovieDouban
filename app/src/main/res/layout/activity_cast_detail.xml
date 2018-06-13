@@ -14,18 +14,16 @@
         <android.support.design.widget.CollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+            app:layout_scrollFlags="scroll|enterAlways">
 
 
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+            <!--<ScrollView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content">-->
 
 
-                <include layout="@layout/activity_cast_content" />
-
-            </ScrollView>
-
+            <!--</ScrollView>-->
+            <include layout="@layout/activity_cast_content" />
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/tl_title"

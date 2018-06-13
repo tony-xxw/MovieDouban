@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <FrameLayout
         android:id="@+id/fl_avatars_bg"
@@ -19,8 +19,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="210dp"
                 android:layout_marginBottom="28dp"
-                android:layout_marginTop="68dp"
-                >
+                android:layout_marginTop="68dp">
 
 
                 <ImageView
@@ -28,13 +27,13 @@
                     android:layout_width="150dp"
                     android:layout_height="match_parent"
                     android:layout_marginStart="20dp"
-                    android:visibility="visible"/>
+                    android:visibility="visible" />
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/rv_photo"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginEnd="20dp"/>
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp" />
 
             </LinearLayout>
         </HorizontalScrollView>
@@ -43,5 +42,5 @@
     <FrameLayout
         android:id="@+id/fl_content"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content" />
 </LinearLayout>

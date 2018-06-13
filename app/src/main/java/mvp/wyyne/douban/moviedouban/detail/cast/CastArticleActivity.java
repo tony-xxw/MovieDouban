@@ -71,7 +71,7 @@ public class CastArticleActivity extends BaseActivity<ICastPresent> implements I
     private Bitmap mDrawableBitmap;
     private int boundHeight;
     private CastArticle mCastArticle;
-    private CastArticleFragment mFragment;
+    private CastDetailFragment mFragment;
     private FragmentManager mManager;
     private FragmentTransaction mTransaction;
     private List<Photos> mPhotosList;
@@ -126,7 +126,7 @@ public class CastArticleActivity extends BaseActivity<ICastPresent> implements I
         mCastArticle = article;
         mFmAdapter.setList(mCastArticle.getPhotos());
         mFmAdapter.notifyDataSetChanged();
-        mFragment = CastArticleFragment.getInstance(article);
+        mFragment = CastDetailFragment.getInstance(article);
         mManager = getSupportFragmentManager();
         mTransaction = mManager.beginTransaction();
         mTransaction.add(R.id.fl_content, mFragment);

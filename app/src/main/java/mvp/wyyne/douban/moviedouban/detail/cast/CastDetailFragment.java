@@ -21,10 +21,11 @@ import mvp.wyyne.douban.moviedouban.home.base.BaseFragment;
 import static mvp.wyyne.douban.moviedouban.utils.Constant.DETAIL_TAG;
 
 /**
- * Created by XXW on 2017/7/14.
+ * @author XXW
+ * @date 2017/7/14
  */
 
-public class CastArticleFragment extends BaseFragment implements RvItemOnClick {
+public class CastDetailFragment extends BaseFragment implements RvItemOnClick {
     public static final String TAG = "castArticleFragment.class";
     @BindView(R.id.tv_title)
     TextView mTvTitle;
@@ -39,10 +40,10 @@ public class CastArticleFragment extends BaseFragment implements RvItemOnClick {
     private LinearLayoutManager mManager;
 
 
-    public static CastArticleFragment getInstance(CastArticle castArticle) {
+    public static CastDetailFragment getInstance(CastArticle castArticle) {
         Bundle bundle = new Bundle();
         bundle.putParcelable(TAG, castArticle);
-        CastArticleFragment fragment = new CastArticleFragment();
+        CastDetailFragment fragment = new CastDetailFragment();
         fragment.setArguments(bundle);
 
         return fragment;
@@ -56,7 +57,7 @@ public class CastArticleFragment extends BaseFragment implements RvItemOnClick {
 
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_cast_content;
+        return R.layout.fragment_cast_detail;
     }
 
     @Override

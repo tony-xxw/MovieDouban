@@ -1,6 +1,8 @@
 package mvp.wyyne.douban.moviedouban.oneself.cast;
 
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -8,6 +10,8 @@ import android.widget.TextView;
 import butterknife.BindView;
 import mvp.wyyne.douban.moviedouban.AndroidApplication;
 import mvp.wyyne.douban.moviedouban.R;
+import mvp.wyyne.douban.moviedouban.adapter.MineActorAdapter;
+import mvp.wyyne.douban.moviedouban.detail.cast.ActorModel;
 import mvp.wyyne.douban.moviedouban.home.base.BaseFragment;
 
 /**
@@ -17,7 +21,7 @@ import mvp.wyyne.douban.moviedouban.home.base.BaseFragment;
  * @date 2017/7/22
  */
 
-public class CastFragment extends BaseFragment {
+public class OneselfActorFragment extends BaseFragment {
 
     @BindView(R.id.tv_number_subject)
     TextView tvNumberSubject;
@@ -27,9 +31,14 @@ public class CastFragment extends BaseFragment {
     LinearLayout llTabContent;
     @BindView(R.id.ll_cast_content)
     LinearLayout llCastContent;
+    @BindView(R.id.ll_empty)
+    LinearLayout llEmpty;
+    @BindView(R.id.rv_actor)
+    RecyclerView rvActor;
+    private MineActorAdapter mineActorAdapter;
 
     public static Fragment getInstance() {
-        CastFragment fragment = new CastFragment();
+        OneselfActorFragment fragment = new OneselfActorFragment();
         return fragment;
     }
 
@@ -42,6 +51,7 @@ public class CastFragment extends BaseFragment {
     public void onResume() {
         super.onResume();
         handleLogin();
+        initActorList();
     }
 
     @Override
@@ -51,6 +61,10 @@ public class CastFragment extends BaseFragment {
 
     @Override
     protected void initView() {
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        rvActor.setLayoutManager(layoutManager);
+        mineActorAdapter = new MineActorAdapter(getActivity(), ActorModel.getInstance().queryModelList());
+        rvActor.setAdapter(mineActorAdapter);
     }
 
     private void handleLogin() {
@@ -58,8 +72,22 @@ public class CastFragment extends BaseFragment {
             llCastContent.setVisibility(View.VISIBLE);
             tvNumberSubject.setText("0位");
             llTabContent.setVisibility(View.GONE);
-        }else {
+        } else {
             llCastContent.setVisibility(View.GONE);
+        }
+    }
+
+    /**
+     * 获取数据库数据,初始化页面
+     */
+    private void initActorList() {
+        if (ActorModel.getInstance().queryModelList().size() != 0) {
+            llEmpty.setVisibility(View.GONE);
+            tvNumberSubject.setText(ActorModel.getInstance().queryModelList().size() + "");
+
+        } else {
+            llEmpty.setVisibility(View.VISIBLE);
+            tvNumberSubject.setText("0");
         }
     }
 

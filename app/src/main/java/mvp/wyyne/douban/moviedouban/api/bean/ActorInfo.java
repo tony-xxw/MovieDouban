@@ -6,10 +6,12 @@ import android.os.Parcelable;
 import java.util.List;
 
 /**
- * Created by XXW on 2017/7/8.
+ *
+ * @author XXW
+ * @date 2017/7/8
  */
 
-public class CastArticle implements Parcelable{
+public class ActorInfo implements Parcelable{
 
     /**
      * website :
@@ -47,7 +49,7 @@ public class CastArticle implements Parcelable{
     private List<Works> works;
     private Avatars avatars;
 
-    protected CastArticle(Parcel in) {
+    protected ActorInfo(Parcel in) {
         website = in.readString();
         mobile_url = in.readString();
         name = in.readString();
@@ -66,15 +68,15 @@ public class CastArticle implements Parcelable{
         photos = in.createTypedArrayList(Photos.CREATOR);
     }
 
-    public static final Creator<CastArticle> CREATOR = new Creator<CastArticle>() {
+    public static final Creator<ActorInfo> CREATOR = new Creator<ActorInfo>() {
         @Override
-        public CastArticle createFromParcel(Parcel in) {
-            return new CastArticle(in);
+        public ActorInfo createFromParcel(Parcel in) {
+            return new ActorInfo(in);
         }
 
         @Override
-        public CastArticle[] newArray(int size) {
-            return new CastArticle[size];
+        public ActorInfo[] newArray(int size) {
+            return new ActorInfo[size];
         }
     };
 

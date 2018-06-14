@@ -5,7 +5,7 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.OnClick;
 import mvp.wyyne.douban.moviedouban.R;
-import mvp.wyyne.douban.moviedouban.api.bean.CastArticle;
+import mvp.wyyne.douban.moviedouban.api.bean.ActorInfo;
 import mvp.wyyne.douban.moviedouban.home.base.BaseActivity;
 
 /**
@@ -13,7 +13,7 @@ import mvp.wyyne.douban.moviedouban.home.base.BaseActivity;
  * @date 2017/7/13
  */
 
-public class CastDetailActivity extends BaseActivity {
+public class ActorDetailActivity extends BaseActivity {
     @BindView(R.id.tv_name)
     TextView mTvName;
     @BindView(R.id.tv_eg_name)
@@ -28,7 +28,7 @@ public class CastDetailActivity extends BaseActivity {
     TextView mTvBorn;
     @BindView(R.id.tv_summary)
     TextView mTvSummary;
-    private CastArticle mArticle;
+    private ActorInfo mArticle;
 
     @Override
     protected void refresh() {

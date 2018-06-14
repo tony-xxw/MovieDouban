@@ -14,7 +14,7 @@ import butterknife.BindView;
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.adapter.viewpage.SubjectTitlePageAdapter;
 import mvp.wyyne.douban.moviedouban.home.base.BaseFragment;
-import mvp.wyyne.douban.moviedouban.oneself.cast.CastFragment;
+import mvp.wyyne.douban.moviedouban.oneself.cast.OneselfActorFragment;
 import mvp.wyyne.douban.moviedouban.oneself.read.ReadFragment;
 import mvp.wyyne.douban.moviedouban.oneself.review.ReviewFragment;
 import mvp.wyyne.douban.moviedouban.oneself.sight.SightFragment;
@@ -79,7 +79,7 @@ public class SubjectWidthFragment extends BaseFragment {
         mFragments.add(SightFragment.getInstance());
         mFragments.add(ReadFragment.getInstance());
         mFragments.add(ReviewFragment.getInstance());
-        mFragments.add(CastFragment.getInstance());
+        mFragments.add(OneselfActorFragment.getInstance());
 
     }
 

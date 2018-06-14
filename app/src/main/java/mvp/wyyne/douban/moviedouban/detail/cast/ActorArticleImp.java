@@ -1,7 +1,7 @@
 package mvp.wyyne.douban.moviedouban.detail.cast;
 
 import mvp.wyyne.douban.moviedouban.api.RetrofitService;
-import mvp.wyyne.douban.moviedouban.api.bean.CastArticle;
+import mvp.wyyne.douban.moviedouban.api.bean.ActorInfo;
 import mvp.wyyne.douban.moviedouban.home.BaseObserver;
 
 /**
@@ -9,10 +9,10 @@ import mvp.wyyne.douban.moviedouban.home.BaseObserver;
  * @date 2017/7/7
  */
 
-public class CastArticleImp implements ICastPresent {
-    private ICastMain mMain;
+public class ActorArticleImp implements IActorPresent {
+    private IActorMain mMain;
 
-    public CastArticleImp(ICastMain main) {
+    public ActorArticleImp(IActorMain main) {
         mMain = main;
     }
 
@@ -25,9 +25,9 @@ public class CastArticleImp implements ICastPresent {
     @Override
     public void getCastInfo(String castId) {
         RetrofitService.getCastArticle(castId)
-                .subscribe(new BaseObserver<CastArticle>(mMain) {
+                .subscribe(new BaseObserver<ActorInfo>(mMain) {
                     @Override
-                    public void onSuccess(CastArticle castArticle) {
+                    public void onSuccess(ActorInfo castArticle) {
                         if (castArticle != null) {
 
                             mMain.showPage(castArticle);

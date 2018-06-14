@@ -30,7 +30,7 @@ import mvp.wyyne.douban.moviedouban.adapter.SearchHistoryAdapter;
 import mvp.wyyne.douban.moviedouban.adapter.SearchHotAdapter;
 import mvp.wyyne.douban.moviedouban.api.RvItemOnClick;
 import mvp.wyyne.douban.moviedouban.api.bean.Subjects;
-import mvp.wyyne.douban.moviedouban.api.model.SearchModelBean;
+import mvp.wyyne.douban.moviedouban.api.model.SearchModelTable;
 import mvp.wyyne.douban.moviedouban.detail.DetailMovieActivity;
 import mvp.wyyne.douban.moviedouban.home.base.BaseActivity;
 import mvp.wyyne.douban.moviedouban.utils.StatusUtils;
@@ -251,7 +251,7 @@ public class SearchMovieActivity extends BaseActivity<SearchMovieImp> implements
     }
 
     @Override
-    public void notifyHistoryRefresh(List<SearchModelBean> list) {
+    public void notifyHistoryRefresh(List<SearchModelTable> list) {
         mHistoryAdapter.setList(list);
         mHistoryAdapter.notifyDataSetChanged();
     }
@@ -273,8 +273,8 @@ public class SearchMovieActivity extends BaseActivity<SearchMovieImp> implements
      *
      * @return
      */
-    public List<SearchModelBean> collections() {
-        List<SearchModelBean> list = mPresent.getSearchBeanList();
+    public List<SearchModelTable> collections() {
+        List<SearchModelTable> list = mPresent.getSearchBeanList();
         Log.d("XXW", "collections : " + list.size());
         Collections.reverse(list);
         return list;

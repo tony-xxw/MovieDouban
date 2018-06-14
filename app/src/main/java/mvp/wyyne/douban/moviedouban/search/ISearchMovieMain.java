@@ -3,7 +3,7 @@ package mvp.wyyne.douban.moviedouban.search;
 import java.util.List;
 
 import mvp.wyyne.douban.moviedouban.api.bean.Subjects;
-import mvp.wyyne.douban.moviedouban.api.model.SearchModelBean;
+import mvp.wyyne.douban.moviedouban.api.model.SearchModelTable;
 import mvp.wyyne.douban.moviedouban.home.IMain;
 
 /**
@@ -26,7 +26,7 @@ public interface ISearchMovieMain extends IMain {
      *
      * @param list
      */
-    void notifyHistoryRefresh(List<SearchModelBean> list);
+    void notifyHistoryRefresh(List<SearchModelTable> list);
 
     /**
      * Set

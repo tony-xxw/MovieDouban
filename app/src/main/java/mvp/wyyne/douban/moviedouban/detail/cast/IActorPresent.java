@@ -7,7 +7,7 @@ import mvp.wyyne.douban.moviedouban.home.IPresent;
  * @date 2017/7/7
  */
 
-public interface ICastPresent extends IPresent {
+public interface IActorPresent extends IPresent {
     /**
      * 获取演员信息
      *

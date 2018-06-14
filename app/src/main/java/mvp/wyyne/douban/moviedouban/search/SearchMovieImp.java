@@ -12,7 +12,7 @@ import mvp.wyyne.douban.moviedouban.api.RetrofitService;
 import mvp.wyyne.douban.moviedouban.api.bean.HotBean;
 import mvp.wyyne.douban.moviedouban.api.bean.HotSearch;
 import mvp.wyyne.douban.moviedouban.api.bean.Subjects;
-import mvp.wyyne.douban.moviedouban.api.model.SearchModelBean;
+import mvp.wyyne.douban.moviedouban.api.model.SearchModelTable;
 import mvp.wyyne.douban.moviedouban.home.BaseObserver;
 
 /**
@@ -72,7 +72,7 @@ public class SearchMovieImp implements ISearchMoviePresent {
     }
 
     @Override
-    public List<SearchModelBean> getSearchBeanList() {
+    public List<SearchModelTable> getSearchBeanList() {
         return SearchModel.getInstance().queryModelList();
     }
 
@@ -82,7 +82,7 @@ public class SearchMovieImp implements ISearchMoviePresent {
     }
 
     @Override
-    public void insertSearchBean(SearchModelBean bean) {
+    public void insertSearchBean(SearchModelTable bean) {
         SearchModel.getInstance().insertModel(bean);
     }
 
@@ -92,13 +92,13 @@ public class SearchMovieImp implements ISearchMoviePresent {
     }
 
     @Override
-    public void updateSearchLast(SearchModelBean bean) {
+    public void updateSearchLast(SearchModelTable bean) {
         SearchModel.getInstance().updateModel(bean);
     }
 
     @Override
-    public SearchModelBean createSearchModelBean(String title, String id) {
-        SearchModelBean searchModelBean = new SearchModelBean();
+    public SearchModelTable createSearchModelBean(String title, String id) {
+        SearchModelTable searchModelBean = new SearchModelTable();
         searchModelBean.setMovieId(id);
         searchModelBean.setName(title);
         return searchModelBean;

@@ -5,8 +5,8 @@ import android.util.Log;
 import java.util.List;
 
 import mvp.wyyne.douban.moviedouban.AndroidApplication;
-import mvp.wyyne.douban.moviedouban.api.model.SearchModelBean;
-import mvp.wyyne.douban.moviedouban.model.SearchModelBeanDao;
+import mvp.wyyne.douban.moviedouban.api.model.SearchModelTable;
+import mvp.wyyne.douban.moviedouban.model.SearchModelTableDao;
 
 /**
  * 搜索页面Model层
@@ -17,15 +17,15 @@ import mvp.wyyne.douban.moviedouban.model.SearchModelBeanDao;
 
 public class SearchModel {
     private String TAG = SearchModel.class.getSimpleName();
-    private static SearchModel model = new SearchModel();
+    private static SearchModel mModel = new SearchModel();
 
     public static SearchModel getInstance() {
-        return model;
+        return mModel;
     }
 
 
-    public void insertModel(SearchModelBean model) {
-        SearchModelBeanDao dao = AndroidApplication.getDaoSession().getSearchModelBeanDao();
+    public void insertModel(SearchModelTable model) {
+        SearchModelTableDao dao = AndroidApplication.getDaoSession().getSearchModelTableDao();
         try {
             dao.insert(model);
         } catch (Exception e) {
@@ -34,7 +34,7 @@ public class SearchModel {
     }
 
     public void deleteModel() {
-        SearchModelBeanDao dao = AndroidApplication.getDaoSession().getSearchModelBeanDao();
+        SearchModelTableDao dao = AndroidApplication.getDaoSession().getSearchModelTableDao();
         try {
             dao.deleteAll();
         } catch (Exception e) {
@@ -42,8 +42,8 @@ public class SearchModel {
         }
     }
 
-    public void updateModel(SearchModelBean modelDao) {
-        SearchModelBeanDao dao = AndroidApplication.getDaoSession().getSearchModelBeanDao();
+    public void updateModel(SearchModelTable modelDao) {
+        SearchModelTableDao dao = AndroidApplication.getDaoSession().getSearchModelTableDao();
         if (queryModelListCount() >= 4) {
             dao.delete(queryModelList().get(0));
             dao.insert(modelDao);
@@ -51,12 +51,12 @@ public class SearchModel {
     }
 
     public int queryModelListCount() {
-        SearchModelBeanDao dao = AndroidApplication.getDaoSession().getSearchModelBeanDao();
+        SearchModelTableDao dao = AndroidApplication.getDaoSession().getSearchModelTableDao();
         return dao.queryBuilder().list().size();
     }
 
-    public List<SearchModelBean> queryModelList() {
-        SearchModelBeanDao dao = AndroidApplication.getDaoSession().getSearchModelBeanDao();
+    public List<SearchModelTable> queryModelList() {
+        SearchModelTableDao dao = AndroidApplication.getDaoSession().getSearchModelTableDao();
         return dao.queryBuilder().list();
     }
 

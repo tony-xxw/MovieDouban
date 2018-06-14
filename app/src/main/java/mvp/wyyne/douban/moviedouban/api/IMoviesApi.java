@@ -3,7 +3,7 @@ package mvp.wyyne.douban.moviedouban.api;
 
 import io.reactivex.Observable;
 import mvp.wyyne.douban.moviedouban.api.bean.Article;
-import mvp.wyyne.douban.moviedouban.api.bean.CastArticle;
+import mvp.wyyne.douban.moviedouban.api.bean.ActorInfo;
 import mvp.wyyne.douban.moviedouban.api.bean.CastPhoto;
 import mvp.wyyne.douban.moviedouban.api.bean.HotBean;
 import mvp.wyyne.douban.moviedouban.api.bean.MoviesReviews;
@@ -84,7 +84,7 @@ public interface IMoviesApi {
      * @return 影人Bean
      */
     @GET("movie/celebrity/{id}?apikey=0df993c66c0c636e29ecbb5344252a4a")
-    Observable<CastArticle> getCastArticle(@Path("id") String id);
+    Observable<ActorInfo> getCastArticle(@Path("id") String id);
 
 
     @GET("movie/search?")

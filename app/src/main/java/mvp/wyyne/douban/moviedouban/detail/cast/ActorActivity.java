@@ -13,7 +13,6 @@ import android.support.v7.graphics.Palette;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -32,19 +31,20 @@ import butterknife.OnClick;
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.adapter.PhotoFmAdapter;
 import mvp.wyyne.douban.moviedouban.api.RvItemOnClick;
-import mvp.wyyne.douban.moviedouban.api.bean.CastArticle;
+import mvp.wyyne.douban.moviedouban.api.bean.ActorInfo;
 import mvp.wyyne.douban.moviedouban.api.bean.Photos;
 import mvp.wyyne.douban.moviedouban.detail.photo.CastPhotoActivity;
 import mvp.wyyne.douban.moviedouban.detail.photo.PhotoActivity;
 import mvp.wyyne.douban.moviedouban.detail.stills.AllStillsActivity;
 import mvp.wyyne.douban.moviedouban.home.base.BaseActivity;
+import mvp.wyyne.douban.moviedouban.utils.StatusUtils;
 
 /**
  * @author XXW
  * @date 2017/6/30
  */
 
-public class CastActivity extends BaseActivity<ICastPresent> implements ICastMain,
+public class ActorActivity extends BaseActivity<IActorPresent> implements IActorMain,
         NestedScrollView.OnScrollChangeListener, RvItemOnClick {
     //影人条目Id
     public static final String CAST_ID = "cast_id";
@@ -72,8 +72,8 @@ public class CastActivity extends BaseActivity<ICastPresent> implements ICastMai
     private Palette.Swatch swatch;
     private Palette.Builder mPalette;
     private Bitmap mDrawableBitmap;
-    private CastArticle mCastArticle;
-    private CastDetailFragment mFragment;
+    private ActorInfo mCastArticle;
+    private ActorDetailFragment mFragment;
     private List<Photos> mPhotosList;
     private PhotoFmAdapter mFmAdapter;
 
@@ -94,7 +94,7 @@ public class CastActivity extends BaseActivity<ICastPresent> implements ICastMai
             id = getIntent().getStringExtra(CAST_ID);
         }
         mPhotosList = new ArrayList<>();
-        mPresent = new CastArticleImp(this);
+        mPresent = new ActorArticleImp(this);
         setSupportActionBar(mTlTitle);
         mNsvContent.setOnScrollChangeListener(this);
         //设置影人相册Rv
@@ -121,13 +121,13 @@ public class CastActivity extends BaseActivity<ICastPresent> implements ICastMai
     }
 
     @Override
-    public void showPage(CastArticle article) {
+    public void showPage(ActorInfo article) {
         mCastArticle = article;
         mPhotosList = mCastArticle.getPhotos();
         mFmAdapter.setList(mCastArticle.getPhotos());
         mFmAdapter.notifyDataSetChanged();
         if (mFragment == null) {
-            mFragment = CastDetailFragment.getInstance(article);
+            mFragment = ActorDetailFragment.getInstance(article);
         }
         FragmentManager mManager = getSupportFragmentManager();
         FragmentTransaction mTransaction = mManager.beginTransaction();
@@ -155,6 +155,7 @@ public class CastActivity extends BaseActivity<ICastPresent> implements ICastMai
                                 mFlAvatarsBg.setBackgroundColor(swatch.getRgb());
                                 mLlTitle.setBackgroundColor(Color.TRANSPARENT);
                                 mTlTitle.setBackgroundColor(swatch.getRgb());
+                                StatusUtils.setStatusColor(ActorActivity.this, swatch.getRgb(), true);
                             }
                         }
                     });

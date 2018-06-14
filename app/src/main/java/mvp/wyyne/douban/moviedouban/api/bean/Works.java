@@ -3,7 +3,9 @@ package mvp.wyyne.douban.moviedouban.api.bean;
 import java.util.List;
 
 /**
- * Created by XXW on 2017/7/8.
+ *
+ * @author XXW
+ * @date 2017/7/8
  */
 
 public class Works {

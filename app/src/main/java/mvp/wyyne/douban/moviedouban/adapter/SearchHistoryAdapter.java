@@ -7,7 +7,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import mvp.wyyne.douban.moviedouban.R;
-import mvp.wyyne.douban.moviedouban.api.model.SearchModelBean;
+import mvp.wyyne.douban.moviedouban.api.model.SearchModelTable;
 
 /**
  * 搜索记录
@@ -16,10 +16,10 @@ import mvp.wyyne.douban.moviedouban.api.model.SearchModelBean;
  * @date 2018/5/27
  */
 
-public class SearchHistoryAdapter extends BaseRvAdapter<SearchModelBean> {
+public class SearchHistoryAdapter extends BaseRvAdapter<SearchModelTable> {
     public static final String TAG = SearchHistoryAdapter.class.getSimpleName();
 
-    public SearchHistoryAdapter(Context context, List<SearchModelBean> data) {
+    public SearchHistoryAdapter(Context context, List<SearchModelTable> data) {
         super(context, data);
     }
 

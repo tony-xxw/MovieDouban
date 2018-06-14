@@ -23,4 +23,6 @@
         android:layout_gravity="center"
         android:layout_marginBottom="?android:actionBarSize"
         android:src="@drawable/ic_anonymous" />
+
+
 </FrameLayout>

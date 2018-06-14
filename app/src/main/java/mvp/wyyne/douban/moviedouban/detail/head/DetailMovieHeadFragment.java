@@ -22,7 +22,7 @@ import mvp.wyyne.douban.moviedouban.api.bean.Casts;
 import mvp.wyyne.douban.moviedouban.api.bean.Directors;
 import mvp.wyyne.douban.moviedouban.api.bean.Photos;
 import mvp.wyyne.douban.moviedouban.api.bean.Trailers;
-import mvp.wyyne.douban.moviedouban.detail.cast.CastActivity;
+import mvp.wyyne.douban.moviedouban.detail.cast.ActorActivity;
 import mvp.wyyne.douban.moviedouban.detail.photo.PhotoActivity;
 import mvp.wyyne.douban.moviedouban.detail.stills.AllStillsActivity;
 import mvp.wyyne.douban.moviedouban.detail.stills.StillsActivity;
@@ -121,8 +121,8 @@ public class DetailMovieHeadFragment extends BaseFragment<IPresent> implements R
             getActivity().startActivity(mCastFooter);
         } else if (tag.equals(CastAdapter.CAST)) {
             //跳转影人条目
-            Intent intent = new Intent(getActivity(), CastActivity.class);
-            intent.putExtra(CastActivity.CAST_ID, mCasts.get(position).getId());
+            Intent intent = new Intent(getActivity(), ActorActivity.class);
+            intent.putExtra(ActorActivity.CAST_ID, mCasts.get(position).getId());
             getActivity().startActivity(intent);
 
         }

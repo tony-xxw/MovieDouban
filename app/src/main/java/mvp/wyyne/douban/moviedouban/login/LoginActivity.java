@@ -1,9 +1,7 @@
 package mvp.wyyne.douban.moviedouban.login;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.view.View;
-
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -11,7 +9,6 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import mvp.wyyne.douban.moviedouban.AndroidApplication;
 import mvp.wyyne.douban.moviedouban.R;
-import mvp.wyyne.douban.moviedouban.home.MainActivity;
 import mvp.wyyne.douban.moviedouban.home.base.BaseActivity;
 import mvp.wyyne.douban.moviedouban.utils.StatusUtils;
 import mvp.wyyne.douban.moviedouban.utils.ToastUtils;
@@ -84,7 +81,7 @@ public class LoginActivity extends BaseActivity<ILoginImp> implements ILoginMain
     public void toMainActivity() {
         //记录等级
         AndroidApplication.getApplication().recodeLogin();
-        startActivity(new Intent(this, MainActivity.class));
+        finish();
 
     }
 

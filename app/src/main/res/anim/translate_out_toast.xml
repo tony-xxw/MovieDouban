@@ -5,11 +5,9 @@
     android:repeatCount="1"
     android:repeatMode="reverse">
 
-    <translate
-        android:fromYDelta="100"
-        android:toYDelta="0" />
 
     <alpha
-        android:fromAlpha="1.0"
-        android:toAlpha="0.0" />
+        android:duration="800"
+        android:fromAlpha="1"
+        android:toAlpha="0" />
 </set>

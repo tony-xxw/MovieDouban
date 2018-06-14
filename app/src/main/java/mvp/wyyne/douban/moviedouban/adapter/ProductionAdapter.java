@@ -12,13 +12,11 @@ import mvp.wyyne.douban.moviedouban.api.bean.Subjects;
 import mvp.wyyne.douban.moviedouban.api.bean.Works;
 
 /**
- *
  * @author XXW
  * @date 2017/7/15
  */
 
 public class ProductionAdapter extends BaseRvAdapter<Works> implements View.OnClickListener {
-    private LinearLayout mLayout;
 
     public ProductionAdapter(Context context, List<Works> data) {
         super(context, data);
@@ -30,7 +28,6 @@ public class ProductionAdapter extends BaseRvAdapter<Works> implements View.OnCl
     }
 
 
-
     @Override
     public void bindView(BaseItemViewHolder holder, int position) {
         if (mList.size() != 0) {
@@ -40,7 +37,7 @@ public class ProductionAdapter extends BaseRvAdapter<Works> implements View.OnCl
             holder.setText(R.id.tv_still_name, subjects.getTitle());
             holder.getStartView(R.id.average).setStartMark((int) subjects.getRating().getAverage());
             holder.setText(R.id.tv_star, String.valueOf(subjects.getRating().getAverage()));
-            mLayout = holder.getView(R.id.ll_onclick);
+            LinearLayout mLayout = holder.getView(R.id.ll_onclick);
             mLayout.setTag(position);
             mLayout.setOnClickListener(this);
 

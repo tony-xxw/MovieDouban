@@ -45,7 +45,6 @@ public class HotCurrentFragment extends BaseFragment<HotPresent> implements IHot
         mPresent = new HotPresent(this);
         mAdapter = new HotAdapter(getActivity(), mList);
         LinearLayoutManager manager = new LinearLayoutManager(getActivity());
-        manager.setOrientation(LinearLayoutManager.VERTICAL);
         DividerItemDecoration mItemDecoration = new DividerItemDecoration(mCurrentRv.getContext(), manager.getOrientation());
         mItemDecoration.setDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.line_gray_horizantal));
         mAdapter.setRvOnClick(this);

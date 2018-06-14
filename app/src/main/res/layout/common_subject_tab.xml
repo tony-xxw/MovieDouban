@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/color_setting_bg"
-        android:minHeight="48dp">
+        android:minHeight="42dp">
 
 
         <TextView

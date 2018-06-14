@@ -36,4 +36,24 @@ public class ActorModel {
         }
     }
 
+    public void deleteModel(Long key) {
+        ActorCollectTableDao collectTableDao = AndroidApplication.getDaoSession().getActorCollectTableDao();
+        try {
+            collectTableDao.deleteByKey(key);
+        } catch (Exception e) {
+            Log.d("XXW", "删除失败 : " + e.toString());
+        }
+    }
+
+    public boolean queryModelBean(int id) {
+        ActorCollectTableDao collectTableDao = AndroidApplication.getDaoSession().getActorCollectTableDao();
+        List<ActorCollectTable> list = collectTableDao.queryBuilder().list();
+        for (ActorCollectTable actorCollectTable : list) {
+            if (actorCollectTable.getId() == id) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

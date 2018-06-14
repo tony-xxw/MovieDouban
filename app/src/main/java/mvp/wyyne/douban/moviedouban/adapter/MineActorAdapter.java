@@ -20,14 +20,15 @@ public class MineActorAdapter extends BaseRvAdapter<ActorCollectTable> {
 
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_oneself_actor;
+        return R.layout.item_oneself_actor;
     }
 
     @Override
     public void bindView(BaseItemViewHolder holder, int position) {
         holder.setImgUrl(R.id.iv_avatar, mList.get(position).getAvatarUrl());
         holder.setText(R.id.tv_name, mList.get(position).getActorName());
-        holder.setText(R.id.tv_representative, mList.get(position).getRepresentative());
+        String representative = "代表作: " + mList.get(position).getRepresentative();
+        holder.setText(R.id.tv_representative, representative);
     }
 
     @Override

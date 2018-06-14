@@ -1,8 +1,12 @@
 package mvp.wyyne.douban.moviedouban.oneself.cast;
 
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -37,6 +41,7 @@ public class OneselfActorFragment extends BaseFragment {
     RecyclerView rvActor;
     private MineActorAdapter mineActorAdapter;
 
+
     public static Fragment getInstance() {
         OneselfActorFragment fragment = new OneselfActorFragment();
         return fragment;
@@ -50,6 +55,7 @@ public class OneselfActorFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
+        Log.d("XXW", "onResume");
         handleLogin();
         initActorList();
     }
@@ -63,7 +69,12 @@ public class OneselfActorFragment extends BaseFragment {
     protected void initView() {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         rvActor.setLayoutManager(layoutManager);
+        DividerItemDecoration itemDecoration = new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL);
+        itemDecoration.setDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.line_gray_horizantal));
+        rvActor.addItemDecoration(itemDecoration);
         mineActorAdapter = new MineActorAdapter(getActivity(), ActorModel.getInstance().queryModelList());
+        View footerView = LayoutInflater.from(getActivity()).inflate(R.layout.item_oneself_actor_footer, rvActor, false);
+        mineActorAdapter.setFooterView(footerView);
         rvActor.setAdapter(mineActorAdapter);
     }
 
@@ -83,11 +94,14 @@ public class OneselfActorFragment extends BaseFragment {
     private void initActorList() {
         if (ActorModel.getInstance().queryModelList().size() != 0) {
             llEmpty.setVisibility(View.GONE);
-            tvNumberSubject.setText(ActorModel.getInstance().queryModelList().size() + "");
+            String number = ActorModel.getInstance().queryModelList().size() + "部";
+            tvNumberSubject.setText(number);
+            mineActorAdapter.setList(ActorModel.getInstance().queryModelList());
+            mineActorAdapter.notifyDataSetChanged();
 
         } else {
             llEmpty.setVisibility(View.VISIBLE);
-            tvNumberSubject.setText("0");
+            tvNumberSubject.setText("0部");
         }
     }
 

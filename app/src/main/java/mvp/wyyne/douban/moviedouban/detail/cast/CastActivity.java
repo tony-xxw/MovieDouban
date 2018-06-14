@@ -8,6 +8,7 @@ import android.support.design.widget.AppBarLayout;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -39,12 +40,12 @@ import mvp.wyyne.douban.moviedouban.detail.stills.AllStillsActivity;
 import mvp.wyyne.douban.moviedouban.home.base.BaseActivity;
 
 /**
- *
  * @author XXW
  * @date 2017/6/30
  */
 
-public class CastArticleActivity extends BaseActivity<ICastPresent> implements ICastMain, AppBarLayout.OnOffsetChangedListener, RvItemOnClick {
+public class CastActivity extends BaseActivity<ICastPresent> implements ICastMain,
+        NestedScrollView.OnScrollChangeListener, RvItemOnClick {
     //影人条目Id
     public static final String CAST_ID = "cast_id";
     @BindView(R.id.iv_back)
@@ -65,15 +66,14 @@ public class CastArticleActivity extends BaseActivity<ICastPresent> implements I
     FrameLayout mFlAvatarsBg;
     @BindView(R.id.rv_photo)
     RecyclerView mRvPhoto;
+    @BindView(R.id.nsv_content)
+    NestedScrollView mNsvContent;
     private String id;
     private Palette.Swatch swatch;
     private Palette.Builder mPalette;
     private Bitmap mDrawableBitmap;
-    private int boundHeight;
     private CastArticle mCastArticle;
     private CastDetailFragment mFragment;
-    private FragmentManager mManager;
-    private FragmentTransaction mTransaction;
     private List<Photos> mPhotosList;
     private PhotoFmAdapter mFmAdapter;
 
@@ -92,20 +92,19 @@ public class CastArticleActivity extends BaseActivity<ICastPresent> implements I
     protected void initView() {
         if (getIntent() != null) {
             id = getIntent().getStringExtra(CAST_ID);
-            Log.d("XXW", "id-->" + id);
         }
         mPhotosList = new ArrayList<>();
         mPresent = new CastArticleImp(this);
         setSupportActionBar(mTlTitle);
-        mBarLayout.addOnOffsetChangedListener(this);
-
+        mNsvContent.setOnScrollChangeListener(this);
         //设置影人相册Rv
         mRvPhoto.setLayoutManager(new GridLayoutManager(this, 4));
+        mRvPhoto.setNestedScrollingEnabled(false);
         mFmAdapter = new PhotoFmAdapter(this, mPhotosList);
         mFmAdapter.setRvOnClick(this);
         mRvPhoto.setAdapter(mFmAdapter);
         mIvShare.setVisibility(View.VISIBLE);
-        mPresent.getCastArticle(id);
+        mPresent.getCastInfo(id);
 
 
     }
@@ -124,11 +123,14 @@ public class CastArticleActivity extends BaseActivity<ICastPresent> implements I
     @Override
     public void showPage(CastArticle article) {
         mCastArticle = article;
+        mPhotosList = mCastArticle.getPhotos();
         mFmAdapter.setList(mCastArticle.getPhotos());
         mFmAdapter.notifyDataSetChanged();
-        mFragment = CastDetailFragment.getInstance(article);
-        mManager = getSupportFragmentManager();
-        mTransaction = mManager.beginTransaction();
+        if (mFragment == null) {
+            mFragment = CastDetailFragment.getInstance(article);
+        }
+        FragmentManager mManager = getSupportFragmentManager();
+        FragmentTransaction mTransaction = mManager.beginTransaction();
         mTransaction.add(R.id.fl_content, mFragment);
         mTransaction.commit();
         setBackGroudBg(article.getAvatars().getLarge());
@@ -152,34 +154,13 @@ public class CastArticleActivity extends BaseActivity<ICastPresent> implements I
                             if (swatch != null) {
                                 mFlAvatarsBg.setBackgroundColor(swatch.getRgb());
                                 mLlTitle.setBackgroundColor(Color.TRANSPARENT);
+                                mTlTitle.setBackgroundColor(swatch.getRgb());
                             }
                         }
                     });
                 }
             }
         });
-    }
-
-
-    @Override
-    public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-        int y = Math.abs(verticalOffset);
-        if (mIvAvatar != null) {
-            boundHeight = mIvAvatar.getHeight();
-            if (y <= 0) {
-                titleHide();
-//                Log.d("XXW", "onOffsetChanged-----<0" + verticalOffset);
-                mLlTitle.setBackgroundColor(Color.argb((int) 0, 227, 29, 26));//AGB由相关工具获得，或者美工提供
-            } else if (y > 0 && y <= boundHeight) {
-//                Log.d("XXW", "onOffsetChanged----->0  <height"+"------"+verticalOffset);
-                mLlTitle.setBackgroundColor(ContextCompat.getColor(this, R.color.colorTranslucence));
-            } else {
-                titleShow();
-//                Log.d("XXW", "onOffsetChanged----->height---" + verticalOffset);
-                mLlTitle.setBackgroundColor(swatch.getRgb());
-            }
-        }
-
     }
 
 
@@ -203,13 +184,11 @@ public class CastArticleActivity extends BaseActivity<ICastPresent> implements I
     public void onItemClick(int position, String tag) {
         switch (tag) {
             case PhotoFmAdapter.ALL:
-                Log.d("XXW", "ALL");
                 Intent all = new Intent(this, AllStillsActivity.class);
                 all.putExtra(AllStillsActivity.CAST, id);
                 startActivity(all);
                 break;
             case PhotoFmAdapter.SINGLE:
-                Log.d("XXW", "SINGLE");
                 Intent intent = new Intent(this, CastPhotoActivity.class);
                 intent.putExtra(PhotoActivity.ID, id);
                 intent.putExtra(PhotoActivity.POSITION, position);
@@ -217,6 +196,24 @@ public class CastArticleActivity extends BaseActivity<ICastPresent> implements I
                 break;
             default:
                 break;
+        }
+    }
+
+    @Override
+    public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+        int y = Math.abs(scrollY);
+        if (mIvAvatar != null) {
+            int boundHeight = mIvAvatar.getHeight();
+            if (y <= 0) {
+                titleHide();
+                //AGB由相关工具获得，或者美工提供
+                mLlTitle.setBackgroundColor(Color.argb((int) 0, 227, 29, 26));
+            } else if (y > 0 && y <= boundHeight) {
+                mLlTitle.setBackgroundColor(ContextCompat.getColor(this, R.color.colorTranslucence));
+            } else {
+                titleShow();
+                mLlTitle.setBackgroundColor(swatch.getRgb());
+            }
         }
     }
 }

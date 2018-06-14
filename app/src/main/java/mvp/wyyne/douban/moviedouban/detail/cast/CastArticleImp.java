@@ -23,7 +23,7 @@ public class CastArticleImp implements ICastPresent {
     }
 
     @Override
-    public void getCastArticle(String castId) {
+    public void getCastInfo(String castId) {
         RetrofitService.getCastArticle(castId)
                 .subscribe(new BaseObserver<CastArticle>(mMain) {
                     @Override

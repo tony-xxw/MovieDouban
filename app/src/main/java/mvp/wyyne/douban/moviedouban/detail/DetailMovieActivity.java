@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
@@ -26,9 +25,6 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 
-import java.io.IOException;
-import java.net.URL;
-
 import butterknife.BindView;
 import butterknife.OnClick;
 import mvp.wyyne.douban.moviedouban.R;
@@ -36,7 +32,6 @@ import mvp.wyyne.douban.moviedouban.api.bean.Article;
 import mvp.wyyne.douban.moviedouban.detail.head.DetailMovieHeadFragment;
 import mvp.wyyne.douban.moviedouban.detail.photo.PhotoActivity;
 import mvp.wyyne.douban.moviedouban.home.base.BaseActivity;
-import mvp.wyyne.douban.moviedouban.utils.ShareUtils;
 import mvp.wyyne.douban.moviedouban.utils.StatusUtils;
 
 import static mvp.wyyne.douban.moviedouban.utils.Constant.DETAIL_TAG;

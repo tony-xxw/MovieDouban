@@ -14,16 +14,8 @@
         <android.support.design.widget.CollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_scrollFlags="scroll|enterAlways">
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-
-            <!--<ScrollView-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content">-->
-
-
-            <!--</ScrollView>-->
-            <include layout="@layout/activity_cast_content" />
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/tl_title"
@@ -37,10 +29,18 @@
                 <include layout="@layout/head_left_layout" />
             </android.support.v7.widget.Toolbar>
         </android.support.design.widget.CollapsingToolbarLayout>
-
-
     </android.support.design.widget.AppBarLayout>
 
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/nsv_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <include layout="@layout/activity_cast_content" />
+
+    </android.support.v4.widget.NestedScrollView>
 
     <com.wang.avi.AVLoadingIndicatorView
         android:id="@+id/avl_loading"

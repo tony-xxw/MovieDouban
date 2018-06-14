@@ -52,7 +52,7 @@
             android:name=".detail.DetailMovieActivity"
             android:launchMode="singleTop" />
         <activity
-            android:name=".detail.cast.CastArticleActivity"
+            android:name=".detail.cast.CastActivity"
             android:launchMode="singleTop" />
         <activity
             android:name=".detail.stills.StillsActivity"

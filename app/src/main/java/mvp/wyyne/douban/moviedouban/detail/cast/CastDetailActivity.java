@@ -9,7 +9,8 @@ import mvp.wyyne.douban.moviedouban.api.bean.CastArticle;
 import mvp.wyyne.douban.moviedouban.home.base.BaseActivity;
 
 /**
- * Created by XXW on 2017/7/13.
+ * @author XXW
+ * @date 2017/7/13
  */
 
 public class CastDetailActivity extends BaseActivity {

@@ -12,7 +12,9 @@ import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.api.bean.Photos;
 
 /**
- * Created by XXW on 2017/7/8.
+ *
+ * @author XXW
+ * @date 2017/7/8
  */
 
 public class PhotoFmAdapter extends BaseRvAdapter<Photos> {

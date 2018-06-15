@@ -176,10 +176,11 @@ public class DetailMovieHeadFragment extends BaseFragment<IPresent> implements R
         LinearLayoutManager mCastManager = new LinearLayoutManager(getActivity());
         mCastManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         mRvCasts.setLayoutManager(mCastManager);
-        mRvCasts.setAdapter(mCastAdapter);
-        mCastAdapter.setHeadView(RecycleViewUtils.addHeadView(R.layout.item_cast_head, getActivity()));
+        mCastAdapter.setHeadView(RecycleViewUtils.addHeadView(R.layout.item_actor_layout, getActivity(), mRvCasts));
         mCastAdapter.setDirectorses(directors);
         mCastAdapter.setRvOnClick(this);
+
+        mRvCasts.setAdapter(mCastAdapter);
     }
 
 
@@ -191,10 +192,10 @@ public class DetailMovieHeadFragment extends BaseFragment<IPresent> implements R
         mRvPhoto.setLayoutManager(mStillsManager);
         if (mTrailers != null && mTrailers.size() != 0) {
             mPhotosAdapter.setHeadData(mTrailers);
-            mPhotosAdapter.setHeadView(RecycleViewUtils.addHeadView(R.layout.moview_detail_stills_head, getActivity()));
+            mPhotosAdapter.setHeadView(RecycleViewUtils.addHeadView(R.layout.moview_detail_stills_head, getActivity(), mRvPhoto));
         }
         mPhotosAdapter.setFooterData(mArticle.getPhotos_count());
-        mPhotosAdapter.setFooterView(RecycleViewUtils.addHeadView(R.layout.moview_detail_stills_footer, getActivity()));
+        mPhotosAdapter.setFooterView(RecycleViewUtils.addHeadView(R.layout.moview_detail_stills_footer, getActivity(), mRvPhoto));
         mPhotosAdapter.setRvOnClick(this);
         mRvPhoto.setAdapter(mPhotosAdapter);
     }

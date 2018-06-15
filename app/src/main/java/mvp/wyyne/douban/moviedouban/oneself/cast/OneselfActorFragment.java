@@ -22,6 +22,7 @@ import mvp.wyyne.douban.moviedouban.api.model.ActorCollectTable;
 import mvp.wyyne.douban.moviedouban.detail.cast.ActorActivity;
 import mvp.wyyne.douban.moviedouban.detail.cast.ActorModel;
 import mvp.wyyne.douban.moviedouban.home.base.BaseFragment;
+import mvp.wyyne.douban.moviedouban.widget.VerticalItemDecoration;
 
 import static mvp.wyyne.douban.moviedouban.detail.cast.ActorActivity.ACTORID;
 
@@ -77,7 +78,7 @@ public class OneselfActorFragment extends BaseFragment implements RvItemOnClick 
         mList = ActorModel.getInstance().queryModelList();
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         rvActor.setLayoutManager(layoutManager);
-        DividerItemDecoration itemDecoration = new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL);
+        VerticalItemDecoration itemDecoration = new VerticalItemDecoration(getActivity(), DividerItemDecoration.VERTICAL);
         itemDecoration.setDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.line_gray_horizantal));
         rvActor.addItemDecoration(itemDecoration);
         mineActorAdapter = new MineActorAdapter(getActivity(), mList);

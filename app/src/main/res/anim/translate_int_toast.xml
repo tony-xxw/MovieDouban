@@ -5,29 +5,14 @@
     android:repeatCount="1"
     android:repeatMode="reverse">
     <translate
-        android:duration="1"
+        android:duration="100"
         android:fromXDelta="0"
         android:fromYDelta="0"
         android:toXDelta="0"
-        android:toYDelta="85" />
-    <translate
-        android:duration="350"
-        android:fillAfter="true"
-        android:fromXDelta="0"
-        android:fromYDelta="0"
-        android:interpolator="@android:anim/decelerate_interpolator"
-        android:toXDelta="0"
-        android:toYDelta="-105" />
+        android:toYDelta="120" />
+
     <alpha
         android:duration="100"
         android:fromAlpha="0"
         android:toAlpha="1" />
-    <translate
-        android:duration="80"
-        android:fillAfter="true"
-        android:fromXDelta="0"
-        android:fromYDelta="0"
-        android:startOffset="350"
-        android:toXDelta="0"
-        android:toYDelta="20" />
 </set>

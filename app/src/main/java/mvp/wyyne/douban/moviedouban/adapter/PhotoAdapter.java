@@ -85,6 +85,8 @@ public class PhotoAdapter extends BaseRvAdapter<Photos> implements View.OnClickL
             case R.id.ll_stills_footer:
                 mClick.onItemClick(getItemCount() - 1, FOOTER);
                 break;
+            default:
+                break;
         }
 
     }

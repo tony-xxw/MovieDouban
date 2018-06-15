@@ -68,7 +68,7 @@
     </style>
 
 
-    <style name="ToastStyle" parent="Base.Animation.AppCompat.Dialog">
+    <style name="ToastStyle" parent="@android:style/Animation.Toast">
         <item name="android:windowEnterAnimation">@anim/translate_int_toast</item>
         <item name="android:windowExitAnimation">@anim/translate_out_toast</item>
     </style>

@@ -103,7 +103,7 @@ public class StillsActivity extends BaseActivity implements RvItemOnClick {
         mManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRvTv.setLayoutManager(mManager);
 
-        mHeadView = RecycleViewUtils.addHeadView(R.layout.activity_stills_head, this);
+        mHeadView = RecycleViewUtils.addHeadView(R.layout.activity_stills_head, this, mRvTv);
         initHeadView();
         mTvAdapter.setHeadView(mHeadView);
         mRvTv.setAdapter(mTvAdapter);

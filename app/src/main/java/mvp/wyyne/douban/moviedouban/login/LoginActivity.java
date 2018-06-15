@@ -90,7 +90,7 @@ public class LoginActivity extends BaseActivity<ILoginImp> implements ILoginMain
         View inflater = View.inflate(this, R.layout.toast_login, null);
         TextView textView = (TextView) inflater.findViewById(R.id.tv_text);
         textView.setText(msg);
-        ToastUtils.getInstance(getApplicationContext()).makeToastSelfViewAnim(inflater, R.style.ToastStyle);
+        ToastUtils.getInstance(getApplicationContext()).makeTextAnim(inflater, R.style.ToastStyle);
 
     }
 }

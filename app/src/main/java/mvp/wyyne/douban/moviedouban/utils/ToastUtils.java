@@ -118,4 +118,42 @@ public class ToastUtils {
             toast.show();
         }
     }
+
+    public void makeTextAnim(View view, int animationID) {
+        if (toast == null) {
+            toast = new Toast(context);
+        }
+
+        toast.setView(view);
+        toast.setGravity(Gravity.TOP, 0, 100);
+
+
+        try {
+            Object mTN;
+            mTN = getField(toast, "mTN");
+            if (mTN != null) {
+                Object mParams = getField(mTN, "mParams");
+                if (mParams != null
+                        && mParams instanceof WindowManager.LayoutParams) {
+                    WindowManager.LayoutParams params = (WindowManager.LayoutParams) mParams;
+                    params.windowAnimations = animationID;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            toast.show();
+        }
+
+    }
+
+    private static Object getField(Object object, String fieldName)
+            throws NoSuchFieldException, IllegalAccessException {
+        Field field = object.getClass().getDeclaredField(fieldName);
+        if (field != null) {
+            field.setAccessible(true);
+            return field.get(object);
+        }
+        return null;
+    }
 }

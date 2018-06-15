@@ -17,7 +17,6 @@ import mvp.wyyne.douban.moviedouban.home.base.BaseFragment;
 import mvp.wyyne.douban.moviedouban.widget.RecycleViewUtils;
 
 /**
- *
  * @author XXW
  * @date 2017/6/22
  */
@@ -70,7 +69,7 @@ public class CommentFragment extends BaseFragment {
         mReviewsManager.setOrientation(LinearLayoutManager.VERTICAL);
         mReviewAdapter.setArticle(mArticle);
         mRvReview.setLayoutManager(mReviewsManager);
-        mReviewAdapter.setHeadView(RecycleViewUtils.addHeadView(R.layout.item_comment_head, getActivity()));
+        mReviewAdapter.setHeadView(RecycleViewUtils.addHeadView(R.layout.item_comment_head, getActivity(), mRvReview));
         mReviewAdapter.setFooterView(RecycleViewUtils.addFooterView(R.layout.item_comment_footer, getActivity()));
         mRvReview.setAdapter(mReviewAdapter);
         mAdapter = new CommentAdapter(getActivity(), mArticle.getPopular_comments());
@@ -78,7 +77,7 @@ public class CommentFragment extends BaseFragment {
         mManager = new LinearLayoutManager(getActivity());
         mManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRvComment.setLayoutManager(mManager);
-        mAdapter.setHeadView(RecycleViewUtils.addHeadView(R.layout.item_comment_head, getActivity()));
+        mAdapter.setHeadView(RecycleViewUtils.addHeadView(R.layout.item_comment_head, getActivity(), mRvComment));
         mAdapter.setFooterView(RecycleViewUtils.addFooterView(R.layout.item_comment_footer, getActivity()));
         mRvComment.setAdapter(mAdapter);
 

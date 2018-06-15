@@ -39,7 +39,7 @@ public class CastAdapter extends BaseRvAdapter<Casts> implements View.OnClickLis
 
     @Override
     protected int getLayoutId() {
-        return R.layout.item_cast_layout;
+        return R.layout.item_actor_layout;
     }
 
     @Override

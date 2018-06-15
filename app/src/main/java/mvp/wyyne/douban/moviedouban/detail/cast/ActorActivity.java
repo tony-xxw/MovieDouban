@@ -213,6 +213,7 @@ public class ActorActivity extends BaseActivity<IActorPresent> implements IActor
                 mLlTitle.setBackgroundColor(Color.argb((int) 0, 227, 29, 26));
             } else if (y > 0 && y <= boundHeight) {
                 mLlTitle.setBackgroundColor(ContextCompat.getColor(this, R.color.colorTranslucence));
+                titleShow();
             } else {
                 titleShow();
                 mLlTitle.setBackgroundColor(swatch.getRgb());

@@ -145,7 +145,6 @@ public class OneselfFragment extends BaseFragment<OneselfPresent>
         if (verticalOffset == 0) {
             Log.d("XXW", "展开");
             mTitleText.setVisibility(View.GONE);
-            mTitleText.setVisibility(View.GONE);
             mRlTitleLayout.setBackgroundColor(getResources().getColor(R.color.transparent));
             mIvSetting.setImageDrawable(getResources().getDrawable(R.drawable.ic_setting_white));
             StatusUtils.setStatusColor(getActivity(), getResources().getColor(R.color.color_green), false);
@@ -163,6 +162,12 @@ public class OneselfFragment extends BaseFragment<OneselfPresent>
             mIvSetting.setImageDrawable(getResources().getDrawable(R.drawable.ic_setting_black));
             mRlTitleLayout.setBackgroundColor(getResources().getColor(R.color.colorWhite));
             StatusUtils.setStatusColor(getActivity(), getResources().getColor(R.color.colorWhite), true);
+
+            if (AndroidApplication.getApplication().Login()) {
+                mTitleText.setText("Wynne");
+            } else {
+                mTitleText.setText("请登录");
+            }
         }
     }
 

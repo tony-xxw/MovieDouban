@@ -3,6 +3,7 @@ package mvp.wyyne.douban.moviedouban.utils;
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Build;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 
@@ -27,7 +28,7 @@ public class StatusUtils {
      */
     public static void setStatusBarActivity(Activity activity, boolean isOneself, int color) {
         int option;
-
+        Log.d("XXW", "color -->" + color);
         if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.LOLLIPOP && Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             //4.4设置透明状态栏
             activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);

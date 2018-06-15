@@ -46,8 +46,10 @@ import mvp.wyyne.douban.moviedouban.utils.StatusUtils;
 
 public class ActorActivity extends BaseActivity<IActorPresent> implements IActorMain,
         NestedScrollView.OnScrollChangeListener, RvItemOnClick {
-    //影人条目Id
-    public static final String CAST_ID = "cast_id";
+    /**
+     * 演员ID
+     */
+    public static final String ACTORID = "actorId";
     @BindView(R.id.iv_back)
     ImageView mIvBack;
     @BindView(R.id.tv_stills_title)
@@ -91,7 +93,7 @@ public class ActorActivity extends BaseActivity<IActorPresent> implements IActor
     @Override
     protected void initView() {
         if (getIntent() != null) {
-            id = getIntent().getStringExtra(CAST_ID);
+            id = getIntent().getStringExtra(ACTORID);
         }
         mPhotosList = new ArrayList<>();
         mPresent = new ActorArticleImp(this);

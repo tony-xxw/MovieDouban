@@ -122,7 +122,7 @@ public class DetailMovieHeadFragment extends BaseFragment<IPresent> implements R
         } else if (tag.equals(CastAdapter.CAST)) {
             //跳转影人条目
             Intent intent = new Intent(getActivity(), ActorActivity.class);
-            intent.putExtra(ActorActivity.CAST_ID, mCasts.get(position).getId());
+            intent.putExtra(ActorActivity.ACTORID, mCasts.get(position).getId());
             getActivity().startActivity(intent);
 
         }

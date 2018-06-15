@@ -142,7 +142,6 @@ public class OneselfFragment extends BaseFragment<OneselfPresent>
 
     @Override
     public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-
         if (verticalOffset == 0) {
             Log.d("XXW", "展开");
             mTitleText.setVisibility(View.GONE);
@@ -157,7 +156,6 @@ public class OneselfFragment extends BaseFragment<OneselfPresent>
             mIvMovie.setVisibility(View.GONE);
             mRlTitleLayout.setBackgroundColor(getResources().getColor(R.color.transparent));
         } else {
-
             //滑动结束
             Log.d("XXW", "折叠");
             mTitleText.setVisibility(View.VISIBLE);

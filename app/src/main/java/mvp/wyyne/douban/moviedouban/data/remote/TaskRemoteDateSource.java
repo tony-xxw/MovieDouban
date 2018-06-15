@@ -115,7 +115,7 @@ public class TaskRemoteDateSource implements TasksDataSource.TaskRemoteData {
             if (request.body() != null) {
                 request.body().writeTo(requestBuffer);
             } else {
-                Log.d("XXW", "request.body()==null");
+
             }
 
             Log.i("XXW", request.url() + (request.body() != null ? "?" + parseParams(request.body(), requestBuffer) : ""));

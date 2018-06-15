@@ -13,7 +13,7 @@
     <style name="SplashTheme" parent="AppTheme">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowContentOverlay">@null</item>
-        <item name="android:windowBackground">@drawable/ic_splash</item>
+        <item name="android:windowBackground">@color/colorWhite</item>
         <item name="android:windowFullscreen">true</item>
     </style>
 

@@ -1,6 +1,7 @@
 package mvp.wyyne.douban.moviedouban.adapter;
 
 import android.content.Context;
+import android.view.View;
 
 import java.util.List;
 
@@ -24,11 +25,17 @@ public class MineActorAdapter extends BaseRvAdapter<ActorCollectTable> {
     }
 
     @Override
-    public void bindView(BaseItemViewHolder holder, int position) {
+    public void bindView(BaseItemViewHolder holder, final int position) {
         holder.setImgUrl(R.id.iv_avatar, mList.get(position).getAvatarUrl());
         holder.setText(R.id.tv_name, mList.get(position).getActorName());
         String representative = "代表作: " + mList.get(position).getRepresentative();
         holder.setText(R.id.tv_representative, representative);
+        holder.getView(R.id.rl_item_content).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mClick.onItemClick(position, "");
+            }
+        });
     }
 
     @Override

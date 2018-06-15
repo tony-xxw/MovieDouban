@@ -8,6 +8,7 @@ import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -61,10 +62,11 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 //        startPatch();
     }
 
+
     @Override
     protected void onResume() {
         super.onResume();
-        StatusUtils.setStatusBarActivity(this, false, getResources().getColor(R.color.colorWhite));
+        StatusUtils.setStatusBarActivity(this, false, ContextCompat.getColor(this, R.color.white));
         hotFragment.llSearch.setVisibility(View.VISIBLE);
         hotFragment.llSearchMain.setVisibility(View.GONE);
         hotFragment.flSearch.setBackgroundColor(getResources().getColor(R.color.colorWhite));

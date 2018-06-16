@@ -27,7 +27,9 @@ import mvp.wyyne.douban.moviedouban.home.base.BaseActivity;
 import mvp.wyyne.douban.moviedouban.widget.RecycleViewUtils;
 
 /**
- * Created by XXW on 2017/7/2.
+ *
+ * @author XXW
+ * @date 2017/7/2
  */
 
 public class StillsActivity extends BaseActivity implements RvItemOnClick {

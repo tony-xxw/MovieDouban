@@ -15,6 +15,7 @@ import java.net.UnknownHostException;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 import mvp.wyyne.douban.moviedouban.detail.IDetailMain;
+import mvp.wyyne.douban.moviedouban.movie.IMovieMain;
 import mvp.wyyne.douban.moviedouban.search.ISearchMovieMain;
 
 /**
@@ -148,6 +149,10 @@ public abstract class BaseObserver<T> implements Observer<T> {
 
             if (mMain instanceof ISearchMovieMain) {
                 ((ISearchMovieMain) mMain).notifyResultRefresh(((ISearchMovieMain) mMain).getSubject());
+            }
+
+            if (mMain instanceof IMovieMain) {
+
             }
         } else {
             if (mMain instanceof IDetailMain) {

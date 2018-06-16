@@ -114,19 +114,22 @@ public interface IMoviesApi {
                                          @Query("count") String count);
 
     /**
-     * @return 获取本周口碑榜
+     * 获取本周口碑榜
+     * @return
      */
     @GET("movie/weekly?apikey=0df993c66c0c636e29ecbb5344252a4a")
     Observable<WeeklyMovieSubject> getWeekly();
 
     /**
-     * @return 获取热门电影
+     * 获取热门电影
+     * @return
      */
     @GET("movie/new_movies?apikey=0df993c66c0c636e29ecbb5344252a4a")
-    Observable<WeeklyMovieSubject> getNowMovies();
+    Observable<MovieSubject> getNowMovies();
 
     /**
-     * @return 获取北美票房榜
+     * 获取北美票房榜
+     * @return
      */
     @GET("movie/us_box?apikey=0df993c66c0c636e29ecbb5344252a4a")
     Observable<UcMovieSubject> getUsBox();

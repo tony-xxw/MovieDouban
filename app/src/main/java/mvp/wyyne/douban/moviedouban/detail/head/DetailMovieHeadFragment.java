@@ -129,17 +129,6 @@ public class DetailMovieHeadFragment extends BaseFragment<IPresent> implements R
     }
 
 
-    @OnClick(R.id.cv_comment)
-    public void onViewClicked() {
-        Intent intent = new Intent(getActivity(), CommentCountActivity.class);
-        Bundle bundle = new Bundle();
-        bundle.putParcelable(DATA_ARTICLE, mArticle);
-        intent.putExtra(DATA_ARTICLE, bundle);
-        startActivity(intent);
-        getActivity().overridePendingTransition(R.anim.comment_tanslate, 0);
-    }
-
-
     /**
      * @param article 电影列表数据
      */
@@ -200,7 +189,7 @@ public class DetailMovieHeadFragment extends BaseFragment<IPresent> implements R
         mRvPhoto.setAdapter(mPhotosAdapter);
     }
 
-    @OnClick({R.id.btn_wanna, R.id.ll_read})
+    @OnClick({R.id.btn_wanna, R.id.ll_read, R.id.cv_comment})
     public void onViewClick(View view) {
         switch (view.getId()) {
             case R.id.btn_wanna:
@@ -218,6 +207,14 @@ public class DetailMovieHeadFragment extends BaseFragment<IPresent> implements R
                     Intent haveSeenIntent = new Intent(getActivity(), LoginActivity.class);
                     startActivity(haveSeenIntent);
                 }
+                break;
+            case R.id.cv_comment:
+                Intent intent = new Intent(getActivity(), CommentCountActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putParcelable(DATA_ARTICLE, mArticle);
+                intent.putExtra(DATA_ARTICLE, bundle);
+                startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.comment_tanslate, 0);
                 break;
             default:
                 break;

@@ -6,18 +6,38 @@ import android.os.Parcelable;
 import java.util.List;
 
 /**
- *
  * @author Wynne
  * @date 2018/6/16
  */
 
 public class UcMovieSubject implements Parcelable {
+    public List<UsSubjects> getSubjects() {
+        return subjects;
+    }
+
+    public void setSubjects(List<UsSubjects> subjects) {
+        this.subjects = subjects;
+    }
+
     private String title;
+
 
     protected UcMovieSubject(Parcel in) {
         title = in.readString();
-        subjects = in.createTypedArrayList(Subjects.CREATOR);
+        subjects = in.createTypedArrayList(UsSubjects.CREATOR);
         date = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(title);
+        dest.writeTypedList(subjects);
+        dest.writeString(date);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     public static final Creator<UcMovieSubject> CREATOR = new Creator<UcMovieSubject>() {
@@ -40,13 +60,6 @@ public class UcMovieSubject implements Parcelable {
         this.title = title;
     }
 
-    public List<Subjects> getSubjects() {
-        return subjects;
-    }
-
-    public void setSubjects(List<Subjects> subjects) {
-        this.subjects = subjects;
-    }
 
     public String getDate() {
         return date;
@@ -56,19 +69,9 @@ public class UcMovieSubject implements Parcelable {
         this.date = date;
     }
 
-    private List<Subjects> subjects;
+    private List<UsSubjects> subjects;
 
     private String date;
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(title);
-        dest.writeTypedList(subjects);
-        dest.writeString(date);
-    }
 }

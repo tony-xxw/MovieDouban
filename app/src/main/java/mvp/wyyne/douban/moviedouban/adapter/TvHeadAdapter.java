@@ -10,7 +10,9 @@ import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.api.bean.Trailers;
 
 /**
- * Created by XXW on 2017/7/20.
+ *
+ * @author XXW
+ * @date 2017/7/20
  */
 
 public class TvHeadAdapter extends BaseRvAdapter<Trailers> implements View.OnClickListener {

@@ -4,6 +4,7 @@
     <string name="hot_hint_search">搜索电影 / 电视剧/ 影人</string>
     <string name="movie">电影</string>
     <string name="douban_grade">豆瓣评分</string>
+    <string name="douban_hot">豆瓣热门</string>
     <string name="no_data">找不到数据</string>
     <string name="china">中国大陆 :</string>
     <string name="movie_time">片长 :</string>
@@ -77,4 +78,9 @@
     <string name="wanna">想看</string>
     <string name="read">看过</string>
     <string name="representative">代表作品</string>
+    <string name="douban_top">Top250</string>
+    <string name="douban_weekly">本周口碑榜</string>
+    <string name="douban_us">北美票房榜</string>
+    <string name="all_ranking">全部排名</string>
+    <string name="look_all">查看全部</string>
 </resources>

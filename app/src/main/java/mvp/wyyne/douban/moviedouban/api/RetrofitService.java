@@ -17,13 +17,17 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 import mvp.wyyne.douban.moviedouban.AndroidApplication;
-import mvp.wyyne.douban.moviedouban.api.bean.Article;
 import mvp.wyyne.douban.moviedouban.api.bean.ActorInfo;
+import mvp.wyyne.douban.moviedouban.api.bean.Article;
 import mvp.wyyne.douban.moviedouban.api.bean.CastPhoto;
 import mvp.wyyne.douban.moviedouban.api.bean.MovieSubject;
 import mvp.wyyne.douban.moviedouban.api.bean.MoviesReviews;
 import mvp.wyyne.douban.moviedouban.api.bean.Stills;
 import mvp.wyyne.douban.moviedouban.api.bean.Subjects;
+import mvp.wyyne.douban.moviedouban.api.bean.UcMovieSubject;
+import mvp.wyyne.douban.moviedouban.api.bean.UsSubjects;
+import mvp.wyyne.douban.moviedouban.api.bean.WeeklyMovieSubject;
+import mvp.wyyne.douban.moviedouban.api.bean.WeeklySubject;
 import mvp.wyyne.douban.moviedouban.api.bean.WelfarePhotoList;
 import okhttp3.Cache;
 import okhttp3.Interceptor;
@@ -170,6 +174,43 @@ public class RetrofitService {
         return subscribeOnThread(mMoviesApi.searchMovieSubject(text, start, count));
     }
 
+    public static Observable<List<Subjects>> getTopMovie() {
+        return subscribeOnThread(mMoviesApi.getTopMovie("0", "10").map(new Function<MovieSubject, List<Subjects>>() {
+            @Override
+            public List<Subjects> apply(MovieSubject movieSubject) throws Exception {
+                return movieSubject.getSubjectsList();
+            }
+        }));
+    }
+
+    public static Observable<List<WeeklySubject>> getWeekList() {
+        return subscribeOnThread(mMoviesApi.getWeekly().map(new Function<WeeklyMovieSubject, List<WeeklySubject>>() {
+            @Override
+            public List<WeeklySubject> apply(WeeklyMovieSubject weeklyMovieSubject) throws Exception {
+                return weeklyMovieSubject.getSubjects();
+            }
+        }));
+    }
+
+    public static Observable<List<Subjects>> getNowMoviesList() {
+        return subscribeOnThread(mMoviesApi.getNowMovies().map(new Function<MovieSubject, List<Subjects>>() {
+
+            @Override
+            public List<Subjects> apply(MovieSubject hotBean) throws Exception {
+                return hotBean.getSubjectsList();
+            }
+        }));
+    }
+
+    public static Observable<List<UsSubjects>> getUsBoxList() {
+        return subscribeOnThread(mMoviesApi.getUsBox().map(new Function<UcMovieSubject, List<UsSubjects>>() {
+            @Override
+            public List<UsSubjects> apply(UcMovieSubject ucMovieSubject) throws Exception {
+                return ucMovieSubject.getSubjects();
+            }
+        }));
+    }
+
     public static Observable<CastPhoto> getCastList(String castId) {
         return subscribeOnThread(mMoviesApi.getCastPhotos(castId));
     }
@@ -181,5 +222,6 @@ public class RetrofitService {
                 .subscribeOn(AndroidSchedulers.mainThread())
                 .observeOn(AndroidSchedulers.mainThread());
     }
+
 
 }

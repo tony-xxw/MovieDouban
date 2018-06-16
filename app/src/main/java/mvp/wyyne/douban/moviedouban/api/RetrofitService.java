@@ -20,7 +20,7 @@ import mvp.wyyne.douban.moviedouban.AndroidApplication;
 import mvp.wyyne.douban.moviedouban.api.bean.Article;
 import mvp.wyyne.douban.moviedouban.api.bean.ActorInfo;
 import mvp.wyyne.douban.moviedouban.api.bean.CastPhoto;
-import mvp.wyyne.douban.moviedouban.api.bean.HotBean;
+import mvp.wyyne.douban.moviedouban.api.bean.MovieSubject;
 import mvp.wyyne.douban.moviedouban.api.bean.MoviesReviews;
 import mvp.wyyne.douban.moviedouban.api.bean.Stills;
 import mvp.wyyne.douban.moviedouban.api.bean.Subjects;
@@ -128,9 +128,9 @@ public class RetrofitService {
 
 
     public static Observable<List<Subjects>> getHotList() {
-        return subscribeOnThread(mMoviesApi.getHotList().map(new Function<HotBean, List<Subjects>>() {
+        return subscribeOnThread(mMoviesApi.getHotList().map(new Function<MovieSubject, List<Subjects>>() {
             @Override
-            public List<Subjects> apply(HotBean hotBean) throws Exception {
+            public List<Subjects> apply(MovieSubject hotBean) throws Exception {
                 return hotBean.getSubjectsList();
             }
         }));
@@ -138,9 +138,9 @@ public class RetrofitService {
 
 
     public static Observable<List<Subjects>> getFutureList() {
-        return subscribeOnThread(mMoviesApi.getFutureList().map(new Function<HotBean, List<Subjects>>() {
+        return subscribeOnThread(mMoviesApi.getFutureList().map(new Function<MovieSubject, List<Subjects>>() {
             @Override
-            public List<Subjects> apply(HotBean hotBean) throws Exception {
+            public List<Subjects> apply(MovieSubject hotBean) throws Exception {
                 return hotBean.getSubjectsList();
             }
         }));
@@ -166,7 +166,7 @@ public class RetrofitService {
         return subscribeOnThread(mMoviesApi.getCastArticle(castId));
     }
 
-    public static Observable<HotBean> searchMovieSubject(String text, String start, String count) {
+    public static Observable<MovieSubject> searchMovieSubject(String text, String start, String count) {
         return subscribeOnThread(mMoviesApi.searchMovieSubject(text, start, count));
     }
 

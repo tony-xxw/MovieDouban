@@ -94,10 +94,10 @@ public class SearchMovieActivity extends BaseActivity<SearchMovieImp> implements
     @Override
     protected void onResume() {
         super.onResume();
-        StatusUtils.setStatusBarActivity(this, false, getResources().getColor(R.color.color_green));
+        StatusUtils.setStatusBarActivity(this, false, ContextCompat.getColor(this, R.color.color_green));
         llSearch.setVisibility(View.GONE);
         llSearchMain.setVisibility(View.VISIBLE);
-        flSearch.setBackgroundColor(getResources().getColor(R.color.color_green));
+        flSearch.setBackgroundColor(ContextCompat.getColor(this, R.color.color_green));
     }
 
     @Override

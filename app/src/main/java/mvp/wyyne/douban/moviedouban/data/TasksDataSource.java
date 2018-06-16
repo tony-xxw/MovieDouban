@@ -1,7 +1,7 @@
 package mvp.wyyne.douban.moviedouban.data;
 
 import io.reactivex.Observable;
-import mvp.wyyne.douban.moviedouban.api.bean.HotBean;
+import mvp.wyyne.douban.moviedouban.api.bean.MovieSubject;
 
 /**
  * @author Wynne
@@ -21,7 +21,7 @@ public interface TasksDataSource {
          *
          * @return
          */
-        Observable<HotBean> getHotList();
+        Observable<MovieSubject> getHotList();
 
     }
 }

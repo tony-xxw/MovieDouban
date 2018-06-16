@@ -9,7 +9,7 @@ import java.util.List;
 
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.api.RetrofitService;
-import mvp.wyyne.douban.moviedouban.api.bean.HotBean;
+import mvp.wyyne.douban.moviedouban.api.bean.MovieSubject;
 import mvp.wyyne.douban.moviedouban.api.bean.HotSearch;
 import mvp.wyyne.douban.moviedouban.api.bean.Subjects;
 import mvp.wyyne.douban.moviedouban.api.model.SearchModelTable;
@@ -61,9 +61,9 @@ public class SearchMovieImp implements ISearchMoviePresent {
     @Override
     public void searchMovieSubject(String text, String start, String count) {
         RetrofitService.searchMovieSubject(text, start, count)
-                .subscribe(new BaseObserver<HotBean>(movieMain) {
+                .subscribe(new BaseObserver<MovieSubject>(movieMain) {
                     @Override
-                    public void onSuccess(HotBean response) {
+                    public void onSuccess(MovieSubject response) {
                         mSearchList = response.getSubjectsList();
                         movieMain.setSubject(mSearchList);
                         Log.d("XXW", " mSearchList   size :" + mSearchList.size());

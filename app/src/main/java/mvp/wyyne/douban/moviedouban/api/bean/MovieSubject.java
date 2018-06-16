@@ -6,12 +6,11 @@ import android.os.Parcelable;
 import java.util.List;
 
 /**
- *
  * @author XXW
  * @date 2017/6/5
  */
 
-public class HotBean implements Parcelable{
+public class MovieSubject implements Parcelable {
 
     /**
      * title : 正在上映的电影-北京
@@ -25,7 +24,7 @@ public class HotBean implements Parcelable{
     private int start;
     private int count;
 
-    protected HotBean(Parcel in) {
+    protected MovieSubject(Parcel in) {
         title = in.readString();
         total = in.readInt();
         start = in.readInt();
@@ -33,15 +32,15 @@ public class HotBean implements Parcelable{
         subjects = in.createTypedArrayList(Subjects.CREATOR);
     }
 
-    public static final Creator<HotBean> CREATOR = new Creator<HotBean>() {
+    public static final Creator<MovieSubject> CREATOR = new Creator<MovieSubject>() {
         @Override
-        public HotBean createFromParcel(Parcel in) {
-            return new HotBean(in);
+        public MovieSubject createFromParcel(Parcel in) {
+            return new MovieSubject(in);
         }
 
         @Override
-        public HotBean[] newArray(int size) {
-            return new HotBean[size];
+        public MovieSubject[] newArray(int size) {
+            return new MovieSubject[size];
         }
     };
 

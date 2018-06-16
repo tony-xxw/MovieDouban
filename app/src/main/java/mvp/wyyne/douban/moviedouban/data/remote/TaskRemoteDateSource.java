@@ -17,7 +17,7 @@ import io.reactivex.schedulers.Schedulers;
 import mvp.wyyne.douban.moviedouban.AndroidApplication;
 import mvp.wyyne.douban.moviedouban.api.IMoviesApi;
 import mvp.wyyne.douban.moviedouban.api.IWelfareApi;
-import mvp.wyyne.douban.moviedouban.api.bean.HotBean;
+import mvp.wyyne.douban.moviedouban.api.bean.MovieSubject;
 import mvp.wyyne.douban.moviedouban.data.TasksDataSource;
 import okhttp3.Cache;
 import okhttp3.Interceptor;
@@ -36,7 +36,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class TaskRemoteDateSource implements TasksDataSource.TaskRemoteData {
     @Override
-    public Observable<HotBean> getHotList() {
+    public Observable<MovieSubject> getHotList() {
         return subscribeOnThread(mMoviesApi.getHotList());
     }
 

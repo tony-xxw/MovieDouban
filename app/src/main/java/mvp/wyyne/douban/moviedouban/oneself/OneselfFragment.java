@@ -88,7 +88,7 @@ public class OneselfFragment extends BaseFragment<OneselfPresent>
     @Override
     public void onResume() {
         super.onResume();
-        StatusUtils.setStatusColor(getActivity(), getResources().getColor(R.color.color_green), false);
+        StatusUtils.setStatusTextWithColor(getActivity(), false);
         initDate();
     }
 

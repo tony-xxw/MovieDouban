@@ -1,15 +1,9 @@
 package mvp.wyyne.douban.moviedouban.hot.current;
 
 
-import android.util.Log;
-
 import java.util.List;
 
-import io.reactivex.Observer;
-import io.reactivex.annotations.NonNull;
-import io.reactivex.disposables.Disposable;
 import mvp.wyyne.douban.moviedouban.api.RetrofitService;
-import mvp.wyyne.douban.moviedouban.api.bean.HotBean;
 import mvp.wyyne.douban.moviedouban.api.bean.Subjects;
 import mvp.wyyne.douban.moviedouban.home.BaseObserver;
 

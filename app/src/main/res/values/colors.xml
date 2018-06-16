@@ -23,7 +23,7 @@
     <color name="image_color_background">#fff2f1ee</color>
     <color name="colorTranslucence">#7cdededf</color>
     <color name="colorBlackTransparency">#00292421</color>
-    <color name="color_green">#42bd56</color>
+    <color name="color_green">#ff42bd56</color>
     <color name="color_setting_bg">#f2f2f2</color>
     <color name="color_range_line">#FF4081</color>
     <color name="hint_color">#ffcccccc</color>

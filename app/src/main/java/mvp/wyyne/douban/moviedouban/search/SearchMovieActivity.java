@@ -45,7 +45,7 @@ import static mvp.wyyne.douban.moviedouban.utils.Constant.DETAIL_TAG;
  * @date 2017/6/3
  */
 
-public class SearchMovieActivity extends BaseActivity<SearchMovieImp> implements
+public class SearchMovieActivity extends BaseActivity<ISearchMoviePresent> implements
         ISearchMovieMain, RvItemOnClick, TextWatcher {
     public static final String TAG = SearchMovieActivity.class.getSimpleName();
     @BindView(R.id.ll_search)

@@ -34,28 +34,24 @@ public class Subjects implements Parcelable {
     private String subtype;
     private String year;
     private Avatars images;
-    private String alt;
-    private String id;
-
-
-    private String mainland_pubdate;
-    private boolean has_video;
-    private List<String> pubdates;
-    private List<String> durations;
-    private List<String> genres;
-    private List<Casts> casts;
-    private List<Directors> directors;
-
 
     protected Subjects(Parcel in) {
+        rating = in.readParcelable(Rating.class.getClassLoader());
         title = in.readString();
         collect_count = in.readInt();
         original_title = in.readString();
         subtype = in.readString();
         year = in.readString();
+        images = in.readParcelable(Avatars.class.getClassLoader());
         alt = in.readString();
         id = in.readString();
+        mainland_pubdate = in.readString();
+        has_video = in.readByte() != 0;
+        pubdates = in.createStringArrayList();
+        durations = in.createStringArrayList();
         genres = in.createStringArrayList();
+        casts = in.createTypedArrayList(Casts.CREATOR);
+        directors = in.createTypedArrayList(Directors.CREATOR);
     }
 
     public static final Creator<Subjects> CREATOR = new Creator<Subjects>() {
@@ -142,6 +138,38 @@ public class Subjects implements Parcelable {
         this.id = id;
     }
 
+    public String getMainland_pubdate() {
+        return mainland_pubdate;
+    }
+
+    public void setMainland_pubdate(String mainland_pubdate) {
+        this.mainland_pubdate = mainland_pubdate;
+    }
+
+    public boolean isHas_video() {
+        return has_video;
+    }
+
+    public void setHas_video(boolean has_video) {
+        this.has_video = has_video;
+    }
+
+    public List<String> getPubdates() {
+        return pubdates;
+    }
+
+    public void setPubdates(List<String> pubdates) {
+        this.pubdates = pubdates;
+    }
+
+    public List<String> getDurations() {
+        return durations;
+    }
+
+    public void setDurations(List<String> durations) {
+        this.durations = durations;
+    }
+
     public List<String> getGenres() {
         return genres;
     }
@@ -166,21 +194,18 @@ public class Subjects implements Parcelable {
         this.directors = directors;
     }
 
-    public List<String> getPubdates() {
-        return pubdates;
-    }
+    private String alt;
+    private String id;
 
-    public void setPubdates(List<String> pubdates) {
-        this.pubdates = pubdates;
-    }
 
-    public String getMainland_pubdate() {
-        return mainland_pubdate;
-    }
+    private String mainland_pubdate;
+    private boolean has_video;
+    private List<String> pubdates;
+    private List<String> durations;
+    private List<String> genres;
+    private List<Casts> casts;
+    private List<Directors> directors;
 
-    public void setMainland_pubdate(String mainland_pubdate) {
-        this.mainland_pubdate = mainland_pubdate;
-    }
 
     @Override
     public int describeContents() {
@@ -189,13 +214,21 @@ public class Subjects implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeParcelable(rating, flags);
         dest.writeString(title);
         dest.writeInt(collect_count);
         dest.writeString(original_title);
         dest.writeString(subtype);
         dest.writeString(year);
+        dest.writeParcelable(images, flags);
         dest.writeString(alt);
         dest.writeString(id);
+        dest.writeString(mainland_pubdate);
+        dest.writeByte((byte) (has_video ? 1 : 0));
+        dest.writeStringList(pubdates);
+        dest.writeStringList(durations);
         dest.writeStringList(genres);
+        dest.writeTypedList(casts);
+        dest.writeTypedList(directors);
     }
 }

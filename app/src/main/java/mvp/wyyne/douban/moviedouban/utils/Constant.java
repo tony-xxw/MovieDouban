@@ -22,5 +22,7 @@ public class Constant {
     public static final String LOGIN = "login";
     public static final String SEARCH_HISTORY = "search_history";
 
+    public static final String NOW_TAG = "now";
+
 
 }

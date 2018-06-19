@@ -17,20 +17,26 @@ import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.adapter.NowTopAdapter;
 import mvp.wyyne.douban.moviedouban.adapter.UsAdapter;
 import mvp.wyyne.douban.moviedouban.adapter.WeeklyAdapter;
+import mvp.wyyne.douban.moviedouban.api.RvItemOnClick;
 import mvp.wyyne.douban.moviedouban.api.bean.Subjects;
 import mvp.wyyne.douban.moviedouban.api.bean.UsSubjects;
 import mvp.wyyne.douban.moviedouban.api.bean.WeeklySubject;
+import mvp.wyyne.douban.moviedouban.detail.DetailMovieActivity;
 import mvp.wyyne.douban.moviedouban.home.MainActivity;
 import mvp.wyyne.douban.moviedouban.home.base.BaseFragment;
 import mvp.wyyne.douban.moviedouban.movie.hot.HotMovieActivity;
+import mvp.wyyne.douban.moviedouban.movie.weekly.WeeklyMovieActivity;
 import mvp.wyyne.douban.moviedouban.search.SearchMovieActivity;
+
+import static mvp.wyyne.douban.moviedouban.utils.Constant.DETAIL_TAG;
+import static mvp.wyyne.douban.moviedouban.utils.Constant.NOW_TAG;
 
 /**
  * @author XXW
  * @date 2017/6/2
  */
 
-public class MovieFragment extends BaseFragment<IMoviePresent> implements IMovieMain {
+public class MovieFragment extends BaseFragment<IMoviePresent> implements IMovieMain, RvItemOnClick {
     public static final String TAG = MovieFragment.class.getSimpleName();
     @BindView(R.id.tv_city)
     TextView mTvCity;
@@ -87,6 +93,8 @@ public class MovieFragment extends BaseFragment<IMoviePresent> implements IMovie
         GridLayoutManager nowManager = new GridLayoutManager(getActivity(), 3);
         GridLayoutManager topManager = new GridLayoutManager(getActivity(), 3);
         nowAdapter = new NowTopAdapter(getActivity(), nowList);
+        nowAdapter.setTag(NOW_TAG);
+        nowAdapter.setRvOnClick(this);
         rvNow.setLayoutManager(nowManager);
         rvNow.setAdapter(nowAdapter);
         topAdapter = new NowTopAdapter(getActivity(), topList);
@@ -104,7 +112,7 @@ public class MovieFragment extends BaseFragment<IMoviePresent> implements IMovie
     }
 
 
-    @OnClick({R.id.dcl_search, R.id.tv_now_all})
+    @OnClick({R.id.dcl_search, R.id.tv_now_all, R.id.tv_us, R.id.tv_weekly})
     public void onViewClick(View view) {
         switch (view.getId()) {
             case R.id.dcl_search:
@@ -115,6 +123,10 @@ public class MovieFragment extends BaseFragment<IMoviePresent> implements IMovie
             case R.id.tv_now_all:
                 Intent hotMovie = new Intent(getActivity(), HotMovieActivity.class);
                 startActivity(hotMovie);
+                break;
+            case R.id.tv_weekly:
+                Intent weeklyMovie = new Intent(getActivity(), WeeklyMovieActivity.class);
+                startActivity(weeklyMovie);
                 break;
             default:
                 break;
@@ -192,4 +204,16 @@ public class MovieFragment extends BaseFragment<IMoviePresent> implements IMovie
     }
 
 
+    @Override
+    public void onItemClick(int position, String tag) {
+        switch (tag) {
+            case NOW_TAG:
+                Intent nowIntent = new Intent(getActivity(), DetailMovieActivity.class);
+                nowIntent.putExtra(DETAIL_TAG, nowList.get(position).getId());
+                startActivity(nowIntent);
+                break;
+            default:
+                break;
+        }
+    }
 }

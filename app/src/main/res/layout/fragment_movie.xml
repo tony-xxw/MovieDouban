@@ -123,7 +123,7 @@
                     android:layout_marginTop="10dp"
                     android:padding="10dp"
                     android:text="@string/look_all"
-                    android:textSize="14sp" />
+                    android:textSize="16sp" />
             </LinearLayout>
         </LinearLayout>
 

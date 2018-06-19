@@ -109,6 +109,10 @@
         <activity
             android:name=".welfare.WelfarePhotoActivity"
             android:launchMode="singleTop" />
+
+        <activity
+            android:name=".movie.hot.HotMovieActivity"
+            android:launchMode="singleTop" />
     </application>
 
 </manifest>

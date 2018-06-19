@@ -20,7 +20,9 @@ import mvp.wyyne.douban.moviedouban.adapter.WeeklyAdapter;
 import mvp.wyyne.douban.moviedouban.api.bean.Subjects;
 import mvp.wyyne.douban.moviedouban.api.bean.UsSubjects;
 import mvp.wyyne.douban.moviedouban.api.bean.WeeklySubject;
+import mvp.wyyne.douban.moviedouban.home.MainActivity;
 import mvp.wyyne.douban.moviedouban.home.base.BaseFragment;
+import mvp.wyyne.douban.moviedouban.movie.hot.HotMovieActivity;
 import mvp.wyyne.douban.moviedouban.search.SearchMovieActivity;
 
 /**
@@ -54,6 +56,7 @@ public class MovieFragment extends BaseFragment<IMoviePresent> implements IMovie
     private List<Subjects> topList;
     private List<WeeklySubject> weeklyList;
     private List<UsSubjects> usList;
+    private ArrayList<Subjects> mList;
 
     public static MovieFragment getInstance() {
         return new MovieFragment();
@@ -71,6 +74,8 @@ public class MovieFragment extends BaseFragment<IMoviePresent> implements IMovie
 
     @Override
     protected void initView() {
+
+        mList = ((MainActivity) getActivity()).getSubjects();
         mTvCity.setVisibility(View.GONE);
         mPresent = new MovieFragmentImp(this);
 
@@ -99,11 +104,17 @@ public class MovieFragment extends BaseFragment<IMoviePresent> implements IMovie
     }
 
 
-    @OnClick({R.id.dcl_search})
+    @OnClick({R.id.dcl_search, R.id.tv_now_all})
     public void onViewClick(View view) {
         switch (view.getId()) {
             case R.id.dcl_search:
-                startActivity(new Intent(getActivity(), SearchMovieActivity.class));
+                Intent searchMovie = new Intent(getActivity(), SearchMovieActivity.class);
+                searchMovie.putParcelableArrayListExtra(SearchMovieActivity.TAG, mList);
+                startActivity(searchMovie);
+                break;
+            case R.id.tv_now_all:
+                Intent hotMovie = new Intent(getActivity(), HotMovieActivity.class);
+                startActivity(hotMovie);
                 break;
             default:
                 break;
@@ -112,12 +123,14 @@ public class MovieFragment extends BaseFragment<IMoviePresent> implements IMovie
 
     @Override
     public void show() {
+        mLoadingView.show();
 
     }
 
     @Override
     public void hide() {
-
+        mLlMovie.setVisibility(View.VISIBLE);
+        mLoadingView.hide();
     }
 
 
@@ -139,10 +152,12 @@ public class MovieFragment extends BaseFragment<IMoviePresent> implements IMovie
     @Override
     public void notifyNowRefresh(List<Subjects> list) {
         nowList = list;
-        if (nowList.size() > 6) {
-            nowList = nowList.subList(0, 6);
+        String all = "全部" + nowList.size() + "+";
+        tvNowAll.setText(all);
+        if (list.size() > 6) {
+            list = list.subList(0, 6);
         }
-        nowAdapter.setList(nowList);
+        nowAdapter.setList(list);
         nowAdapter.notifyDataSetChanged();
     }
 

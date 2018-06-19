@@ -98,12 +98,12 @@ public class HotFutureFragment extends BaseFragment<HotPresent> implements IHotM
 
     @Override
     public void show() {
-        mLodingView.show();
+        mLoadingView.show();
     }
 
     @Override
     public void hide() {
-        mLodingView.hide();
+        mLoadingView.hide();
         mSwipeRefresh.setRefreshing(false);
     }
 

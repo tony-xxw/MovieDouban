@@ -20,11 +20,10 @@ public class Directors implements Parcelable{
 
     private String alt;
     private Avatars avatars;
-    private String name;
-    private String id;
 
     protected Directors(Parcel in) {
         alt = in.readString();
+        avatars = in.readParcelable(Avatars.class.getClassLoader());
         name = in.readString();
         id = in.readString();
     }
@@ -73,6 +72,10 @@ public class Directors implements Parcelable{
         this.id = id;
     }
 
+    private String name;
+    private String id;
+
+
     @Override
     public int describeContents() {
         return 0;
@@ -81,6 +84,7 @@ public class Directors implements Parcelable{
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(alt);
+        dest.writeParcelable(avatars, flags);
         dest.writeString(name);
         dest.writeString(id);
     }

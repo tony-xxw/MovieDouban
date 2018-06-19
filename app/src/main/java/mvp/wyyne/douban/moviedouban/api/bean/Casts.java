@@ -4,7 +4,9 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 /**
- * Created by XXW on 2017/6/5.
+ *
+ * @author XXW
+ * @date 2017/6/5
  */
 
 public class Casts implements Parcelable{
@@ -17,15 +19,13 @@ public class Casts implements Parcelable{
      */
 
     private String alt;
-    private Avatars avatars;
-    private String name;
-    private String id;
-    private String name_en;
 
     protected Casts(Parcel in) {
         alt = in.readString();
+        avatars = in.readParcelable(Avatars.class.getClassLoader());
         name = in.readString();
         id = in.readString();
+        name_en = in.readString();
     }
 
     public static final Creator<Casts> CREATOR = new Creator<Casts>() {
@@ -80,6 +80,11 @@ public class Casts implements Parcelable{
         this.name_en = name_en;
     }
 
+    private Avatars avatars;
+    private String name;
+    private String id;
+    private String name_en;
+
     @Override
     public int describeContents() {
         return 0;
@@ -88,7 +93,9 @@ public class Casts implements Parcelable{
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(alt);
+        dest.writeParcelable(avatars, flags);
         dest.writeString(name);
         dest.writeString(id);
+        dest.writeString(name_en);
     }
 }

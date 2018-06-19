@@ -9,7 +9,9 @@ import mvp.wyyne.douban.moviedouban.api.bean.Subjects;
 import mvp.wyyne.douban.moviedouban.api.bean.UsSubjects;
 
 /**
- * Created by Wynne on 2018/6/16.
+ *
+ * @author Wynne
+ * @date 2018/6/16
  */
 
 public class UsAdapter extends BaseRvAdapter<UsSubjects> {
@@ -31,7 +33,7 @@ public class UsAdapter extends BaseRvAdapter<UsSubjects> {
         String average = (int) subjects.getRating().getAverage() + "";
         holder.getStartView(R.id.average).setStartMark((int) subjects.getRating().getAverage());
         holder.setText(R.id.tv_average_count, average);
-        holder.setText(R.id.tv_detail_num, subjects.getCollect_count() + "");
+        holder.setText(R.id.tv_detail_num, subjects.getCollect_count() + "人评价");
     }
 
     @Override

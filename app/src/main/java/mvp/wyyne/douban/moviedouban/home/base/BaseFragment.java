@@ -32,7 +32,7 @@ import mvp.wyyne.douban.moviedouban.utils.SwipeRefreshUtils;
 public abstract class BaseFragment<T extends IPresent> extends Fragment {
     @Nullable
     @BindView(R.id.avl_loading)
-    protected AVLoadingIndicatorView mLodingView;
+    protected AVLoadingIndicatorView mLoadingView;
     @Nullable
     @BindView(R.id.swipe_refresh)
     protected SwipeRefreshLayout mSwipeRefresh;

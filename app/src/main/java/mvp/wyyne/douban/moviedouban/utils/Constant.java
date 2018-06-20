@@ -24,5 +24,10 @@ public class Constant {
 
     public static final String NOW_TAG = "now";
 
+    /**
+     * 想看TAG
+     */
+    public static final String WANNA = "wanna";
+
 
 }

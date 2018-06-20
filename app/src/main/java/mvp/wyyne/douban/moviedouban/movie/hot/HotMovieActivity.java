@@ -9,19 +9,15 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.adapter.HotMovieAdapter;
-import mvp.wyyne.douban.moviedouban.api.RetrofitService;
 import mvp.wyyne.douban.moviedouban.api.RvItemOnClick;
 import mvp.wyyne.douban.moviedouban.api.bean.Subjects;
 import mvp.wyyne.douban.moviedouban.detail.DetailMovieActivity;
-import mvp.wyyne.douban.moviedouban.home.BaseObserver;
-import mvp.wyyne.douban.moviedouban.home.IMain;
 import mvp.wyyne.douban.moviedouban.home.base.BaseActivity;
 import mvp.wyyne.douban.moviedouban.utils.StatusUtils;
 
@@ -34,7 +30,7 @@ import static mvp.wyyne.douban.moviedouban.utils.Constant.DETAIL_TAG;
  * @date 2018/6/19
  */
 
-public class HotMovieActivity extends BaseActivity implements IMain, RvItemOnClick {
+public class HotMovieActivity extends BaseActivity implements RvItemOnClick {
     public static final String TAG = HotMovieActivity.class.getSimpleName();
     @BindView(R.id.rv_hot)
     RecyclerView rvHot;
@@ -57,7 +53,9 @@ public class HotMovieActivity extends BaseActivity implements IMain, RvItemOnCli
 
     @Override
     protected void initView() {
-        mList = new ArrayList<>();
+        if (getIntent().getParcelableArrayListExtra(TAG) != null) {
+            mList = getIntent().getParcelableArrayListExtra(TAG);
+        }
         tvStillsTitle.setText("豆瓣热门");
         ivShare.setVisibility(View.VISIBLE);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
@@ -66,18 +64,6 @@ public class HotMovieActivity extends BaseActivity implements IMain, RvItemOnCli
         movieAdapter = new HotMovieAdapter(this, mList);
         movieAdapter.setRvOnClick(this);
         rvHot.setAdapter(movieAdapter);
-        getDateList();
-    }
-
-    public void getDateList() {
-        RetrofitService.getNowMoviesList().subscribe(new BaseObserver<List<Subjects>>(this) {
-            @Override
-            public void onSuccess(List<Subjects> response) {
-                mList = response;
-                movieAdapter.setList(mList);
-                movieAdapter.notifyDataSetChanged();
-            }
-        });
     }
 
 
@@ -85,17 +71,6 @@ public class HotMovieActivity extends BaseActivity implements IMain, RvItemOnCli
     protected void onResume() {
         super.onResume();
         StatusUtils.setStatusBarActivity(this, false, ContextCompat.getColor(this, R.color.white));
-    }
-
-    @Override
-    public void show() {
-        mLoadingView.show();
-    }
-
-    @Override
-    public void hide() {
-        mLoadingView.hide();
-        rvHot.setVisibility(View.VISIBLE);
     }
 
 

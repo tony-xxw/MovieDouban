@@ -1,4 +1,4 @@
-package mvp.wyyne.douban.moviedouban.movie.weekly;
+package mvp.wyyne.douban.moviedouban.movie.us;
 
 import android.content.Intent;
 import android.support.v7.widget.DividerItemDecoration;
@@ -11,28 +11,26 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 import mvp.wyyne.douban.moviedouban.R;
-import mvp.wyyne.douban.moviedouban.adapter.WeeklyMovieAdapter;
+import mvp.wyyne.douban.moviedouban.adapter.UsMovieAdapter;
 import mvp.wyyne.douban.moviedouban.api.RvItemOnClick;
-import mvp.wyyne.douban.moviedouban.api.bean.WeeklySubject;
+import mvp.wyyne.douban.moviedouban.api.bean.UsSubjects;
 import mvp.wyyne.douban.moviedouban.detail.DetailMovieActivity;
-import mvp.wyyne.douban.moviedouban.home.IMain;
 import mvp.wyyne.douban.moviedouban.home.base.BaseActivity;
 
 import static mvp.wyyne.douban.moviedouban.utils.Constant.DETAIL_TAG;
 
 /**
  * @author Wynne
- * @date 2018/6/19
+ * @date 2018/6/20
  */
 
-public class WeeklyMovieActivity extends BaseActivity implements IMain, RvItemOnClick {
-    public static final String TAG = WeeklyMovieActivity.class.getSimpleName();
+public class UsMovieActivity extends BaseActivity implements RvItemOnClick {
+    public static final String TAG = UsMovieActivity.class.getSimpleName();
     @BindView(R.id.tv_stills_title)
     TextView tvStillsTitle;
-    @BindView(R.id.rv_weekly)
-    RecyclerView rvWeekly;
-    private List<WeeklySubject> mList;
-
+    @BindView(R.id.rv_us)
+    RecyclerView rvUs;
+    private List<UsSubjects> mList;
 
     @Override
     protected void refresh() {
@@ -41,35 +39,25 @@ public class WeeklyMovieActivity extends BaseActivity implements IMain, RvItemOn
 
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_weekly_movie;
+        return R.layout.activity_us_movie;
     }
 
     @Override
     protected void initView() {
-        tvStillsTitle.setText("本周口碑榜");
+        tvStillsTitle.setText("北美票房榜");
+
         if (getIntent().getParcelableArrayListExtra(TAG) != null) {
             mList = getIntent().getParcelableArrayListExtra(TAG);
         }
 
 
-        WeeklyMovieAdapter adapter = new WeeklyMovieAdapter(this, mList);
+        UsMovieAdapter adapter = new UsMovieAdapter(this, mList);
         adapter.setRvOnClick(this);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        rvWeekly.setLayoutManager(layoutManager);
+        rvUs.setLayoutManager(layoutManager);
         DividerItemDecoration decoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
-        rvWeekly.addItemDecoration(decoration);
-        rvWeekly.setAdapter(adapter);
-
-    }
-
-    @Override
-    public void show() {
-
-    }
-
-    @Override
-    public void hide() {
-
+        rvUs.addItemDecoration(decoration);
+        rvUs.setAdapter(adapter);
     }
 
 

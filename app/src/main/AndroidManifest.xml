@@ -117,6 +117,14 @@
         <activity
             android:name=".movie.weekly.WeeklyMovieActivity"
             android:launchMode="singleTop" />
+
+        <activity
+            android:name=".movie.top.TopActivity"
+            android:launchMode="singleTop" />
+
+        <activity
+            android:name=".movie.us.UsMovieActivity"
+            android:launchMode="singleTop" />
     </application>
 
 </manifest>

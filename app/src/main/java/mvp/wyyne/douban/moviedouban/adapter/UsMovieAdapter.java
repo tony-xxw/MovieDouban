@@ -7,15 +7,14 @@ import java.util.List;
 
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.api.bean.Subjects;
-import mvp.wyyne.douban.moviedouban.api.bean.WeeklySubject;
+import mvp.wyyne.douban.moviedouban.api.bean.UsSubjects;
 
 /**
- * @author Wynne
- * @date 2018/6/19
+ * Created by Wynne on 2018/6/20.
  */
 
-public class WeeklyMovieAdapter extends BaseRvAdapter<WeeklySubject> {
-    public WeeklyMovieAdapter(Context context, List<WeeklySubject> data) {
+public class UsMovieAdapter extends BaseRvAdapter<UsSubjects> {
+    public UsMovieAdapter(Context context, List<UsSubjects> data) {
         super(context, data);
     }
 
@@ -26,7 +25,7 @@ public class WeeklyMovieAdapter extends BaseRvAdapter<WeeklySubject> {
 
     @Override
     public void bindView(BaseItemViewHolder holder, final int position) {
-        holder.setText(R.id.tv_number, mList.get(position).getRank());
+        holder.setText(R.id.tv_number, mList.get(position).getRank() + "");
         Subjects subjects = mList.get(position).getSubject();
         holder.setText(R.id.tv_title, subjects.getTitle());
         holder.setImgUrl(R.id.iv_avatar, subjects.getImages().getMedium());

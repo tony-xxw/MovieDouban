@@ -33,4 +33,5 @@
     <color name="dou_ban_green">#ff42bd56</color>
     <color name="tab_unselected_text_color">#ff9b9b9b</color>
     <color name="set_text_color">#FF212121</color>
+    <color name="colorRed">#cf1d1d</color>
 </resources>

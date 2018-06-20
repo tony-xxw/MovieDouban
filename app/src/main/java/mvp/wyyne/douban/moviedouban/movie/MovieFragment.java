@@ -13,6 +13,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import mvp.wyyne.douban.moviedouban.AndroidApplication;
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.adapter.NowTopAdapter;
 import mvp.wyyne.douban.moviedouban.adapter.UsAdapter;
@@ -21,15 +22,19 @@ import mvp.wyyne.douban.moviedouban.api.RvItemOnClick;
 import mvp.wyyne.douban.moviedouban.api.bean.Subjects;
 import mvp.wyyne.douban.moviedouban.api.bean.UsSubjects;
 import mvp.wyyne.douban.moviedouban.api.bean.WeeklySubject;
+import mvp.wyyne.douban.moviedouban.api.model.WannaTable;
 import mvp.wyyne.douban.moviedouban.detail.DetailMovieActivity;
 import mvp.wyyne.douban.moviedouban.home.MainActivity;
 import mvp.wyyne.douban.moviedouban.home.base.BaseFragment;
+import mvp.wyyne.douban.moviedouban.login.LoginActivity;
 import mvp.wyyne.douban.moviedouban.movie.hot.HotMovieActivity;
+import mvp.wyyne.douban.moviedouban.movie.us.UsMovieActivity;
 import mvp.wyyne.douban.moviedouban.movie.weekly.WeeklyMovieActivity;
 import mvp.wyyne.douban.moviedouban.search.SearchMovieActivity;
 
 import static mvp.wyyne.douban.moviedouban.utils.Constant.DETAIL_TAG;
 import static mvp.wyyne.douban.moviedouban.utils.Constant.NOW_TAG;
+import static mvp.wyyne.douban.moviedouban.utils.Constant.WANNA;
 
 /**
  * @author XXW
@@ -63,6 +68,9 @@ public class MovieFragment extends BaseFragment<IMoviePresent> implements IMovie
     private List<WeeklySubject> weeklyList;
     private List<UsSubjects> usList;
     private ArrayList<Subjects> mList;
+    private ArrayList<Subjects> mNowList;
+    private ArrayList<WeeklySubject> mWeeklyList;
+    private ArrayList<UsSubjects> mUsList;
 
     public static MovieFragment getInstance() {
         return new MovieFragment();
@@ -80,12 +88,8 @@ public class MovieFragment extends BaseFragment<IMoviePresent> implements IMovie
 
     @Override
     protected void initView() {
-
-        mList = ((MainActivity) getActivity()).getSubjects();
         mTvCity.setVisibility(View.GONE);
         mPresent = new MovieFragmentImp(this);
-
-
         initList();
 
         LinearLayoutManager weeklyManager = new LinearLayoutManager(getActivity());
@@ -121,12 +125,22 @@ public class MovieFragment extends BaseFragment<IMoviePresent> implements IMovie
                 startActivity(searchMovie);
                 break;
             case R.id.tv_now_all:
+                mNowList.addAll(nowList);
                 Intent hotMovie = new Intent(getActivity(), HotMovieActivity.class);
+                hotMovie.putParcelableArrayListExtra(HotMovieActivity.TAG, mNowList);
                 startActivity(hotMovie);
                 break;
             case R.id.tv_weekly:
+                mWeeklyList.addAll(weeklyList);
                 Intent weeklyMovie = new Intent(getActivity(), WeeklyMovieActivity.class);
+                weeklyMovie.putParcelableArrayListExtra(WeeklyMovieActivity.TAG, mWeeklyList);
                 startActivity(weeklyMovie);
+                break;
+            case R.id.tv_us:
+                mUsList.addAll(usList);
+                Intent usMovie = new Intent(getActivity(), UsMovieActivity.class);
+                usMovie.putParcelableArrayListExtra(UsMovieActivity.TAG, mUsList);
+                startActivity(usMovie);
                 break;
             default:
                 break;
@@ -154,6 +168,11 @@ public class MovieFragment extends BaseFragment<IMoviePresent> implements IMovie
     }
 
     private void initList() {
+
+        mList = ((MainActivity) getActivity()).getSubjects();
+        mNowList = new ArrayList<>();
+        mWeeklyList = new ArrayList<>();
+        mUsList = new ArrayList<>();
         nowList = new ArrayList<>();
         weeklyList = new ArrayList<>();
         topList = new ArrayList<>();
@@ -177,9 +196,9 @@ public class MovieFragment extends BaseFragment<IMoviePresent> implements IMovie
     public void notifyUsRefresh(List<UsSubjects> list) {
         usList = list;
         if (usList.size() > 6) {
-            usList = usList.subList(0, 6);
+            list = list.subList(0, 6);
         }
-        usAdapter.setList(usList);
+        usAdapter.setList(list);
         usAdapter.notifyDataSetChanged();
     }
 
@@ -187,9 +206,9 @@ public class MovieFragment extends BaseFragment<IMoviePresent> implements IMovie
     public void notifyWeeklyRefresh(List<WeeklySubject> list) {
         weeklyList = list;
         if (weeklyList.size() > 6) {
-            weeklyList = weeklyList.subList(0, 6);
+            list = list.subList(0, 6);
         }
-        weeklyAdapter.setList(weeklyList);
+        weeklyAdapter.setList(list);
         weeklyAdapter.notifyDataSetChanged();
     }
 
@@ -211,6 +230,16 @@ public class MovieFragment extends BaseFragment<IMoviePresent> implements IMovie
                 Intent nowIntent = new Intent(getActivity(), DetailMovieActivity.class);
                 nowIntent.putExtra(DETAIL_TAG, nowList.get(position).getId());
                 startActivity(nowIntent);
+                break;
+            case WANNA:
+                if (AndroidApplication.getApplication().Login() && nowList.size() != 0) {
+                    WannaTable table = new WannaTable();
+                    table.setAvatarUrl(nowList.get(position).getImages().getMedium());
+                    table.setAverage(nowList.get(position).getRating().getAverage() + "");
+                    
+                } else {
+                    startActivity(new Intent(getActivity(), LoginActivity.class));
+                }
                 break;
             default:
                 break;

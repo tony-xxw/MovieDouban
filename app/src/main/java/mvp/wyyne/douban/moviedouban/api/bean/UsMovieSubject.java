@@ -10,7 +10,7 @@ import java.util.List;
  * @date 2018/6/16
  */
 
-public class UcMovieSubject implements Parcelable {
+public class UsMovieSubject implements Parcelable {
     public List<UsSubjects> getSubjects() {
         return subjects;
     }
@@ -22,7 +22,7 @@ public class UcMovieSubject implements Parcelable {
     private String title;
 
 
-    protected UcMovieSubject(Parcel in) {
+    protected UsMovieSubject(Parcel in) {
         title = in.readString();
         subjects = in.createTypedArrayList(UsSubjects.CREATOR);
         date = in.readString();
@@ -40,15 +40,15 @@ public class UcMovieSubject implements Parcelable {
         return 0;
     }
 
-    public static final Creator<UcMovieSubject> CREATOR = new Creator<UcMovieSubject>() {
+    public static final Creator<UsMovieSubject> CREATOR = new Creator<UsMovieSubject>() {
         @Override
-        public UcMovieSubject createFromParcel(Parcel in) {
-            return new UcMovieSubject(in);
+        public UsMovieSubject createFromParcel(Parcel in) {
+            return new UsMovieSubject(in);
         }
 
         @Override
-        public UcMovieSubject[] newArray(int size) {
-            return new UcMovieSubject[size];
+        public UsMovieSubject[] newArray(int size) {
+            return new UsMovieSubject[size];
         }
     };
 

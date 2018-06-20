@@ -18,6 +18,7 @@ import mvp.wyyne.douban.moviedouban.api.RvItemOnClick;
 import mvp.wyyne.douban.moviedouban.api.bean.ActorInfo;
 import mvp.wyyne.douban.moviedouban.api.bean.Subjects;
 import mvp.wyyne.douban.moviedouban.api.model.ActorCollectTable;
+import mvp.wyyne.douban.moviedouban.api.model.ActorModel;
 import mvp.wyyne.douban.moviedouban.detail.DetailMovieActivity;
 import mvp.wyyne.douban.moviedouban.home.base.BaseFragment;
 import mvp.wyyne.douban.moviedouban.login.LoginActivity;

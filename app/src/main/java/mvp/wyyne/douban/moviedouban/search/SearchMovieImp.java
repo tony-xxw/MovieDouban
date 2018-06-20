@@ -12,6 +12,7 @@ import mvp.wyyne.douban.moviedouban.api.RetrofitService;
 import mvp.wyyne.douban.moviedouban.api.bean.MovieSubject;
 import mvp.wyyne.douban.moviedouban.api.bean.HotSearch;
 import mvp.wyyne.douban.moviedouban.api.bean.Subjects;
+import mvp.wyyne.douban.moviedouban.api.model.SearchModel;
 import mvp.wyyne.douban.moviedouban.api.model.SearchModelTable;
 import mvp.wyyne.douban.moviedouban.home.BaseObserver;
 

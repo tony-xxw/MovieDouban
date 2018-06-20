@@ -24,7 +24,7 @@ import mvp.wyyne.douban.moviedouban.api.bean.MovieSubject;
 import mvp.wyyne.douban.moviedouban.api.bean.MoviesReviews;
 import mvp.wyyne.douban.moviedouban.api.bean.Stills;
 import mvp.wyyne.douban.moviedouban.api.bean.Subjects;
-import mvp.wyyne.douban.moviedouban.api.bean.UcMovieSubject;
+import mvp.wyyne.douban.moviedouban.api.bean.UsMovieSubject;
 import mvp.wyyne.douban.moviedouban.api.bean.UsSubjects;
 import mvp.wyyne.douban.moviedouban.api.bean.WeeklyMovieSubject;
 import mvp.wyyne.douban.moviedouban.api.bean.WeeklySubject;
@@ -203,9 +203,9 @@ public class RetrofitService {
     }
 
     public static Observable<List<UsSubjects>> getUsBoxList() {
-        return subscribeOnThread(mMoviesApi.getUsBox().map(new Function<UcMovieSubject, List<UsSubjects>>() {
+        return subscribeOnThread(mMoviesApi.getUsBox().map(new Function<UsMovieSubject, List<UsSubjects>>() {
             @Override
-            public List<UsSubjects> apply(UcMovieSubject ucMovieSubject) throws Exception {
+            public List<UsSubjects> apply(UsMovieSubject ucMovieSubject) throws Exception {
                 return ucMovieSubject.getSubjects();
             }
         }));

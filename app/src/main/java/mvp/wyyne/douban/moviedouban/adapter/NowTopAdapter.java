@@ -8,6 +8,8 @@ import java.util.List;
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.api.bean.Subjects;
 
+import static mvp.wyyne.douban.moviedouban.utils.Constant.WANNA;
+
 /**
  * @author Wynne
  * @date 2018/6/16
@@ -30,7 +32,7 @@ public class NowTopAdapter extends BaseRvAdapter<Subjects> {
     }
 
     @Override
-    public void bindView(BaseItemViewHolder holder, final int position) {
+    public void bindView(final BaseItemViewHolder holder, final int position) {
         holder.setText(R.id.tv_title, mList.get(position).getTitle());
         holder.setImgUrl(R.id.iv_avatar, mList.get(position).getImages().getSmall());
         String average = (int) mList.get(position).getRating().getAverage() + "";
@@ -41,6 +43,18 @@ public class NowTopAdapter extends BaseRvAdapter<Subjects> {
             @Override
             public void onClick(View v) {
                 mClick.onItemClick(position, TAG);
+            }
+        });
+
+        holder.getView(R.id.iv_add).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                mClick.onItemClick(position, WANNA);
+
+                holder.getView(R.id.iv_add).setBackgroundColor(mContext.getResources().getColor(R.color.colorOrange));
+                holder.setImgResource(R.id.iv_add, R.drawable.ic_subject_checked);
+
             }
         });
     }

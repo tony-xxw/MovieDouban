@@ -8,7 +8,7 @@ import mvp.wyyne.douban.moviedouban.api.bean.CastPhoto;
 import mvp.wyyne.douban.moviedouban.api.bean.MovieSubject;
 import mvp.wyyne.douban.moviedouban.api.bean.MoviesReviews;
 import mvp.wyyne.douban.moviedouban.api.bean.Stills;
-import mvp.wyyne.douban.moviedouban.api.bean.UcMovieSubject;
+import mvp.wyyne.douban.moviedouban.api.bean.UsMovieSubject;
 import mvp.wyyne.douban.moviedouban.api.bean.WeeklyMovieSubject;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
@@ -132,7 +132,7 @@ public interface IMoviesApi {
      * @return
      */
     @GET("movie/us_box?apikey=0df993c66c0c636e29ecbb5344252a4a")
-    Observable<UcMovieSubject> getUsBox();
+    Observable<UsMovieSubject> getUsBox();
 
 
 }

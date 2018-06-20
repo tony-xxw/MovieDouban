@@ -20,7 +20,7 @@ import mvp.wyyne.douban.moviedouban.adapter.MineActorAdapter;
 import mvp.wyyne.douban.moviedouban.api.RvItemOnClick;
 import mvp.wyyne.douban.moviedouban.api.model.ActorCollectTable;
 import mvp.wyyne.douban.moviedouban.detail.cast.ActorActivity;
-import mvp.wyyne.douban.moviedouban.detail.cast.ActorModel;
+import mvp.wyyne.douban.moviedouban.api.model.ActorModel;
 import mvp.wyyne.douban.moviedouban.home.base.BaseFragment;
 import mvp.wyyne.douban.moviedouban.widget.VerticalItemDecoration;
 

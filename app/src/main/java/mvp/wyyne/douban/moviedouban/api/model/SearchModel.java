@@ -1,11 +1,10 @@
-package mvp.wyyne.douban.moviedouban.search;
+package mvp.wyyne.douban.moviedouban.api.model;
 
 import android.util.Log;
 
 import java.util.List;
 
 import mvp.wyyne.douban.moviedouban.AndroidApplication;
-import mvp.wyyne.douban.moviedouban.api.model.SearchModelTable;
 import mvp.wyyne.douban.moviedouban.model.SearchModelTableDao;
 
 /**

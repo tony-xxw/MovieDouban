@@ -3,7 +3,6 @@ package mvp.wyyne.douban.moviedouban.adapter.viewpage;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.util.Log;
 
 import java.util.List;
 
@@ -43,7 +42,6 @@ public class SubjectTitlePageAdapter extends FragmentPagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
-        Log.d("XXW", "title---" + mTitle.get(position));
         return mTitle.get(position);
     }
 }

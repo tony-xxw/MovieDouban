@@ -8,12 +8,13 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.blankj.utilcode.util.TimeUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import mvp.wyyne.douban.moviedouban.AndroidApplication;
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.adapter.NowTopAdapter;
 import mvp.wyyne.douban.moviedouban.adapter.UsAdapter;
@@ -22,19 +23,23 @@ import mvp.wyyne.douban.moviedouban.api.RvItemOnClick;
 import mvp.wyyne.douban.moviedouban.api.bean.Subjects;
 import mvp.wyyne.douban.moviedouban.api.bean.UsSubjects;
 import mvp.wyyne.douban.moviedouban.api.bean.WeeklySubject;
+import mvp.wyyne.douban.moviedouban.api.model.WannaModel;
 import mvp.wyyne.douban.moviedouban.api.model.WannaTable;
 import mvp.wyyne.douban.moviedouban.detail.DetailMovieActivity;
 import mvp.wyyne.douban.moviedouban.home.MainActivity;
 import mvp.wyyne.douban.moviedouban.home.base.BaseFragment;
-import mvp.wyyne.douban.moviedouban.login.LoginActivity;
 import mvp.wyyne.douban.moviedouban.movie.hot.HotMovieActivity;
+import mvp.wyyne.douban.moviedouban.movie.top.TopActivity;
 import mvp.wyyne.douban.moviedouban.movie.us.UsMovieActivity;
 import mvp.wyyne.douban.moviedouban.movie.weekly.WeeklyMovieActivity;
 import mvp.wyyne.douban.moviedouban.search.SearchMovieActivity;
+import mvp.wyyne.douban.moviedouban.utils.ToastUtils;
 
 import static mvp.wyyne.douban.moviedouban.utils.Constant.DETAIL_TAG;
 import static mvp.wyyne.douban.moviedouban.utils.Constant.NOW_TAG;
+import static mvp.wyyne.douban.moviedouban.utils.Constant.TOP_TAG;
 import static mvp.wyyne.douban.moviedouban.utils.Constant.WANNA;
+import static mvp.wyyne.douban.moviedouban.utils.Constant.WANNA_EXIST;
 
 /**
  * @author XXW
@@ -53,8 +58,6 @@ public class MovieFragment extends BaseFragment<IMoviePresent> implements IMovie
     RecyclerView rvNow;
     @BindView(R.id.rv_weekly)
     RecyclerView rvWeekly;
-    @BindView(R.id.tv_top_all)
-    TextView tvTopAll;
     @BindView(R.id.rv_top)
     RecyclerView rvTop;
     @BindView(R.id.rv_us)
@@ -102,6 +105,7 @@ public class MovieFragment extends BaseFragment<IMoviePresent> implements IMovie
         rvNow.setLayoutManager(nowManager);
         rvNow.setAdapter(nowAdapter);
         topAdapter = new NowTopAdapter(getActivity(), topList);
+        topAdapter.setTag(TOP_TAG);
         rvTop.setLayoutManager(topManager);
         rvTop.setAdapter(topAdapter);
         weeklyAdapter = new WeeklyAdapter(getActivity(), weeklyList);
@@ -116,7 +120,7 @@ public class MovieFragment extends BaseFragment<IMoviePresent> implements IMovie
     }
 
 
-    @OnClick({R.id.dcl_search, R.id.tv_now_all, R.id.tv_us, R.id.tv_weekly})
+    @OnClick({R.id.dcl_search, R.id.tv_now_all, R.id.tv_us, R.id.tv_weekly, R.id.tv_top_all})
     public void onViewClick(View view) {
         switch (view.getId()) {
             case R.id.dcl_search:
@@ -141,6 +145,9 @@ public class MovieFragment extends BaseFragment<IMoviePresent> implements IMovie
                 Intent usMovie = new Intent(getActivity(), UsMovieActivity.class);
                 usMovie.putParcelableArrayListExtra(UsMovieActivity.TAG, mUsList);
                 startActivity(usMovie);
+                break;
+            case R.id.tv_top_all:
+                startActivity(new Intent(getActivity(), TopActivity.class));
                 break;
             default:
                 break;
@@ -216,9 +223,9 @@ public class MovieFragment extends BaseFragment<IMoviePresent> implements IMovie
     public void notifyTopRefresh(List<Subjects> list) {
         topList = list;
         if (topList.size() > 6) {
-            topList = topList.subList(0, 6);
+            list = list.subList(0, 6);
         }
-        topAdapter.setList(topList);
+        topAdapter.setList(list);
         topAdapter.notifyDataSetChanged();
     }
 
@@ -232,17 +239,65 @@ public class MovieFragment extends BaseFragment<IMoviePresent> implements IMovie
                 startActivity(nowIntent);
                 break;
             case WANNA:
-                if (AndroidApplication.getApplication().Login() && nowList.size() != 0) {
+                if (nowList.size() != 0) {
                     WannaTable table = new WannaTable();
                     table.setAvatarUrl(nowList.get(position).getImages().getMedium());
                     table.setAverage(nowList.get(position).getRating().getAverage() + "");
-                    
-                } else {
-                    startActivity(new Intent(getActivity(), LoginActivity.class));
+                    StringBuffer directorsBuffer = new StringBuffer();
+                    StringBuffer castsBuffer = new StringBuffer();
+                    for (int i = 0; i < nowList.get(position).getDirectors().size(); i++) {
+                        if (i == 3) {
+                            continue;
+                        }
+                        if (i != nowList.get(position).getDirectors().size() - 1) {
+                            directorsBuffer.append(nowList.get(position).getDirectors().get(i).getName() + "/");
+                        } else {
+                            directorsBuffer.append(nowList.get(position).getDirectors().get(i).getName());
+                        }
+                    }
+                    for (int i = 0; i < nowList.get(position).getCasts().size(); i++) {
+                        if (i == 3) {
+                            continue;
+                        }
+                        if (i != nowList.get(position).getCasts().size() - 1) {
+                            castsBuffer.append(nowList.get(position).getCasts().get(i).getName() + "/");
+                        } else {
+                            castsBuffer.append(nowList.get(position).getCasts().get(i).getName());
+                        }
+                    }
+                    table.setDirectors(directorsBuffer.toString());
+                    table.setCasts(castsBuffer.toString());
+                    table.setTitle(nowList.get(position).getTitle());
+                    table.setCreatetime(TimeUtils.getNowString());
+                    table.setId(Long.valueOf(nowList.get(position).getId()));
+                    WannaModel.getInstance().insertModel(table);
+                    showToast("已添加到想看列表");
                 }
+                break;
+            case WANNA_EXIST:
+                if (nowList.size() != 0) {
+                    WannaModel.getInstance().deleteModel(Long.valueOf(nowList.get(position).getId()));
+                    showToast("已从想看列表移除");
+                }
+                break;
+            case TOP_TAG:
+                Intent topIntent = new Intent(getActivity(), DetailMovieActivity.class);
+                topIntent.putExtra(DETAIL_TAG, topList.get(position).getId());
+                startActivity(topIntent);
                 break;
             default:
                 break;
         }
+    }
+
+
+    public void showToast(String msg) {
+        View inflater = View.inflate(getActivity(), R.layout.toast_login, null);
+        TextView textView = (TextView) inflater.findViewById(R.id.tv_text);
+        textView.setText(msg);
+        LinearLayout linearLayout = (LinearLayout) inflater.findViewById(R.id.ll_shape);
+        linearLayout.setBackground(getResources().getDrawable(R.drawable.bg_green));
+        ToastUtils.getInstance(getActivity()).makeToastSelfViewAnim(inflater, R.style.ToastStyle);
+
     }
 }

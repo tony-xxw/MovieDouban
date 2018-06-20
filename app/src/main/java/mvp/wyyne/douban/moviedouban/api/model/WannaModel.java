@@ -29,14 +29,15 @@ public class WannaModel {
         }
     }
 
-    public void deleteModel() {
+    public void deleteModel(Long key) {
         WannaTableDao dao = AndroidApplication.getDaoSession().getWannaTableDao();
         try {
-            dao.deleteAll();
+            dao.deleteByKey(key);
         } catch (Exception e) {
             Log.d("XXW", "删除失败 : " + e.toString());
         }
     }
+
 
     public void updateModel(WannaTable modelDao) {
         WannaTableDao dao = AndroidApplication.getDaoSession().getWannaTableDao();
@@ -54,5 +55,15 @@ public class WannaModel {
     public List<WannaTable> queryModelList() {
         WannaTableDao dao = AndroidApplication.getDaoSession().getWannaTableDao();
         return dao.queryBuilder().list();
+    }
+
+    public boolean queryRecord(String title) {
+        WannaTableDao dao = AndroidApplication.getDaoSession().getWannaTableDao();
+        List<WannaTable> tables = dao.queryBuilder().where(WannaTableDao.Properties.Title.eq(title)).list();
+        if (tables.size() != 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

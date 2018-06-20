@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.blankj.utilcode.util.Utils;
+import com.facebook.stetho.Stetho;
 import com.tencent.tinker.loader.app.ApplicationLike;
 import com.tinkerpatch.sdk.TinkerPatch;
 import com.tinkerpatch.sdk.loader.TinkerPatchApplicationLike;
@@ -40,7 +41,7 @@ public class AndroidApplication extends Application {
 
 
         //数据库查看信息
-//        Stetho.initializeWithDefaults(this);
+        Stetho.initializeWithDefaults(this);
 
         initTinkerPatch();
         initSharedPreferences();

@@ -1,14 +1,19 @@
 package mvp.wyyne.douban.moviedouban.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 
 import java.util.List;
 
+import mvp.wyyne.douban.moviedouban.AndroidApplication;
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.api.bean.Subjects;
+import mvp.wyyne.douban.moviedouban.api.model.WannaModel;
+import mvp.wyyne.douban.moviedouban.login.LoginActivity;
 
 import static mvp.wyyne.douban.moviedouban.utils.Constant.WANNA;
+import static mvp.wyyne.douban.moviedouban.utils.Constant.WANNA_EXIST;
 
 /**
  * @author Wynne
@@ -33,11 +38,21 @@ public class NowTopAdapter extends BaseRvAdapter<Subjects> {
 
     @Override
     public void bindView(final BaseItemViewHolder holder, final int position) {
+
         holder.setText(R.id.tv_title, mList.get(position).getTitle());
         holder.setImgUrl(R.id.iv_avatar, mList.get(position).getImages().getSmall());
         String average = (int) mList.get(position).getRating().getAverage() + "";
         holder.getStartView(R.id.average).setStartMark((int) mList.get(position).getRating().getAverage());
         holder.setText(R.id.tv_average_count, average);
+
+
+        if (WannaModel.getInstance().queryRecord(mList.get(position).getTitle())) {
+            holder.getView(R.id.iv_add).setBackgroundColor(mContext.getResources().getColor(R.color.colorOrange));
+            holder.setImgResource(R.id.iv_add, R.drawable.ic_subject_checked);
+        } else {
+            holder.getView(R.id.iv_add).setBackgroundColor(mContext.getResources().getColor(R.color.transparent));
+            holder.setImgResource(R.id.iv_add, R.drawable.ic_subject_mark_add);
+        }
 
         holder.getView(R.id.ll_content).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,12 +64,20 @@ public class NowTopAdapter extends BaseRvAdapter<Subjects> {
         holder.getView(R.id.iv_add).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                mClick.onItemClick(position, WANNA);
-
-                holder.getView(R.id.iv_add).setBackgroundColor(mContext.getResources().getColor(R.color.colorOrange));
-                holder.setImgResource(R.id.iv_add, R.drawable.ic_subject_checked);
-
+                if (AndroidApplication.getApplication().Login()) {
+                    //有记录
+                    if (WannaModel.getInstance().queryRecord(mList.get(position).getTitle())) {
+                        holder.getView(R.id.iv_add).setBackgroundColor(mContext.getResources().getColor(R.color.transparent));
+                        holder.setImgResource(R.id.iv_add, R.drawable.ic_subject_mark_add);
+                        mClick.onItemClick(position, WANNA_EXIST);
+                    } else {
+                        holder.getView(R.id.iv_add).setBackgroundColor(mContext.getResources().getColor(R.color.colorOrange));
+                        holder.setImgResource(R.id.iv_add, R.drawable.ic_subject_checked);
+                        mClick.onItemClick(position, WANNA);
+                    }
+                } else {
+                    mContext.startActivity(new Intent(mContext, LoginActivity.class));
+                }
             }
         });
     }

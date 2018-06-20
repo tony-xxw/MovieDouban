@@ -18,7 +18,7 @@ import mvp.wyyne.douban.moviedouban.oneself.cast.OneselfActorFragment;
 import mvp.wyyne.douban.moviedouban.oneself.read.ReadFragment;
 import mvp.wyyne.douban.moviedouban.oneself.review.ReviewFragment;
 import mvp.wyyne.douban.moviedouban.oneself.sight.SightFragment;
-import mvp.wyyne.douban.moviedouban.oneself.wanna.WannaFragment;
+import mvp.wyyne.douban.moviedouban.oneself.wanna.OneselfWannaFragment;
 
 /**
  * @author Wynne
@@ -75,7 +75,7 @@ public class SubjectWidthFragment extends BaseFragment {
 
 
     public void initFragment() {
-        mFragments.add(WannaFragment.getInstance());
+        mFragments.add(OneselfWannaFragment.getInstance());
         mFragments.add(SightFragment.getInstance());
         mFragments.add(ReadFragment.getInstance());
         mFragments.add(ReviewFragment.getInstance());

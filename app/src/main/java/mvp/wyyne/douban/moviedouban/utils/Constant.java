@@ -23,9 +23,15 @@ public class Constant {
     public static final String SEARCH_HISTORY = "search_history";
 
     public static final String NOW_TAG = "now";
+    public static final String TOP_TAG = "top";
+
 
     /**
-     * 想看TAG
+     * 想看 - 存在记录
+     */
+    public static final String WANNA_EXIST = "wanna_exist";
+    /**
+     * 想看
      */
     public static final String WANNA = "wanna";
 

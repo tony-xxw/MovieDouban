@@ -72,11 +72,13 @@
 
                 <TextView
                     style="@style/MovieItemText"
-                    android:text="导演 : " />
+                    android:text="导演 : "
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/tv_directors_name"
                     style="@style/MovieItemText"
+                    android:textSize="14sp"
                     tools:text="冯小刚" />
 
             </LinearLayout>
@@ -85,16 +87,19 @@
                 android:id="@+id/tv_casts_list"
                 style="@style/MovieItemText"
                 android:layout_marginTop="5dp"
-                android:lineSpacingExtra="5dp" />
+                android:lineSpacingExtra="5dp"
+                android:textSize="14sp" />
 
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/ll_btn"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginEnd="10dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="visible">
 
             <TextView
                 android:id="@+id/tv_collect_count"
@@ -115,6 +120,15 @@
                 android:textSize="12sp" />
 
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_create_time"
+            style="@style/MovieItemText"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="20dp"
+            android:textSize="14sp"
+            android:visibility="gone"
+            tools:text="2018-6-20" />
     </LinearLayout>
 
 

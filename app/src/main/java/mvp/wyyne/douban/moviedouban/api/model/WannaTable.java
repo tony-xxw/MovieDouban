@@ -5,7 +5,9 @@ import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.Generated;
 
 /**
- * Created by Wynne on 2018/6/20.
+ *
+ * @author Wynne
+ * @date 2018/6/20
  */
 
 @Entity

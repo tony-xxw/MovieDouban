@@ -2,14 +2,13 @@ package mvp.wyyne.douban.moviedouban.hot.main;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 
-
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-
+import mvp.wyyne.douban.moviedouban.adapter.viewpage.SubjectTitlePageAdapter;
 import mvp.wyyne.douban.moviedouban.hot.current.HotCurrentFragment;
 import mvp.wyyne.douban.moviedouban.hot.future.HotFutureFragment;
 
@@ -22,11 +21,14 @@ public class HotPresenterImp implements HotPresenter {
     private HotView mHotView;
     private List<Fragment> mHotList = new ArrayList<>();
     private FragmentManager mFragmentManager;
+    private String[] title = {"正在热映", "即将上映"};
+    private List<String> titleList;
 
 
     public HotPresenterImp(HotView hotView, FragmentManager manager) {
         mHotView = hotView;
         mFragmentManager = manager;
+        titleList = Arrays.asList(title);
     }
 
 
@@ -34,8 +36,9 @@ public class HotPresenterImp implements HotPresenter {
     public void initPage(ViewPager viewPager) {
         mHotList.add(new HotCurrentFragment());
         mHotList.add(new HotFutureFragment());
-        HotPagerAdapter mAdapter = new HotPagerAdapter(mFragmentManager);
+        SubjectTitlePageAdapter mAdapter = new SubjectTitlePageAdapter(mFragmentManager);
         mAdapter.setFragment(mHotList);
+        mAdapter.setTitleList(titleList);
         viewPager.setAdapter(mAdapter);
         mHotView.onBindPage();
 
@@ -47,33 +50,4 @@ public class HotPresenterImp implements HotPresenter {
     }
 
 
-    class HotPagerAdapter extends FragmentPagerAdapter {
-        private List<Fragment> mList;
-        private String[] mTitle = {"正在热映", "即将上映"};
-
-        private HotPagerAdapter(FragmentManager fm) {
-            super(fm);
-        }
-
-
-        private void setFragment(List<Fragment> list) {
-            mList = list;
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            return mList.get(position);
-        }
-
-        @Override
-        public int getCount() {
-            return mList.size();
-        }
-
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return mTitle[position];
-        }
-    }
 }

@@ -59,8 +59,6 @@ public class HotFragment extends BaseFragment<HotPresenterImp> implements HotVie
         //Fragment里 嵌套Fragment的Manager要用getChildFragmentManager()
         mPresent = new HotPresenterImp(this, getChildFragmentManager());
         mHotTl.setTabMode(TabLayout.MODE_FIXED);
-        mHotTl.addTab(mHotTl.newTab().setText("正在热映"));
-        mHotTl.addTab(mHotTl.newTab().setText("即将上映"));
         mPresent.initPage(mHotVp);
 
 

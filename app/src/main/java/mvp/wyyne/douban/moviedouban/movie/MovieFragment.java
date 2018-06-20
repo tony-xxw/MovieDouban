@@ -28,7 +28,7 @@ import mvp.wyyne.douban.moviedouban.api.model.WannaTable;
 import mvp.wyyne.douban.moviedouban.detail.DetailMovieActivity;
 import mvp.wyyne.douban.moviedouban.home.MainActivity;
 import mvp.wyyne.douban.moviedouban.home.base.BaseFragment;
-import mvp.wyyne.douban.moviedouban.movie.hot.HotMovieActivity;
+import mvp.wyyne.douban.moviedouban.movie.hot.NowMovieActivity;
 import mvp.wyyne.douban.moviedouban.movie.top.TopActivity;
 import mvp.wyyne.douban.moviedouban.movie.us.UsMovieActivity;
 import mvp.wyyne.douban.moviedouban.movie.weekly.WeeklyMovieActivity;
@@ -130,8 +130,8 @@ public class MovieFragment extends BaseFragment<IMoviePresent> implements IMovie
                 break;
             case R.id.tv_now_all:
                 mNowList.addAll(nowList);
-                Intent hotMovie = new Intent(getActivity(), HotMovieActivity.class);
-                hotMovie.putParcelableArrayListExtra(HotMovieActivity.TAG, mNowList);
+                Intent hotMovie = new Intent(getActivity(), NowMovieActivity.class);
+                hotMovie.putParcelableArrayListExtra(NowMovieActivity.TAG, mNowList);
                 startActivity(hotMovie);
                 break;
             case R.id.tv_weekly:

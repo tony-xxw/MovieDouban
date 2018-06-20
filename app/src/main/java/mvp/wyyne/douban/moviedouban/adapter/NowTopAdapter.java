@@ -12,6 +12,8 @@ import mvp.wyyne.douban.moviedouban.api.bean.Subjects;
 import mvp.wyyne.douban.moviedouban.api.model.WannaModel;
 import mvp.wyyne.douban.moviedouban.login.LoginActivity;
 
+import static mvp.wyyne.douban.moviedouban.utils.Constant.NOW_TAG;
+import static mvp.wyyne.douban.moviedouban.utils.Constant.TOP_TAG;
 import static mvp.wyyne.douban.moviedouban.utils.Constant.WANNA;
 import static mvp.wyyne.douban.moviedouban.utils.Constant.WANNA_EXIST;
 
@@ -45,6 +47,9 @@ public class NowTopAdapter extends BaseRvAdapter<Subjects> {
         holder.getStartView(R.id.average).setStartMark((int) mList.get(position).getRating().getAverage());
         holder.setText(R.id.tv_average_count, average);
 
+        if (TAG.equals(TOP_TAG)) {
+            holder.getView(R.id.iv_add).setVisibility(View.GONE);
+        }
 
         if (WannaModel.getInstance().queryRecord(mList.get(position).getTitle())) {
             holder.getView(R.id.iv_add).setBackgroundColor(mContext.getResources().getColor(R.color.colorOrange));
@@ -69,11 +74,17 @@ public class NowTopAdapter extends BaseRvAdapter<Subjects> {
                     if (WannaModel.getInstance().queryRecord(mList.get(position).getTitle())) {
                         holder.getView(R.id.iv_add).setBackgroundColor(mContext.getResources().getColor(R.color.transparent));
                         holder.setImgResource(R.id.iv_add, R.drawable.ic_subject_mark_add);
-                        mClick.onItemClick(position, WANNA_EXIST);
+                        if (TAG.equals(NOW_TAG)) {
+                            mClick.onItemClick(position, WANNA_EXIST);
+                        }
+
                     } else {
                         holder.getView(R.id.iv_add).setBackgroundColor(mContext.getResources().getColor(R.color.colorOrange));
                         holder.setImgResource(R.id.iv_add, R.drawable.ic_subject_checked);
-                        mClick.onItemClick(position, WANNA);
+                        if (TAG.equals(NOW_TAG)) {
+                            mClick.onItemClick(position, WANNA);
+                        }
+
                     }
                 } else {
                     mContext.startActivity(new Intent(mContext, LoginActivity.class));

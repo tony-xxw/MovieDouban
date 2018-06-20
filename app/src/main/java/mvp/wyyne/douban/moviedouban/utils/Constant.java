@@ -24,6 +24,8 @@ public class Constant {
 
     public static final String NOW_TAG = "now";
     public static final String TOP_TAG = "top";
+    public static final String START = "start";
+    public static final String COUNT = "count";
 
 
     /**

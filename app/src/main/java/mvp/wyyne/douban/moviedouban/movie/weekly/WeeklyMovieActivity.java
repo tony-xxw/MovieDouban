@@ -1,6 +1,7 @@
 package mvp.wyyne.douban.moviedouban.movie.weekly;
 
 import android.content.Intent;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -17,6 +18,7 @@ import mvp.wyyne.douban.moviedouban.api.bean.WeeklySubject;
 import mvp.wyyne.douban.moviedouban.detail.DetailMovieActivity;
 import mvp.wyyne.douban.moviedouban.home.IMain;
 import mvp.wyyne.douban.moviedouban.home.base.BaseActivity;
+import mvp.wyyne.douban.moviedouban.utils.StatusUtils;
 
 import static mvp.wyyne.douban.moviedouban.utils.Constant.DETAIL_TAG;
 
@@ -42,6 +44,12 @@ public class WeeklyMovieActivity extends BaseActivity implements IMain, RvItemOn
     @Override
     protected int getLayoutId() {
         return R.layout.activity_weekly_movie;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        StatusUtils.setStatusBarActivity(this, false, ContextCompat.getColor(this, R.color.white));
     }
 
     @Override

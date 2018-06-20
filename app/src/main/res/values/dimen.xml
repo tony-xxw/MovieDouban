@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="photo_margin_width">5dp</dimen>
+
+
+    <dimen name="text_size_12">12sp</dimen>
 </resources>

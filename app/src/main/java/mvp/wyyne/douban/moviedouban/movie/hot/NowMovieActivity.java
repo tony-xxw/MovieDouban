@@ -30,8 +30,8 @@ import static mvp.wyyne.douban.moviedouban.utils.Constant.DETAIL_TAG;
  * @date 2018/6/19
  */
 
-public class HotMovieActivity extends BaseActivity implements RvItemOnClick {
-    public static final String TAG = HotMovieActivity.class.getSimpleName();
+public class NowMovieActivity extends BaseActivity implements RvItemOnClick {
+    public static final String TAG = NowMovieActivity.class.getSimpleName();
     @BindView(R.id.rv_hot)
     RecyclerView rvHot;
     @BindView(R.id.tv_stills_title)

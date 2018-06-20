@@ -109,7 +109,7 @@ public interface IMoviesApi {
      * @param count 结束
      * @return 电影bean
      */
-    @GET("movie/top250?apikey=0df993c66c0c636e29ecbb5344252a4a")
+        @GET("movie/top250?apikey=0df993c66c0c636e29ecbb5344252a4a")
     Observable<MovieSubject> getTopMovie(@Query("start") String start,
                                          @Query("count") String count);
 

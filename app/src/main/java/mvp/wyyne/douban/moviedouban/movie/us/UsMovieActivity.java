@@ -1,6 +1,7 @@
 package mvp.wyyne.douban.moviedouban.movie.us;
 
 import android.content.Intent;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,6 +17,7 @@ import mvp.wyyne.douban.moviedouban.api.RvItemOnClick;
 import mvp.wyyne.douban.moviedouban.api.bean.UsSubjects;
 import mvp.wyyne.douban.moviedouban.detail.DetailMovieActivity;
 import mvp.wyyne.douban.moviedouban.home.base.BaseActivity;
+import mvp.wyyne.douban.moviedouban.utils.StatusUtils;
 
 import static mvp.wyyne.douban.moviedouban.utils.Constant.DETAIL_TAG;
 
@@ -35,6 +37,12 @@ public class UsMovieActivity extends BaseActivity implements RvItemOnClick {
     @Override
     protected void refresh() {
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        StatusUtils.setStatusBarActivity(this, false, ContextCompat.getColor(this, R.color.white));
     }
 
     @Override

@@ -4,7 +4,9 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 /**
- * Created by XXW on 2017/10/19.
+ *
+ * @author XXW
+ * @date 2017/10/19
  */
 
 public class City implements Parcelable {

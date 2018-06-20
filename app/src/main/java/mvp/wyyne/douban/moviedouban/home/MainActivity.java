@@ -58,8 +58,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
         initFragment();
         initView();
-
-//        startPatch();
+        Log.d("XXW", getResources().getDisplayMetrics().widthPixels + "===" + getResources().getDisplayMetrics().heightPixels);
+//        startPatch()
     }
 
 

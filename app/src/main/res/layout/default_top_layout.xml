@@ -33,7 +33,7 @@
         android:layout_marginStart="20dp"
         android:layout_toEndOf="@+id/iv_back"
         android:textColor="@color/colorBlack"
-        android:textSize="22sp"
+        android:textSize="18sp"
         tools:text="Default" />
 
     <ImageView

@@ -111,7 +111,7 @@
             android:launchMode="singleTop" />
 
         <activity
-            android:name=".movie.hot.HotMovieActivity"
+            android:name=".movie.hot.NowMovieActivity"
             android:launchMode="singleTop" />
 
         <activity

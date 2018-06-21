@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="240dp"
+    android:layout_height="wrap_content"
     android:background="@color/white">
 
 
@@ -12,27 +12,31 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="visible">
 
         <TextView
             android:id="@+id/tv_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginTop="15dp"
             android:drawableEnd="@drawable/line_level"
             android:drawablePadding="20dp"
             android:drawableStart="@drawable/line_level"
             android:textSize="18sp"
             tools:text="1" />
 
-
         <android.support.v7.widget.CardView
             android:id="@+id/cv_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="25dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             app:cardCornerRadius="5dp"
-            app:cardElevation="10dp">
+            app:cardElevation="5dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -108,4 +112,6 @@
             </RelativeLayout>
         </android.support.v7.widget.CardView>
     </LinearLayout>
+
+
 </FrameLayout>

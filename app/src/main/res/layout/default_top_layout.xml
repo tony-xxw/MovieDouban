@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/ll_title"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="48dp"
     android:minHeight="48dp">
 
     <ImageView
@@ -59,4 +59,10 @@
         android:textColor="@color/white"
         android:textSize="12sp"
         android:visibility="gone" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorGray_dark" />
 </RelativeLayout>

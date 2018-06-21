@@ -55,16 +55,17 @@
         android:visibility="gone">
 
 
-        <FrameLayout
+        <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_weight="2">
+            android:layout_weight="1"
+            android:orientation="horizontal">
 
             <EditText
                 android:id="@+id/dcl_search_main"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginStart="10dp"
                 android:background="@drawable/bg_white_solid"
@@ -73,7 +74,7 @@
                 android:gravity="center_vertical"
                 android:hint="@string/hot_hint_search"
                 android:minHeight="30dp"
-                android:paddingEnd="5dp"
+                android:paddingEnd="10dp"
                 android:paddingStart="10dp"
                 android:textColor="@color/tab_unselected_text_color"
                 android:textSize="14sp"
@@ -84,12 +85,13 @@
                 android:id="@+id/iv_close"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical|end"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
                 android:layout_marginEnd="10dp"
                 android:padding="5dp"
                 android:src="@drawable/ic_close_light_gray"
                 android:visibility="gone" />
-        </FrameLayout>
+        </RelativeLayout>
 
         <TextView
             android:id="@+id/tv_cancel"

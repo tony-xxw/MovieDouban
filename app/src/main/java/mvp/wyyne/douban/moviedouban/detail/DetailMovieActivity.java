@@ -101,8 +101,6 @@ public class DetailMovieActivity extends BaseActivity<DetailMovieImp> implements
 
         //初始化TabLayout
         mTabLayout.setTabMode(TabLayout.MODE_FIXED);
-        mTabLayout.addTab(mTabLayout.newTab().setText("评论"));
-        mTabLayout.addTab(mTabLayout.newTab().setText("讨论区"));
         mTabLayout.setTabTextColors(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.colorBlack)));
 
     }

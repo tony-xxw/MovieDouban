@@ -83,7 +83,7 @@ public class ActorDetailFragment extends BaseFragment implements RvItemOnClick {
         mTvTitleEn.setText(mArticle.getName_en());
         mTvSummary.setText(mArticle.getSummary().trim());
 
-        if (ActorModel.getInstance().queryModelBean(Integer.valueOf(mArticle.getId()))) {
+        if (ActorModel.getInstance().queryModelBean(Integer.parseInt(mArticle.getId()))) {
             setDrawableLeft("已收藏", R.drawable.ic_check_gray_small);
         } else {
             setDrawableLeft("收藏", R.drawable.ic_add_newdoulist);
@@ -100,16 +100,17 @@ public class ActorDetailFragment extends BaseFragment implements RvItemOnClick {
                 Intent intent = new Intent(getActivity(), ActorDetailActivity.class);
                 intent.putExtra("article", mArticle);
                 startActivity(intent);
+                break;
             case R.id.cv_collect:
                 //收藏
-                if (!AndroidApplication.getApplication().Login()) {
+                if (!AndroidApplication.getApplication().isLogin()) {
                     startActivity(new Intent(getActivity(), LoginActivity.class));
                 } else {
                     Drawable.ConstantState drawableState = getResources().getDrawable(R.drawable.ic_check_gray_small).getConstantState();
                     //已收藏
                     if (getDrawableLeft().getConstantState() != null && getDrawableLeft().getConstantState().equals(drawableState)) {
                         setDrawableLeft("收藏", R.drawable.ic_add_newdoulist);
-                        ActorModel.getInstance().deleteModel(Long.valueOf(Integer.valueOf(mArticle.getId())));
+                        ActorModel.getInstance().deleteModel(Long.parseLong(mArticle.getId()));
                         showToast("已取消关注");
                     } else {
                         //收藏
@@ -152,7 +153,7 @@ public class ActorDetailFragment extends BaseFragment implements RvItemOnClick {
         }
         String actorAvatarUrl = mArticle.getAvatars().getLarge();
         String actorName = mArticle.getName();
-        ActorCollectTable table = new ActorCollectTable(Long.valueOf(Integer.valueOf(mArticle.getId())), actorAvatarUrl, actorName, buffer.toString());
+        ActorCollectTable table = new ActorCollectTable(Long.parseLong(mArticle.getId()), actorAvatarUrl, actorName, buffer.toString());
         ActorModel.getInstance().insertModel(table);
 
     }

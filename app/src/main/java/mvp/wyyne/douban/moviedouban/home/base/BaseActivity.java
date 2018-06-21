@@ -16,6 +16,7 @@ import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.home.IPresent;
 
 /**
+ *
  * 基类Activity
  *
  * @author XXW
@@ -32,11 +33,7 @@ public abstract class BaseActivity<T extends IPresent> extends AppCompatActivity
     @Nullable
     @BindView(R.id.swipe_refresh)
     protected SwipeRefreshLayout mSwipeRefresh;
-    /**
-     * 缓存Fragment
-     */
-    protected View mRootView;
-    protected boolean mIsMulti = false;
+
 
     protected T mPresent;
 

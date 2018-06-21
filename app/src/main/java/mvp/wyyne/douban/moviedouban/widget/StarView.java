@@ -110,7 +110,6 @@ public class StarView extends View {
         }
 
         if (startMark > 1) {
-            int maxSpace = ((startSpace + startSize) * startCount);
             canvas.drawRect(0, 0, startSize, startSize, mPaint);
             if (startMark - (int) (startMark) == 0) {
                 for (int i = 1; i < startMark / 2; i++) {
@@ -132,7 +131,7 @@ public class StarView extends View {
             x = 0;
         }
         if (x > getMeasuredWidth()) {
-            x = getMeasuredWidth();
+
         }
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN: {

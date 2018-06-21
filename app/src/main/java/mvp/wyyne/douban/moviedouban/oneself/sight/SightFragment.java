@@ -52,7 +52,7 @@ public class SightFragment extends BaseFragment {
     }
 
     private void handleLogin() {
-        if (AndroidApplication.getApplication().Login()) {
+        if (AndroidApplication.getApplication().isLogin()) {
             llSightContent.setVisibility(View.VISIBLE);
         } else {
             llSightContent.setVisibility(View.GONE);

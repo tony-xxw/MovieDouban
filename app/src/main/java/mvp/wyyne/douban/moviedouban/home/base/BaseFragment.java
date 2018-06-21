@@ -155,7 +155,7 @@ public abstract class BaseFragment<T extends IPresent> extends Fragment {
     public void isNullView() {
         if (ivNullView != null) {
             //未登录
-            if (!AndroidApplication.getApplication().Login()) {
+            if (!AndroidApplication.getApplication().isLogin()) {
                 Log.d("XXW", "未登录");
                 ivNullView.setVisibility(View.VISIBLE);
             } else {

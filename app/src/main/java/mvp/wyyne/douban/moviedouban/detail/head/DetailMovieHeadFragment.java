@@ -193,7 +193,7 @@ public class DetailMovieHeadFragment extends BaseFragment<IPresent> implements R
     public void onViewClick(View view) {
         switch (view.getId()) {
             case R.id.btn_wanna:
-                if (AndroidApplication.getApplication().Login()) {
+                if (AndroidApplication.getApplication().isLogin()) {
                     intentInterest(getActivity().getString(R.string.wanna));
                 } else {
                     Intent thinkSeeIntent = new Intent(getActivity(), LoginActivity.class);
@@ -201,7 +201,7 @@ public class DetailMovieHeadFragment extends BaseFragment<IPresent> implements R
                 }
                 break;
             case R.id.ll_read:
-                if (AndroidApplication.getApplication().Login()) {
+                if (AndroidApplication.getApplication().isLogin()) {
                     intentInterest(getActivity().getString(R.string.read));
                 } else {
                     Intent haveSeenIntent = new Intent(getActivity(), LoginActivity.class);

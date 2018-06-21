@@ -93,7 +93,7 @@ public class OneselfFragment extends BaseFragment<OneselfPresent>
     }
 
     private void initDate() {
-        if (AndroidApplication.getApplication().Login()) {
+        if (AndroidApplication.getApplication().isLogin()) {
             avatar.setImageDrawable(getResources().getDrawable(R.drawable.ic_user_avatar));
             anonymous.setVisibility(View.GONE);
             loginInfoContainer.setVisibility(View.VISIBLE);
@@ -124,7 +124,7 @@ public class OneselfFragment extends BaseFragment<OneselfPresent>
                 startActivity(intent);
                 break;
             case R.id.info_container:
-                if (!AndroidApplication.getApplication().Login()) {
+                if (!AndroidApplication.getApplication().isLogin()) {
                     Intent loginIntent = new Intent(getActivity(), LoginActivity.class);
                     startActivity(loginIntent);
                 }
@@ -163,7 +163,7 @@ public class OneselfFragment extends BaseFragment<OneselfPresent>
             mRlTitleLayout.setBackgroundColor(getResources().getColor(R.color.colorWhite));
             StatusUtils.setStatusColor(getActivity(), getResources().getColor(R.color.colorWhite), true);
 
-            if (AndroidApplication.getApplication().Login()) {
+            if (AndroidApplication.getApplication().isLogin()) {
                 mTitleText.setText("Wynne");
             } else {
                 mTitleText.setText("请登录");

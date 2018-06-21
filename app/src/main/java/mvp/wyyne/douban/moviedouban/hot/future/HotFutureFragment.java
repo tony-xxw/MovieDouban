@@ -35,7 +35,7 @@ import static mvp.wyyne.douban.moviedouban.utils.Constant.DETAIL_TAG;
  */
 
 public class HotFutureFragment extends BaseFragment<HotPresent> implements IHotMain, RvItemOnClick {
-    public static String TAG = HotFutureFragment.class.getSimpleName();
+    public static final String TAG = HotFutureFragment.class.getSimpleName();
     @BindView(R.id.future_rv)
     RecyclerView mFutureRv;
     private HotAdapter mAdapter;

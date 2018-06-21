@@ -60,7 +60,7 @@ public class ReviewFragment extends BaseFragment {
     }
 
     private void handleLogin() {
-        if (AndroidApplication.getApplication().Login()) {
+        if (AndroidApplication.getApplication().isLogin()) {
             llReviewContent.setVisibility(View.VISIBLE);
             tvNumberSubject.setText("0篇");
             tvEmpty.setText("你还没有发表影评");

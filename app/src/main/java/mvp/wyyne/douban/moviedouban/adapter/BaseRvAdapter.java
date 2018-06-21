@@ -85,7 +85,7 @@ public abstract class BaseRvAdapter<T> extends RecyclerView.Adapter<BaseItemView
                 mBase = new BaseItemViewHolder(mFooterView, mContext);
                 break;
             case CONTENT_TYPE:
-                mView = mLayoutInflater.inflate(getLayoutId(), parent,false);
+                mView = mLayoutInflater.inflate(getLayoutId(), parent, false);
                 mBase = new BaseItemViewHolder(mView, mContext);
                 break;
             default:
@@ -198,8 +198,8 @@ public abstract class BaseRvAdapter<T> extends RecyclerView.Adapter<BaseItemView
      * @return
      */
     public boolean getPredate(String pubdates) {
-        int predateDate = Integer.valueOf(pubdates.substring(0, pubdates.indexOf("(")).replace("-", ""));
-        int currentDate = Integer.valueOf(DateUtils.getCurrentDateYMT());
+        int predateDate = Integer.parseInt(pubdates.substring(0, pubdates.indexOf("(")).replace("-", ""));
+        int currentDate = Integer.parseInt(DateUtils.getCurrentDateYMT());
         return predateDate > currentDate;
     }
 }

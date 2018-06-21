@@ -38,8 +38,7 @@ public class TitleRecycleItemDecoration extends RecyclerView.ItemDecoration {
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
         LEFT_DP = (int) (context.getResources().getDisplayMetrics().density * 15);
-        Log.d("XXW", "LEFT_DP==" + LEFT_DP);
-        Log.d("XXW", "LEFT_DP==" + context.getResources().getDisplayMetrics().density);
+
     }
 
     public void setData(List<MovieType> data) {

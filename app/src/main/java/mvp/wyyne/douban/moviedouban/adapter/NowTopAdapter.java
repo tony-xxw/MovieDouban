@@ -69,7 +69,7 @@ public class NowTopAdapter extends BaseRvAdapter<Subjects> {
         holder.getView(R.id.iv_add).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (AndroidApplication.getApplication().Login()) {
+                if (AndroidApplication.getApplication().isLogin()) {
                     //有记录
                     if (WannaModel.getInstance().queryRecord(mList.get(position).getTitle())) {
                         holder.getView(R.id.iv_add).setBackgroundColor(mContext.getResources().getColor(R.color.transparent));

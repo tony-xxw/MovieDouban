@@ -3,13 +3,8 @@ package mvp.wyyne.douban.moviedouban.widget;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
-import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
-import android.util.Log;
-import android.view.Gravity;
-import android.widget.EditText;
-import android.widget.TextView;
 
 /**
  * @author XXW

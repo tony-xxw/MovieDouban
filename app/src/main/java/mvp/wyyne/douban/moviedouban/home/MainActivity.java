@@ -153,7 +153,11 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 mCurrentTime = System.currentTimeMillis();
             } else {
                 finish();
-                System.exit(0);
+                try {
+                    System.exit(0);
+                } catch (RuntimeException e) {
+                    e.printStackTrace();
+                }
             }
             return true;
         }

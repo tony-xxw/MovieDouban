@@ -5,11 +5,12 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
 /**
- * Created by XXW on 2017/6/20.
+ * @author XXW
+ * @date 2017/6/20
  */
 
 public class BitmapUtils {
-    public static BitmapUtils mUtils;
+    private static BitmapUtils mUtils;
     private Context mContext;
 
     private BitmapUtils(Context context) {

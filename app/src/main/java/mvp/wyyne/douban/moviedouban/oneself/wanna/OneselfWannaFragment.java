@@ -89,7 +89,7 @@ public class OneselfWannaFragment extends BaseFragment implements RvItemOnClick 
     }
 
     private void handleLogin() {
-        if (AndroidApplication.getApplication().Login()) {
+        if (AndroidApplication.getApplication().isLogin()) {
             llWannaContent.setVisibility(View.VISIBLE);
         } else {
             llWannaContent.setVisibility(View.GONE);

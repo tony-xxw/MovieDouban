@@ -5,14 +5,11 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import java.util.List;
-
 import butterknife.BindView;
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.adapter.CommentAdapter;
 import mvp.wyyne.douban.moviedouban.adapter.ReviewAdapter;
 import mvp.wyyne.douban.moviedouban.api.bean.Article;
-import mvp.wyyne.douban.moviedouban.api.bean.PopularCm;
 import mvp.wyyne.douban.moviedouban.home.base.BaseFragment;
 import mvp.wyyne.douban.moviedouban.widget.RecycleViewUtils;
 
@@ -22,13 +19,12 @@ import mvp.wyyne.douban.moviedouban.widget.RecycleViewUtils;
  */
 
 public class CommentFragment extends BaseFragment {
-    public static String TAG = "CommentFragment";
+    public static final String TAG = "CommentFragment";
     @BindView(R.id.rv_comment)
     RecyclerView mRvComment;
     @BindView(R.id.rv_review)
     RecyclerView mRvReview;
     private CommentAdapter mAdapter;
-    private List<PopularCm> mPopularCm;
     private ReviewAdapter mReviewAdapter;
     private Article mArticle;
     private LinearLayoutManager mManager;

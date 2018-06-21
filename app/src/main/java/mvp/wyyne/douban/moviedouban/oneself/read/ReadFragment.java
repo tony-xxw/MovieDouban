@@ -51,7 +51,7 @@ public class ReadFragment extends BaseFragment {
     }
 
     private void handleLogin() {
-        if (AndroidApplication.getApplication().Login()) {
+        if (AndroidApplication.getApplication().isLogin()) {
             llReadContent.setVisibility(View.VISIBLE);
         } else {
             llReadContent.setVisibility(View.GONE);

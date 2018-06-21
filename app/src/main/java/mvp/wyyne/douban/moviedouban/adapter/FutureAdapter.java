@@ -3,14 +3,12 @@ package mvp.wyyne.douban.moviedouban.adapter;
 import android.content.Context;
 import android.view.View;
 
-
 import java.util.List;
 
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.api.bean.Avatars;
 import mvp.wyyne.douban.moviedouban.api.bean.Casts;
 import mvp.wyyne.douban.moviedouban.api.bean.Directors;
-import mvp.wyyne.douban.moviedouban.api.bean.Rating;
 import mvp.wyyne.douban.moviedouban.api.bean.Subjects;
 
 /**
@@ -36,7 +34,6 @@ public class FutureAdapter extends BaseRvAdapter<Subjects> {
         List<Casts> casts = mList.get(position).getCasts();
         List<Directors> directors = mList.get(position).getDirectors();
         Avatars avatars = mList.get(position).getImages();
-        Rating rating = mList.get(position).getRating();
         holder.setText(R.id.tv_collect_count, mList.get(position).getCollect_count() + "人看过");
         for (Casts cast : casts) {
             holder.setText(R.id.tv_casts_list, cast.getName());

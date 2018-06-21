@@ -49,7 +49,7 @@ public class SettingActivity extends BaseActivity {
         mTvStillsTitle.setText(getString(R.string.str_setting));
         mRlHeadLayout.setBackgroundColor(Color.WHITE);
 
-        if (AndroidApplication.getApplication().Login()) {
+        if (AndroidApplication.getApplication().isLogin()) {
             mBtnExit.setVisibility(View.VISIBLE);
         }
 

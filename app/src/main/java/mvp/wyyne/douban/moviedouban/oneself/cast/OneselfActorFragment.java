@@ -89,7 +89,7 @@ public class OneselfActorFragment extends BaseFragment implements RvItemOnClick 
     }
 
     private void handleLogin() {
-        if (AndroidApplication.getApplication().Login()) {
+        if (AndroidApplication.getApplication().isLogin()) {
             llCastContent.setVisibility(View.VISIBLE);
             tvNumberSubject.setText("0位");
             llTabContent.setVisibility(View.GONE);

@@ -1,12 +1,14 @@
 package mvp.wyyne.douban.moviedouban.utils;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
-import android.graphics.Color;
 import android.os.Build;
+import android.support.annotation.ColorInt;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 
+import io.reactivex.annotations.NonNull;
 import mvp.wyyne.douban.moviedouban.R;
 
 /**
@@ -74,18 +76,61 @@ public class StatusUtils {
         }
     }
 
+    @TargetApi(21)
     public static void setStatusColor(Activity activity, int color, boolean isLightStatus) {
-        activity.getWindow().setStatusBarColor(color);
-        setStatusTextWithColor(activity, isLightStatus);
+        setStatusBarColor(activity, color, isLightStatus);
     }
 
 
     public static void tabSwitch(boolean isOneself, Activity activity) {
         if (isOneself) {
-            StatusUtils.setStatusColor(activity, Color.WHITE, true);
+            Log.d("XXW", "tabSwitch");
+            StatusUtils.setStatusColor(activity, ResourcesUtils.getColor(R.color.white, activity), true);
         } else {
-            StatusUtils.setStatusColor(activity, R.color.color_green, true);
+            StatusUtils.setStatusColor(activity, ResourcesUtils.getColor(R.color.color_green, activity), false);
         }
+    }
+
+
+    /**
+     * 设置状态栏颜色
+     */
+    public static void setStatusBarColor(@NonNull Activity activity, @ColorInt int color, boolean textColor) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            StatusLollipopUtils.setStatusBarColor(activity, color);
+
+            if (textColor) {
+                setStatusTextColor(activity);
+            }
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            StatusKitkatUtils.setStatusBarColor(activity, color);
+        }
+
+
+    }
+
+
+    /**
+     * 设置状态栏 Collapsing
+     */
+    public void setStatusMaterial() {
+
+    }
+
+    /**
+     * 设置状态栏 图片
+     *
+     * @param activity        上下文
+     * @param isHideStatusBar 是否隐藏状态栏颜色
+     */
+    public static void setStatusImage(@NonNull Activity activity, boolean isHideStatusBar) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            StatusLollipopUtils.translucentStatusBar(activity, isHideStatusBar);
+//            setStatusTextColor(activity);
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            StatusKitkatUtils.translucentStatusBar(activity);
+        }
+
     }
 
 

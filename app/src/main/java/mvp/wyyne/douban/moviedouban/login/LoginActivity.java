@@ -1,6 +1,5 @@
 package mvp.wyyne.douban.moviedouban.login;
 
-import android.graphics.Color;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -10,6 +9,7 @@ import butterknife.OnClick;
 import mvp.wyyne.douban.moviedouban.AndroidApplication;
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.home.base.BaseActivity;
+import mvp.wyyne.douban.moviedouban.utils.ResourcesUtils;
 import mvp.wyyne.douban.moviedouban.utils.StatusUtils;
 import mvp.wyyne.douban.moviedouban.utils.ToastUtils;
 
@@ -38,10 +38,15 @@ public class LoginActivity extends BaseActivity<ILoginImp> implements ILoginMain
 
     @Override
     protected void initView() {
-        StatusUtils.setStatusBarActivity(this, false, Color.TRANSPARENT);
         mPresent = new ILoginImp(this);
     }
 
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        StatusUtils.setStatusBarColor(this, ResourcesUtils.getColor(R.color.white, this), true);
+    }
 
     @OnClick({R.id.iv_back, R.id.btn_login})
     public void onViewClicked(View view) {

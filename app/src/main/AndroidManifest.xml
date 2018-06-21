@@ -105,7 +105,8 @@
 
         <activity
             android:name=".home.MainActivity"
-            android:launchMode="singleTask" />
+            android:launchMode="singleTask"
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".welfare.WelfarePhotoActivity"
             android:launchMode="singleTop" />

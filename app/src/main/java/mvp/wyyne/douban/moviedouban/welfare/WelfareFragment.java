@@ -60,12 +60,13 @@ public class WelfareFragment extends BaseFragment<WelfarePresent> implements IWe
         mAdapter = new WelfareAdapter(getActivity(), mList);
         mAdapter.setRvOnClick(this);
         mAdapter.setRvLongOnClick(this);
-        setLinearManager();
+        setGridsManager();
         initDialog();
         mPresent.getData();
 
 
     }
+
 
     private void initDialog() {
         View dialogView = LayoutInflater.from(getActivity()).inflate(R.layout.dialog_welfare_manager, null);

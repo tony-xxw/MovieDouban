@@ -8,7 +8,6 @@ import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -27,6 +26,7 @@ import mvp.wyyne.douban.moviedouban.api.bean.Subjects;
 import mvp.wyyne.douban.moviedouban.hot.main.HotFragment;
 import mvp.wyyne.douban.moviedouban.movie.MovieFragment;
 import mvp.wyyne.douban.moviedouban.oneself.OneselfFragment;
+import mvp.wyyne.douban.moviedouban.utils.ResourcesUtils;
 import mvp.wyyne.douban.moviedouban.utils.StatusUtils;
 import mvp.wyyne.douban.moviedouban.utils.StringUtils;
 import mvp.wyyne.douban.moviedouban.welfare.WelfareFragment;
@@ -55,18 +55,16 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bnm_menu);
         disableShiftMode(bottomNavigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
-
+        StatusUtils.setStatusBarColor(this, ResourcesUtils.getColor(R.color.white, this), true);
         initFragment();
         initView();
-        Log.d("XXW", getResources().getDisplayMetrics().widthPixels + "===" + getResources().getDisplayMetrics().heightPixels);
-//        startPatch()
+
     }
 
 
     @Override
     protected void onResume() {
         super.onResume();
-        StatusUtils.setStatusBarActivity(this, false, ContextCompat.getColor(this, R.color.white));
         hotFragment.llSearch.setVisibility(View.VISIBLE);
         hotFragment.llSearchMain.setVisibility(View.GONE);
         hotFragment.flSearch.setBackgroundColor(getResources().getColor(R.color.colorWhite));
@@ -224,7 +222,13 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             isSwitch = false;
         }
 
-        StatusUtils.tabSwitch(true, this);
+        if (currentFragment.equals(oneselfFragment)) {
+            StatusUtils.tabSwitch(false, this);
+        } else if (currentFragment.equals(welfareFragment)) {
+            StatusUtils.setStatusImage(this, true);
+        } else {
+            StatusUtils.tabSwitch(true, this);
+        }
     }
 
 

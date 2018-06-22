@@ -6,8 +6,9 @@
 
 
     <ImageView
+        android:id="@+id/iv_display"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="240dp"
         android:scaleType="fitXY"
         android:src="@drawable/ic_full_screen" />
 

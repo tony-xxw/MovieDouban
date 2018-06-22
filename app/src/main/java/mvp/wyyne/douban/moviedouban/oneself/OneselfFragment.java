@@ -3,6 +3,7 @@ package mvp.wyyne.douban.moviedouban.oneself;
 import android.content.Intent;
 import android.graphics.Color;
 import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -22,6 +23,7 @@ import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.home.base.BaseFragment;
 import mvp.wyyne.douban.moviedouban.login.LoginActivity;
 import mvp.wyyne.douban.moviedouban.oneself.ticket.MovieTicketActivity;
+import mvp.wyyne.douban.moviedouban.utils.ResourcesUtils;
 import mvp.wyyne.douban.moviedouban.utils.StatusUtils;
 
 /**
@@ -58,6 +60,8 @@ public class OneselfFragment extends BaseFragment<OneselfPresent>
     LinearLayout loginInfoContainer;
     @BindView(R.id.anonymous)
     TextView anonymous;
+    @BindView(R.id.ctl_collapsing)
+    CollapsingToolbarLayout ctlCollapsing;
 
 
     public static OneselfFragment getInstance() {
@@ -88,7 +92,15 @@ public class OneselfFragment extends BaseFragment<OneselfPresent>
     @Override
     public void onResume() {
         super.onResume();
+        Log.d("XXW", " onResume oneselfFragment");
         initDate();
+        initStatus(ResourcesUtils.getColor(R.color.transparent, getActivity()), false);
+    }
+
+    private void initStatus(int color, boolean textLight) {
+        StatusUtils.setStatusImage(
+                getActivity(), color, textLight);
+
     }
 
     private void initDate() {
@@ -97,10 +109,12 @@ public class OneselfFragment extends BaseFragment<OneselfPresent>
             anonymous.setVisibility(View.GONE);
             loginInfoContainer.setVisibility(View.VISIBLE);
             name.setText(getString(R.string.user_name));
+            mRlHeadLayout.setBackground(ResourcesUtils.getDrawable(R.drawable.ic_my_default_male_bg, getActivity()));
         } else {
             avatar.setImageDrawable(getResources().getDrawable(R.drawable.ic_user_default));
             anonymous.setVisibility(View.VISIBLE);
             loginInfoContainer.setVisibility(View.GONE);
+            mRlHeadLayout.setBackground(ResourcesUtils.getDrawable(R.drawable.ic_my_default_bg, getActivity()));
         }
     }
 
@@ -142,26 +156,23 @@ public class OneselfFragment extends BaseFragment<OneselfPresent>
     @Override
     public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
         if (verticalOffset == 0) {
-            Log.d("XXW", "展开");
+            //展开
             mTitleText.setVisibility(View.GONE);
             mRlTitleLayout.setBackgroundColor(getResources().getColor(R.color.transparent));
             mIvSetting.setImageDrawable(getResources().getDrawable(R.drawable.ic_setting_white));
-            StatusUtils.setStatusColor(getActivity(), getResources().getColor(R.color.color_green), false);
+            initStatus(ResourcesUtils.getColor(R.color.transparent, getActivity()), false);
         } else if (Math.abs(verticalOffset) != mAppBar.getTotalScrollRange()) {
             //滑动中
-            Log.d("XXW", "滑动中");
             mTitleText.setVisibility(View.GONE);
             mIvMovie.setVisibility(View.GONE);
             mRlTitleLayout.setBackgroundColor(getResources().getColor(R.color.transparent));
         } else {
             //滑动结束
-            Log.d("XXW", "折叠");
             mTitleText.setVisibility(View.VISIBLE);
             mIvMovie.setVisibility(View.VISIBLE);
             mIvSetting.setImageDrawable(getResources().getDrawable(R.drawable.ic_setting_black));
             mRlTitleLayout.setBackgroundColor(getResources().getColor(R.color.colorWhite));
-            StatusUtils.setStatusColor(getActivity(), getResources().getColor(R.color.colorWhite), true);
-
+            initStatus(ResourcesUtils.getColor(R.color.transparent, getActivity()), true);
             if (AndroidApplication.getApplication().isLogin()) {
                 mTitleText.setText("Wynne");
             } else {

@@ -222,11 +222,11 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             isSwitch = false;
         }
 
-        if (currentFragment.equals(oneselfFragment)) {
-            StatusUtils.tabSwitch(false, this);
-        } else if (currentFragment.equals(welfareFragment)) {
+
+        if (currentFragment.equals(welfareFragment)) {
             StatusUtils.setStatusImage(this, true);
-        } else {
+        } else if (!currentFragment.equals(oneselfFragment)) {
+            Log.d("XXW", "mainActivity");
             StatusUtils.tabSwitch(true, this);
         }
     }

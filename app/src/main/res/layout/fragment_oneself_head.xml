@@ -3,8 +3,7 @@
     android:id="@+id/rl_head_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/color_green"
-    android:orientation="vertical">
+    android:background="@drawable/ic_my_default_bg">
 
 
     <ImageView
@@ -45,9 +44,9 @@
                 android:ellipsize="end"
                 android:gravity="center"
                 android:maxLines="1"
+                android:textColor="@color/text_white"
                 android:textSize="18sp"
-                android:textStyle="bold"
-                android:textColor="@color/text_white" />
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/my_tickets"
@@ -62,8 +61,8 @@
                 android:paddingLeft="16.0dip"
                 android:paddingRight="16.0dip"
                 android:text="@string/my_tickets"
-                android:textSize="16sp"
-                android:textColor="@color/text_white" />
+                android:textColor="@color/text_white"
+                android:textSize="16sp" />
         </LinearLayout>
 
         <TextView

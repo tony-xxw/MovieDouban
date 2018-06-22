@@ -2,7 +2,6 @@ package mvp.wyyne.douban.moviedouban.movie.top;
 
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.widget.TextView;
 
@@ -15,6 +14,7 @@ import butterknife.OnClick;
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.adapter.viewpage.SubjectTitlePageAdapter;
 import mvp.wyyne.douban.moviedouban.home.base.BaseActivity;
+import mvp.wyyne.douban.moviedouban.utils.ResourcesUtils;
 import mvp.wyyne.douban.moviedouban.utils.StatusUtils;
 
 /**
@@ -46,6 +46,7 @@ public class TopActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+        StatusUtils.setStatusBarColor(this, ResourcesUtils.getColor(R.color.white, this), true);
         tvStillsTitle.setText("豆瓣Top250");
         tlTop.setTabMode(TabLayout.MODE_FIXED);
         initList();
@@ -54,10 +55,6 @@ public class TopActivity extends BaseActivity {
         adapter.setTitleList(titleList);
         vpTop.setAdapter(adapter);
         tlTop.setupWithViewPager(vpTop);
-
-
-
-
     }
 
     private void initList() {
@@ -74,7 +71,6 @@ public class TopActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        StatusUtils.setStatusBarActivity(this, false, ContextCompat.getColor(this, R.color.white));
     }
 
     @OnClick({R.id.iv_back})

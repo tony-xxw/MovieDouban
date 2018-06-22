@@ -9,7 +9,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.FrameLayout;
@@ -33,6 +32,7 @@ import mvp.wyyne.douban.moviedouban.api.bean.Subjects;
 import mvp.wyyne.douban.moviedouban.api.model.SearchModelTable;
 import mvp.wyyne.douban.moviedouban.detail.DetailMovieActivity;
 import mvp.wyyne.douban.moviedouban.home.base.BaseActivity;
+import mvp.wyyne.douban.moviedouban.utils.ResourcesUtils;
 import mvp.wyyne.douban.moviedouban.utils.StatusUtils;
 import mvp.wyyne.douban.moviedouban.widget.GridRecycleItemDecoration;
 
@@ -94,7 +94,7 @@ public class SearchMovieActivity extends BaseActivity<ISearchMoviePresent> imple
     @Override
     protected void onResume() {
         super.onResume();
-        StatusUtils.setStatusBarActivity(this, false, ContextCompat.getColor(this, R.color.color_green));
+        StatusUtils.setStatusBarColor(this, ResourcesUtils.getColor(R.color.color_green, this), false);
         llSearch.setVisibility(View.GONE);
         llSearchMain.setVisibility(View.VISIBLE);
         flSearch.setBackgroundColor(ContextCompat.getColor(this, R.color.color_green));
@@ -194,9 +194,6 @@ public class SearchMovieActivity extends BaseActivity<ISearchMoviePresent> imple
                 mPresent.updateSearchLast(mPresent.createSearchModelBean(mResultList.get(position).getTitle(), mResultList.get(position).getId()));
 
             }
-            Log.d("XXW", "historyCount :" + historyCount);
-            Log.d("XXW", "title :" + mResultList.get(position).getTitle());
-            Log.d("XXW", "id :" + mResultList.get(position).getId());
             notifyHistoryRefresh(collections());
 
         } else if (tag.equals(SearchHotAdapter.TAG)) {
@@ -275,7 +272,6 @@ public class SearchMovieActivity extends BaseActivity<ISearchMoviePresent> imple
      */
     public List<SearchModelTable> collections() {
         List<SearchModelTable> list = mPresent.getSearchBeanList();
-        Log.d("XXW", "collections : " + list.size());
         Collections.reverse(list);
         return list;
     }

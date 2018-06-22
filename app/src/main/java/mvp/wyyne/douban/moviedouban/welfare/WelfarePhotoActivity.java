@@ -3,7 +3,6 @@ package mvp.wyyne.douban.moviedouban.welfare;
 import android.app.AlertDialog;
 import android.app.WallpaperManager;
 import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
@@ -61,7 +60,7 @@ public class WelfarePhotoActivity extends BaseActivity implements View.OnLongCli
 
     @Override
     protected void initView() {
-        StatusUtils.setStatusBarActivity(this, true, Color.TRANSPARENT);
+        StatusUtils.setStatusImage(this, true);
         if (getIntent() != null) {
             mPhotoUrl = getIntent().getStringExtra(TAG);
             Log.d("XXW", "mPhotoUrl  :" + mPhotoUrl);

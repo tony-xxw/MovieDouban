@@ -1,6 +1,5 @@
 package mvp.wyyne.douban.moviedouban.interest;
 
-import android.graphics.Color;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -9,6 +8,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.home.base.BaseActivity;
+import mvp.wyyne.douban.moviedouban.utils.ResourcesUtils;
 import mvp.wyyne.douban.moviedouban.utils.StatusUtils;
 
 /**
@@ -36,7 +36,7 @@ public class InterestActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        StatusUtils.setStatusBarActivity(this, false, Color.WHITE);
+        StatusUtils.setStatusBarColor(this, ResourcesUtils.getColor(R.color.white, this), true);
     }
 
     @Override

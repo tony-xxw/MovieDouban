@@ -14,8 +14,9 @@
         app:elevation="0dp">
 
         <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/ctl_collapsing"
             android:layout_width="match_parent"
-            android:layout_height="170dp"
+            android:layout_height="200dp"
             android:background="@color/image_color_background"
             android:minHeight="?android:actionBarSize"
             app:contentScrim="@color/colorWhite"
@@ -30,6 +31,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:layout_gravity="top"
+                android:layout_marginTop="10dp"
                 app:contentInsetLeft="0dp"
                 app:contentInsetStart="0dp"
                 app:layout_collapseMode="pin"

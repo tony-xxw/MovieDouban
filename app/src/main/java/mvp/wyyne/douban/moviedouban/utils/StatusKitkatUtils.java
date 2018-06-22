@@ -1,9 +1,11 @@
 package mvp.wyyne.douban.moviedouban.utils;
 
 import android.app.Activity;
-import android.content.Context;
 import android.support.annotation.ColorInt;
+import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.view.ViewCompat;
+import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,7 +37,7 @@ public class StatusKitkatUtils {
 
         ViewGroup mContentView = (ViewGroup) window.findViewById(Window.ID_ANDROID_CONTENT);
         View mChildView = mContentView.getChildAt(0);
-        int statusBarHeight = getStatusBarHeight(activity);
+        int statusBarHeight = StatusUtils.getStatusBarHeight(activity);
 
         removeFakeStatusBarViewIfExist(activity);
         addFakeStatusBarView(activity, color, statusBarHeight);
@@ -98,20 +100,6 @@ public class StatusKitkatUtils {
         }
     }
 
-    /**
-     * 返回状态栏高度
-     *
-     * @param context 上下文
-     * @return
-     */
-    private static int getStatusBarHeight(Context context) {
-        int result = 0;
-        int resId = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
-        if (resId > 0) {
-            result = context.getResources().getDimensionPixelOffset(resId);
-        }
-        return result;
-    }
 
     public static void translucentStatusBar(Activity activity) {
         Window window = activity.getWindow();
@@ -122,7 +110,7 @@ public class StatusKitkatUtils {
         View mChildView = mContentView.getChildAt(0);
 
         removeFakeStatusBarViewIfExist(activity);
-        removeMarginTopIfContentChild(mChildView, getStatusBarHeight(activity));
+        removeMarginTopIfContentChild(mChildView, StatusUtils.getStatusBarHeight(activity));
 
         if (mChildView != null) {
             ViewCompat.setFitsSystemWindows(mChildView, false);
@@ -140,5 +128,11 @@ public class StatusKitkatUtils {
             mChildView.setLayoutParams(lp);
             mChildView.setTag(null);
         }
+    }
+
+
+    static void setStatusBarColorForCollapsingToolbar(Activity activity, final AppBarLayout appBarLayout, final CollapsingToolbarLayout collapsingToolbarLayout,
+                                                      Toolbar toolbar, int statusColor) {
+
     }
 }

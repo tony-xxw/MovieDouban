@@ -8,6 +8,9 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
+
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +35,8 @@ public class WelfareFragment extends BaseFragment<WelfarePresent> implements IWe
     public static final String TAG = WelfareFragment.class.getSimpleName();
     @BindView(R.id.rv_welfare)
     RecyclerView mRvWelfare;
+    @BindView(R.id.iv_display)
+    ImageView ivDisPlay;
     private WelfareAdapter mAdapter;
     private List<WelfarePhotoInfo> mList;
     private StaggeredGridLayoutManager mStaggerManager;
@@ -91,6 +96,7 @@ public class WelfareFragment extends BaseFragment<WelfarePresent> implements IWe
 
     @Override
     public void showImg(List<WelfarePhotoInfo> list) {
+        Glide.with(getActivity()).load(list.get(0).getUrl()).into(ivDisPlay);
         mList = list;
         mAdapter.setList(mList);
         mAdapter.notifyDataSetChanged();

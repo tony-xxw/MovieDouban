@@ -45,7 +45,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     private MovieFragment movieFragment;
     private OneselfFragment oneselfFragment;
     private WelfareFragment welfareFragment;
-    private boolean isSwitch;
     public ArrayList<Subjects> mList;
 
     @Override
@@ -215,18 +214,11 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         }
         currentFragment = targetFragment;
 
-
-        if (currentFragment != oneselfFragment) {
-            isSwitch = true;
-        } else {
-            isSwitch = false;
-        }
-
-
         if (currentFragment.equals(welfareFragment)) {
             StatusUtils.setStatusImage(this, true);
-        } else if (!currentFragment.equals(oneselfFragment)) {
-            Log.d("XXW", "mainActivity");
+        } else if (currentFragment.equals(oneselfFragment)) {
+            StatusUtils.setStatusImage(this, R.color.transparent, false);
+        } else {
             StatusUtils.tabSwitch(true, this);
         }
     }

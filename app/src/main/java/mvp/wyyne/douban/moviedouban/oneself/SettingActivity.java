@@ -12,8 +12,6 @@ import butterknife.OnClick;
 import mvp.wyyne.douban.moviedouban.AndroidApplication;
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.home.base.BaseActivity;
-import mvp.wyyne.douban.moviedouban.utils.ResourcesUtils;
-import mvp.wyyne.douban.moviedouban.utils.StatusUtils;
 
 /**
  * 设置页面
@@ -57,7 +55,7 @@ public class SettingActivity extends BaseActivity {
 
         initCache();
 
-        StatusUtils.setStatusBarColor(this, ResourcesUtils.getColor(R.color.white, this), true);
+        setStatusBarColor(R.color.white, true);
     }
 
     private void initCache() {

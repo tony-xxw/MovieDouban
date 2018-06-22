@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/colorGray_tint"
-            android:orientation="vertical">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorGray_tint"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,20 +16,21 @@
             android:layout_margin="10dp"
             android:text="@string/gps_city_name"
             android:textColor="@color/colorGray"
-            android:textSize="14sp"/>
+            android:textSize="14sp" />
 
 
-        <TextView
+        <mvp.wyyne.douban.moviedouban.widget.DrawableCenterLeftTextView
             android:id="@+id/tv_gps_city"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:background="@color/colorWhite"
-            android:drawableLeft="@drawable/icon_gps"
-            android:gravity="center"
+            android:drawablePadding="10dp"
+            android:drawableStart="@drawable/icon_gps"
+            android:gravity="center_vertical"
             android:minHeight="42dp"
-            android:text="杭州"
-            android:textSize="14sp"/>
+            android:text="@string/hangzhou"
+            android:textSize="14sp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -37,13 +38,13 @@
             android:layout_margin="10dp"
             android:text="@string/hot_city_name"
             android:textColor="@color/colorGray"
-            android:textSize="14sp"/>
+            android:textSize="14sp" />
 
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_hot_city"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 </ScrollView>

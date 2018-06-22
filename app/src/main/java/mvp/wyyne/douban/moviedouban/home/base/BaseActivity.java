@@ -14,9 +14,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.home.IPresent;
+import mvp.wyyne.douban.moviedouban.utils.ResourcesUtils;
+import mvp.wyyne.douban.moviedouban.utils.StatusUtils;
 
 /**
- *
  * 基类Activity
  *
  * @author XXW
@@ -87,6 +88,10 @@ public abstract class BaseActivity<T extends IPresent> extends AppCompatActivity
     public void intentActivity(Context context, Class active) {
         Intent intent = new Intent(context, active);
         startActivity(intent);
+    }
+
+    public void setStatusBarColor(int color, boolean statusLight) {
+        StatusUtils.setStatusBarColor(this, ResourcesUtils.getColor(color, this), statusLight);
     }
 
 }

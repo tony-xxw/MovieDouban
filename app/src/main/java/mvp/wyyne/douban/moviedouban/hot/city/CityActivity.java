@@ -1,5 +1,6 @@
 package mvp.wyyne.douban.moviedouban.hot.city;
 
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -16,7 +17,10 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.adapter.viewpage.SubjectTitlePageAdapter;
+import mvp.wyyne.douban.moviedouban.home.MainActivity;
 import mvp.wyyne.douban.moviedouban.home.base.BaseActivity;
+
+import static mvp.wyyne.douban.moviedouban.utils.Constant.CITY_RESULT;
 
 /**
  * @author XXW
@@ -24,6 +28,7 @@ import mvp.wyyne.douban.moviedouban.home.base.BaseActivity;
  */
 
 public class CityActivity extends BaseActivity {
+    public static final String TAG = CityActivity.class.getSimpleName();
     @BindView(R.id.tv_stills_title)
     TextView mTvCtTitle;
     @BindView(R.id.iv_share)
@@ -36,8 +41,6 @@ public class CityActivity extends BaseActivity {
     ViewPager mVpCt;
 
 
-    private SubjectTitlePageAdapter mAdapter;
-    private List<String> mTitle;
     private String[] mStrings = {"国内", "海外"};
     private List<Fragment> mList;
 
@@ -54,20 +57,21 @@ public class CityActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+        setStatusBarColor(R.color.white, true);
         mLlTitle.setBackgroundColor(getResources().getColor(R.color.white));
         mTvCtTitle.setText(getString(R.string.city_select));
 
         mTlCt.addTab(mTlCt.newTab().setText(mStrings[0]));
         mTlCt.addTab(mTlCt.newTab().setText(mStrings[1]));
 
-        mTitle = Arrays.asList(mStrings);
+
         mList = new ArrayList<>();
 
         mList.add(new ChinaFragment());
         mList.add(new ForeignFragment());
 
-        mAdapter = new SubjectTitlePageAdapter(getSupportFragmentManager());
-        mAdapter.setTitleList(mTitle);
+        SubjectTitlePageAdapter mAdapter = new SubjectTitlePageAdapter(getSupportFragmentManager());
+        mAdapter.setTitleList(Arrays.asList(mStrings));
         mAdapter.setFragment(mList);
         mVpCt.setAdapter(mAdapter);
 
@@ -86,5 +90,10 @@ public class CityActivity extends BaseActivity {
         }
     }
 
-
+    public void setCityResult(String city) {
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra(TAG, city);
+        setResult(CITY_RESULT, intent);
+        finish();
+    }
 }

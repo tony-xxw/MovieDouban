@@ -7,6 +7,7 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -18,6 +19,9 @@ import mvp.wyyne.douban.moviedouban.home.MainActivity;
 import mvp.wyyne.douban.moviedouban.home.base.BaseFragment;
 import mvp.wyyne.douban.moviedouban.hot.city.CityActivity;
 import mvp.wyyne.douban.moviedouban.search.SearchMovieActivity;
+
+import static mvp.wyyne.douban.moviedouban.utils.Constant.CITY_RESULT;
+import static mvp.wyyne.douban.moviedouban.utils.Constant.HOT_REQUEST;
 
 
 /**
@@ -39,6 +43,8 @@ public class HotFragment extends BaseFragment<HotPresenterImp> implements HotVie
     public LinearLayout llSearchMain;
     @BindView(R.id.fl_search)
     public FrameLayout flSearch;
+    @BindView(R.id.tv_city)
+    public TextView tvCity;
     private MainActivity mainActivity;
     private ArrayList<Subjects> mList;
 
@@ -76,7 +82,7 @@ public class HotFragment extends BaseFragment<HotPresenterImp> implements HotVie
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_city:
-                startActivity(new Intent(getActivity(), CityActivity.class));
+                startActivityForResult(new Intent(getActivity(), CityActivity.class), HOT_REQUEST);
                 break;
             case R.id.dcl_search:
                 if (mainActivity.getSubjects() != null) {
@@ -88,6 +94,18 @@ public class HotFragment extends BaseFragment<HotPresenterImp> implements HotVie
                 break;
             default:
                 break;
+        }
+    }
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode > -1) {
+            if (resultCode == CITY_RESULT) {
+                String cityName = data.getStringExtra(CityActivity.TAG);
+                tvCity.setText(cityName);
+            }
         }
     }
 }

@@ -27,7 +27,8 @@ public class Constant {
     public static final String START = "start";
     public static final String COUNT = "count";
 
-
+    public static final int HOT_REQUEST = 1;
+    public static final int CITY_RESULT = 1;
     /**
      * 想看 - 存在记录
      */

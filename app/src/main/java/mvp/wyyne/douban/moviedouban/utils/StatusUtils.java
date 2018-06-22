@@ -29,6 +29,7 @@ public class StatusUtils {
      * @param activity
      */
     public static void setStatusTextColor(Activity activity) {
+        //如果Window的FLAG 是全屏 需要与全屏SCREE_FULL | SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             activity.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         }
@@ -40,7 +41,12 @@ public class StatusUtils {
         setStatusBarColor(activity, color, isLightStatus);
     }
 
-
+    /**
+     * 切换Fragment
+     *
+     * @param isOneself 是否切换我的
+     * @param activity  上下文
+     */
     public static void tabSwitch(boolean isOneself, Activity activity) {
         if (isOneself) {
             StatusUtils.setStatusColor(activity, ResourcesUtils.getColor(R.color.white, activity), true);
@@ -106,6 +112,10 @@ public class StatusUtils {
                                     View.SYSTEM_UI_FLAG_LAYOUT_STABLE |
                                     View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
                 }
+            } else {
+                activity.getWindow().getDecorView().setSystemUiVisibility(
+                        View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN |
+                                View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
             }
 
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {

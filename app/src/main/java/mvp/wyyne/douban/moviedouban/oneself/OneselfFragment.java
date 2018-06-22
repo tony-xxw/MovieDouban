@@ -8,7 +8,6 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -92,9 +91,8 @@ public class OneselfFragment extends BaseFragment<OneselfPresent>
     @Override
     public void onResume() {
         super.onResume();
-        Log.d("XXW", " onResume oneselfFragment");
         initDate();
-        initStatus(ResourcesUtils.getColor(R.color.transparent, getActivity()), false);
+        initStatus(R.color.transparent, false);
     }
 
     private void initStatus(int color, boolean textLight) {
@@ -160,7 +158,7 @@ public class OneselfFragment extends BaseFragment<OneselfPresent>
             mTitleText.setVisibility(View.GONE);
             mRlTitleLayout.setBackgroundColor(getResources().getColor(R.color.transparent));
             mIvSetting.setImageDrawable(getResources().getDrawable(R.drawable.ic_setting_white));
-            initStatus(ResourcesUtils.getColor(R.color.transparent, getActivity()), false);
+            initStatus(R.color.transparent, false);
         } else if (Math.abs(verticalOffset) != mAppBar.getTotalScrollRange()) {
             //滑动中
             mTitleText.setVisibility(View.GONE);
@@ -172,7 +170,7 @@ public class OneselfFragment extends BaseFragment<OneselfPresent>
             mIvMovie.setVisibility(View.VISIBLE);
             mIvSetting.setImageDrawable(getResources().getDrawable(R.drawable.ic_setting_black));
             mRlTitleLayout.setBackgroundColor(getResources().getColor(R.color.colorWhite));
-            initStatus(ResourcesUtils.getColor(R.color.transparent, getActivity()), true);
+            initStatus(R.color.transparent, true);
             if (AndroidApplication.getApplication().isLogin()) {
                 mTitleText.setText("Wynne");
             } else {

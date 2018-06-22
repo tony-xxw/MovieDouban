@@ -10,8 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.adapter.CityAdapter;
+import mvp.wyyne.douban.moviedouban.api.RvItemOnClick;
 import mvp.wyyne.douban.moviedouban.api.bean.City;
 import mvp.wyyne.douban.moviedouban.home.base.BaseFragment;
 
@@ -22,12 +24,11 @@ import mvp.wyyne.douban.moviedouban.home.base.BaseFragment;
  * @date 2017/8/16.
  */
 
-public class ChinaFragment extends BaseFragment<ChinaPresenter> implements ChinaView {
+public class ChinaFragment extends BaseFragment<ChinaPresenter> implements ChinaView, RvItemOnClick {
     @BindView(R.id.rv_hot_city)
     RecyclerView mRvHotCity;
     @BindView(R.id.tv_gps_city)
     TextView mTvGpsCity;
-    private CityAdapter mCityAdapter;
     private String[] hotCity = {
             "北京", "上海", "广州",
             "深圳", "武汉", "成都",
@@ -35,7 +36,6 @@ public class ChinaFragment extends BaseFragment<ChinaPresenter> implements China
             "南京", "西安", "苏州",
             "天津", "长沙", "福州"};
     private List<City> mCityList = new ArrayList<>();
-    private ViewGroup.LayoutParams viewGroup;
 
 
     @Override
@@ -54,18 +54,16 @@ public class ChinaFragment extends BaseFragment<ChinaPresenter> implements China
             mCityList.add(new City(city));
         }
 
-        mCityAdapter = new CityAdapter(getActivity(), mCityList);
+        CityAdapter mCityAdapter = new CityAdapter(getActivity(), mCityList);
         mRvHotCity.setLayoutManager(new GridLayoutManager(getActivity(), 3));
+        mCityAdapter.setRvOnClick(this);
         mRvHotCity.setAdapter(mCityAdapter);
 
 
-        viewGroup = mTvGpsCity.getLayoutParams();
+        ViewGroup.LayoutParams viewGroup = mTvGpsCity.getLayoutParams();
         viewGroup.width = getResources().getDisplayMetrics().widthPixels / 3 - 60;
         mTvGpsCity.setLayoutParams(viewGroup);
         Log.d("XXW", "mTvGpsCity===" + viewGroup.width);
-//        mPresent = new ChinaPresenterImp(this);
-        //开始定位
-//        mPresent.initLocation();
 
     }
 
@@ -82,5 +80,19 @@ public class ChinaFragment extends BaseFragment<ChinaPresenter> implements China
     @Override
     public void initCity(String cityName) {
 
+    }
+
+
+    @Override
+    public void onItemClick(int position, String tag) {
+        String cityName = mCityList.get(position).getCityName();
+        ((CityActivity) getActivity()).setCityResult(cityName);
+    }
+
+
+    @OnClick(R.id.tv_gps_city)
+    public void onViewClicked() {
+        String cityName = mTvGpsCity.getText().toString();
+        ((CityActivity) getActivity()).setCityResult(cityName);
     }
 }

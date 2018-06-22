@@ -27,7 +27,8 @@ import mvp.wyyne.douban.moviedouban.R;
 
 
 /**
- * Created by XXW on 2017/6/24.
+ * @author XXW
+ * @date 2017/6/24
  */
 
 

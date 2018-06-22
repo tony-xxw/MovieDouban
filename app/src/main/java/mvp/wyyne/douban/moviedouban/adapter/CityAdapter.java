@@ -1,7 +1,7 @@
 package mvp.wyyne.douban.moviedouban.adapter;
 
 import android.content.Context;
-import android.widget.TextView;
+import android.view.View;
 
 import java.util.List;
 
@@ -25,9 +25,14 @@ public class CityAdapter extends BaseRvAdapter<City> {
     }
 
     @Override
-    public void bindView(BaseItemViewHolder holder, int position) {
-        TextView tvCityName = holder.getView(R.id.tv_city_name);
-        tvCityName.setText(mList.get(position).getCityName());
+    public void bindView(BaseItemViewHolder holder, final int position) {
+        holder.setText(R.id.tv_city_name, mList.get(position).getCityName());
+        holder.getView(R.id.ll_content).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mClick.onItemClick(position, "");
+            }
+        });
     }
 
     @Override

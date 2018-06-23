@@ -17,7 +17,7 @@ import java.util.List;
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.api.bean.WelfarePhotoInfo;
 import mvp.wyyne.douban.moviedouban.utils.ImageLoader;
-import mvp.wyyne.douban.moviedouban.utils.TransformSize;
+import mvp.wyyne.douban.moviedouban.utils.ResourcesUtils;
 
 /**
  * @author XXW
@@ -76,7 +76,7 @@ public class WelfareAdapter extends BaseRvAdapter<WelfarePhotoInfo> implements V
             if (layoutManager.equals(LINEAR)) {
 
                 ViewGroup.LayoutParams params = imageView.getLayoutParams();
-                params.height = TransformSize.pxToDp(mContext, 200);
+                params.height = ResourcesUtils.pxToDp(mContext, 200);
                 imageView.setLayoutParams(params);
 
                 Glide.with(mContext).
@@ -90,7 +90,7 @@ public class WelfareAdapter extends BaseRvAdapter<WelfarePhotoInfo> implements V
 
             } else if (layoutManager.equals(GRIDS)) {
                 ViewGroup.LayoutParams params = imageView.getLayoutParams();
-                params.height = TransformSize.pxToDp(mContext, 120);
+                params.height = ResourcesUtils.pxToDp(mContext, 120);
                 imageView.setLayoutParams(params);
 
                 Glide.with(mContext).

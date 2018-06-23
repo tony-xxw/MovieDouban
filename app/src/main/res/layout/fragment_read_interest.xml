@@ -1,6 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-</FrameLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_tag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:drawableEnd="@drawable/ic_group_tag_down"
+            android:drawablePadding="10dp"
+            android:text="@string/select_tag" />
+
+        <mvp.wyyne.douban.moviedouban.widget.FlowView
+            android:id="@+id/fvGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            app:flowBackground="@drawable/bg_btn_orange"
+            app:flowTextColor="@drawable/hot_text_clolor_selected"
+            app:flowTextPaddingBottom="5dp"
+            app:flowTextPaddingLeft="10dp"
+            app:flowTextPaddingRight="10dp"
+            app:flowTextPaddingTop="5dp"
+            app:flowTextSize="14sp"
+            app:lineMargin="10dp"
+            app:maxSelect="0"
+            app:selectType="SINGLE"
+            app:wordMargin="10dp" />
+    </LinearLayout>
+</ScrollView>

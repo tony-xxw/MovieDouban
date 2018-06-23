@@ -59,7 +59,7 @@ public class StatusUtils {
     /**
      * 设置状态栏颜色
      */
-    public static void setStatusBarColor(@NonNull Activity activity, @ColorInt int color, boolean textColor) {
+    public static void setStatusBarColor(@NonNull Activity activity, int color, boolean textColor) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             StatusLollipopUtils.setStatusBarColor(activity, color);
 

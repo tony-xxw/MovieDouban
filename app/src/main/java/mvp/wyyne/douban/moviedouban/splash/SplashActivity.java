@@ -1,7 +1,6 @@
 package mvp.wyyne.douban.moviedouban.splash;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Handler;
 
 import mvp.wyyne.douban.moviedouban.R;
@@ -30,7 +29,7 @@ public class SplashActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        StatusUtils.setStatusColor(this, Color.WHITE, false);
+        StatusUtils.setStatusColor(this, R.color.white, false);
     }
 
     @Override

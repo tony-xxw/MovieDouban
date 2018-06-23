@@ -17,7 +17,7 @@ import mvp.wyyne.douban.moviedouban.home.base.BaseActivity;
  * @date 2018/6/12
  */
 
-public class MovieTicketActivity extends BaseActivity {
+public class OneselfMovieTicketActivity extends BaseActivity {
     @BindView(R.id.tv_stills_title)
     TextView tvStillsTitle;
 

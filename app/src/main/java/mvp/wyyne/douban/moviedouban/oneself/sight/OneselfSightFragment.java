@@ -17,7 +17,7 @@ import mvp.wyyne.douban.moviedouban.home.base.BaseFragment;
  * @date 2017/7/22
  */
 
-public class SightFragment extends BaseFragment {
+public class OneselfSightFragment extends BaseFragment {
     @BindView(R.id.tv_filtrate)
     TextView tvFiltrate;
     @BindView(R.id.ll_sight_content)
@@ -25,7 +25,7 @@ public class SightFragment extends BaseFragment {
 
 
     public static Fragment getInstance() {
-        SightFragment fragment = new SightFragment();
+        OneselfSightFragment fragment = new OneselfSightFragment();
         return fragment;
     }
 

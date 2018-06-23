@@ -17,7 +17,7 @@ import mvp.wyyne.douban.moviedouban.home.base.BaseFragment;
  * @date 2017/7/22
  */
 
-public class ReadFragment extends BaseFragment {
+public class OneselfReadFragment extends BaseFragment {
 
     @BindView(R.id.tv_filtrate)
     TextView tvFiltrate;
@@ -25,7 +25,7 @@ public class ReadFragment extends BaseFragment {
     LinearLayout llReadContent;
 
     public static Fragment getInstance() {
-        ReadFragment fragment = new ReadFragment();
+        OneselfReadFragment fragment = new OneselfReadFragment();
         return fragment;
     }
 
@@ -36,7 +36,7 @@ public class ReadFragment extends BaseFragment {
 
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_read;
+        return R.layout.fragment_read_oneself;
     }
 
     @Override

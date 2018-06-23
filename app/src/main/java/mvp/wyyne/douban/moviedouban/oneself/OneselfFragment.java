@@ -21,7 +21,7 @@ import mvp.wyyne.douban.moviedouban.AndroidApplication;
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.home.base.BaseFragment;
 import mvp.wyyne.douban.moviedouban.login.LoginActivity;
-import mvp.wyyne.douban.moviedouban.oneself.ticket.MovieTicketActivity;
+import mvp.wyyne.douban.moviedouban.oneself.ticket.OneselfMovieTicketActivity;
 import mvp.wyyne.douban.moviedouban.utils.ResourcesUtils;
 import mvp.wyyne.douban.moviedouban.utils.StatusUtils;
 
@@ -142,7 +142,7 @@ public class OneselfFragment extends BaseFragment<OneselfPresent>
                 break;
             case R.id.my_tickets:
                 //跳转电影票页面
-                Intent ticket = new Intent(getActivity(), MovieTicketActivity.class);
+                Intent ticket = new Intent(getActivity(), OneselfMovieTicketActivity.class);
                 startActivity(ticket);
                 break;
             default:

@@ -17,7 +17,7 @@ import mvp.wyyne.douban.moviedouban.home.base.BaseFragment;
  * @date 2017/7/22
  */
 
-public class ReviewFragment extends BaseFragment {
+public class OneselfReviewFragment extends BaseFragment {
 
     @BindView(R.id.tv_number_subject)
     TextView tvNumberSubject;
@@ -32,7 +32,7 @@ public class ReviewFragment extends BaseFragment {
 
 
     public static Fragment getInstance() {
-        ReviewFragment fragment = new ReviewFragment();
+        OneselfReviewFragment fragment = new OneselfReviewFragment();
         return fragment;
     }
 

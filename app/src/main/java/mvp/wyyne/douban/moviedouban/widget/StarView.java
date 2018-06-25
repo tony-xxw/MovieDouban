@@ -25,6 +25,9 @@ public class StarView extends View {
     private int startSpace = 0;
     private int startSize;
     private int startCount;
+    /**
+     * 分数
+     */
     private float startMark = 0.0F;
     private Drawable startDark;
     private Bitmap startLight;
@@ -130,25 +133,25 @@ public class StarView extends View {
         if (x < 0) {
             x = 0;
         }
-        if (x > getMeasuredWidth()) {
-
-        }
-        switch (event.getAction()) {
-            case MotionEvent.ACTION_DOWN: {
-//                setStartMark(x / (getMeasuredWidth() / startCount));
+        switch (1) {
+            case 1:
                 break;
-            }
-            case MotionEvent.ACTION_MOVE: {
-//                setStartMark(x / (getMeasuredWidth() / startCount));
-                break;
-            }
-            case MotionEvent.ACTION_UP: {
-                break;
-            }
             default:
                 break;
         }
-        invalidate();
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+//                setStartMark(x / (getMeasuredWidth() / startCount));
+                break;
+            case MotionEvent.ACTION_MOVE:
+                setStartMark(x / (getMeasuredWidth() / startCount));
+                invalidate();
+                break;
+            case MotionEvent.ACTION_UP:
+                break;
+            default:
+                break;
+        }
         return super.onTouchEvent(event);
     }
 

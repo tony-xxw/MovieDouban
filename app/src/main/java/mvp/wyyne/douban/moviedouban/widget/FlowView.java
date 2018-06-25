@@ -22,9 +22,8 @@ import mvp.wyyne.douban.moviedouban.utils.ResourcesUtils;
  * @date 2018/6/23
  */
 
-public class FlowView extends ViewGroup {
+public class FlowView extends ViewGroup implements View.OnClickListener {
     private Context mContext;
-
     private ColorStateList mTextColor;
     private float mTextSize;
     private Drawable mFlowBg;
@@ -36,13 +35,22 @@ public class FlowView extends ViewGroup {
     private int mLineMargin;
     private int mMaxSelect;
     private SelectType mSelectType;
+    private OnFlowClickListener mOnFlowClick;
+
+    /**
+     * 用于保存tag数据的key
+     **/
+    private static final int KEY_DATA = R.id.tag_key_data;
+    /**
+     * 用于保存tag位置的key
+     **/
+    private static final int KEY_POSITION = R.id.tag_key_position;
 
     public FlowView(Context context, AttributeSet attrs) {
         super(context, attrs);
         mContext = context;
         getAttributeSet(context, attrs);
     }
-
 
     public FlowView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
@@ -70,6 +78,22 @@ public class FlowView extends ViewGroup {
             mFlowBg = mContext.getResources().getDrawable(labelBgResId);
             typedArray.recycle();
         }
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v instanceof TextView) {
+            TextView tag = (TextView) v;
+
+            setMaxSelect(tag.isSelected(), tag);
+//            if (mOnFlowClick != null) {
+//                mOnFlowClick.onFlowClick(tag, tag.getTag(KEY_DATA), (Integer) tag.getTag(KEY_POSITION));
+//            }
+        }
+    }
+
+    public void setOnClick(OnFlowClickListener onFlowClickListener) {
+        mOnFlowClick = onFlowClickListener;
     }
 
 
@@ -113,12 +137,12 @@ public class FlowView extends ViewGroup {
         //获取子类个数
         int count = getChildCount();
         //获取手机屏幕宽度
-        int maxWidth =  ((MeasureSpec.getSize(widthMeasureSpec) - getPaddingLeft() - getPaddingRight()));
+        int maxWidth = ((MeasureSpec.getSize(widthMeasureSpec) - getPaddingLeft() - getPaddingRight()));
         //记录View的高度
         int contentHeight = 0;
-        //记录每一行宽度
+        //记录一行中View的宽度和
         int lineWidth = 0;
-        //记录最大的行宽
+        //记录多行中最大的宽度 做为ViewGroup的宽度
         int maxLineWidth = 0;
         //记录一行中最高的item 高度
         int maxItemHeight = 0;
@@ -138,8 +162,8 @@ public class FlowView extends ViewGroup {
 
             //换行
             if (lineWidth + childView.getMeasuredWidth() >= maxWidth) {
-                contentHeight += mLineMargin;
-                contentHeight += maxItemHeight;
+                //记录当前行的高度
+                contentHeight += maxItemHeight + mLineMargin;
                 maxItemHeight = 0;
                 maxLineWidth = Math.max(maxLineWidth, lineWidth);
                 lineWidth = 0;
@@ -148,7 +172,7 @@ public class FlowView extends ViewGroup {
 
             //上一个View与这个一View相比 保存最高的高度
             maxItemHeight = Math.max(childView.getMeasuredHeight(), maxItemHeight);
-            //记录一行中最后一个View 所占用的宽度
+            //记录一行中各个子View 相加起来起来的高度
             lineWidth += childView.getMeasuredWidth();
         }
 
@@ -171,15 +195,18 @@ public class FlowView extends ViewGroup {
         int specMode = MeasureSpec.getMode(widthMeasureSpec);
         int specSize = MeasureSpec.getSize(widthMeasureSpec);
 
+        //如果ViewGroup:layout_width 为Match_parent或固定值
         if (specMode == MeasureSpec.EXACTLY) {
             return specSize;
         } else {
+            //如果ViewGroup:layout_height 为Warp_content
             result = maxLineWidth + getPaddingLeft() + getPaddingRight();
             if (specMode == MeasureSpec.AT_MOST) {
                 result = Math.min(result, specSize);
             }
         }
-        result = Math.max(result, getSuggestedMinimumHeight());
+        //当如设置有minWidth的时候设置minWidth的值
+        result = Math.max(result, getSuggestedMinimumWidth());
 
         return result;
 
@@ -209,7 +236,7 @@ public class FlowView extends ViewGroup {
         int x = getPaddingLeft();
         int y = getPaddingTop();
 
-        int contentWidth =((r - l));
+        int contentWidth = ((r - l));
         int maxItemHeight = 0;
 
         for (int i = 0; i < getChildCount(); i++) {
@@ -230,32 +257,53 @@ public class FlowView extends ViewGroup {
     }
 
 
-    public <T> void setTags(List<T> labels, FlowTextProvider<T> provider) {
+    public <T> void setTags(List<T> tags, FlowTextProvider<T> provider) {
         //清空原有的标签
         removeAllViews();
 
-        if (labels != null) {
-            int size = labels.size();
+        if (tags != null) {
+            int size = tags.size();
             for (int i = 0; i < size; i++) {
-                addLabel(labels.get(i), i, provider);
+                addLabel(tags.get(i), i, provider);
             }
         }
     }
 
+
+    public void setMaxSelect(boolean select, TextView flow) {
+
+        flow.setSelected(!select);
+
+        if (mOnFlowClick != null) {
+            mOnFlowClick.onFlowClick(flow, flow.getTag(KEY_DATA),
+                    (int) flow.getTag(KEY_POSITION), flow.isSelected());
+        }
+    }
+
     private <T> void addLabel(T data, int position, FlowTextProvider<T> provider) {
-        final TextView label = new TextView(mContext);
-        label.setPadding(mTextPaddingLeft, mTextPaddingTop, mTextPaddingRight, mTextPaddingBottom);
-        label.setTextSize(TypedValue.COMPLEX_UNIT_PX, mTextSize);
-        label.setTextColor(mTextColor != null ? mTextColor : ColorStateList.valueOf(0xFF000000));
+        final TextView tags = new TextView(mContext);
+        tags.setPadding(mTextPaddingLeft, mTextPaddingTop, mTextPaddingRight, mTextPaddingBottom);
+        tags.setTextSize(TypedValue.COMPLEX_UNIT_PX, mTextSize);
+        tags.setTextColor(mTextColor != null ? mTextColor : ColorStateList.valueOf(0xFF000000));
         //设置给label的背景(Drawable)是一个Drawable对象的拷贝，
         // 因为如果所有的标签都共用一个Drawable对象，会引起背景错乱。
-        label.setBackgroundDrawable(mFlowBg.getConstantState().newDrawable());
-        //label通过tag保存自己的数据(data)和位置(position)
-//        label.setTag(KEY_DATA, data);
-//        label.setTag(KEY_POSITION, position);
-//        label.setOnClickListener(this);
-        addView(label);
-        label.setText(provider.getFlowText(label, position, data));
+        tags.setBackgroundDrawable(mFlowBg.getConstantState().newDrawable());
+        tags.setTag(KEY_DATA, data);
+        tags.setTag(KEY_POSITION, position);
+        tags.setOnClickListener(this);
+        addView(tags);
+        tags.setText(provider.getFlowText(tags, position, data));
+    }
+
+
+    public interface OnFlowClickListener {
+
+        /**
+         * @param label    标签
+         * @param data     标签对应的数据
+         * @param position 标签位置
+         */
+        void onFlowClick(TextView label, Object data, int position, boolean isSelect);
     }
 
     public interface FlowTextProvider<T> {
@@ -263,16 +311,13 @@ public class FlowView extends ViewGroup {
         /**
          * 根据data和position返回label需要需要显示的数据。
          *
-         * @param label
+         * @param tag
          * @param position
          * @param data
          * @return
          */
-        CharSequence getFlowText(TextView label, int position, T data);
+        CharSequence getFlowText(TextView tag, int position, T data);
     }
-
-
-
 
 
 }

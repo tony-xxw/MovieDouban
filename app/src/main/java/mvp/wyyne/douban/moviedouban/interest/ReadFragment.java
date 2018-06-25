@@ -1,10 +1,12 @@
 package mvp.wyyne.douban.moviedouban.interest;
 
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -20,11 +22,12 @@ import mvp.wyyne.douban.moviedouban.widget.FlowView;
  * @date 2018/6/23
  */
 
-public class ReadFragment extends BaseFragment {
+public class ReadFragment extends BaseFragment implements FlowView.OnFlowClickListener {
     @BindView(R.id.fvGroup)
     FlowView flowView;
     @BindView(R.id.tv_tag)
     TextView tvTag;
+    private List<FlowBean> mList;
 
     @Override
     protected int getLayoutId() {
@@ -33,26 +36,33 @@ public class ReadFragment extends BaseFragment {
 
     @Override
     protected void initView() {
-        ArrayList<FlowBean> testList = new ArrayList<>();
-        testList.add(new FlowBean("Android", 1));
-        testList.add(new FlowBean("IOS", 2));
-        testList.add(new FlowBean("前端", 3));
-        testList.add(new FlowBean("后台", 4));
-        testList.add(new FlowBean("微信开发", 5));
-        testList.add(new FlowBean("游戏开发", 6));
-        testList.add(new FlowBean("Java", 7));
-        testList.add(new FlowBean("JavaScript", 8));
-        testList.add(new FlowBean("C++", 9));
-        testList.add(new FlowBean("PHP", 10));
-        testList.add(new FlowBean("Python", 11));
-        testList.add(new FlowBean("Swift", 12));
-        flowView.setTags(testList, new FlowView.FlowTextProvider<FlowBean>() {
+        initFlow();
+
+
+    }
+
+    private void initFlow() {
+        mList = new ArrayList<>();
+        mList.add(new FlowBean("2018", 1));
+        mList.add(new FlowBean("美国", 2));
+        mList.add(new FlowBean("科幻", 3));
+        mList.add(new FlowBean("动作", 4));
+        mList.add(new FlowBean("探险", 5));
+        mList.add(new FlowBean("3D", 6));
+        mList.add(new FlowBean("恐怖", 7));
+        mList.add(new FlowBean("惊悚", 8));
+        mList.add(new FlowBean("幽默", 9));
+        mList.add(new FlowBean("喜剧", 10));
+        mList.add(new FlowBean("无厘头", 11));
+        mList.add(new FlowBean("爱情", 12));
+        mList.add(new FlowBean("青春", 12));
+        flowView.setOnClick(this);
+        flowView.setTags(mList, new FlowView.FlowTextProvider<FlowBean>() {
             @Override
-            public CharSequence getFlowText(TextView label, int position, FlowBean data) {
+            public CharSequence getFlowText(TextView tag, int position, FlowBean data) {
                 return data.getName();
             }
         });
-
     }
 
 
@@ -80,4 +90,10 @@ public class ReadFragment extends BaseFragment {
     }
 
 
+    @Override
+    public void onFlowClick(TextView label, Object data, int position, boolean isSelect) {
+
+        FlowBean bean = (FlowBean) data;
+        Log.d("XXW", bean.getName() + "===" + bean.getId() + "===" + isSelect);
+    }
 }

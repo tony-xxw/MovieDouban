@@ -70,7 +70,7 @@ public class InterestActivity extends BaseActivity implements TabLayout.OnTabSel
     protected void initView() {
         mList = new ArrayList<>();
         ivBack.setVisibility(View.GONE);
-        bottomLine.setVisibility(View.GONE);
+        bottomLine.setVisibility(View.VISIBLE);
         ivClose.setVisibility(View.VISIBLE);
         btnConfirm.setVisibility(View.VISIBLE);
 

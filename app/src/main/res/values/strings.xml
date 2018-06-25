@@ -87,6 +87,7 @@
     <string name="select_tag">选择标签</string>
     <string name="record_read_reason">记录一下想看的理由</string>
     <string name="detail_label">删除标签</string>
+    <string name="click_star_grade">点击星星评分</string>
 
     <item name="tag_key_data" type="id" />
     <item name="tag_key_position" type="id" />

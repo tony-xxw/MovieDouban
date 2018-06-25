@@ -36,12 +36,12 @@ public class ReadFragment extends BaseFragment implements FlowView.OnFlowClickLi
 
     @Override
     protected void initView() {
-        initFlow();
+        initLabel();
 
 
     }
 
-    private void initFlow() {
+    private void initLabel() {
         mList = new ArrayList<>();
         mList.add(new FlowBean("2018", 1));
         mList.add(new FlowBean("美国", 2));

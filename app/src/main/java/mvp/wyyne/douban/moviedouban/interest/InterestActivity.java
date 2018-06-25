@@ -86,7 +86,7 @@ public class InterestActivity extends BaseActivity implements TabLayout.OnTabSel
         adapter.setTitleList(Arrays.asList(mString));
         adapter.setFragment(mList);
         vpContent.setAdapter(adapter);
-//        tlInterest.setupWithViewPager(vpContent);
+        tlInterest.setupWithViewPager(vpContent);
     }
 
 

@@ -19,7 +19,9 @@
             android:drawableEnd="@drawable/ic_group_tag_up"
             android:drawablePadding="10dp"
             android:padding="10dp"
-            android:text="@string/select_tag" />
+            android:text="@string/select_tag"
+            android:textColor="@color/colorGray"
+            android:textSize="14sp" />
 
         <mvp.wyyne.douban.moviedouban.widget.FlowView
             android:id="@+id/fvGroup"
@@ -52,7 +54,7 @@
             android:gravity="top"
             android:hint="@string/record_read_reason"
             android:padding="10dp"
-            android:textColor="@color/colorGray_dark2"
+            android:textColor="@color/colorGray"
             android:textSize="14sp" />
     </LinearLayout>
 
@@ -65,7 +67,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="20dp"
         android:text="@string/detail_label"
-        android:textColor="@color/colorGray_dark2"
+        android:textColor="@color/colorGray"
         android:textSize="14sp"
         android:visibility="gone" />
 </RelativeLayout>

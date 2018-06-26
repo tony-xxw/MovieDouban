@@ -1,5 +1,7 @@
 package mvp.wyyne.douban.moviedouban.interest;
 
+import android.graphics.drawable.Drawable;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -7,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.api.bean.FlowBean;
 import mvp.wyyne.douban.moviedouban.home.base.BaseFragment;
@@ -32,6 +35,7 @@ public class WantFragment extends BaseFragment implements FlowView.OnFlowClickLi
     @BindView(R.id.tv_label)
     TextView tvLabel;
 
+
     private List<FlowBean> mList;
 
     @Override
@@ -42,6 +46,7 @@ public class WantFragment extends BaseFragment implements FlowView.OnFlowClickLi
     @Override
     protected void initView() {
         initLabel();
+        fvGroup.setVisibility(View.VISIBLE);
     }
 
     private void initLabel() {
@@ -72,5 +77,28 @@ public class WantFragment extends BaseFragment implements FlowView.OnFlowClickLi
     @Override
     public void onFlowClick(TextView label, Object data, int position, boolean isSelect) {
 
+    }
+
+    @OnClick(R.id.tv_tag)
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.tv_tag:
+                Drawable.ConstantState drawableState = getResources().getDrawable(R.drawable.ic_group_tag_down).getConstantState();
+                Drawable.ConstantState currentState = tvTag.getCompoundDrawables()[2].getConstantState();
+                if (currentState != null && currentState.equals(drawableState)) {
+                    Drawable drawableRight = getResources().getDrawable(R.drawable.ic_group_tag_up);
+                    drawableRight.setBounds(0, 0, drawableRight.getMinimumWidth(), drawableRight.getMinimumHeight());
+                    tvTag.setCompoundDrawables(null, null, drawableRight, null);
+                    fvGroup.setVisibility(View.VISIBLE);
+                } else {
+                    Drawable drawableRight = getResources().getDrawable(R.drawable.ic_group_tag_down);
+                    drawableRight.setBounds(0, 0, drawableRight.getMinimumWidth(), drawableRight.getMinimumHeight());
+                    tvTag.setCompoundDrawables(null, null, drawableRight, null);
+                    fvGroup.setVisibility(View.GONE);
+                }
+                break;
+            default:
+                break;
+        }
     }
 }

@@ -9,9 +9,9 @@ import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-
 
 import mvp.wyyne.douban.moviedouban.R;
 
@@ -133,23 +133,18 @@ public class StarView extends View {
         if (x < 0) {
             x = 0;
         }
-        switch (1) {
-            case 1:
-                break;
-            default:
-                break;
-        }
+
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
 //                setStartMark(x / (getMeasuredWidth() / startCount));
                 break;
             case MotionEvent.ACTION_MOVE:
-                setStartMark(x / (getMeasuredWidth() / startCount));
-                invalidate();
+//                setStartMark(x / (getMeasuredWidth() / startCount));
                 break;
             case MotionEvent.ACTION_UP:
                 break;
             default:
+                Log.d("XXW", "action  " + event.getAction());
                 break;
         }
         return super.onTouchEvent(event);

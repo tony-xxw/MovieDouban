@@ -10,6 +10,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:gravity="center"
+        android:minWidth="60dp"
         android:textSize="18sp"
-        tools:text="Android" />
+        tools:text="@string/have_seen" />
 </FrameLayout>

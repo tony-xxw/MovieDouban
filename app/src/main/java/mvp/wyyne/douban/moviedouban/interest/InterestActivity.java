@@ -82,6 +82,7 @@ public class InterestActivity extends BaseActivity implements TabLayout.OnTabSel
 
         tlInterest.addOnTabSelectedListener(this);
 
+
         mList.add(new ReadFragment());
         mList.add(new WantFragment());
         SubjectTitlePageAdapter adapter = new SubjectTitlePageAdapter(getSupportFragmentManager());
@@ -110,19 +111,21 @@ public class InterestActivity extends BaseActivity implements TabLayout.OnTabSel
     @Override
     public void onTabSelected(TabLayout.Tab tab) {
         Log.d("XXW", "onTabSelected  :" + tab.getPosition());
+
+
         if (tab.getPosition() == 0) {
             if (tab.getCustomView() == null) {
                 tab.setCustomView(LayoutInflater.from(this).inflate(R.layout.item_text_interest, tlInterest, false));
                 oneViewHolder = new ViewHolder(tab.getCustomView());
             }
 
-            tabText(oneViewHolder, 14);
+            tabText(oneViewHolder, 22);
         } else {
             if (tab.getCustomView() == null) {
                 tab.setCustomView(LayoutInflater.from(this).inflate(R.layout.item_text_interest, tlInterest, false));
                 twoViewHolder = new ViewHolder(tab.getCustomView());
             }
-            tabText(twoViewHolder, 14);
+            tabText(twoViewHolder, 22);
         }
 
 
@@ -133,15 +136,16 @@ public class InterestActivity extends BaseActivity implements TabLayout.OnTabSel
     public void onTabUnselected(TabLayout.Tab tab) {
         Log.d("XXW", "onTabUnselected  :" + tab.getPosition());
         if (tab.getPosition() == 0) {
-            tabText(oneViewHolder, 14);
+            tabText(oneViewHolder, 16);
         } else {
-            tabText(twoViewHolder, 14);
+            tabText(twoViewHolder, 16);
         }
     }
 
 
     public void tabText(ViewHolder viewHolder, int size) {
         if (viewHolder.equals(oneViewHolder)) {
+
             TextView textView = (TextView) viewHolder.mContentView.findViewById(R.id.tv_interest);
             textView.setText(getString(R.string.wanna_see));
             textView.setTextSize(size);

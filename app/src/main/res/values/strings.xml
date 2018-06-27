@@ -38,8 +38,8 @@
     <string name="my">我的</string>
     <string name="girl">妹子</string>
     <string name="reserve">预售</string>
-    <string name="wanna_see">想看</string>
-    <string name="have_seen">看过</string>
+    <string name="wanna_see"> 想看 </string>
+    <string name="have_seen"> 看过 </string>
     <string name="five_star">5星</string>
     <string name="please_login">请登录</string>
     <string name="my_tickets">我的电影票</string>

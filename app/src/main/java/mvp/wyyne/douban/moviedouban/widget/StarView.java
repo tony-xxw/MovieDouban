@@ -9,7 +9,6 @@ import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -31,7 +30,6 @@ public class StarView extends View {
     private float startMark = 0.0F;
     private Drawable startDark;
     private Bitmap startLight;
-    private OnStartChangeLister mChangeLister;
     private boolean mInteggerMark = false;
 
 
@@ -75,20 +73,12 @@ public class StarView extends View {
         } else {
             startMark = Math.round(mark * 10) * 1.0f / 10;
         }
-        if (this.mChangeLister != null) {
-            //调用监听接口
-            this.mChangeLister.onStartChange(startMark);
-        }
+        startMark = (float) Math.rint((startMark * startCount) / 10);
         invalidate();
     }
 
     public float getStartMark() {
         return startMark;
-    }
-
-
-    public interface OnStartChangeLister {
-        void onStartChange(float mark);
     }
 
 
@@ -112,10 +102,10 @@ public class StarView extends View {
             startDark.draw(canvas);
         }
 
-        if (startMark > 1) {
+        if (startMark >= 1) {
             canvas.drawRect(0, 0, startSize, startSize, mPaint);
             if (startMark - (int) (startMark) == 0) {
-                for (int i = 1; i < startMark / 2; i++) {
+                for (int i = 0; i < startMark - 1; i++) {
                     canvas.translate(startSpace + startSize, 0);
                     canvas.drawRect(0, 0, startSize, startSize, mPaint);
                 }
@@ -134,19 +124,14 @@ public class StarView extends View {
             x = 0;
         }
 
-        switch (event.getAction()) {
-            case MotionEvent.ACTION_DOWN:
-//                setStartMark(x / (getMeasuredWidth() / startCount));
-                break;
-            case MotionEvent.ACTION_MOVE:
-//                setStartMark(x / (getMeasuredWidth() / startCount));
-                break;
-            case MotionEvent.ACTION_UP:
-                break;
-            default:
-                Log.d("XXW", "action  " + event.getAction());
-                break;
+        if (event.getAction() == MotionEvent.ACTION_MOVE) {
+            setStartMark(x / (getMeasuredWidth() / startCount));
+        } else if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            startMark = (float) Math.rint((x / (double) (startSize + startSpace)));
+            invalidate();
         }
+
+
         return super.onTouchEvent(event);
     }
 

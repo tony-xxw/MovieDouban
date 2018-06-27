@@ -107,12 +107,12 @@ public class OneselfFragment extends BaseFragment<OneselfPresent>
             anonymous.setVisibility(View.GONE);
             loginInfoContainer.setVisibility(View.VISIBLE);
             name.setText(getString(R.string.user_name));
-            mRlHeadLayout.setBackground(ResourcesUtils.getDrawable(R.drawable.ic_my_default_male_bg, getActivity()));
+            mRlHeadLayout.setBackground(ResourcesUtils.getContextDrawable(R.drawable.ic_my_default_male_bg, getActivity()));
         } else {
             avatar.setImageDrawable(getResources().getDrawable(R.drawable.ic_user_default));
             anonymous.setVisibility(View.VISIBLE);
             loginInfoContainer.setVisibility(View.GONE);
-            mRlHeadLayout.setBackground(ResourcesUtils.getDrawable(R.drawable.ic_my_default_bg, getActivity()));
+            mRlHeadLayout.setBackground(ResourcesUtils.getContextDrawable(R.drawable.ic_my_default_bg, getActivity()));
         }
     }
 

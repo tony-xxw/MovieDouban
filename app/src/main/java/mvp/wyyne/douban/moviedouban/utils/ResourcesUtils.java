@@ -25,8 +25,14 @@ public class ResourcesUtils {
         return ContextCompat.getColor(context, color);
     }
 
-    public static Drawable getDrawable(int drwableId, Context context) {
+    public static Drawable getContextDrawable(int drwableId, Context context) {
         return ContextCompat.getDrawable(context, drwableId);
+    }
+
+    public static Drawable getDrawable(int drawableId, Context context) {
+        Drawable drawable = context.getResources().getDrawable(drawableId);
+        drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+        return drawable;
     }
 
     public static int pxToDp(Context context, int px) {

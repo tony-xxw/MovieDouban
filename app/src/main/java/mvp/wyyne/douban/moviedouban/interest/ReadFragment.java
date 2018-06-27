@@ -3,6 +3,7 @@ package mvp.wyyne.douban.moviedouban.interest;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -27,6 +28,8 @@ public class ReadFragment extends BaseFragment implements FlowView.OnFlowClickLi
     FlowView flowView;
     @BindView(R.id.tv_tag)
     TextView tvTag;
+    @BindView(R.id.et_reason)
+    EditText etReason;
     private List<FlowBean> mList;
 
     @Override
@@ -37,7 +40,7 @@ public class ReadFragment extends BaseFragment implements FlowView.OnFlowClickLi
     @Override
     protected void initView() {
         initLabel();
-
+        etReason.requestFocus();
 
     }
 
@@ -66,7 +69,7 @@ public class ReadFragment extends BaseFragment implements FlowView.OnFlowClickLi
     }
 
 
-    @OnClick(R.id.tv_tag)
+    @OnClick({R.id.tv_tag, R.id.et_reason})
     public void onViewClicked(View v) {
         switch (v.getId()) {
             case R.id.tv_tag:
@@ -84,6 +87,9 @@ public class ReadFragment extends BaseFragment implements FlowView.OnFlowClickLi
                     flowView.setVisibility(View.GONE);
                 }
                 break;
+            case R.id.et_reason:
+                etReason.setCursorVisible(true);
+                break;
             default:
                 break;
         }
@@ -96,4 +102,6 @@ public class ReadFragment extends BaseFragment implements FlowView.OnFlowClickLi
         FlowBean bean = (FlowBean) data;
         Log.d("XXW", bean.getName() + "===" + bean.getId() + "===" + isSelect);
     }
+
+
 }

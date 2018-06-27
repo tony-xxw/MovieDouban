@@ -24,7 +24,6 @@ import mvp.wyyne.douban.moviedouban.utils.StatusUtils;
 
 /**
  * 想看-看过
- * 1.TabLayout 切换变大
  * 2. StarView onTouch不进入Move事件
  *
  * @author Wynne

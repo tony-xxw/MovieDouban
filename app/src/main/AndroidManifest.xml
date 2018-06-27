@@ -40,7 +40,7 @@
 
 
         <activity
-            android:name=".splash.SplashActivity"
+            android:name=".interest.InterestActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -100,7 +100,7 @@
             android:launchMode="singleTop" />
 
         <activity
-            android:name=".interest.InterestActivity"
+            android:name=".splash.SplashActivity"
             android:launchMode="singleTop" />
 
         <activity

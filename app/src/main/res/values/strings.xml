@@ -89,6 +89,11 @@
     <string name="detail_label">删除标签</string>
     <string name="click_star_grade">点击星星评分</string>
     <string name="share_wx_wb">分享到微信、微博</string>
+    <string name="string_wb">微博</string>
+    <string name="string_pyq">朋友圈</string>
+    <string name="share_friend">把上面的卡片分享给好友</string>
+    <string name="syn_save_photo">同事保存到手机</string>
+    <string name="anonymity_share">匿名分享</string>
 
     <item name="tag_key_data" type="id" />
     <item name="tag_key_position" type="id" />

@@ -10,7 +10,6 @@ import mvp.wyyne.douban.moviedouban.api.bean.PopularCm;
 import mvp.wyyne.douban.moviedouban.api.bean.User;
 
 /**
- *
  * @author XXW
  * @date 2017/6/24
  */
@@ -41,14 +40,12 @@ public class CommentAdapter extends BaseRvAdapter<PopularCm> {
         mPopularCm = mList.get(position);
         holder.setImgUrl(R.id.iv_avatars, mUser.getAvatar());
         holder.setText(R.id.tv_comment_name, mUser.getName());
-        holder.setValue(R.id.rb_comment, mPopularCm.getRating().getValue());
         holder.setText(R.id.tv_comment_star_num, String.valueOf(mPopularCm.getUseful_count()));
         holder.setText(R.id.tv_comment, mPopularCm.getContent());
         holder.setText(R.id.tv_comment_date, mList.get(position).getCreated_at());
 
-
+        holder.getStartView(R.id.average).setStartMark(mPopularCm.getRating().getValue());
     }
-
 
 
     @Override

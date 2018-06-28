@@ -11,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.wang.avi.AVLoadingIndicatorView;
 
@@ -21,6 +23,7 @@ import mvp.wyyne.douban.moviedouban.AndroidApplication;
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.home.IPresent;
 import mvp.wyyne.douban.moviedouban.utils.SwipeRefreshUtils;
+import mvp.wyyne.douban.moviedouban.utils.ToastUtils;
 
 /**
  * 基类Fragment
@@ -162,5 +165,15 @@ public abstract class BaseFragment<T extends IPresent> extends Fragment {
                 ivNullView.setVisibility(View.GONE);
             }
         }
+    }
+
+    public void showToast(String msg) {
+        View inflater = View.inflate(getActivity(), R.layout.toast_login, null);
+        TextView textView = (TextView) inflater.findViewById(R.id.tv_text);
+        textView.setText(msg);
+        LinearLayout linearLayout = (LinearLayout) inflater.findViewById(R.id.ll_shape);
+        linearLayout.setBackground(getResources().getDrawable(R.drawable.bg_green));
+        ToastUtils.getInstance(getActivity()).makeToastSelfViewAnim(inflater, R.style.ToastStyle);
+
     }
 }

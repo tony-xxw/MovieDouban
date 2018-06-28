@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+    xmlns:StartView="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/iv_avatars"
@@ -10,7 +11,7 @@
         android:layout_height="32dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
-        android:background="@drawable/bg_cicle"/>
+        android:background="@drawable/bg_cicle" />
 
     <RelativeLayout
         android:id="@+id/rl_comment"
@@ -24,18 +25,21 @@
         <TextView
             android:id="@+id/tv_comment_name"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
 
 
-        <RatingBar
-            android:id="@+id/rb_comment"
-            style="?android:attr/ratingBarStyleSmall"
+        <mvp.wyyne.douban.moviedouban.widget.StarView
+            android:id="@+id/average"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="3dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
             android:layout_toEndOf="@+id/tv_comment_name"
-            android:numStars="5"
-            android:stepSize="2.4"/>
+            StartView:startCount="5"
+            StartView:startEmpty="@drawable/star_dark"
+            StartView:startFill="@drawable/star_light"
+            StartView:startSize="15dp"
+            StartView:startSpace="5dp" />
 
 
         <ImageView
@@ -43,7 +47,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toStartOf="@+id/tv_comment_star_num"
-            android:src="@drawable/ic_star"/>
+            android:src="@drawable/ic_star" />
 
         <TextView
             android:id="@+id/tv_comment_star_num"
@@ -51,7 +55,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="5dp"
-            android:text="个广告"/>
+            android:text="个广告" />
     </RelativeLayout>
 
 
@@ -69,11 +73,11 @@
         <TextView
             android:id="@+id/tv_comment"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
 
         <TextView
             android:id="@+id/tv_comment_date"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
     </LinearLayout>
 </RelativeLayout>

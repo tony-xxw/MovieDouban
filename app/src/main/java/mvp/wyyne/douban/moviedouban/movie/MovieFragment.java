@@ -33,7 +33,6 @@ import mvp.wyyne.douban.moviedouban.movie.top.TopActivity;
 import mvp.wyyne.douban.moviedouban.movie.us.UsMovieActivity;
 import mvp.wyyne.douban.moviedouban.movie.weekly.WeeklyMovieActivity;
 import mvp.wyyne.douban.moviedouban.search.SearchMovieActivity;
-import mvp.wyyne.douban.moviedouban.utils.ToastUtils;
 
 import static mvp.wyyne.douban.moviedouban.utils.Constant.DETAIL_TAG;
 import static mvp.wyyne.douban.moviedouban.utils.Constant.NOW_TAG;
@@ -291,13 +290,4 @@ public class MovieFragment extends BaseFragment<IMoviePresent> implements IMovie
     }
 
 
-    public void showToast(String msg) {
-        View inflater = View.inflate(getActivity(), R.layout.toast_login, null);
-        TextView textView = (TextView) inflater.findViewById(R.id.tv_text);
-        textView.setText(msg);
-        LinearLayout linearLayout = (LinearLayout) inflater.findViewById(R.id.ll_shape);
-        linearLayout.setBackground(getResources().getDrawable(R.drawable.bg_green));
-        ToastUtils.getInstance(getActivity()).makeToastSelfViewAnim(inflater, R.style.ToastStyle);
-
-    }
 }

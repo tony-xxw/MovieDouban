@@ -24,11 +24,7 @@ public class CommentFragment extends BaseFragment {
     RecyclerView mRvComment;
     @BindView(R.id.rv_review)
     RecyclerView mRvReview;
-    private CommentAdapter mAdapter;
-    private ReviewAdapter mReviewAdapter;
     private Article mArticle;
-    private LinearLayoutManager mManager;
-    private LinearLayoutManager mReviewsManager;
 
     public static CommentFragment getInstance(Article article) {
         Bundle bundle = new Bundle();
@@ -60,17 +56,17 @@ public class CommentFragment extends BaseFragment {
     @Override
     protected void initView() {
 
-        mReviewAdapter = new ReviewAdapter(getActivity(), mArticle.getPopular_reviews());
-        mReviewsManager = new LinearLayoutManager(getActivity());
+        ReviewAdapter mReviewAdapter = new ReviewAdapter(getActivity(), mArticle.getPopular_reviews());
+        LinearLayoutManager mReviewsManager = new LinearLayoutManager(getActivity());
         mReviewsManager.setOrientation(LinearLayoutManager.VERTICAL);
         mReviewAdapter.setArticle(mArticle);
         mRvReview.setLayoutManager(mReviewsManager);
         mReviewAdapter.setHeadView(RecycleViewUtils.addHeadView(R.layout.item_comment_head, getActivity(), mRvReview));
         mReviewAdapter.setFooterView(RecycleViewUtils.addFooterView(R.layout.item_comment_footer, getActivity()));
         mRvReview.setAdapter(mReviewAdapter);
-        mAdapter = new CommentAdapter(getActivity(), mArticle.getPopular_comments());
+        CommentAdapter mAdapter = new CommentAdapter(getActivity(), mArticle.getPopular_comments());
         mAdapter.setArticle(mArticle);
-        mManager = new LinearLayoutManager(getActivity());
+        LinearLayoutManager mManager = new LinearLayoutManager(getActivity());
         mManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRvComment.setLayoutManager(mManager);
         mAdapter.setHeadView(RecycleViewUtils.addHeadView(R.layout.item_comment_head, getActivity(), mRvComment));

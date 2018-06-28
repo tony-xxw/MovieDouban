@@ -31,6 +31,9 @@ public class WannaTableDao extends AbstractDao<WannaTable, Long> {
         public final static Property Casts = new Property(4, String.class, "casts", false, "CASTS");
         public final static Property Createtime = new Property(5, String.class, "createtime", false, "CREATETIME");
         public final static Property Average = new Property(6, String.class, "average", false, "AVERAGE");
+        public final static Property Label = new Property(7, String.class, "label", false, "LABEL");
+        public final static Property Reason = new Property(8, String.class, "reason", false, "REASON");
+        public final static Property IsLabel = new Property(9, boolean.class, "isLabel", false, "IS_LABEL");
     }
 
 
@@ -52,7 +55,10 @@ public class WannaTableDao extends AbstractDao<WannaTable, Long> {
                 "\"DIRECTORS\" TEXT," + // 3: directors
                 "\"CASTS\" TEXT," + // 4: casts
                 "\"CREATETIME\" TEXT," + // 5: createtime
-                "\"AVERAGE\" TEXT);"); // 6: average
+                "\"AVERAGE\" TEXT," + // 6: average
+                "\"LABEL\" TEXT," + // 7: label
+                "\"REASON\" TEXT," + // 8: reason
+                "\"IS_LABEL\" INTEGER NOT NULL );"); // 9: isLabel
     }
 
     /** Drops the underlying database table. */
@@ -99,6 +105,17 @@ public class WannaTableDao extends AbstractDao<WannaTable, Long> {
         if (average != null) {
             stmt.bindString(7, average);
         }
+ 
+        String label = entity.getLabel();
+        if (label != null) {
+            stmt.bindString(8, label);
+        }
+ 
+        String reason = entity.getReason();
+        if (reason != null) {
+            stmt.bindString(9, reason);
+        }
+        stmt.bindLong(10, entity.getIsLabel() ? 1L: 0L);
     }
 
     @Override
@@ -139,6 +156,17 @@ public class WannaTableDao extends AbstractDao<WannaTable, Long> {
         if (average != null) {
             stmt.bindString(7, average);
         }
+ 
+        String label = entity.getLabel();
+        if (label != null) {
+            stmt.bindString(8, label);
+        }
+ 
+        String reason = entity.getReason();
+        if (reason != null) {
+            stmt.bindString(9, reason);
+        }
+        stmt.bindLong(10, entity.getIsLabel() ? 1L: 0L);
     }
 
     @Override
@@ -155,7 +183,10 @@ public class WannaTableDao extends AbstractDao<WannaTable, Long> {
             cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // directors
             cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // casts
             cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // createtime
-            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6) // average
+            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // average
+            cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7), // label
+            cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // reason
+            cursor.getShort(offset + 9) != 0 // isLabel
         );
         return entity;
     }
@@ -169,6 +200,9 @@ public class WannaTableDao extends AbstractDao<WannaTable, Long> {
         entity.setCasts(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
         entity.setCreatetime(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
         entity.setAverage(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
+        entity.setLabel(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
+        entity.setReason(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
+        entity.setIsLabel(cursor.getShort(offset + 9) != 0);
      }
     
     @Override

@@ -1,7 +1,6 @@
 package mvp.wyyne.douban.moviedouban.interest;
 
 import android.graphics.drawable.Drawable;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -31,6 +30,7 @@ public class ReadFragment extends BaseFragment implements FlowView.OnFlowClickLi
     @BindView(R.id.et_reason)
     EditText etReason;
     private List<FlowBean> mList;
+    private List<String> mLabelList;
 
     @Override
     protected int getLayoutId() {
@@ -45,6 +45,7 @@ public class ReadFragment extends BaseFragment implements FlowView.OnFlowClickLi
     }
 
     private void initLabel() {
+        mLabelList = new ArrayList<>();
         mList = new ArrayList<>();
         mList.add(new FlowBean("2018", 1));
         mList.add(new FlowBean("美国", 2));
@@ -96,11 +97,46 @@ public class ReadFragment extends BaseFragment implements FlowView.OnFlowClickLi
     }
 
 
+    /**
+     * @return 获取标签String
+     */
+    public String getLabelString() {
+        String labelString;
+        if (mLabelList.size() != 0) {
+            StringBuffer buffer = new StringBuffer();
+            for (int i = 0; i < mLabelList.size(); i++) {
+                if (i != mLabelList.size() - 1) {
+                    buffer.append(mLabelList.get(i) + "/");
+                } else {
+                    buffer.append(mLabelList.get(i));
+                }
+            }
+            labelString = buffer.toString();
+        } else {
+            labelString = "";
+        }
+        return labelString;
+    }
+
+    /**
+     * 获取想看理由
+     *
+     * @return
+     */
+    public String getReasonString() {
+        return etReason.getText().toString();
+    }
+
     @Override
     public void onFlowClick(TextView label, Object data, int position, boolean isSelect) {
-
         FlowBean bean = (FlowBean) data;
-        Log.d("XXW", bean.getName() + "===" + bean.getId() + "===" + isSelect);
+        if (isSelect) {
+            mLabelList.add(bean.getName());
+        } else {
+            if (mLabelList.contains(bean.getName())) {
+                mLabelList.remove(bean.getName());
+            }
+        }
     }
 
 

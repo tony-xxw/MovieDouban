@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.blankj.utilcode.util.TimeUtils;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -18,13 +20,15 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.adapter.viewpage.SubjectTitlePageAdapter;
+import mvp.wyyne.douban.moviedouban.api.bean.Article;
+import mvp.wyyne.douban.moviedouban.api.model.WannaModel;
+import mvp.wyyne.douban.moviedouban.api.model.WannaTable;
 import mvp.wyyne.douban.moviedouban.home.base.BaseActivity;
 import mvp.wyyne.douban.moviedouban.utils.ResourcesUtils;
 import mvp.wyyne.douban.moviedouban.utils.StatusUtils;
 
 /**
  * 想看-看过
- * 2. StarView onTouch不进入Move事件
  *
  * @author Wynne
  * @date 2018/6/12
@@ -48,7 +52,9 @@ public class InterestActivity extends BaseActivity implements TabLayout.OnTabSel
     private String[] mString = {"想看", "看过"};
     private ViewHolder oneViewHolder;
     private ViewHolder twoViewHolder;
-
+    private ReadFragment readFragment;
+    private WantFragment wantFragment;
+    private Article mArticle;
 
     @Override
     protected void refresh() {
@@ -69,6 +75,11 @@ public class InterestActivity extends BaseActivity implements TabLayout.OnTabSel
 
     @Override
     protected void initView() {
+
+        if (getIntent().getParcelableExtra(TAG) != null) {
+            mArticle = getIntent().getParcelableExtra(TAG);
+        }
+
         mList = new ArrayList<>();
         ivBack.setVisibility(View.GONE);
         bottomLine.setVisibility(View.VISIBLE);
@@ -81,9 +92,10 @@ public class InterestActivity extends BaseActivity implements TabLayout.OnTabSel
 
         tlInterest.addOnTabSelectedListener(this);
 
-
-        mList.add(new ReadFragment());
-        mList.add(new WantFragment());
+        readFragment = new ReadFragment();
+        wantFragment = new WantFragment();
+        mList.add(readFragment);
+        mList.add(wantFragment);
         SubjectTitlePageAdapter adapter = new SubjectTitlePageAdapter(getSupportFragmentManager());
         adapter.setTitleList(Arrays.asList(mString));
         adapter.setFragment(mList);
@@ -99,7 +111,43 @@ public class InterestActivity extends BaseActivity implements TabLayout.OnTabSel
                 finish();
                 break;
             case R.id.btn_confirm:
-                //标记
+                if (mArticle != null) {
+                    WannaTable table = new WannaTable();
+                    table.setAvatarUrl(mArticle.getImages().getMedium());
+                    table.setAverage(mArticle.getRating().getAverage() + "");
+                    StringBuffer directorsBuffer = new StringBuffer();
+                    StringBuffer castsBuffer = new StringBuffer();
+                    for (int i = 0; i < mArticle.getDirectors().size(); i++) {
+                        if (i == 3) {
+                            continue;
+                        }
+                        if (i != mArticle.getDirectors().size() - 1) {
+                            directorsBuffer.append(mArticle.getDirectors().get(i).getName() + "/");
+                        } else {
+                            directorsBuffer.append(mArticle.getDirectors().get(i).getName());
+                        }
+                    }
+                    for (int i = 0; i < mArticle.getCasts().size(); i++) {
+                        if (i == 3) {
+                            continue;
+                        }
+                        if (i != mArticle.getCasts().size() - 1) {
+                            castsBuffer.append(mArticle.getCasts().get(i).getName() + "/");
+                        } else {
+                            castsBuffer.append(mArticle.getCasts().get(i).getName());
+                        }
+                    }
+                    table.setDirectors(directorsBuffer.toString());
+                    table.setCasts(castsBuffer.toString());
+                    table.setTitle(mArticle.getTitle());
+                    table.setCreatetime(TimeUtils.getNowString());
+                    table.setId(Long.valueOf(mArticle.getId()));
+                    table.setReason(wantFragment.getReasonString());
+                    table.setLabel(wantFragment.getLabelString());
+                    table.setIsLabel(true);
+                    WannaModel.getInstance().insertModel(table);
+                    showToast("正在标记");
+                }
                 break;
             default:
                 break;

@@ -7,6 +7,8 @@ import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.wang.avi.AVLoadingIndicatorView;
 
@@ -16,6 +18,7 @@ import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.home.IPresent;
 import mvp.wyyne.douban.moviedouban.utils.ResourcesUtils;
 import mvp.wyyne.douban.moviedouban.utils.StatusUtils;
+import mvp.wyyne.douban.moviedouban.utils.ToastUtils;
 
 /**
  * 基类Activity
@@ -94,4 +97,14 @@ public abstract class BaseActivity<T extends IPresent> extends AppCompatActivity
         StatusUtils.setStatusBarColor(this, ResourcesUtils.getColor(color, this), statusLight);
     }
 
+
+    public void showToast(String msg) {
+        View inflater = View.inflate(this, R.layout.toast_login, null);
+        TextView textView = (TextView) inflater.findViewById(R.id.tv_text);
+        textView.setText(msg);
+        LinearLayout linearLayout = (LinearLayout) inflater.findViewById(R.id.ll_shape);
+        linearLayout.setBackground(getResources().getDrawable(R.drawable.bg_green));
+        ToastUtils.getInstance(this).makeToastSelfViewAnim(inflater, R.style.ToastStyle);
+
+    }
 }

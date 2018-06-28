@@ -35,6 +35,7 @@ public class WantFragment extends BaseFragment implements FlowView.OnFlowClickLi
     EditText etReason;
     @BindView(R.id.tv_label)
     TextView tvLabel;
+    private List<String> mLabelList;
 
 
     private List<FlowBean> mList;
@@ -54,6 +55,7 @@ public class WantFragment extends BaseFragment implements FlowView.OnFlowClickLi
 
     private void initLabel() {
         mList = new ArrayList<>();
+        mLabelList = new ArrayList<>();
         mList.add(new FlowBean("2018", 1));
         mList.add(new FlowBean("美国", 2));
         mList.add(new FlowBean("科幻", 3));
@@ -106,5 +108,33 @@ public class WantFragment extends BaseFragment implements FlowView.OnFlowClickLi
         }
     }
 
+    /**
+     * @return 获取标签String
+     */
+    public String getLabelString() {
+        String labelString;
+        if (mLabelList.size() != 0) {
+            StringBuffer buffer = new StringBuffer();
+            for (int i = 0; i < mLabelList.size(); i++) {
+                if (i != mLabelList.size() - 1) {
+                    buffer.append(mLabelList.get(i) + "/");
+                } else {
+                    buffer.append(mLabelList.get(i));
+                }
+            }
+            labelString = buffer.toString();
+        } else {
+            labelString = "";
+        }
+        return labelString;
+    }
 
+    /**
+     * 获取想看理由
+     *
+     * @return
+     */
+    public String getReasonString() {
+        return etReason.getText().toString();
+    }
 }

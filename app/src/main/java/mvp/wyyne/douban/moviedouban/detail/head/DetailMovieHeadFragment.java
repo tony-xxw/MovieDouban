@@ -224,7 +224,7 @@ public class DetailMovieHeadFragment extends BaseFragment<IPresent> implements R
 
     public void intentInterest(String tag) {
         Intent interestIntent = new Intent(getActivity(), InterestActivity.class);
-        interestIntent.putExtra(InterestActivity.TAG, tag);
+        interestIntent.putExtra(InterestActivity.TAG, mArticle);
         startActivity(interestIntent);
     }
 }

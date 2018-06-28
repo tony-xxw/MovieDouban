@@ -39,8 +39,9 @@ public class ReviewAdapter extends BaseRvAdapter<PopularCmRv> {
             mPopularCm = mList.get(position);
             holder.setText(R.id.tv_reviews_title, mList.get(position).getTitle());
             holder.setText(R.id.tv_reviews_name, mList.get(position).getAuthor().getName());
-            holder.setValue(R.id.rb_reviews_comment, mPopularCm.getRating().getValue());
             holder.setText(R.id.tv_reviews_summary, mList.get(position).getSummary());
+
+            holder.getStartView(R.id.average).setStartMark(mPopularCm.getRating().getValue());
 
         }
     }

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-
-              android:orientation="vertical">
+    xmlns:StartView="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:text="还好"
             android:textSize="16sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -33,16 +33,21 @@
                 android:layout_gravity="center_vertical"
                 android:text="xxw"
                 android:textColor="@color/colorGray"
-                android:textSize="12sp"/>
+                android:textSize="12sp" />
 
-            <RatingBar
-                android:id="@+id/rb_reviews_comment"
-                style="?android:attr/ratingBarStyleSmall"
+            <mvp.wyyne.douban.moviedouban.widget.StarView
+                android:id="@+id/average"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="3dp"
-                android:numStars="5"
-                android:stepSize="2.4"/>
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="10dp"
+                StartView:startCount="5"
+                StartView:startEmpty="@drawable/star_dark"
+                StartView:startFill="@drawable/star_light"
+                StartView:startSize="15dp"
+                StartView:startSpace="5dp" />
+
+
         </LinearLayout>
 
         <TextView
@@ -51,6 +56,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:textColor="@color/colorGray"
-            android:textSize="12sp"/>
+            android:textSize="12sp" />
     </LinearLayout>
 </LinearLayout>

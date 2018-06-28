@@ -1,5 +1,6 @@
 package mvp.wyyne.douban.moviedouban.oneself.wanna;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.DividerItemDecoration;
@@ -19,8 +20,11 @@ import mvp.wyyne.douban.moviedouban.adapter.WannaAdapter;
 import mvp.wyyne.douban.moviedouban.api.RvItemOnClick;
 import mvp.wyyne.douban.moviedouban.api.model.WannaModel;
 import mvp.wyyne.douban.moviedouban.api.model.WannaTable;
+import mvp.wyyne.douban.moviedouban.detail.DetailMovieActivity;
 import mvp.wyyne.douban.moviedouban.home.base.BaseFragment;
 import mvp.wyyne.douban.moviedouban.widget.VerticalItemDecoration;
+
+import static mvp.wyyne.douban.moviedouban.utils.Constant.DETAIL_TAG;
 
 /**
  * 我的-想看
@@ -115,6 +119,8 @@ public class OneselfWannaFragment extends BaseFragment implements RvItemOnClick 
 
     @Override
     public void onItemClick(int position, String tag) {
-
+        Intent intent = new Intent(getActivity(), DetailMovieActivity.class);
+        intent.putExtra(DETAIL_TAG, String.valueOf(mList.get(position).getId()));
+        startActivity(intent);
     }
 }

@@ -3,7 +3,6 @@ package mvp.wyyne.douban.moviedouban.interest;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -55,6 +54,10 @@ public class InterestActivity extends BaseActivity implements TabLayout.OnTabSel
     private ReadFragment readFragment;
     private WantFragment wantFragment;
     private Article mArticle;
+    /**
+     * 当前position
+     */
+    private int currentPosition;
 
     @Override
     protected void refresh() {
@@ -87,8 +90,7 @@ public class InterestActivity extends BaseActivity implements TabLayout.OnTabSel
         btnConfirm.setVisibility(View.VISIBLE);
 
         tlInterest.setTabMode(TabLayout.MODE_FIXED);
-        tlInterest.addTab(tlInterest.newTab().setText(getString(R.string.wanna_see)));
-        tlInterest.addTab(tlInterest.newTab().setText(getString(R.string.have_seen)));
+
 
         tlInterest.addOnTabSelectedListener(this);
 
@@ -111,42 +113,48 @@ public class InterestActivity extends BaseActivity implements TabLayout.OnTabSel
                 finish();
                 break;
             case R.id.btn_confirm:
-                if (mArticle != null) {
-                    WannaTable table = new WannaTable();
-                    table.setAvatarUrl(mArticle.getImages().getMedium());
-                    table.setAverage(mArticle.getRating().getAverage() + "");
-                    StringBuffer directorsBuffer = new StringBuffer();
-                    StringBuffer castsBuffer = new StringBuffer();
-                    for (int i = 0; i < mArticle.getDirectors().size(); i++) {
-                        if (i == 3) {
-                            continue;
+                if (getCurrentTab()) {
+
+
+                } else {
+                    if (mArticle != null) {
+                        WannaTable table = new WannaTable();
+                        table.setAvatarUrl(mArticle.getImages().getMedium());
+                        table.setAverage(mArticle.getRating().getAverage() + "");
+                        StringBuffer directorsBuffer = new StringBuffer();
+                        StringBuffer castsBuffer = new StringBuffer();
+                        for (int i = 0; i < mArticle.getDirectors().size(); i++) {
+                            if (i == 3) {
+                                continue;
+                            }
+                            if (i != mArticle.getDirectors().size() - 1) {
+                                directorsBuffer.append(mArticle.getDirectors().get(i).getName() + "/");
+                            } else {
+                                directorsBuffer.append(mArticle.getDirectors().get(i).getName());
+                            }
                         }
-                        if (i != mArticle.getDirectors().size() - 1) {
-                            directorsBuffer.append(mArticle.getDirectors().get(i).getName() + "/");
-                        } else {
-                            directorsBuffer.append(mArticle.getDirectors().get(i).getName());
+                        for (int i = 0; i < mArticle.getCasts().size(); i++) {
+                            if (i == 3) {
+                                continue;
+                            }
+                            if (i != mArticle.getCasts().size() - 1) {
+                                castsBuffer.append(mArticle.getCasts().get(i).getName() + "/");
+                            } else {
+                                castsBuffer.append(mArticle.getCasts().get(i).getName());
+                            }
                         }
+                        table.setDirectors(directorsBuffer.toString());
+                        table.setCasts(castsBuffer.toString());
+                        table.setTitle(mArticle.getTitle());
+                        table.setCreatetime(TimeUtils.getNowString());
+                        table.setId(Long.valueOf(mArticle.getId()));
+                        table.setReason(wantFragment.getReasonString());
+                        table.setLabel(wantFragment.getLabelString());
+                        table.setIsLabel(true);
+                        WannaModel.getInstance().insertModel(table);
+                        showToast("正在标记");
+                        intentActivity(this, ShareLabelActivity.class);
                     }
-                    for (int i = 0; i < mArticle.getCasts().size(); i++) {
-                        if (i == 3) {
-                            continue;
-                        }
-                        if (i != mArticle.getCasts().size() - 1) {
-                            castsBuffer.append(mArticle.getCasts().get(i).getName() + "/");
-                        } else {
-                            castsBuffer.append(mArticle.getCasts().get(i).getName());
-                        }
-                    }
-                    table.setDirectors(directorsBuffer.toString());
-                    table.setCasts(castsBuffer.toString());
-                    table.setTitle(mArticle.getTitle());
-                    table.setCreatetime(TimeUtils.getNowString());
-                    table.setId(Long.valueOf(mArticle.getId()));
-                    table.setReason(wantFragment.getReasonString());
-                    table.setLabel(wantFragment.getLabelString());
-                    table.setIsLabel(true);
-                    WannaModel.getInstance().insertModel(table);
-                    showToast("正在标记");
                 }
                 break;
             default:
@@ -157,9 +165,7 @@ public class InterestActivity extends BaseActivity implements TabLayout.OnTabSel
 
     @Override
     public void onTabSelected(TabLayout.Tab tab) {
-        Log.d("XXW", "onTabSelected  :" + tab.getPosition());
-
-
+        currentPosition = tab.getPosition();
         if (tab.getPosition() == 0) {
             if (tab.getCustomView() == null) {
                 tab.setCustomView(LayoutInflater.from(this).inflate(R.layout.item_text_interest, tlInterest, false));
@@ -181,11 +187,18 @@ public class InterestActivity extends BaseActivity implements TabLayout.OnTabSel
 
     @Override
     public void onTabUnselected(TabLayout.Tab tab) {
-        Log.d("XXW", "onTabUnselected  :" + tab.getPosition());
         if (tab.getPosition() == 0) {
             tabText(oneViewHolder, 16);
         } else {
             tabText(twoViewHolder, 16);
+        }
+    }
+
+    public boolean getCurrentTab() {
+        if (currentPosition == 0) {
+            return false;
+        } else {
+            return true;
         }
     }
 

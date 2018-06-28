@@ -126,6 +126,10 @@
         <activity
             android:name=".movie.us.UsMovieActivity"
             android:launchMode="singleTop" />
+
+        <activity
+            android:name=".interest.ShareLabelActivity"
+            android:launchMode="singleTop" />
     </application>
 
 </manifest>

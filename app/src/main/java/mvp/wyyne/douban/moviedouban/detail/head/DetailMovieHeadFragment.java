@@ -2,9 +2,11 @@ package mvp.wyyne.douban.moviedouban.detail.head;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -22,6 +24,7 @@ import mvp.wyyne.douban.moviedouban.api.bean.Casts;
 import mvp.wyyne.douban.moviedouban.api.bean.Directors;
 import mvp.wyyne.douban.moviedouban.api.bean.Photos;
 import mvp.wyyne.douban.moviedouban.api.bean.Trailers;
+import mvp.wyyne.douban.moviedouban.api.model.WannaModel;
 import mvp.wyyne.douban.moviedouban.detail.cast.ActorActivity;
 import mvp.wyyne.douban.moviedouban.detail.photo.PhotoActivity;
 import mvp.wyyne.douban.moviedouban.detail.stills.AllStillsActivity;
@@ -70,6 +73,10 @@ public class DetailMovieHeadFragment extends BaseFragment<IPresent> implements R
     RecyclerView mRvCasts;
     @BindView(R.id.rv_photos)
     RecyclerView mRvPhoto;
+    @BindView(R.id.cv_mark)
+    CardView mCvMark;
+    @BindView(R.id.btn_wanna)
+    Button mBtnWanna;
     private List<Casts> mCasts;
     private Article mArticle;
 
@@ -84,6 +91,20 @@ public class DetailMovieHeadFragment extends BaseFragment<IPresent> implements R
 
     @Override
     protected void refresh() {
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (WannaModel.getInstance().queryMark(mArticle.getTitle())) {
+            mCvMark.setVisibility(View.VISIBLE);
+            mBtnWanna.setText("已想看");
+            mBtnWanna.setBackground(getResources().getDrawable(R.drawable.bg_btn_gray));
+        } else {
+            mCvMark.setVisibility(View.GONE);
+        }
+
 
     }
 

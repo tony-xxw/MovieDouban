@@ -24,7 +24,7 @@ public class WannaAdapter extends BaseRvAdapter<WannaTable> {
     }
 
     @Override
-    public void bindView(BaseItemViewHolder holder, int position) {
+    public void bindView(BaseItemViewHolder holder, final int position) {
         holder.getView(R.id.ll_btn).setVisibility(View.GONE);
         holder.getView(R.id.tv_create_time).setVisibility(View.VISIBLE);
         holder.setText(R.id.tv_create_time, mList.get(position).getCreatetime());
@@ -35,6 +35,13 @@ public class WannaAdapter extends BaseRvAdapter<WannaTable> {
         holder.setImgUrl(R.id.iv_avatars, mList.get(position).getAvatarUrl());
         double average = Double.valueOf(mList.get(position).getAverage());
         holder.getStartView(R.id.average).setStartMark((int) average);
+
+        holder.getView(R.id.rl_layout).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mClick.onItemClick(position, "");
+            }
+        });
 
 
     }

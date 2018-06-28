@@ -88,6 +88,7 @@
     <string name="record_read_reason">记录一下想看的理由</string>
     <string name="detail_label">删除标签</string>
     <string name="click_star_grade">点击星星评分</string>
+    <string name="share_wx_wb">分享到微信、微博</string>
 
     <item name="tag_key_data" type="id" />
     <item name="tag_key_position" type="id" />

@@ -60,7 +60,7 @@ public class ActorActivity extends BaseActivity<IActorPresent> implements IActor
     Toolbar mTlTitle;
     @BindView(R.id.abl_ca)
     AppBarLayout mBarLayout;
-    @BindView(R.id.ll_title)
+    @BindView(R.id.rl_content)
     RelativeLayout mLlTitle;
     @BindView(R.id.iv_avatar)
     ImageView mIvAvatar;

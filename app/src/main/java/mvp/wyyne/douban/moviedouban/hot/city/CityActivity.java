@@ -33,7 +33,7 @@ public class CityActivity extends BaseActivity {
     TextView mTvCtTitle;
     @BindView(R.id.iv_share)
     ImageView mIvShare;
-    @BindView(R.id.ll_title)
+    @BindView(R.id.rl_content)
     RelativeLayout mLlTitle;
     @BindView(R.id.tl_ct)
     TabLayout mTlCt;

@@ -7,7 +7,7 @@
     >
 
     <RelativeLayout
-        android:id="@+id/ll_title"
+        android:id="@+id/rl_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="top"

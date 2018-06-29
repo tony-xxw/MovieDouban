@@ -37,7 +37,7 @@ public class InterestActivity extends BaseActivity implements TabLayout.OnTabSel
     public static final String TAG = InterestActivity.class.getSimpleName();
     @BindView(R.id.iv_back)
     ImageView ivBack;
-    @BindView(R.id.iv_close)
+    @BindView(R.id.iv_close_gray)
     ImageView ivClose;
     @BindView(R.id.btn_confirm)
     Button btnConfirm;
@@ -106,10 +106,10 @@ public class InterestActivity extends BaseActivity implements TabLayout.OnTabSel
     }
 
 
-    @OnClick({R.id.iv_close, R.id.btn_confirm})
+    @OnClick({R.id.iv_close_gray, R.id.btn_confirm})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.iv_close:
+            case R.id.iv_close_gray:
                 finish();
                 break;
             case R.id.btn_confirm:

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/ll_title"
+    android:id="@+id/rl_content"
     android:layout_width="match_parent"
     android:layout_height="48dp"
     android:minHeight="48dp">
@@ -16,13 +16,23 @@
 
 
     <ImageView
-        android:id="@+id/iv_close"
+        android:id="@+id/iv_close_gray"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:padding="5dp"
         android:src="@drawable/ic_close_black"
         android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/iv_close_white"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:padding="5dp"
+        android:src="@drawable/ic_close_white"
+        android:visibility="gone" />
+
 
     <TextView
         android:id="@+id/tv_stills_title"
@@ -32,6 +42,17 @@
         android:layout_gravity="center_vertical"
         android:layout_marginStart="20dp"
         android:layout_toEndOf="@+id/iv_back"
+        android:textColor="@color/colorBlack"
+        android:textSize="18sp"
+        tools:text="Default" />
+
+
+    <TextView
+        android:id="@+id/tv_title_center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center_vertical"
         android:textColor="@color/colorBlack"
         android:textSize="18sp"
         tools:text="Default" />

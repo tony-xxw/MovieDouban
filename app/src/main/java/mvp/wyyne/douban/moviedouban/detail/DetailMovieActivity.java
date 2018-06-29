@@ -49,7 +49,7 @@ public class DetailMovieActivity extends BaseActivity<DetailMovieImp> implements
     TextView mTvImgTitle;
     @BindView(R.id.tv_title)
     TextView mTvTitle;
-    @BindView(R.id.ll_title)
+    @BindView(R.id.rl_content)
     RelativeLayout mLlTitle;
     @BindView(R.id.ll_layout)
     LinearLayout mLayout;

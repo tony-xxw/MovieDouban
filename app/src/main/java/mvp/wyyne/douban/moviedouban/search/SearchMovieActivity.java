@@ -74,7 +74,7 @@ public class SearchMovieActivity extends BaseActivity<ISearchMoviePresent> imple
     ScrollView svContentParent;
     @BindView(R.id.ll_empty)
     LinearLayout llEmpty;
-    @BindView(R.id.iv_close)
+    @BindView(R.id.iv_close_gray)
     ImageView ivClose;
     private List<Subjects> mResultList;
     private SearchAdapter mResultAdapter;
@@ -148,7 +148,7 @@ public class SearchMovieActivity extends BaseActivity<ISearchMoviePresent> imple
     }
 
 
-    @OnClick({R.id.tv_cancel, R.id.tv_clear, R.id.iv_close})
+    @OnClick({R.id.tv_cancel, R.id.tv_clear, R.id.iv_close_gray})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_cancel:
@@ -159,7 +159,7 @@ public class SearchMovieActivity extends BaseActivity<ISearchMoviePresent> imple
                 historyCount = mPresent.getSearchBeanLisCount();
                 llHistory.setVisibility(View.GONE);
                 break;
-            case R.id.iv_close:
+            case R.id.iv_close_gray:
                 dclSearchMain.setText("");
                 notifyHistoryRefresh(collections());
                 if (collections().size() != 0) {

@@ -94,6 +94,7 @@
     <string name="share_friend">把上面的卡片分享给好友</string>
     <string name="syn_save_photo">同事保存到手机</string>
     <string name="anonymity_share">匿名分享</string>
+    <string name="qr_down">长按识别二维码 \n 下载豆瓣APP</string>
 
     <item name="tag_key_data" type="id" />
     <item name="tag_key_position" type="id" />

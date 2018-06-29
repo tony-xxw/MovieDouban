@@ -1,6 +1,7 @@
 package mvp.wyyne.douban.moviedouban.adapter;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.View;
 
 import java.util.List;
@@ -42,6 +43,10 @@ public class WannaAdapter extends BaseRvAdapter<WannaTable> {
                 mClick.onItemClick(position, "");
             }
         });
+
+        if (!TextUtils.isEmpty(mList.get(position).getReason())) {
+            holder.setText(R.id.tv_reason, mList.get(position).getReason());
+        }
 
 
     }

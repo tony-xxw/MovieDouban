@@ -79,4 +79,17 @@ public class WannaModel {
         }
         return isMark;
     }
+
+    public String queryReason(String title) {
+        String isMark = "";
+        WannaTableDao dao = AndroidApplication.getDaoSession().getWannaTableDao();
+        List<WannaTable> list = dao.queryBuilder().list();
+        for (WannaTable table : list) {
+            if (table.getTitle().equals(title)) {
+                isMark = table.getReason();
+                break;
+            }
+        }
+        return isMark;
+    }
 }

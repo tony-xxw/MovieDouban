@@ -5,10 +5,14 @@ import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.blankj.utilcode.util.TimeUtils;
 
 import java.util.List;
 
@@ -32,7 +36,9 @@ import mvp.wyyne.douban.moviedouban.detail.stills.StillsActivity;
 import mvp.wyyne.douban.moviedouban.home.IPresent;
 import mvp.wyyne.douban.moviedouban.home.base.BaseFragment;
 import mvp.wyyne.douban.moviedouban.interest.InterestActivity;
+import mvp.wyyne.douban.moviedouban.interest.ShareLabelActivity;
 import mvp.wyyne.douban.moviedouban.login.LoginActivity;
+import mvp.wyyne.douban.moviedouban.utils.ResourcesUtils;
 import mvp.wyyne.douban.moviedouban.utils.StringUtils;
 import mvp.wyyne.douban.moviedouban.widget.ExpandableTextView;
 import mvp.wyyne.douban.moviedouban.widget.RecycleViewUtils;
@@ -77,6 +83,12 @@ public class DetailMovieHeadFragment extends BaseFragment<IPresent> implements R
     CardView mCvMark;
     @BindView(R.id.btn_wanna)
     Button mBtnWanna;
+    @BindView(R.id.tv_name)
+    TextView tvName;
+    @BindView(R.id.tv_time)
+    TextView tvTime;
+    @BindView(R.id.et_content)
+    EditText etReason;
     private List<Casts> mCasts;
     private Article mArticle;
 
@@ -97,12 +109,22 @@ public class DetailMovieHeadFragment extends BaseFragment<IPresent> implements R
     @Override
     public void onResume() {
         super.onResume();
-        if (WannaModel.getInstance().queryMark(mArticle.getTitle())) {
+        if (WannaModel.getInstance().queryMark(mArticle.getTitle()) && AndroidApplication.getApplication().isLogin()) {
             mCvMark.setVisibility(View.VISIBLE);
+            tvName.setText("Wynne");
+            tvTime.setText(TimeUtils.getNowDate().toString());
             mBtnWanna.setText("已想看");
-            mBtnWanna.setBackground(getResources().getDrawable(R.drawable.bg_btn_gray));
+            mBtnWanna.setTextColor(ResourcesUtils.getColor(R.color.colorGray, getActivity()));
+            mBtnWanna.setBackground(ResourcesUtils.getContextDrawable(R.drawable.bg_btn_gray, getActivity()));
+            String reason = WannaModel.getInstance().queryReason(mArticle.getTitle());
+            if (!TextUtils.isEmpty(reason)) {
+                etReason.setText(reason);
+            }
         } else {
             mCvMark.setVisibility(View.GONE);
+            mBtnWanna.setText("想看");
+            mBtnWanna.setTextColor(ResourcesUtils.getColor(R.color.colorOrange, getActivity()));
+            mBtnWanna.setBackground(ResourcesUtils.getContextDrawable(R.drawable.bg_btn_orange_select, getActivity()));
         }
 
 
@@ -210,7 +232,7 @@ public class DetailMovieHeadFragment extends BaseFragment<IPresent> implements R
         mRvPhoto.setAdapter(mPhotosAdapter);
     }
 
-    @OnClick({R.id.btn_wanna, R.id.ll_read, R.id.cv_comment})
+    @OnClick({R.id.btn_wanna, R.id.ll_read, R.id.cv_comment, R.id.tv_share})
     public void onViewClick(View view) {
         switch (view.getId()) {
             case R.id.btn_wanna:
@@ -237,6 +259,15 @@ public class DetailMovieHeadFragment extends BaseFragment<IPresent> implements R
                 startActivity(intent);
                 getActivity().overridePendingTransition(R.anim.comment_tanslate, 0);
                 break;
+            case R.id.tv_share:
+                if (AndroidApplication.getApplication().isLogin()) {
+                    startActivity(new Intent(getActivity(), ShareLabelActivity.class));
+                } else {
+                    Intent thinkSeeIntent = new Intent(getActivity(), LoginActivity.class);
+                    startActivity(thinkSeeIntent);
+
+                }
+                break;
             default:
                 break;
         }
@@ -248,4 +279,5 @@ public class DetailMovieHeadFragment extends BaseFragment<IPresent> implements R
         interestIntent.putExtra(InterestActivity.TAG, mArticle);
         startActivity(interestIntent);
     }
+
 }

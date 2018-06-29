@@ -27,7 +27,7 @@ public class SettingActivity extends BaseActivity {
     TextView mTvStillsTitle;
     @BindView(R.id.iv_share)
     ImageView mIvShare;
-    @BindView(R.id.ll_title)
+    @BindView(R.id.rl_content)
     RelativeLayout mRlHeadLayout;
     @BindView(R.id.btn_exit)
     Button mBtnExit;

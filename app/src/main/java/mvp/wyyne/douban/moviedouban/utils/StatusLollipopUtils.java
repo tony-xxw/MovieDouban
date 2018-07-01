@@ -52,7 +52,11 @@ public class StatusLollipopUtils {
         }
     }
 
-
+    /**
+     * 
+     * @param activity
+     * @param hideStatusBarBackground
+     */
     public static void translucentStatusBar(Activity activity, boolean hideStatusBarBackground) {
         Window window = activity.getWindow();
         //设置状态栏颜色 需要添加FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS Flag 可绘制模式

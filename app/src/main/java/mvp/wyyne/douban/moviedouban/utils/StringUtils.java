@@ -1,7 +1,11 @@
 package mvp.wyyne.douban.moviedouban.utils;
 
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.List;
+
+import static mvp.wyyne.douban.moviedouban.utils.Constant.LAKH;
+import static mvp.wyyne.douban.moviedouban.utils.Constant.THOUSAND;
 
 /**
  * @author XXW
@@ -64,5 +68,25 @@ public class StringUtils {
 
     public static int getDoubleToInt(double count) {
         return Double.valueOf(count).intValue();
+    }
+
+
+    /**
+     * @return 观影人数
+     */
+    public static String  getAttendance(int count) {
+        DecimalFormat df = new DecimalFormat("######0.0");
+        DecimalFormat dd = new DecimalFormat("######0.0");
+
+        String attendance = null;
+        if (count > LAKH) {
+            attendance = df.format(count / 10000.0) + "万人观看";
+        } else if (count > THOUSAND) {
+            attendance = dd.format(count / 1000.0) + "万人观看";
+        } else {
+            attendance = count + "人观看";
+        }
+
+        return attendance;
     }
 }

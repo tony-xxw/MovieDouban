@@ -14,6 +14,7 @@ import mvp.wyyne.douban.moviedouban.api.bean.Casts;
 import mvp.wyyne.douban.moviedouban.api.bean.Directors;
 import mvp.wyyne.douban.moviedouban.api.bean.Rating;
 import mvp.wyyne.douban.moviedouban.api.bean.Subjects;
+import mvp.wyyne.douban.moviedouban.utils.StringUtils;
 
 /**
  * @author XXW
@@ -44,7 +45,7 @@ public class HotAdapter extends BaseRvAdapter<Subjects> {
         Avatars avatars = mSubjects.getImages();
         Rating rating = mSubjects.getRating();
 
-        String attendance = getAttendance(mSubjects.getCollect_count());
+        String attendance = StringUtils.getAttendance(mSubjects.getCollect_count());
 
         holder.setText(R.id.tv_collect_count, attendance);
         for (int i = 0; i < casts.size(); i++) {

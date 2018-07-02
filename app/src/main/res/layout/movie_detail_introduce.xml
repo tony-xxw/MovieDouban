@@ -196,6 +196,7 @@
 
 
             <RelativeLayout
+                android:id="@+id/rl_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="10dp">
@@ -240,19 +241,24 @@
             </RelativeLayout>
 
 
-            <EditText
-                android:id="@+id/et_content"
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/tv_reason"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
-                android:layout_marginStart="10dp" />
+                android:layout_margin="10dp"
+                tools:text="哈哈哈" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_margin="10dp"
+                android:background="@color/colorGray_dark2" />
 
 
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingEnd="10dp"
-                android:paddingStart="10dp">
+                android:layout_margin="10dp">
 
                 <TextView
                     android:id="@+id/tv_share"

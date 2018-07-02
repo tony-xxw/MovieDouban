@@ -8,7 +8,6 @@ import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -87,8 +86,8 @@ public class DetailMovieHeadFragment extends BaseFragment<IPresent> implements R
     TextView tvName;
     @BindView(R.id.tv_time)
     TextView tvTime;
-    @BindView(R.id.et_content)
-    EditText etReason;
+    @BindView(R.id.tv_reason)
+    TextView tvReason;
     private List<Casts> mCasts;
     private Article mArticle;
 
@@ -118,7 +117,9 @@ public class DetailMovieHeadFragment extends BaseFragment<IPresent> implements R
             mBtnWanna.setBackground(ResourcesUtils.getContextDrawable(R.drawable.bg_btn_gray, getActivity()));
             String reason = WannaModel.getInstance().queryReason(mArticle.getTitle());
             if (!TextUtils.isEmpty(reason)) {
-                etReason.setText(reason);
+                tvReason.setText(reason);
+            } else {
+                tvReason.setVisibility(View.GONE);
             }
         } else {
             mCvMark.setVisibility(View.GONE);
@@ -232,12 +233,12 @@ public class DetailMovieHeadFragment extends BaseFragment<IPresent> implements R
         mRvPhoto.setAdapter(mPhotosAdapter);
     }
 
-    @OnClick({R.id.btn_wanna, R.id.ll_read, R.id.cv_comment, R.id.tv_share})
+    @OnClick({R.id.btn_wanna, R.id.ll_read, R.id.cv_comment, R.id.tv_share, R.id.rl_edit})
     public void onViewClick(View view) {
         switch (view.getId()) {
             case R.id.btn_wanna:
                 if (AndroidApplication.getApplication().isLogin()) {
-                    intentInterest(getActivity().getString(R.string.wanna));
+                    intentInterest();
                 } else {
                     Intent thinkSeeIntent = new Intent(getActivity(), LoginActivity.class);
                     startActivity(thinkSeeIntent);
@@ -245,7 +246,7 @@ public class DetailMovieHeadFragment extends BaseFragment<IPresent> implements R
                 break;
             case R.id.ll_read:
                 if (AndroidApplication.getApplication().isLogin()) {
-                    intentInterest(getActivity().getString(R.string.read));
+                    intentInterest();
                 } else {
                     Intent haveSeenIntent = new Intent(getActivity(), LoginActivity.class);
                     startActivity(haveSeenIntent);
@@ -253,20 +254,23 @@ public class DetailMovieHeadFragment extends BaseFragment<IPresent> implements R
                 break;
             case R.id.cv_comment:
                 Intent intent = new Intent(getActivity(), CommentCountActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putParcelable(DATA_ARTICLE, mArticle);
-                intent.putExtra(DATA_ARTICLE, bundle);
+                intent.putExtra(DATA_ARTICLE, bundleArticle(DATA_ARTICLE));
                 startActivity(intent);
                 getActivity().overridePendingTransition(R.anim.comment_tanslate, 0);
                 break;
             case R.id.tv_share:
                 if (AndroidApplication.getApplication().isLogin()) {
-                    startActivity(new Intent(getActivity(), ShareLabelActivity.class));
+                    Intent shareIntent = new Intent(getActivity(), ShareLabelActivity.class);
+                    shareIntent.putExtra(ShareLabelActivity.TAG, bundleArticle(ShareLabelActivity.TAG));
+                    startActivity(shareIntent);
                 } else {
                     Intent thinkSeeIntent = new Intent(getActivity(), LoginActivity.class);
                     startActivity(thinkSeeIntent);
 
                 }
+                break;
+            case R.id.rl_edit:
+                intentInterest();
                 break;
             default:
                 break;
@@ -274,10 +278,16 @@ public class DetailMovieHeadFragment extends BaseFragment<IPresent> implements R
     }
 
 
-    public void intentInterest(String tag) {
+    public void intentInterest() {
         Intent interestIntent = new Intent(getActivity(), InterestActivity.class);
         interestIntent.putExtra(InterestActivity.TAG, mArticle);
         startActivity(interestIntent);
+    }
+
+    public Bundle bundleArticle(String tag) {
+        Bundle bundle = new Bundle();
+        bundle.putParcelable(tag, mArticle);
+        return bundle;
     }
 
 }

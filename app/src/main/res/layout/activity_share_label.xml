@@ -17,10 +17,11 @@
         <include layout="@layout/default_top_layout" />
 
         <android.support.v7.widget.CardView
-            android:layout_width="match_parent"
+            android:layout_width="280dp"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:layout_margin="30dp"
+            android:layout_marginBottom="40dp"
+            android:layout_marginTop="40dp"
             app:cardCornerRadius="10dp">
 
 
@@ -35,6 +36,11 @@
                     android:layout_height="0dp"
                     android:layout_weight="1">
 
+                    <ImageView
+                        android:id="@+id/iv_movie"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="fitXY" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -47,6 +53,7 @@
                         <TextView
                             android:id="@+id/tv_title"
                             style="@style/MovieItemTextTitle"
+                            android:textColor="@color/white"
                             tools:text="神奇女侠" />
 
                         <LinearLayout
@@ -57,11 +64,13 @@
                             <TextView
                                 style="@style/MovieItemText"
                                 android:text="导演 : "
+                                android:textColor="@color/colorWhite"
                                 android:textSize="14sp" />
 
                             <TextView
                                 android:id="@+id/tv_directors_name"
                                 style="@style/MovieItemText"
+                                android:textColor="@color/colorWhite"
                                 android:textSize="14sp"
                                 tools:text="冯小刚" />
 
@@ -72,6 +81,7 @@
                             style="@style/MovieItemText"
                             android:layout_marginTop="5dp"
                             android:lineSpacingExtra="5dp"
+                            android:textColor="@color/colorWhite"
                             android:textSize="14sp"
                             tools:text="主演" />
                     </LinearLayout>
@@ -81,10 +91,9 @@
                         android:id="@+id/cv_comment"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="right|bottom"
+                        android:layout_gravity="end|bottom"
                         android:layout_marginBottom="10dp"
                         android:layout_marginEnd="10dp"
-                        android:background="@drawable/bg_transparency_white"
                         android:minWidth="70dp"
                         app:cardCornerRadius="5dp"
                         app:cardElevation="5dp">
@@ -123,11 +132,13 @@
                                 android:id="@+id/tv_detail_num"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textColor="@color/colorGray"
+                                android:textColor="@color/colorGray_dark2"
                                 android:textSize="12sp" />
 
                         </LinearLayout>
                     </android.support.v7.widget.CardView>
+
+
                 </FrameLayout>
 
                 <LinearLayout
@@ -150,8 +161,8 @@
 
                             <ImageView
                                 android:id="@+id/iv_avatar"
-                                android:layout_width="36dp"
-                                android:layout_height="36dp"
+                                android:layout_width="48dp"
+                                android:layout_height="48dp"
                                 android:layout_centerVertical="true"
                                 android:layout_marginStart="10dp"
                                 android:src="@drawable/ic_user_avatar" />
@@ -163,9 +174,9 @@
                                 android:layout_centerVertical="true"
                                 android:layout_marginStart="10dp"
                                 android:layout_toEndOf="@+id/iv_avatar"
+                                android:text="Wynne"
                                 android:textColor="@color/colorBlack"
-                                android:textSize="14sp"
-                                tools:text="Wynne" />
+                                android:textSize="14sp" />
 
                             <TextView
                                 android:id="@+id/tv_time"
@@ -188,26 +199,34 @@
                         </RelativeLayout>
 
 
-                        <EditText
-                            android:id="@+id/et_content"
-                            android:layout_width="match_parent"
+                        <TextView
+                            android:id="@+id/tv_reason"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginEnd="10dp"
-                            android:layout_marginStart="10dp" />
+                            android:layout_margin="10dp"
+                            tools:text="哈哈哈" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_margin="10dp"
+                            android:background="@color/colorGray_dark2" />
 
 
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
                         android:layout_marginStart="10dp">
 
                         <ImageView
-                            android:layout_width="60dp"
-                            android:layout_height="60dp"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_gravity="center_vertical"
                             android:scaleType="fitXY"
-                            android:src="@drawable/bg_advertisement" />
+                            android:src="@drawable/ic_qr_code" />
 
                         <TextView
                             android:layout_width="wrap_content"

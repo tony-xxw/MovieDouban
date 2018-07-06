@@ -10,6 +10,7 @@
         android:id="@+id/nv_detail"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:visibility="visible"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
@@ -26,12 +27,11 @@
                 app:tabBackground="@color/colorTablayoutBg"
                 app:tabIndicatorColor="@color/color_tab_indicator" />
 
-            <android.support.v4.view.ViewPager
+            <mvp.wyyne.douban.moviedouban.widget.VerticalViewGroup
                 android:id="@+id/vp_detail"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
         </LinearLayout>
-
     </android.support.v4.widget.NestedScrollView>
 
     <android.support.design.widget.AppBarLayout

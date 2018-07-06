@@ -31,7 +31,7 @@ public class InterceptScrollView extends NestedScrollView {
         if (ev.getAction() == MotionEvent.ACTION_MOVE) {
             intercept = true;
         }
-        super.onInterceptTouchEvent(ev);
+//        super.onInterceptTouchEvent(ev);
         return intercept;
     }
 }

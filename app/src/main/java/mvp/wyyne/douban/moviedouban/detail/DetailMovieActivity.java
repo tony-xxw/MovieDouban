@@ -183,7 +183,6 @@ public class DetailMovieActivity extends BaseActivity<DetailMovieImp> implements
             int boundHeight = mIvAvatars.getHeight();
             if (y <= 0) {
                 titleHide();
-                //AGB由相关工具获得，或者美工提供
                 mLlTitle.setBackgroundColor(Color.argb((int) 0, 227, 29, 26));
             } else if (y > 0 && y <= boundHeight) {
                 mLlTitle.setBackgroundColor(ContextCompat.getColor(this, R.color.colorTranslucence));

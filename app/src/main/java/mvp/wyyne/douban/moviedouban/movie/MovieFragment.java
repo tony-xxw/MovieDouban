@@ -93,7 +93,6 @@ public class MovieFragment extends BaseFragment<IMoviePresent> implements IMovie
         mTvCity.setVisibility(View.GONE);
         mPresent = new MovieFragmentImp(this);
         initList();
-
         LinearLayoutManager weeklyManager = new LinearLayoutManager(getActivity());
         LinearLayoutManager usManager = new LinearLayoutManager(getActivity());
         GridLayoutManager nowManager = new GridLayoutManager(getActivity(), 3);

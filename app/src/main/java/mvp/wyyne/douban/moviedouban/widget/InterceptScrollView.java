@@ -6,7 +6,6 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 
 /**
- *
  * @author Wynne
  * @date 2018/7/5
  */
@@ -27,10 +26,12 @@ public class InterceptScrollView extends NestedScrollView {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
+
         boolean intercept = false;
         if (ev.getAction() == MotionEvent.ACTION_MOVE) {
             intercept = true;
         }
+        super.onInterceptTouchEvent(ev);
         return intercept;
     }
 }

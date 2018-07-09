@@ -1,5 +1,6 @@
 package mvp.wyyne.douban.moviedouban.interest;
 
+import android.graphics.Bitmap;
 import android.support.v7.widget.CardView;
 import android.text.TextUtils;
 import android.view.View;
@@ -8,6 +9,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.target.SimpleTarget;
 
 import java.util.List;
 
@@ -17,6 +20,7 @@ import mvp.wyyne.douban.moviedouban.api.bean.Article;
 import mvp.wyyne.douban.moviedouban.api.bean.Casts;
 import mvp.wyyne.douban.moviedouban.api.model.WannaModel;
 import mvp.wyyne.douban.moviedouban.home.base.BaseActivity;
+import mvp.wyyne.douban.moviedouban.utils.BitmapUtils;
 import mvp.wyyne.douban.moviedouban.utils.ResourcesUtils;
 import mvp.wyyne.douban.moviedouban.utils.StatusUtils;
 import mvp.wyyne.douban.moviedouban.widget.StarView;
@@ -56,6 +60,10 @@ public class ShareLabelActivity extends BaseActivity {
     TextView tvReason;
     @BindView(R.id.cv_comment)
     CardView rvComment;
+    @BindView(R.id.iv_blur)
+    ImageView ivBlur;
+    @BindView(R.id.bottom_line)
+    View topLine;
     private Article mArticle;
 
     @Override
@@ -73,6 +81,7 @@ public class ShareLabelActivity extends BaseActivity {
         StatusUtils.setStatusImage(this, R.color.transparent, true);
         ivCloseWhite.setVisibility(View.VISIBLE);
         ivBack.setVisibility(View.GONE);
+        topLine.setVisibility(View.GONE);
         rlContent.setBackgroundColor(ResourcesUtils.getColor(R.color.transparent, this));
         tvTitleCenter.setText("标记分享");
 
@@ -82,7 +91,7 @@ public class ShareLabelActivity extends BaseActivity {
         }
 
         if (mArticle != null) {
-            Glide.with(this).load(mArticle.getImages().getMedium()).into(ivMovie);
+            handleBlue();
             tvTitle.setText(mArticle.getTitle());
             tvDirectorsName.setText(mArticle.getDirectors().get(0).getName());
             int castSize = mArticle.getCasts().size();
@@ -109,10 +118,7 @@ public class ShareLabelActivity extends BaseActivity {
             String collectName = mArticle.getCollect_count() + "人";
             tvDetailNum.setText(collectName);
             String reason = WannaModel.getInstance().queryReason(mArticle.getTitle());
-            if (TextUtils.isEmpty(reason)) {
-                tvReason.setVisibility(View.GONE);
-                tvReason.setText("");
-            } else {
+            if (!TextUtils.isEmpty(reason)) {
                 tvReason.setVisibility(View.VISIBLE);
                 tvReason.setText(reason);
             }
@@ -120,6 +126,22 @@ public class ShareLabelActivity extends BaseActivity {
             rvComment.setBackground(ResourcesUtils.getDrawable(R.drawable.bg_transparency_white, this));
         }
 
+    }
+
+    /**
+     * 高清模糊
+     */
+    private void handleBlue() {
+        Glide.with(this).load(mArticle.getImages().getMedium()).into(ivMovie);
+        Glide.with(this).load(mArticle.getImages().getMedium()).asBitmap().into(new SimpleTarget<Bitmap>() {
+            @Override
+            public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+                if (resource != null) {
+                    Bitmap blueBitmap = BitmapUtils.blur(ShareLabelActivity.this, resource);
+                    ivBlur.setImageBitmap(blueBitmap);
+                }
+            }
+        });
     }
 
 

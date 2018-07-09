@@ -53,7 +53,7 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:layout_gravity="center_vertical"
-        android:textColor="@color/colorBlack"
+        android:textColor="@color/white"
         android:textSize="18sp"
         tools:text="Default" />
 

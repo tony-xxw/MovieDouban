@@ -14,9 +14,6 @@
         android:orientation="vertical">
 
 
-        <include layout="@layout/default_top_layout" />
-
-
         <ImageView
             android:id="@+id/iv_blur"
             android:layout_width="match_parent"
@@ -278,6 +275,8 @@
                 </LinearLayout>
             </LinearLayout>
         </android.support.v7.widget.CardView>
+
+        <include layout="@layout/default_top_layout" />
     </RelativeLayout>
 
     <LinearLayout

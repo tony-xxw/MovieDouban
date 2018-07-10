@@ -1,5 +1,7 @@
 package mvp.wyyne.douban.moviedouban.interest;
 
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -58,6 +60,8 @@ public class InterestActivity extends BaseActivity implements TabLayout.OnTabSel
      * 当前position
      */
     private int currentPosition;
+
+    protected String mReason;
 
     @Override
     protected void refresh() {
@@ -148,12 +152,17 @@ public class InterestActivity extends BaseActivity implements TabLayout.OnTabSel
                         table.setTitle(mArticle.getTitle());
                         table.setCreatetime(TimeUtils.getNowString());
                         table.setId(Long.valueOf(mArticle.getId()));
-                        table.setReason(wantFragment.getReasonString());
-                        table.setLabel(wantFragment.getLabelString());
+                        table.setReason(mReason);
+                        table.setLabel(mReason);
                         table.setIsLabel(true);
                         WannaModel.getInstance().insertModel(table);
                         showToast("正在标记");
-                        intentActivity(this, ShareLabelActivity.class);
+                        Intent intent = new Intent(this, ShareLabelActivity.class);
+                        Bundle bundle = new Bundle();
+                        bundle.putParcelable(ShareLabelActivity.TAG, mArticle);
+                        intent.putExtra(ShareLabelActivity.TAG, bundle);
+                        intent.putExtra(ShareLabelActivity.TAG, mReason);
+                        startActivity(intent);
                     }
                 }
                 break;

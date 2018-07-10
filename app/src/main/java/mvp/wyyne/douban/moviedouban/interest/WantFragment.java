@@ -1,6 +1,8 @@
 package mvp.wyyne.douban.moviedouban.interest;
 
 import android.graphics.drawable.Drawable;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -24,7 +26,7 @@ import mvp.wyyne.douban.moviedouban.widget.StarView;
  * @date 2018/6/23
  */
 
-public class WantFragment extends BaseFragment implements FlowView.OnFlowClickListener {
+public class WantFragment extends BaseFragment implements FlowView.OnFlowClickListener, TextWatcher {
     @BindView(R.id.sv_star)
     StarView svStar;
     @BindView(R.id.tv_tag)
@@ -37,7 +39,6 @@ public class WantFragment extends BaseFragment implements FlowView.OnFlowClickLi
     TextView tvLabel;
     private List<String> mLabelList;
 
-
     private List<FlowBean> mList;
 
     @Override
@@ -48,6 +49,7 @@ public class WantFragment extends BaseFragment implements FlowView.OnFlowClickLi
     @Override
     protected void initView() {
         initLabel();
+        etReason.addTextChangedListener(this);
         fvGroup.setVisibility(View.GONE);
         tvTag.setCompoundDrawables(null, null,
                 ResourcesUtils.getDrawable(R.drawable.ic_group_tag_down, getActivity()), null);
@@ -129,12 +131,19 @@ public class WantFragment extends BaseFragment implements FlowView.OnFlowClickLi
         return labelString;
     }
 
-    /**
-     * 获取想看理由
-     *
-     * @return
-     */
-    public String getReasonString() {
-        return etReason.getText().toString();
+
+    @Override
+    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+    }
+
+    @Override
+    public void onTextChanged(CharSequence s, int start, int before, int count) {
+        ((InterestActivity) getActivity()).mReason = s.toString();
+    }
+
+    @Override
+    public void afterTextChanged(Editable s) {
+
     }
 }

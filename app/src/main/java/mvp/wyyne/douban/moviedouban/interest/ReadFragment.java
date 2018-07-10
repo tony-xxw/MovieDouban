@@ -1,6 +1,8 @@
 package mvp.wyyne.douban.moviedouban.interest;
 
 import android.graphics.drawable.Drawable;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -22,7 +24,7 @@ import mvp.wyyne.douban.moviedouban.widget.FlowView;
  * @date 2018/6/23
  */
 
-public class ReadFragment extends BaseFragment implements FlowView.OnFlowClickListener {
+public class ReadFragment extends BaseFragment implements FlowView.OnFlowClickListener, TextWatcher {
     @BindView(R.id.fvGroup)
     FlowView flowView;
     @BindView(R.id.tv_tag)
@@ -31,6 +33,7 @@ public class ReadFragment extends BaseFragment implements FlowView.OnFlowClickLi
     EditText etReason;
     private List<FlowBean> mList;
     private List<String> mLabelList;
+
 
     @Override
     protected int getLayoutId() {
@@ -41,6 +44,7 @@ public class ReadFragment extends BaseFragment implements FlowView.OnFlowClickLi
     protected void initView() {
         initLabel();
         etReason.requestFocus();
+        etReason.addTextChangedListener(this);
 
     }
 
@@ -118,14 +122,6 @@ public class ReadFragment extends BaseFragment implements FlowView.OnFlowClickLi
         return labelString;
     }
 
-    /**
-     * 获取想看理由
-     *
-     * @return
-     */
-    public String getReasonString() {
-        return etReason.getText().toString();
-    }
 
     @Override
     public void onFlowClick(TextView label, Object data, int position, boolean isSelect) {
@@ -140,4 +136,18 @@ public class ReadFragment extends BaseFragment implements FlowView.OnFlowClickLi
     }
 
 
+    @Override
+    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+    }
+
+    @Override
+    public void onTextChanged(CharSequence s, int start, int before, int count) {
+        ((InterestActivity) getActivity()).mReason = s.toString();
+    }
+
+    @Override
+    public void afterTextChanged(Editable s) {
+
+    }
 }

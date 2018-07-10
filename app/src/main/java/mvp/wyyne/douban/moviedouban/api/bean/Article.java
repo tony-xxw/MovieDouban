@@ -6,7 +6,6 @@ import android.os.Parcelable;
 import java.util.List;
 
 /**
- *
  * @author XXW
  * @date 2017/6/13
  */
@@ -159,7 +158,6 @@ public class Article implements Parcelable {
     }
 
     private List<Videos> videos;
-
 
 
     public List<String> getTrailer_urls() {

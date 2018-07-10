@@ -1,6 +1,5 @@
 package mvp.wyyne.douban.moviedouban.interest;
 
-import android.graphics.Bitmap;
 import android.support.v7.widget.CardView;
 import android.text.TextUtils;
 import android.view.View;
@@ -9,18 +8,17 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.animation.GlideAnimation;
-import com.bumptech.glide.request.target.SimpleTarget;
 
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.api.bean.Article;
 import mvp.wyyne.douban.moviedouban.api.bean.Casts;
 import mvp.wyyne.douban.moviedouban.api.model.WannaModel;
 import mvp.wyyne.douban.moviedouban.home.base.BaseActivity;
-import mvp.wyyne.douban.moviedouban.utils.BitmapUtils;
+import mvp.wyyne.douban.moviedouban.utils.FastBlur;
 import mvp.wyyne.douban.moviedouban.utils.ResourcesUtils;
 import mvp.wyyne.douban.moviedouban.utils.StatusUtils;
 import mvp.wyyne.douban.moviedouban.widget.StarView;
@@ -65,6 +63,7 @@ public class ShareLabelActivity extends BaseActivity {
     @BindView(R.id.bottom_line)
     View topLine;
     private Article mArticle;
+    private String mReason;
 
     @Override
     protected void refresh() {
@@ -74,6 +73,18 @@ public class ShareLabelActivity extends BaseActivity {
     @Override
     protected int getLayoutId() {
         return R.layout.activity_share_label;
+    }
+
+
+    @OnClick({R.id.iv_back})
+    public void onViewClick(View v) {
+        switch (v.getId()) {
+            case R.id.iv_back:
+                finish();
+                break;
+            default:
+                break;
+        }
     }
 
     @Override
@@ -88,6 +99,10 @@ public class ShareLabelActivity extends BaseActivity {
 
         if (getIntent().getBundleExtra(TAG) != null) {
             mArticle = getIntent().getBundleExtra(TAG).getParcelable(TAG);
+        }
+
+        if (getIntent().getStringExtra(TAG) != null) {
+            mReason = getIntent().getStringExtra(TAG);
         }
 
         if (mArticle != null) {
@@ -126,22 +141,25 @@ public class ShareLabelActivity extends BaseActivity {
             rvComment.setBackground(ResourcesUtils.getDrawable(R.drawable.bg_transparency_white, this));
         }
 
+        if (!TextUtils.isEmpty(mReason)) {
+            tvReason.setText(mReason);
+        }
+
     }
+
 
     /**
      * 高清模糊
      */
     private void handleBlue() {
+
         Glide.with(this).load(mArticle.getImages().getMedium()).into(ivMovie);
-        Glide.with(this).load(mArticle.getImages().getMedium()).asBitmap().into(new SimpleTarget<Bitmap>() {
-            @Override
-            public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
-                if (resource != null) {
-                    Bitmap blueBitmap = BitmapUtils.blur(ShareLabelActivity.this, resource);
-                    ivBlur.setImageBitmap(blueBitmap);
-                }
-            }
-        });
+        Glide.with(this).
+                load(mArticle.getImages().getLarge()).
+                asBitmap().
+                transform(new FastBlur(this, 100)).
+                into(ivBlur);
+
     }
 
 

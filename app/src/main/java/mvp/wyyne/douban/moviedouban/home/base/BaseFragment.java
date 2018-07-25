@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,7 +45,12 @@ public abstract class BaseFragment<T extends IPresent> extends Fragment {
      * 缓存Fragment
      **/
     protected View mRootView;
+    /**
+     * View初始化完毕
+     */
     protected boolean mIsMulti = false;
+
+    protected boolean mIsVisible = false;
 
     protected T mPresent;
 
@@ -69,19 +73,33 @@ public abstract class BaseFragment<T extends IPresent> extends Fragment {
         if (mRootView == null) {
             mRootView = inflater.inflate(getLayoutId(), null);
             unbinder = ButterKnife.bind(this, mRootView);
-            initView();
             initSwipeRefresh();
         }
         return mRootView;
 
     }
 
+
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        if (getUserVisibleHint() && mRootView != null) {
-            mIsMulti = true;
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        mIsMulti = true;
+        if (getUserVisibleHint()) {
+            mIsVisible = true;
+            lazyLoad();
+        } else {
+            mIsVisible = false;
+        }
+    }
+
+
+    public void lazyLoad() {
+        if (mIsMulti && mIsVisible) {
+            initView();
             update();
+
+            mIsMulti = false;
+            mIsVisible = false;
         }
     }
 
@@ -93,22 +111,6 @@ public abstract class BaseFragment<T extends IPresent> extends Fragment {
     }
 
 
-    /**
-     * 只有在多个Fragment实例才会执行此方法
-     * 如果isVisibleToUser 为true表示当前用户可见的Fragment,getUserVisible也为true 就可以去执行更新的数据,实现赖加载
-     * <p>
-     * 用户后面懒加载的页面 可以延迟加载
-     * 因为ViewPager 提前已经创建Fragment 只是没有加载数据
-     */
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        if (isVisibleToUser && isVisible() && mRootView != null && !mIsMulti) {
-            mIsMulti = true;
-            update();
-        } else {
-            super.setUserVisibleHint(isVisibleToUser);
-        }
-    }
 
     /**
      * 初始化下拉刷新
@@ -159,7 +161,6 @@ public abstract class BaseFragment<T extends IPresent> extends Fragment {
         if (ivNullView != null) {
             //未登录
             if (!AndroidApplication.getApplication().isLogin()) {
-                Log.d("XXW", "未登录");
                 ivNullView.setVisibility(View.VISIBLE);
             } else {
                 ivNullView.setVisibility(View.GONE);
@@ -176,4 +177,5 @@ public abstract class BaseFragment<T extends IPresent> extends Fragment {
         ToastUtils.getInstance(getActivity()).makeToastSelfViewAnim(inflater, R.style.ToastStyle);
 
     }
+
 }

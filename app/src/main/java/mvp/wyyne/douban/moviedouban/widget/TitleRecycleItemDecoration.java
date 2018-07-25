@@ -7,7 +7,6 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 
@@ -98,8 +97,6 @@ public class TitleRecycleItemDecoration extends RecyclerView.ItemDecoration {
         super.onDrawOver(c, parent, state);
         int pos = ((LinearLayoutManager) parent.getLayoutManager()).findFirstVisibleItemPosition();
         String tags = mData.get(pos).getTags();
-        Log.d("XXW", "onDrawOver====" + mData.get(pos).getTags());
-        Log.d("XXW", "onDrawOver==Next==" + mData.get(pos + 1).getTags());
         View child = parent.findViewHolderForLayoutPosition(pos).itemView;
         //定义一个flag，Canvas是否位移过的标志
         boolean flag = false;
@@ -139,7 +136,6 @@ public class TitleRecycleItemDecoration extends RecyclerView.ItemDecoration {
     @Override
     public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
         super.getItemOffsets(outRect, view, parent, state);
-        Log.e("XXW", "getItemOffsets");
         int position = ((RecyclerView.LayoutParams) view.getLayoutParams()).getViewLayoutPosition();
         if (position > -1) {
             if (position == 0) {
@@ -148,7 +144,6 @@ public class TitleRecycleItemDecoration extends RecyclerView.ItemDecoration {
                 if (null != mData.get(position).getTags() && mData.get(position).getTags().equals(mData.get(position - 1).getTags())) {
                     outRect.set(0, 0, 0, 0);
                 } else {
-                    Log.d("XXW", "position>0");
                     outRect.set(0, mTitleHeight, 0, 0);
                 }
             }

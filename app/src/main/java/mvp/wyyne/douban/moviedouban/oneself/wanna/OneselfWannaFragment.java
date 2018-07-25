@@ -123,4 +123,16 @@ public class OneselfWannaFragment extends BaseFragment implements RvItemOnClick 
         intent.putExtra(DETAIL_TAG, String.valueOf(mList.get(position).getId()));
         startActivity(intent);
     }
+
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser) {
+            mIsVisible = true;
+            lazyLoad();
+        } else {
+            mIsVisible = false;
+        }
+    }
 }

@@ -58,4 +58,15 @@ public class OneselfReadFragment extends BaseFragment {
         }
     }
 
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser) {
+            mIsVisible = true;
+            lazyLoad();
+        } else {
+            mIsVisible = false;
+        }
+    }
+
 }

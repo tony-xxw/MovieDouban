@@ -1,13 +1,10 @@
 package mvp.wyyne.douban.moviedouban.hot.future;
 
 import android.content.Intent;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -52,13 +49,6 @@ public class HotFutureFragment extends BaseFragment<HotPresent> implements IHotM
 
     private List<String> mTag;
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        Log.d("XXW", TAG + "onActivityCreated ==" + getUserVisibleHint());
-
-    }
-
 
     @Override
     protected void refresh() {
@@ -72,7 +62,6 @@ public class HotFutureFragment extends BaseFragment<HotPresent> implements IHotM
 
     @Override
     protected void initView() {
-
         mList = new ArrayList<>();
         mMovieTypes = new ArrayList<>();
         mTag = Arrays.asList(mTags);
@@ -126,4 +115,16 @@ public class HotFutureFragment extends BaseFragment<HotPresent> implements IHotM
         intent.putExtra(DETAIL_TAG, mList.get(position).getId());
         getActivity().startActivity(intent);
     }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser) {
+            mIsVisible = true;
+            lazyLoad();
+        } else {
+            mIsVisible = false;
+        }
+    }
+
 }

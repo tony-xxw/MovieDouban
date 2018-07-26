@@ -10,8 +10,7 @@
     <include layout="@layout/head_search_layout" />
 
 
-    <android.support.design.widget.CoordinatorLayout
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <android.support.design.widget.CoordinatorLayout xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="visible">
@@ -22,6 +21,11 @@
             android:layout_height="130dp"
             android:theme="@style/AppTheme.AppBarOverlay">
 
+
+            <!--enterAlways  向上滑动 指定View跟着滑出屏幕  向下滑动 指定View-->
+            <!--enterAlwaysCollapsed 向下滑动时,指定View先滑动到最小高度,直到scroll滚动 显示全部-->
+            <!--exitUntilCollapsed 下滑时跟着滑动，不会显示全部-->
+            <!--snap 简单理解，就是Child View滚动比例的一个吸附效果。也就是说，Child View不会存在局部显示的情况，滚动Child View的部分高度，当我们松开手指时，Child View要么向上全部滚出屏幕，要么向下全部滚进屏幕，有点类似ViewPager的左右滑动。-->
 
             <ImageView
                 android:layout_width="match_parent"

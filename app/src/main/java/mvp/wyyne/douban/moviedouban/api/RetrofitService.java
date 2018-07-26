@@ -1,7 +1,6 @@
 package mvp.wyyne.douban.moviedouban.api;
 
 import android.support.annotation.NonNull;
-import android.util.Log;
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
@@ -111,11 +110,7 @@ public class RetrofitService {
             Buffer requestBuffer = new Buffer();
             if (request.body() != null) {
                 request.body().writeTo(requestBuffer);
-            } else {
-                Log.d("XXW", "request.body()==null");
             }
-
-            Log.i("XXW", request.url() + (request.body() != null ? "?" + parseParams(request.body(), requestBuffer) : ""));
             final Response response = chain.proceed(request);
             return response;
         }

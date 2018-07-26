@@ -76,16 +76,17 @@ public class HotAdapter extends BaseRvAdapter<Subjects> {
             }
         });
 
-        if (getPredate(mSubjects.getPubdates().get(0))) {
-            Button button = holder.getView(R.id.btn_shop);
-            GradientDrawable drawable = (GradientDrawable) button.getBackground();
-            drawable.setStroke(1, mContext.getResources().getColor(R.color.colorOrange));
-            button.setTextColor(mContext.getResources().getColor(R.color.colorOrange));
-            button.setText(mContext.getString(R.string.reserve));
-            TextView textView = holder.getView(R.id.tv_collect_count);
-            textView.setTextColor(mContext.getResources().getColor(R.color.colorOrange));
+        if (mSubjects.getPubdates().size() != 0) {
+            if (getPredate(mSubjects.getPubdates().get(0))) {
+                Button button = holder.getView(R.id.btn_shop);
+                GradientDrawable drawable = (GradientDrawable) button.getBackground();
+                drawable.setStroke(1, mContext.getResources().getColor(R.color.colorOrange));
+                button.setTextColor(mContext.getResources().getColor(R.color.colorOrange));
+                button.setText(mContext.getString(R.string.reserve));
+                TextView textView = holder.getView(R.id.tv_collect_count);
+                textView.setTextColor(mContext.getResources().getColor(R.color.colorOrange));
+            }
         }
-
 
     }
 

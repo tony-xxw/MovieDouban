@@ -29,6 +29,8 @@ import mvp.wyyne.douban.moviedouban.api.bean.WeeklyMovieSubject;
 import mvp.wyyne.douban.moviedouban.api.bean.WeeklySubject;
 import mvp.wyyne.douban.moviedouban.api.bean.WelfarePhotoList;
 import okhttp3.Cache;
+import okhttp3.Call;
+import okhttp3.Callback;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -46,9 +48,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitService {
     private static final String MOVIES_HOST = "https://api.douban.com/v2/";
     private static final String WELFARE_HOST = "http://gank.io";
+    private static final String WELFARE_HOST_OKHTTP = "http://gank.io//api/data/福利/50/0";
 
     private static IMoviesApi mMoviesApi;
     private static IWelfareApi mWelfareApi;
+    private static Call okHttpCall;
 
     public static void init() {
         Cache cache = new Cache(new File(AndroidApplication.getApplication().getCacheDir(), "HttpCache"), 1024 * 1024 * 100);
@@ -75,6 +79,13 @@ public class RetrofitService {
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .baseUrl(WELFARE_HOST)
                 .build();
+
+        OkHttpClient client = new OkHttpClient();
+        Request request = new Request.Builder()
+                .url(WELFARE_HOST_OKHTTP)
+                .build();
+
+        okHttpCall = client.newCall(request);
 
         mMoviesApi = retrofit.create(IMoviesApi.class);
         mWelfareApi = welfare.create(IWelfareApi.class);
@@ -151,6 +162,10 @@ public class RetrofitService {
 
     public static Observable<WelfarePhotoList> getPhotoList(int page) {
         return subscribeOnThread(mWelfareApi.getWelfarePhoto(page));
+    }
+
+    public static void getWelfareOkhttp(Callback callback) {
+        okHttpCall.enqueue(callback);
     }
 
     public static Observable<MoviesReviews> getReviews(String subjectId) {

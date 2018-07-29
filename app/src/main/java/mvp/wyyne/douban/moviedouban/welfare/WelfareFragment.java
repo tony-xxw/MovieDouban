@@ -6,22 +6,31 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.adapter.WelfareAdapter;
+import mvp.wyyne.douban.moviedouban.api.RetrofitService;
 import mvp.wyyne.douban.moviedouban.api.RvItemLongOnClick;
 import mvp.wyyne.douban.moviedouban.api.RvItemOnClick;
 import mvp.wyyne.douban.moviedouban.api.bean.WelfarePhotoInfo;
 import mvp.wyyne.douban.moviedouban.home.base.BaseFragment;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
 
 import static mvp.wyyne.douban.moviedouban.adapter.WelfareAdapter.STAGGERED;
 
@@ -69,6 +78,23 @@ public class WelfareFragment extends BaseFragment<WelfarePresent> implements IWe
         initDialog();
         mPresent.getData();
 
+
+        RetrofitService.getWelfareOkhttp(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                try {
+                    JSONObject object = new JSONObject(response.body().string());
+                    Log.d("XXW", "okhttp == " + object.toString());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
     }
 

@@ -6,7 +6,6 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -89,7 +88,6 @@ public class WelfareFragment extends BaseFragment<WelfarePresent> implements IWe
             public void onResponse(Call call, Response response) throws IOException {
                 try {
                     JSONObject object = new JSONObject(response.body().string());
-                    Log.d("XXW", "okhttp == " + object.toString());
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

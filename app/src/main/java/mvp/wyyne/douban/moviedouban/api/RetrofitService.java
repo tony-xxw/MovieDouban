@@ -42,7 +42,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * @author XXW
- * @date 2017/6/5
+ * @date 2017/6/5   
  */
 
 public class RetrofitService {

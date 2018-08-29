@@ -19,6 +19,8 @@ import com.bumptech.glide.request.target.SimpleTarget;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import butterknife.BindView;
 import mvp.wyyne.douban.moviedouban.R;
@@ -135,7 +137,8 @@ public class WelfarePhotoActivity extends BaseActivity implements View.OnLongCli
                 }
             });
 
-            new Thread(downService).start();
+            ExecutorService executors = Executors.newCachedThreadPool();
+            executors.execute(downService);
         }
     }
 

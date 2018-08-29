@@ -75,7 +75,7 @@ public class DownPhotoService implements Runnable {
         }
     }
 
-    public void saveImageToGallery(Context context, Bitmap bitmap) {
+    private void saveImageToGallery(Context context, Bitmap bitmap) {
         File localFile = SdCardUtils.getPicturesFilePath();
         String fileName = "DouBan";
         File appDir = new File(localFile, fileName);

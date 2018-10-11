@@ -14,6 +14,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -37,6 +38,8 @@ import mvp.wyyne.douban.moviedouban.utils.StatusUtils;
 import static mvp.wyyne.douban.moviedouban.utils.Constant.DETAIL_TAG;
 
 /**
+ * Y400 测试
+ *
  * @author XXW
  * @date 2017/6/18
  */
@@ -76,7 +79,7 @@ public class DetailMovieActivity extends BaseActivity<DetailMovieImp> implements
 
     @Override
     protected void refresh() {
-
+        Log.d("XXW","Y400");
     }
 
 

@@ -43,7 +43,7 @@
             </RelativeLayout>
 
 
-            <mvp.wyyne.douban.moviedouban.widget.InterceptRecycleView
+            <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv_now"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -57,7 +57,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <mvp.wyyne.douban.moviedouban.widget.InterceptRecycleView
+                <android.support.v7.widget.RecyclerView
                     android:id="@+id/rv_weekly"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -96,7 +96,7 @@
             </RelativeLayout>
 
 
-            <mvp.wyyne.douban.moviedouban.widget.InterceptRecycleView
+            <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv_top"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -110,7 +110,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <mvp.wyyne.douban.moviedouban.widget.InterceptRecycleView
+                <android.support.v7.widget.RecyclerView
                     android:id="@+id/rv_us"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />

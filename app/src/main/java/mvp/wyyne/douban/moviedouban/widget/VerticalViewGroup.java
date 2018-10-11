@@ -8,7 +8,8 @@ import android.view.VelocityTracker;
 import android.widget.Scroller;
 
 /**
- * Created by Wynne on 2018/7/6.
+ * @author Wynne
+ * @date 2018/7/6
  */
 
 public class VerticalViewGroup extends ViewPager {

@@ -26,6 +26,6 @@ public class InterceptRecycleView extends RecyclerView {
 
     @Override
     public boolean onTouchEvent(MotionEvent e) {
-        return false;
+        return super.onTouchEvent(e);
     }
 }

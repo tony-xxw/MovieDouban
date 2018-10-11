@@ -56,22 +56,28 @@ public class CommentFragment extends BaseFragment {
     @Override
     protected void initView() {
 
-        ReviewAdapter mReviewAdapter = new ReviewAdapter(getActivity(), mArticle.getPopular_reviews());
-        LinearLayoutManager mReviewsManager = new LinearLayoutManager(getActivity());
-        mReviewsManager.setOrientation(LinearLayoutManager.VERTICAL);
-        mReviewAdapter.setArticle(mArticle);
-        mRvReview.setLayoutManager(mReviewsManager);
-        mReviewAdapter.setHeadView(RecycleViewUtils.addHeadView(R.layout.item_comment_head, getActivity(), mRvReview));
-        mReviewAdapter.setFooterView(RecycleViewUtils.addFooterView(R.layout.item_comment_footer, getActivity()));
-        mRvReview.setAdapter(mReviewAdapter);
+
         CommentAdapter mAdapter = new CommentAdapter(getActivity(), mArticle.getPopular_comments());
         mAdapter.setArticle(mArticle);
-        LinearLayoutManager mManager = new LinearLayoutManager(getActivity());
-        mManager.setOrientation(LinearLayoutManager.VERTICAL);
-        mRvComment.setLayoutManager(mManager);
+
+        mRvComment.setNestedScrollingEnabled(false);
+        mRvComment.setLayoutManager(new LinearLayoutManager(getActivity()));
+
         mAdapter.setHeadView(RecycleViewUtils.addHeadView(R.layout.item_comment_head, getActivity(), mRvComment));
         mAdapter.setFooterView(RecycleViewUtils.addFooterView(R.layout.item_comment_footer, getActivity()));
         mRvComment.setAdapter(mAdapter);
+
+
+        ReviewAdapter mReviewAdapter = new ReviewAdapter(getActivity(), mArticle.getPopular_reviews());
+        mReviewAdapter.setArticle(mArticle);
+
+
+        mRvReview.setNestedScrollingEnabled(false);
+        mRvReview.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        mReviewAdapter.setHeadView(RecycleViewUtils.addHeadView(R.layout.item_comment_head, getActivity(), mRvReview));
+        mReviewAdapter.setFooterView(RecycleViewUtils.addFooterView(R.layout.item_comment_footer, getActivity()));
+        mRvReview.setAdapter(mReviewAdapter);
 
     }
 

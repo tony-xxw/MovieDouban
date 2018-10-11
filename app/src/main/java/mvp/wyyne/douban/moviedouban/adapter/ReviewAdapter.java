@@ -46,10 +46,6 @@ public class ReviewAdapter extends BaseRvAdapter<PopularCmRv> {
         }
     }
 
-    @Override
-    public int getItemCount() {
-        return mList.size() > 5 ? 7 : mList.size() + getFooterViewCount() + getHeadViewCount();
-    }
 
     @Override
     public void bindHeadView(BaseItemViewHolder holder, int position) {

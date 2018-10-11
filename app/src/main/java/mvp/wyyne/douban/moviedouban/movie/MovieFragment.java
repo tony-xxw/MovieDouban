@@ -93,24 +93,29 @@ public class MovieFragment extends BaseFragment<IMoviePresent> implements IMovie
         mTvCity.setVisibility(View.GONE);
         mPresent = new MovieFragmentImp(this);
         initList();
-        LinearLayoutManager weeklyManager = new LinearLayoutManager(getActivity());
-        LinearLayoutManager usManager = new LinearLayoutManager(getActivity());
-        GridLayoutManager nowManager = new GridLayoutManager(getActivity(), 3);
-        GridLayoutManager topManager = new GridLayoutManager(getActivity(), 3);
+
+
         nowAdapter = new NowTopAdapter(getActivity(), nowList);
         nowAdapter.setTag(NOW_TAG);
         nowAdapter.setRvOnClick(this);
-        rvNow.setLayoutManager(nowManager);
+        rvNow.setNestedScrollingEnabled(false);
+        rvNow.setLayoutManager(new GridLayoutManager(getActivity(), 3));
         rvNow.setAdapter(nowAdapter);
+
         topAdapter = new NowTopAdapter(getActivity(), topList);
         topAdapter.setTag(TOP_TAG);
-        rvTop.setLayoutManager(topManager);
+        rvTop.setNestedScrollingEnabled(false);
+        rvTop.setLayoutManager(new GridLayoutManager(getActivity(), 3));
         rvTop.setAdapter(topAdapter);
+
         weeklyAdapter = new WeeklyAdapter(getActivity(), weeklyList);
-        rvWeekly.setLayoutManager(weeklyManager);
+        rvWeekly.setNestedScrollingEnabled(false);
+        rvWeekly.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvWeekly.setAdapter(weeklyAdapter);
+
         usAdapter = new UsAdapter(getActivity(), usList);
-        rvUs.setLayoutManager(usManager);
+        rvUs.setNestedScrollingEnabled(false);
+        rvUs.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvUs.setAdapter(usAdapter);
 
 

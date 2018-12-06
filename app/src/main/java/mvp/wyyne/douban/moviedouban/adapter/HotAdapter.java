@@ -2,6 +2,7 @@ package mvp.wyyne.douban.moviedouban.adapter;
 
 import android.content.Context;
 import android.graphics.drawable.GradientDrawable;
+import android.support.v7.util.DiffUtil;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -14,6 +15,7 @@ import mvp.wyyne.douban.moviedouban.api.bean.Casts;
 import mvp.wyyne.douban.moviedouban.api.bean.Directors;
 import mvp.wyyne.douban.moviedouban.api.bean.Rating;
 import mvp.wyyne.douban.moviedouban.api.bean.Subjects;
+import mvp.wyyne.douban.moviedouban.utils.AdapterDiff;
 import mvp.wyyne.douban.moviedouban.utils.StringUtils;
 
 /**
@@ -25,6 +27,11 @@ public class HotAdapter extends BaseRvAdapter<Subjects> {
 
     private Context mContext;
 
+
+    public void setNotifacation(List<Subjects> oldList, List<Subjects> newList) {
+        DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(new AdapterDiff(oldList, newList),true);
+        diffResult.dispatchUpdatesTo(this);
+    }
 
     public HotAdapter(Context context, List<Subjects> list) {
         super(context, list);

@@ -83,11 +83,15 @@ public class HotCurrentFragment extends BaseFragment<HotPresent> implements IHot
 
     @Override
     public void initData(List<Subjects> subjects) {
-        mList = subjects;
+
+        mAdapter.setNotifacation(mList, subjects);
         mAdapter.setList(subjects);
-        mAdapter.notifyDataSetChanged();
+        mList = subjects;
+//        mAdapter.notifyDataSetChanged();
         mArry.addAll(subjects);
         mainActivity.setSubjects(mArry);
+
+
     }
 
 

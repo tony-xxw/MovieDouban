@@ -5,6 +5,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -101,6 +102,7 @@ public class HotCurrentFragment extends BaseFragment<HotPresent> implements IHot
         intent.putExtra(DETAIL_TAG, mList.get(position).getId());
 
         getActivity().startActivity(intent);
+        Log.d("XXW", "item : " + position);
     }
 
 

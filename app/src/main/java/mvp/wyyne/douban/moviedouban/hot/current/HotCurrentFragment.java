@@ -102,8 +102,7 @@ public class HotCurrentFragment extends BaseFragment<HotPresent> implements IHot
         intent.putExtra(DETAIL_TAG, mList.get(position).getId());
 
         getActivity().startActivity(intent);
-        Log.d("XXW", "item : " + position);
-    }
+     }
 
 
     @Override

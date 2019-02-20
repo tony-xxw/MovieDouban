@@ -24,7 +24,7 @@ import mvp.wyyne.douban.moviedouban.home.base.BaseFragment;
 import mvp.wyyne.douban.moviedouban.login.LoginActivity;
 import mvp.wyyne.douban.moviedouban.utils.ToastUtils;
 
-import static mvp.wyyne.douban.moviedouban.utils.Constant.DETAIL_TAG;
+import static com.wynne.common.Constant.DETAIL_TAG;
 
 /**
  * @author XXW

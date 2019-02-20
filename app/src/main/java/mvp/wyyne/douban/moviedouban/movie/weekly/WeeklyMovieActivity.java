@@ -20,7 +20,7 @@ import mvp.wyyne.douban.moviedouban.home.base.BaseActivity;
 import mvp.wyyne.douban.moviedouban.utils.ResourcesUtils;
 import mvp.wyyne.douban.moviedouban.utils.StatusUtils;
 
-import static mvp.wyyne.douban.moviedouban.utils.Constant.DETAIL_TAG;
+import static com.wynne.common.Constant.DETAIL_TAG;
 
 /**
  * @author Wynne

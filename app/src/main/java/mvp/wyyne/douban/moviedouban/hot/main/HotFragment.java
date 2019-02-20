@@ -20,8 +20,8 @@ import mvp.wyyne.douban.moviedouban.home.base.BaseFragment;
 import mvp.wyyne.douban.moviedouban.hot.city.CityActivity;
 import mvp.wyyne.douban.moviedouban.search.SearchMovieActivity;
 
-import static mvp.wyyne.douban.moviedouban.utils.Constant.CITY_RESULT;
-import static mvp.wyyne.douban.moviedouban.utils.Constant.HOT_REQUEST;
+import static com.wynne.common.Constant.CITY_RESULT;
+import static com.wynne.common.Constant.HOT_REQUEST;
 
 
 /**

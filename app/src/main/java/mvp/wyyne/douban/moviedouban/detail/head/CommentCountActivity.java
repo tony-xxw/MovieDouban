@@ -17,7 +17,7 @@ import butterknife.OnClick;
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.api.bean.Article;
 import mvp.wyyne.douban.moviedouban.home.base.BaseActivity;
-import mvp.wyyne.douban.moviedouban.utils.Constant;
+import com.wynne.common.Constant;
 import mvp.wyyne.douban.moviedouban.widget.ChartRect;
 import mvp.wyyne.douban.moviedouban.widget.StarView;
 

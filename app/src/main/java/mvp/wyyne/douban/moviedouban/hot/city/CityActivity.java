@@ -20,7 +20,7 @@ import mvp.wyyne.douban.moviedouban.adapter.viewpage.SubjectTitlePageAdapter;
 import mvp.wyyne.douban.moviedouban.home.MainActivity;
 import mvp.wyyne.douban.moviedouban.home.base.BaseActivity;
 
-import static mvp.wyyne.douban.moviedouban.utils.Constant.CITY_RESULT;
+import static com.wynne.common.Constant.CITY_RESULT;
 
 /**
  * @author XXW

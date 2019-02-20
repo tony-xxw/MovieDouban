@@ -34,11 +34,11 @@ import mvp.wyyne.douban.moviedouban.movie.us.UsMovieActivity;
 import mvp.wyyne.douban.moviedouban.movie.weekly.WeeklyMovieActivity;
 import mvp.wyyne.douban.moviedouban.search.SearchMovieActivity;
 
-import static mvp.wyyne.douban.moviedouban.utils.Constant.DETAIL_TAG;
-import static mvp.wyyne.douban.moviedouban.utils.Constant.NOW_TAG;
-import static mvp.wyyne.douban.moviedouban.utils.Constant.TOP_TAG;
-import static mvp.wyyne.douban.moviedouban.utils.Constant.WANNA;
-import static mvp.wyyne.douban.moviedouban.utils.Constant.WANNA_EXIST;
+import static com.wynne.common.Constant.DETAIL_TAG;
+import static com.wynne.common.Constant.NOW_TAG;
+import static com.wynne.common.Constant.TOP_TAG;
+import static com.wynne.common.Constant.WANNA;
+import static com.wynne.common.Constant.WANNA_EXIST;
 
 /**
  * @author XXW

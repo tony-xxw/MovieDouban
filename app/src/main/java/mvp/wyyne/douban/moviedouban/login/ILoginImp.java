@@ -1,7 +1,7 @@
 package mvp.wyyne.douban.moviedouban.login;
 
 import android.text.TextUtils;
-import mvp.wyyne.douban.moviedouban.utils.Constant;
+import com.wynne.common.Constant;
 
 /**
  * 登录业务相关

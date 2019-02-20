@@ -43,7 +43,7 @@ import mvp.wyyne.douban.moviedouban.widget.ExpandableTextView;
 import mvp.wyyne.douban.moviedouban.widget.RecycleViewUtils;
 import mvp.wyyne.douban.moviedouban.widget.StarView;
 
-import static mvp.wyyne.douban.moviedouban.utils.Constant.DATA_ARTICLE;
+import static com.wynne.common.Constant.DATA_ARTICLE;
 
 /**
  * @author XXW

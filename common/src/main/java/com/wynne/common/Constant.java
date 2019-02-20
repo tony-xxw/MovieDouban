@@ -1,4 +1,4 @@
-package mvp.wyyne.douban.moviedouban.utils;
+package com.wynne.common;
 
 /**
  * 常量和常用数组
@@ -37,6 +37,8 @@ public class Constant {
      * 想看
      */
     public static final String WANNA = "wanna";
+
+    public static final String PARAM = "param";
 
 
 }

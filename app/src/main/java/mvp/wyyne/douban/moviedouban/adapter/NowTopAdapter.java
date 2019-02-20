@@ -12,10 +12,10 @@ import mvp.wyyne.douban.moviedouban.api.bean.Subjects;
 import mvp.wyyne.douban.moviedouban.api.model.WannaModel;
 import mvp.wyyne.douban.moviedouban.login.LoginActivity;
 
-import static mvp.wyyne.douban.moviedouban.utils.Constant.NOW_TAG;
-import static mvp.wyyne.douban.moviedouban.utils.Constant.TOP_TAG;
-import static mvp.wyyne.douban.moviedouban.utils.Constant.WANNA;
-import static mvp.wyyne.douban.moviedouban.utils.Constant.WANNA_EXIST;
+import static com.wynne.common.Constant.NOW_TAG;
+import static com.wynne.common.Constant.TOP_TAG;
+import static com.wynne.common.Constant.WANNA;
+import static com.wynne.common.Constant.WANNA_EXIST;
 
 /**
  * @author Wynne

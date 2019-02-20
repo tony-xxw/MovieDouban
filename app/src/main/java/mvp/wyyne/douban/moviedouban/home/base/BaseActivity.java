@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+
 import com.wang.avi.AVLoadingIndicatorView;
 
 import butterknife.BindView;
@@ -27,19 +28,16 @@ import mvp.wyyne.douban.moviedouban.utils.ToastUtils;
  * @date 2017/6/19
  */
 
-public abstract class BaseActivity<T extends IPresent> extends AppCompatActivity {
-
-    @Nullable
+public abstract class BaseActivity<P extends IPresent> extends AppCompatActivity {
     @BindView(R.id.avl_loading)
 
     protected AVLoadingIndicatorView mLoadingView;
 
-    @Nullable
     @BindView(R.id.swipe_refresh)
     protected SwipeRefreshLayout mSwipeRefresh;
 
 
-    protected T mPresent;
+    protected P mPresent;
 
 
     //只有在多个Fragment实例才会执行此方法

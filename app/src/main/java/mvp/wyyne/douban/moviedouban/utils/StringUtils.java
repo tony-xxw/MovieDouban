@@ -4,8 +4,8 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.List;
 
-import static mvp.wyyne.douban.moviedouban.utils.Constant.LAKH;
-import static mvp.wyyne.douban.moviedouban.utils.Constant.THOUSAND;
+import static com.wynne.common.Constant.LAKH;
+import static com.wynne.common.Constant.THOUSAND;
 
 /**
  * @author XXW

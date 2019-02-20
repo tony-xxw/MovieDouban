@@ -22,6 +22,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
@@ -35,7 +36,7 @@ import mvp.wyyne.douban.moviedouban.detail.photo.PhotoActivity;
 import mvp.wyyne.douban.moviedouban.home.base.BaseActivity;
 import mvp.wyyne.douban.moviedouban.utils.StatusUtils;
 
-import static mvp.wyyne.douban.moviedouban.utils.Constant.DETAIL_TAG;
+import static com.wynne.common.Constant.DETAIL_TAG;
 
 /**
  * Y400 测试
@@ -79,7 +80,7 @@ public class DetailMovieActivity extends BaseActivity<DetailMovieImp> implements
 
     @Override
     protected void refresh() {
-        Log.d("XXW","Y400");
+        Log.d("XXW", "Y400");
     }
 
 

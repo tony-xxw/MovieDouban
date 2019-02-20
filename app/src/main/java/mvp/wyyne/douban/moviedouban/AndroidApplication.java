@@ -17,7 +17,7 @@ import mvp.wyyne.douban.moviedouban.api.RetrofitService;
 import mvp.wyyne.douban.moviedouban.model.DaoMaster;
 import mvp.wyyne.douban.moviedouban.model.DaoSession;
 
-import static mvp.wyyne.douban.moviedouban.utils.Constant.LOGIN;
+import static com.wynne.common.Constant.LOGIN;
 
 /**
  * @author XXW

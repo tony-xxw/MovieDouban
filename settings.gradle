@@ -1,1 +1,1 @@
-include ':app', ':jcvideoplayer-lib', ':moview_hot'
+include ':app', ':jcvideoplayer-lib'

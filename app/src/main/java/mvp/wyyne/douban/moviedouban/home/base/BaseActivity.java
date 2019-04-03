@@ -29,10 +29,10 @@ import mvp.wyyne.douban.moviedouban.utils.ToastUtils;
  */
 
 public abstract class BaseActivity<P extends IPresent> extends AppCompatActivity {
+    @Nullable
     @BindView(R.id.avl_loading)
-
     protected AVLoadingIndicatorView mLoadingView;
-
+    @Nullable
     @BindView(R.id.swipe_refresh)
     protected SwipeRefreshLayout mSwipeRefresh;
 

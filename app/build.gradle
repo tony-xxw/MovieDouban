@@ -1,6 +1,6 @@
 apply plugin: 'com.android.application'
- apply from: 'tinkerpatch.gradle'
 apply plugin: 'org.greenrobot.greendao'
+apply from: 'tinkerpatch.gradle'
 
 configurations.all {
     resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
@@ -60,4 +60,5 @@ dependencies {
     testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.1'
     compile 'org.greenrobot:greendao:3.2.2'
     implementation project(':common')
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
 }

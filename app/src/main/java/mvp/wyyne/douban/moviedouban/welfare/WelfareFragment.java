@@ -162,7 +162,7 @@ public class WelfareFragment extends BaseFragment<WelfarePresent> implements IWe
     }
 
     private void setGridsManager() {
-        mGlManager = new GridLayoutManager(getActivity(), 2);
+        mGlManager = new GridLayoutManager(getActivity(), 3);
         mRvWelfare.setLayoutManager(mGlManager);
         mAdapter.setLayoutManager(WelfareAdapter.GRIDS);
         mRvWelfare.setAdapter(mAdapter);

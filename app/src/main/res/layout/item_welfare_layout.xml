@@ -12,8 +12,9 @@
     <ImageView
         android:id="@+id/iv_photo"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scaleType="fitXY"
+        android:layout_height="match_parent"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
         android:src="@drawable/ic_avatar" />
 
     <TextView
@@ -21,9 +22,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center_horizontal"
-        android:layout_marginBottom="5dp"
         android:layout_marginTop="5dp"
-        android:textColor="@color/colorWhite"
+        android:layout_marginBottom="5dp"
+        android:textColor="@color/white"
         android:textSize="14sp"
         tools:text="测试" />
 

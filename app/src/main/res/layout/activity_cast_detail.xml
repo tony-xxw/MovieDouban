@@ -17,7 +17,7 @@
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
 
-            <android.support.v7.widget.Toolbar
+            <androidx.appcompat.widget.Toolbar
                 android:id="@+id/tl_title"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
@@ -27,12 +27,12 @@
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
                 <include layout="@layout/head_left_layout" />
-            </android.support.v7.widget.Toolbar>
+            </androidx.appcompat.widget.Toolbar>
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
 
-    <android.support.v4.widget.NestedScrollView
+    <androidx.core.widget.NestedScrollView
         android:id="@+id/nsv_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -40,7 +40,7 @@
 
         <include layout="@layout/activity_cast_content" />
 
-    </android.support.v4.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>
 
     <com.wang.avi.AVLoadingIndicatorView
         android:id="@+id/avl_loading"

@@ -1,6 +1,7 @@
 package mvp.wyyne.douban.moviedouban.data;
 
-import android.support.annotation.NonNull;
+
+import androidx.annotation.NonNull;
 
 import mvp.wyyne.douban.moviedouban.data.TasksDataSource.TaskRemoteData;
 import mvp.wyyne.douban.moviedouban.data.TasksDataSource.TaskLocalData;

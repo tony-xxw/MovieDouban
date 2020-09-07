@@ -1,10 +1,11 @@
 package mvp.wyyne.douban.moviedouban.detail.stills;
 
 
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
@@ -13,8 +14,9 @@ import java.util.Arrays;
 import java.util.List;
 
 import butterknife.BindView;
-import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
-import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard;
+
+import cn.jzvd.Jzvd;
+import cn.jzvd.JzvdStd;
 import mvp.wyyne.douban.moviedouban.R;
 import mvp.wyyne.douban.moviedouban.adapter.TvAdapter;
 import mvp.wyyne.douban.moviedouban.adapter.TvHeadAdapter;
@@ -27,7 +29,6 @@ import mvp.wyyne.douban.moviedouban.home.base.BaseActivity;
 import mvp.wyyne.douban.moviedouban.widget.RecycleViewUtils;
 
 /**
- *
  * @author XXW
  * @date 2017/7/2
  */
@@ -35,7 +36,7 @@ import mvp.wyyne.douban.moviedouban.widget.RecycleViewUtils;
 public class StillsActivity extends BaseActivity implements RvItemOnClick {
     public static final String MESSAGE = "message";
     @BindView(R.id.jp_video)
-    JCVideoPlayerStandard mJpVideo;
+    JzvdStd mJpVideo;
     @BindView(R.id.rv_tv)
     RecyclerView mRvTv;
     RecyclerView mRvTvHead;
@@ -135,16 +136,16 @@ public class StillsActivity extends BaseActivity implements RvItemOnClick {
 
     private void initVideo() {
         if (mArticle != null) {
-            mJpVideo.setUp(mArticle.getTrailers().get(0).getResource_url(), JCVideoPlayerStandard.SCREEN_LAYOUT_NORMAL);
-            Glide.with(this).load(mArticle.getTrailers().get(0).getMedium()).into(mJpVideo.thumbImageView);
-            mJpVideo.setActivity(this);
+//            mJpVideo.setUp(mArticle.getTrailers().get(0).getResource_url(), JzvdStd.SCREEN_LAYOUT_NORMAL);
+//            Glide.with(this).load(mArticle.getTrailers().get(0).getMedium()).into(mJpVideo.thumbImageView);
+//            mJpVideo.startVideo();
         }
     }
 
 
     @Override
     public void onBackPressed() {
-        if (JCVideoPlayer.backPress()) {
+        if (JzvdStd.backPress()) {
             return;
         }
         super.onBackPressed();
@@ -159,15 +160,15 @@ public class StillsActivity extends BaseActivity implements RvItemOnClick {
     @Override
     protected void onPause() {
         super.onPause();
-        JCVideoPlayer.releaseAllVideos();
+        JzvdStd.releaseAllVideos();
     }
 
 
     @Override
     public void onItemClick(int position, String tag) {
         if (mArticle != null) {
-            mJpVideo.setUp(mTrailerses.get(position).getResource_url(), JCVideoPlayerStandard.SCREEN_LAYOUT_NORMAL);
-            Glide.with(this).load(mTrailerses.get(position).getMedium()).into(mJpVideo.thumbImageView);
+//            mJpVideo.setUp(mTrailerses.get(position).getResource_url(), Jzvd.SCREEN_LAYOUT_NORMAL);
+//            Glide.with(this).load(mTrailerses.get(position).getMedium()).into(mJpVideo.thumbImageView);
         }
     }
 }

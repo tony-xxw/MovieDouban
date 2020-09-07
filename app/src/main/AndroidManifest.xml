@@ -130,6 +130,7 @@
         <activity
             android:name=".interest.ShareLabelActivity"
             android:launchMode="singleTop" />
+        <activity android:name=".flutter.FlutterSampleActivity" />
     </application>
 
 </manifest>

@@ -4,18 +4,21 @@ import android.animation.ValueAnimator;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.graphics.Color;
-import android.support.annotation.ColorInt;
-import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.design.widget.CoordinatorLayout;
-import android.support.v4.view.OnApplyWindowInsetsListener;
-import android.support.v4.view.ViewCompat;
-import android.support.v4.view.WindowInsetsCompat;
-import android.support.v7.widget.Toolbar;
+
+
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.view.OnApplyWindowInsetsListener;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+import androidx.appcompat.widget.Toolbar;
+
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+
+import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
 
 import io.reactivex.annotations.NonNull;
 import mvp.wyyne.douban.moviedouban.R;
@@ -30,7 +33,7 @@ import mvp.wyyne.douban.moviedouban.R;
 public class StatusLollipopUtils {
 
 
-    public static void setStatusBarColor(@NonNull Activity activity, @ColorInt int color) {
+    public static void setStatusBarColor(@NonNull Activity activity, int color) {
         Window window = activity.getWindow();
 
         //清除透明状态栏才可以设置状态栏颜色
@@ -53,7 +56,6 @@ public class StatusLollipopUtils {
     }
 
     /**
-     * 
      * @param activity
      * @param hideStatusBarBackground
      */

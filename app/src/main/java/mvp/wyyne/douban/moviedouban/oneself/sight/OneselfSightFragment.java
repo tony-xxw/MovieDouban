@@ -1,9 +1,11 @@
 package mvp.wyyne.douban.moviedouban.oneself.sight;
 
-import android.support.v4.app.Fragment;
+
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.fragment.app.Fragment;
 
 import butterknife.BindView;
 import mvp.wyyne.douban.moviedouban.AndroidApplication;

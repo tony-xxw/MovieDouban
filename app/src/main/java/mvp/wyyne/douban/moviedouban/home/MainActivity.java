@@ -2,19 +2,21 @@ package mvp.wyyne.douban.moviedouban.home;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.internal.BottomNavigationItemView;
-import android.support.design.internal.BottomNavigationMenuView;
-import android.support.design.widget.BottomNavigationView;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
+
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
+import com.google.android.material.bottomnavigation.BottomNavigationItemView;
+import com.google.android.material.bottomnavigation.BottomNavigationMenuView;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.tinkerpatch.sdk.TinkerPatch;
 
 import java.lang.reflect.Field;
@@ -105,7 +107,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
 
     @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+    public boolean onNavigationItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.main_hot:
                 if (!item.isChecked()) {
@@ -180,7 +182,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             for (int i = 0; i < menuView.getChildCount(); i++) {
                 BottomNavigationItemView item = (BottomNavigationItemView) menuView.getChildAt(i);
                 //去除shift效果
-                item.setShiftingMode(false);
+                item.setShifting(false);
                 item.setChecked(item.getItemData().isChecked());
             }
         } catch (NoSuchFieldException e) {

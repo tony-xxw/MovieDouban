@@ -1,7 +1,9 @@
 package mvp.wyyne.douban.moviedouban.data.remote;
 
-import android.support.annotation.NonNull;
+
 import android.util.Log;
+
+import androidx.annotation.NonNull;
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 

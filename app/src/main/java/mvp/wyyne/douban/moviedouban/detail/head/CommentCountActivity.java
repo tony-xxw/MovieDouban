@@ -2,7 +2,7 @@ package mvp.wyyne.douban.moviedouban.detail.head;
 
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import javax.annotation.Nullable;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;

@@ -1,6 +1,7 @@
 package mvp.wyyne.douban.moviedouban.hot.main;
 
-import android.support.v4.view.ViewPager;
+
+import androidx.viewpager.widget.ViewPager;
 
 import mvp.wyyne.douban.moviedouban.home.IPresent;
 

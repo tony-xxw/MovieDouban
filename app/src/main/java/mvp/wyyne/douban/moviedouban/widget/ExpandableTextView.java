@@ -7,9 +7,7 @@ import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.support.annotation.DrawableRes;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.SparseBooleanArray;
@@ -22,6 +20,9 @@ import android.view.animation.Animation;
 import android.view.animation.Transformation;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.annotation.DrawableRes;
+import androidx.annotation.NonNull;
 
 import mvp.wyyne.douban.moviedouban.R;
 
@@ -188,6 +189,7 @@ public class ExpandableTextView extends LinearLayout implements View.OnClickList
 
     @Override
     protected void onFinishInflate() {
+        super.onFinishInflate();
         findViews();
     }
 
@@ -234,17 +236,17 @@ public class ExpandableTextView extends LinearLayout implements View.OnClickList
         }
     }
 
-    public void setOnExpandStateChangeListener(@Nullable OnExpandStateChangeListener listener) {
+    public void setOnExpandStateChangeListener(OnExpandStateChangeListener listener) {
         mListener = listener;
     }
 
-    public void setText(@Nullable CharSequence text) {
+    public void setText(CharSequence text) {
         mRelayout = true;
         mTv.setText(text);
         setVisibility(TextUtils.isEmpty(text) ? View.GONE : View.VISIBLE);
     }
 
-    public void setText(@Nullable CharSequence text, @NonNull SparseBooleanArray collapsedStatus, int position) {
+    public void setText(CharSequence text, SparseBooleanArray collapsedStatus, int position) {
         mCollapsedStatus = collapsedStatus;
         mPosition = position;
         boolean isCollapsed = collapsedStatus.get(position, true);
@@ -257,7 +259,7 @@ public class ExpandableTextView extends LinearLayout implements View.OnClickList
         requestLayout();
     }
 
-    @Nullable
+
     public CharSequence getText() {
         if (mTv == null) {
             return "";
@@ -344,7 +346,7 @@ public class ExpandableTextView extends LinearLayout implements View.OnClickList
         }
     }
 
-    private static int getRealTextViewHeight(@NonNull TextView textView) {
+    private static int getRealTextViewHeight(TextView textView) {
         int textHeight = textView.getLayout().getLineTop(textView.getLineCount());
         int padding = textView.getCompoundPaddingTop() + textView.getCompoundPaddingBottom();
         return textHeight + padding;

@@ -1,12 +1,14 @@
 package com.wynne.common.base;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+
 
 import com.wynne.common.base.present.BasePresenter;
 import com.wynne.common.base.present.BaseView;
+
+import javax.annotation.Nullable;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -17,7 +19,7 @@ import static com.wynne.common.Constant.PARAM;
  * @author Wynne
  */
 public abstract class BaseActivity<V extends BaseView, P extends BasePresenter>
-        extends AppCompatActivity implements BaseView {
+        extends Activity implements BaseView {
 
     protected P presenter;
     Unbinder unbinder;

@@ -1,6 +1,7 @@
 package mvp.wyyne.douban.moviedouban.api;
 
-import android.support.annotation.NonNull;
+
+import androidx.annotation.NonNull;
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
@@ -42,7 +43,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * @author XXW
- * @date 2017/6/5   
+ * @date 2017/6/5
  */
 
 public class RetrofitService {

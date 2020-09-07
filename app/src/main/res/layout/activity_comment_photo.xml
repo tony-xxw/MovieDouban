@@ -7,7 +7,7 @@
     <include layout="@layout/default_top_layout" />
 
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.appcompat.widget.RecyclerView
         android:id="@+id/rv_comment"
         android:layout_width="match_parent"
         android:layout_height="0dp"

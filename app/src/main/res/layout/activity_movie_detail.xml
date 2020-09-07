@@ -6,7 +6,7 @@
     android:orientation="vertical">
 
 
-    <android.support.v4.widget.NestedScrollView
+    <androidx.core.widget.NestedScrollView
         android:id="@+id/nv_detail"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -32,7 +32,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
         </LinearLayout>
-    </android.support.v4.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/abl_layout"
@@ -63,7 +63,7 @@
 
             </android.support.v4.widget.NestedScrollView>
 
-            <android.support.v7.widget.Toolbar
+            <androidx.appcompat.widget.Toolbar
                 android:id="@+id/tl_bar"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
@@ -73,7 +73,7 @@
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
                 <include layout="@layout/head_title_layout" />
-            </android.support.v7.widget.Toolbar>
+            </androidx.appcompat.widget.Toolbar>
 
 
         </android.support.design.widget.CollapsingToolbarLayout>

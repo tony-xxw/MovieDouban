@@ -8,7 +8,7 @@
     android:layout_height="270dp"
     android:orientation="vertical">
 
-    <android.support.v7.widget.CardView
+    <androidx.appcompat.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
@@ -29,7 +29,7 @@
             android:background="@drawable/bg_transparency"
             android:padding="10dp"
             android:src="@drawable/ic_subject_mark_add" />
-    </android.support.v7.widget.CardView>
+    </androidx.appcompat.widget.CardView>
 
     <TextView
         android:id="@+id/tv_title"

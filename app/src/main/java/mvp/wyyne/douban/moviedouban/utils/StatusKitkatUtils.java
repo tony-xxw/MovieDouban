@@ -1,17 +1,20 @@
 package mvp.wyyne.douban.moviedouban.utils;
 
 import android.app.Activity;
-import android.support.annotation.ColorInt;
-import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.v4.view.ViewCompat;
-import android.support.v7.widget.Toolbar;
+
+import androidx.annotation.ColorInt;
+import androidx.core.view.ViewCompat;
+import androidx.appcompat.widget.Toolbar;
+
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
+
+import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
 
 import io.reactivex.annotations.NonNull;
 

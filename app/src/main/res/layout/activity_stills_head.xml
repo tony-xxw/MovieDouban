@@ -14,7 +14,7 @@
         android:textColor="@color/colorGray"
         android:textSize="14sp"/>
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.appcompat.widget.RecyclerView
         android:id="@+id/rv_tv_head"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

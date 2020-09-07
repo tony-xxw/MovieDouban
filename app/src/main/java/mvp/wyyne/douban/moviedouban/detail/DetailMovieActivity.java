@@ -5,15 +5,17 @@ import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.view.ViewPager;
-import android.support.v4.widget.NestedScrollView;
-import android.support.v7.graphics.Palette;
-import android.support.v7.widget.Toolbar;
+
+import androidx.core.content.ContextCompat;
+
+import androidx.core.widget.NestedScrollView;
+
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.palette.graphics.Palette;
+import androidx.viewpager.widget.ViewPager;
+
 import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -26,6 +28,8 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
+import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.tabs.TabLayout;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -36,6 +40,7 @@ import mvp.wyyne.douban.moviedouban.detail.photo.PhotoActivity;
 import mvp.wyyne.douban.moviedouban.home.base.BaseActivity;
 import mvp.wyyne.douban.moviedouban.utils.StatusUtils;
 
+import static com.google.android.material.appbar.AppBarLayout.*;
 import static com.wynne.common.Constant.DETAIL_TAG;
 
 /**
@@ -46,7 +51,7 @@ import static com.wynne.common.Constant.DETAIL_TAG;
  */
 
 public class DetailMovieActivity extends BaseActivity<DetailMovieImp> implements
-        IDetailMain, AppBarLayout.OnOffsetChangedListener {
+        IDetailMain, OnOffsetChangedListener {
     @BindView(R.id.iv_back)
     ImageView mIvBack;
     @BindView(R.id.tv_img_title)

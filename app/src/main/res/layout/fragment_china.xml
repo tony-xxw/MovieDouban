@@ -41,7 +41,7 @@
             android:textSize="14sp" />
 
 
-        <android.support.v7.widget.RecyclerView
+        <androidx.appcompat.widget.RecyclerView
             android:id="@+id/rv_hot_city"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />

@@ -1,9 +1,13 @@
 package mvp.wyyne.douban.moviedouban.comment;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import javax.annotation.Nullable;
+//import androidx.appcompat.widget.LinearLayoutManager;
+//import androidx.appcompat.widget.RecyclerView;
 
 import butterknife.BindView;
 import mvp.wyyne.douban.moviedouban.R;

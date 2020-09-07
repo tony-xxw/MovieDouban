@@ -1,1 +1,6 @@
-include ':app', ':jcvideoplayer-lib', ':common'
+include ':app', ':common'
+setBinding(new Binding([gradle: this]))
+evaluate(new File(
+  settingsDir,
+  '../../Downloads/flutter_movie/.android/include_flutter.groovy'
+))

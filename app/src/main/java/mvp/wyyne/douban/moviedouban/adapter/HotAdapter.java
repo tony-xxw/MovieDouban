@@ -2,10 +2,12 @@ package mvp.wyyne.douban.moviedouban.adapter;
 
 import android.content.Context;
 import android.graphics.drawable.GradientDrawable;
-import android.support.v7.util.DiffUtil;
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.recyclerview.widget.DiffUtil;
 
 import java.util.List;
 
